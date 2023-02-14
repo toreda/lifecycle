@@ -1,0 +1,31 @@
+{
+	"exclude": ["**/node_modules", "dist/**"],
+	"include": ["/**/*.ts"],
+	"filesGlob": ["./src/*.ts", "./src/**/*.ts", "!./node_modules/**"],
+	"compilerOptions": {
+		"allowUnreachableCode": false,
+		"alwaysStrict": true,
+		"declaration": true,
+		"esModuleInterop": true,
+		"isolatedModules": false,
+		"lib": ["es6", "ES2017", "ES2015", "ESNext"],
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"noImplicitUseStrict": false,
+		"outDir": "./dist",
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"resolveJsonModule": true,
+		"rootDir": ".",
+		"sourceMap": true,
+		"strict": true,
+		"strictBindCallApply": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": false,
+		"target": "es2015",
+		"traceResolution": false
+	},
+	"ts-node": {
+		"swc": true
+	}
+}
