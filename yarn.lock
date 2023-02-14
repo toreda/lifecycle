@@ -1041,10 +1041,10 @@
   resolved "https://registry.yarnpkg.com/@toreda/prettier-config/-/prettier-config-1.0.1.tgz#bd6c47352aa99560617f0f4a29f16ab7c3070b86"
   integrity sha512-YE13umi84GlKSOVPAEN1WRsoAGPjT3C3VmOGORtQAeZm5bqayL7XRHQM/ifXaF1ZWSkzeEAXYEnFflmIen/4kw==
 
-"@toreda/types@^2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@toreda/types/-/types-2.15.0.tgz#b03e8e414c898e729dca8c81d905fb65569fec3c"
-  integrity sha512-fju8s1sFFm50K4rCZw9ovejAgqpgmA+9ZbHGm9LkMblk+sgUc8+hrKlbMy/7bvSfL6CYy6PZp09VQ0qR034kKg==
+"@toreda/types@^2.16.0":
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/@toreda/types/-/types-2.16.0.tgz#6faec952e366642a443cd8ee4cb0877a8152edfa"
+  integrity sha512-+7oy3YDH0W2QTm8voSxCvrBp8+gcbQmRs5eguVgmXgjr1UQd8Oo3VeSygcWtiKakdFMBNJrLtfTaKlDUvQHdtw==
   dependencies:
     del "^6.1.1"
     marked "^4.0.10"
