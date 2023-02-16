@@ -1,7 +1,7 @@
-import {LifecycleServerPhase} from '../../../src/lifecycle/server/phase';
-import {lifecycleServerPhases} from '../../../src/lifecycle/server/phases';
+import type {ServerPhase} from '../../../src/server/phase';
+import {serverPhases} from '../../../src/server/phases';
 
-const phases: LifecycleServerPhase[] = [
+const phases: ServerPhase[] = [
 	'didBecomeReady',
 	'didInit',
 	'didLoad',
@@ -25,30 +25,30 @@ const phases: LifecycleServerPhase[] = [
 
 const EMPTY_STRING = '';
 
-describe('LifecycleServerPhases', () => {
+describe('ServerPhases', () => {
 	for (const phase of phases) {
 		it(`should return true for server phase '${phase}'`, () => {
-			expect(lifecycleServerPhases.includes(phase)).toBe(true);
+			expect(serverPhases.includes(phase)).toBe(true);
 		});
 	}
 
 	it(`should return false for undefined`, () => {
-		expect(lifecycleServerPhases.includes(undefined as any)).toBe(false);
+		expect(serverPhases.includes(undefined as any)).toBe(false);
 	});
 
 	it(`should return false for null`, () => {
-		expect(lifecycleServerPhases.includes(null as any)).toBe(false);
+		expect(serverPhases.includes(null as any)).toBe(false);
 	});
 
 	it(`should return false for an empty string`, () => {
-		expect(lifecycleServerPhases.includes(EMPTY_STRING as any)).toBe(false);
+		expect(serverPhases.includes(EMPTY_STRING as any)).toBe(false);
 	});
 
 	it(`should return false for single character`, () => {
-		expect(lifecycleServerPhases.includes('a' as any)).toBe(false);
+		expect(serverPhases.includes('a' as any)).toBe(false);
 	});
 
 	it(`should return false for non-phase string`, () => {
-		expect(lifecycleServerPhases.includes('aaaaaaaaa' as any)).toBe(false);
+		expect(serverPhases.includes('aaaaaaaaa' as any)).toBe(false);
 	});
 });

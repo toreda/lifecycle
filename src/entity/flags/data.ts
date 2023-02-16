@@ -24,8 +24,28 @@
  */
 
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ * Data format for entity lifecycle flags.
  *
- * @category Lifecycle
+ * @category Lifecycle - Entities
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export interface EntityFlagsData {
+	entityDidAppear: boolean;
+	entityDidDespawn: boolean;
+	entityDidHide: boolean;
+	entityDidInit: boolean;
+	entityDidLoad: boolean;
+	entityDidSpawn: boolean;
+	entityDidStart: boolean;
+	entityDidStop: boolean;
+	entityDidUnpause: boolean;
+	entityMemoryWarning: boolean;
+	entityWillAppear: boolean;
+	entityWillDespawn: boolean;
+	entityWillHide: boolean;
+	entityWillInit: boolean;
+	entityWillLoad: boolean;
+	entityWillPause: boolean;
+	entityWillSpawn: boolean;
+	entityWillStart: boolean;
+	entityWillStop: boolean;
+}

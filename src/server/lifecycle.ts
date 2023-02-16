@@ -23,9 +23,44 @@
  *
  */
 
+import {Lifecycle} from '../lifecycle';
+import type {LifecycleServerData} from './data';
+import {ServerPhase} from './phase';
+import {serverPhases} from './phases';
+
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ * Managed flags for lifecycle phases used by server-side lifecycle flows.
  *
  * @category Lifecycle
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export class ServerLifecycle extends Lifecycle<ServerPhase> {
+	constructor() {
+		super(serverPhases);
+	}
+
+	public toData(): LifecycleServerData {
+		return {
+			didBecomeReady: this.get('didBecomeReady'),
+			didInit: this.get('didInit'),
+			didLoad: this.get('didLoad'),
+			didStart: this.get('didStart'),
+			didStop: this.get('didStop'),
+			didShutdown: this.get('didShutdown'),
+			didRestart: this.get('didRestart'),
+			onInit: this.get('onInit'),
+			onLoad: this.get('onLoad'),
+			onReady: this.get('onReady'),
+			onRestart: this.get('onRestart'),
+			onShutdown: this.get('onShutdown'),
+			onStart: this.get('onStart'),
+			onStop: this.get('onStop'),
+			willBecomeReady: this.get('willBecomeReady'),
+			willInit: this.get('willInit'),
+			willLoad: this.get('willLoad'),
+			willShutdown: this.get('willShutdown'),
+			willStart: this.get('willStart'),
+			willStop: this.get('willStop'),
+			willRestart: this.get('willRestart')
+		};
+	}
+}

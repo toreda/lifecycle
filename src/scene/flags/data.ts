@@ -23,9 +23,9 @@
  *
  */
 
+import type {ScenePhase} from '../phase';
+
 /**
- * Signature for listener functions executed in response to lifecycle events.
- *
- * @category Lifecycle
+ * @category Scenes
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export type SceneFlagsData = Record<ScenePhase, boolean>;

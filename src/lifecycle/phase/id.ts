@@ -27,7 +27,7 @@ import {LifecycleAddonPhase} from '../addon/phase';
 import type {LifecycleClientPhase} from '../client/phase';
 import {LifecycleEntityPhase} from '../entity/phase';
 import {LifecycleNetworkCnxPhase} from '../network/cnx/phase';
-import type {LifecycleServerPhase} from '../server/phase';
+import type {LifecycleServerPhase} from '../../server/phase';
 
 /**
  * Used for arguments specifying a target lifecycle phase.

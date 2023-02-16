@@ -24,8 +24,35 @@
  */
 
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ * Expressive type describing phase names used in client lifecycle flow.
  *
- * @category Lifecycle
+ * @category Connections
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export type CnxPhase =
+	| 'cnxDidClose'
+	| 'cnxDidConnect'
+	| 'cnxDidDisconnect'
+	| 'cnxDidFailClose'
+	| 'cnxDidFailConnect'
+	| 'cnxDidFailReconnect'
+	| 'cnxDidInit'
+	| 'cnxDidLoad'
+	| 'cnxDidOpen'
+	| 'cnxDidPing'
+	| 'cnxDidPong'
+	| 'cnxDidReconnect'
+	| 'cnxDidReset'
+	| 'cnxDidStartConnect'
+	| 'cnxDidStopConnect'
+	| 'cnxDidStopReconnect'
+	| 'cnxWillClose'
+	| 'cnxWillConnect'
+	| 'cnxWillDisconnect'
+	| 'cnxWillInit'
+	| 'cnxWillLoad'
+	| 'cnxWillOpen'
+	| 'cnxWillReconnect'
+	| 'cnxWillReset'
+	| 'cnxWillStartConnect'
+	| 'cnxWillStopConnect'
+	| 'cnxWillStopReconnect';

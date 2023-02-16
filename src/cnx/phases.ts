@@ -23,9 +23,37 @@
  *
  */
 
+import type {CnxPhase} from './phase';
+
 /**
- * Signature for listener functions executed in response to lifecycle events.
- *
- * @category Lifecycle
+ * @category Clients
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export const cnxPhases: CnxPhase[] = [
+	'cnxDidClose',
+	'cnxDidConnect',
+	'cnxDidDisconnect',
+	'cnxDidFailClose',
+	'cnxDidFailConnect',
+	'cnxDidFailReconnect',
+	'cnxDidInit',
+	'cnxDidLoad',
+	'cnxDidOpen',
+	'cnxDidPing',
+	'cnxDidPong',
+	'cnxDidReset',
+	'cnxWillReset',
+	'cnxDidReconnect',
+	'cnxDidStartConnect',
+	'cnxDidStopConnect',
+	'cnxDidStopReconnect',
+	'cnxWillClose',
+	'cnxWillConnect',
+	'cnxWillDisconnect',
+	'cnxWillInit',
+	'cnxWillLoad',
+	'cnxWillOpen',
+	'cnxWillReconnect',
+	'cnxWillStartConnect',
+	'cnxWillStopConnect',
+	'cnxWillStopReconnect'
+];

@@ -1,7 +1,7 @@
-import {LifecycleClientPhase} from '../../../src/lifecycle/client/phase';
-import {lifecycleClientPhases} from '../../../src/lifecycle/client/phases';
+import {ClientPhase} from '../../../src/client/phase';
+import {clientPhases} from '../../../src/client/phases';
 
-const phases: LifecycleClientPhase[] = [
+const phases: ClientPhase[] = [
 	'didBecomeReady',
 	'didGainFocus',
 	'didInit',
@@ -27,29 +27,35 @@ const phases: LifecycleClientPhase[] = [
 const EMPTY_STRING = '';
 
 describe('LifecycleClientPhases', () => {
+	let phaseSet: Set<ClientPhase>;
+
+	beforeAll(() => {
+		phaseSet = new Set<ClientPhase>(clientPhases);
+	});
+
 	for (const phase of phases) {
 		it(`should return true for client phase '${phase}'`, () => {
-			expect(lifecycleClientPhases.has(phase)).toBe(true);
+			expect(phaseSet.has(phase)).toBe(true);
 		});
 	}
 
 	it(`should return false for undefined`, () => {
-		expect(lifecycleClientPhases.has(undefined as any)).toBe(false);
+		expect(phaseSet.has(undefined as any)).toBe(false);
 	});
 
 	it(`should return false for null`, () => {
-		expect(lifecycleClientPhases.has(null as any)).toBe(false);
+		expect(phaseSet.has(null as any)).toBe(false);
 	});
 
 	it(`should return false for an empty string`, () => {
-		expect(lifecycleClientPhases.has(EMPTY_STRING as any)).toBe(false);
+		expect(phaseSet.has(EMPTY_STRING as any)).toBe(false);
 	});
 
 	it(`should return false for single character`, () => {
-		expect(lifecycleClientPhases.has('a' as any)).toBe(false);
+		expect(phaseSet.has('a' as any)).toBe(false);
 	});
 
 	it(`should return false for non-phase string`, () => {
-		expect(lifecycleClientPhases.has('aaaaaaaaa' as any)).toBe(false);
+		expect(phaseSet.has('aaaaaaaaa' as any)).toBe(false);
 	});
 });

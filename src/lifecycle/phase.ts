@@ -36,15 +36,11 @@ import type {LifecycleDelegateCommon} from './delegate/common';
  */
 export async function lifecyclePhase<
 	PhaseKeyT extends string,
-	LifecycleT extends Lifecycle<PhaseKeyT, unknown>,
+	LifecycleT extends Lifecycle<PhaseKeyT>,
 	DelegateT extends LifecycleDelegateCommon<LifecycleT>,
 	DelegateKeyT extends keyof DelegateT
 >(o: DelegateT, phase: PhaseKeyT & DelegateKeyT): Promise<boolean> {
 	if (!phase || !o || !o.lifecycle) {
-		return false;
-	}
-
-	if (!o.lifecycle.has(phase)) {
 		return false;
 	}
 
@@ -70,6 +66,7 @@ export async function lifecyclePhase<
 	} catch (e) {
 		result = false;
 	}
+
 	// Set flag active.
 	o.lifecycle.set(phase, true);
 

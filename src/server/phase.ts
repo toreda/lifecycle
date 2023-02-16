@@ -24,8 +24,29 @@
  */
 
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ * Type describing phase names used in server lifecycle flow.
  *
- * @category Lifecycle
+ * @category Servers
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export type ServerPhase =
+	| 'didBecomeReady'
+	| 'didInit'
+	| 'didLoad'
+	| 'didRestart'
+	| 'didShutdown'
+	| 'didStart'
+	| 'didStop'
+	| 'onInit'
+	| 'onLoad'
+	| 'onReady'
+	| 'onRestart'
+	| 'onShutdown'
+	| 'onStart'
+	| 'onStop'
+	| 'willBecomeReady'
+	| 'willInit'
+	| 'willLoad'
+	| 'willRestart'
+	| 'willShutdown'
+	| 'willStart'
+	| 'willStop';

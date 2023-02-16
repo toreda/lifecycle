@@ -10,32 +10,13 @@
 
 # `@toreda/lifecycle`
 
-Improve readability, reduce redundancy. Functional &amp; Expressive Types used in [**Toreda**](https://www.toreda.com) packages.
+ [**Toreda**](https://www.toreda.com) packages.
 
 &nbsp;
 
 # **Contents**
-- [`@toreda/lifecycle`](#toredatypes)
+- [`@toreda/lifecycle`]()
 - [**Contents**](#contents)
-- [Object API](#object-api)
-	- [`Resettable`](#resettable)
-		- [Example](#example)
-	- [`Clearable`](#clearable)
-		- [Example](#example-1)
-	- [`Stringable`](#stringable)
-		- [Example](#example-2)
-- [**Functional Types**](#functional-types)
-	- [`DeepRequired<T>`](#deeprequiredt)
-	- [`Primitive`](#primitive)
-		- [Import](#import)
-		- [Use](#use)
-	- [`Stringable`](#stringable-1)
-		- [**Import**](#import-1)
-		- [**Use**](#use-1)
-- [**Expressive Types**](#expressive-types)
-	- [**`BitMask`**](#bitmask)
-		- [**Import**](#import-2)
-		- [**Use**](#use-2)
 - [Install](#install)
 	- [Yarn](#yarn)
 	- [NPM](#npm)
@@ -46,10 +27,17 @@ Improve readability, reduce redundancy. Functional &amp; Expressive Types used i
 
 &nbsp;
 
-# Object API
+# Client Lifecycle
 
-## `Resettable`
-Interface indicating implementer provides a `reset` method.
+
+# Server Lifecycle
+
+# Entity Lifecycle
+
+# Addon Lifecycle
+
+
+# Network Connection Lifecycle
 
 ### Example
 

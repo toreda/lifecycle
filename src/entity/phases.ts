@@ -23,9 +23,30 @@
  *
  */
 
+import type {EntityPhase} from './phase';
+
 /**
- * Signature for listener functions executed in response to lifecycle events.
- *
- * @category Lifecycle
+ * @category Entities
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export const entityPhases: EntityPhase[] = [
+	'entityDidAppear',
+	'entityDidDespawn',
+	'entityDidHide',
+	'entityDidInit',
+	'entityDidLoad',
+	'entityDidLoad',
+	'entityDidSpawn',
+	'entityDidStart',
+	'entityDidStop',
+	'entityDidUnpause',
+	'entityWillAppear',
+	'entityWillDespawn',
+	'entityWillHide',
+	'entityWillInit',
+	'entityWillLoad',
+	'entityWillPause',
+	'entityWillSpawn',
+	'entityWillStart',
+	'entityWillStop',
+	'entityMemoryWarning'
+];

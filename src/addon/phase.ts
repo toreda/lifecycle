@@ -24,8 +24,27 @@
  */
 
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ * Expressive type describing phase names used in client lifecycle flow.
  *
- * @category Lifecycle
+ * @category Addons
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export type AddonPhase =
+	| 'didBecomeReady'
+	| 'didGainFocus'
+	| 'didInit'
+	| 'didLoad'
+	| 'didPause'
+	| 'didLoseFocus'
+	| 'didStart'
+	| 'didStop'
+	| 'didUnpause'
+	| 'memoryWarning'
+	| 'willBecomeReady'
+	| 'willGainFocus'
+	| 'willInit'
+	| 'willLoad'
+	| 'willLoseFocus'
+	| 'willPause'
+	| 'willShutdown'
+	| 'willStart'
+	| 'willStop';

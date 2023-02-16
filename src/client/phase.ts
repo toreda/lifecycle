@@ -24,8 +24,48 @@
  */
 
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ * Expressive type describing phase names used in client lifecycle flow.
  *
- * @category Lifecycle
+ * @category Clients
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export type ClientPhase =
+	| 'didBecomeReady'
+	| 'didGainFocus'
+	| 'didInit'
+	| 'didLoad'
+	| 'didLoseFocus'
+	| 'didPause'
+	| 'didStart'
+	| 'didStop'
+	| 'didUnpause'
+	| 'memoryWarning'
+	| 'onInit'
+	| 'onLoad'
+	| 'onReady'
+	| 'onStart'
+	| 'willBecomeReady'
+	| 'willGainFocus'
+	| 'willInit'
+	| 'willLoad'
+	| 'willLoseFocus'
+	| 'willPause'
+	| 'willStart'
+	| 'willStop';
+
+import type {ClientDelegate} from './delegate';
+import {ClientLifecycle} from './lifecycle';
+import {lifecyclePhase} from '../lifecycle/phase';
+
+/**
+ *
+ * @param phase
+ * @returns
+ *
+ * @category Client
+ */
+export async function clientPhase(client: unknown, phase: ClientPhase): Promise<boolean> {
+	return lifecyclePhase<ClientPhase, ClientDelegate<ClientLifecycle>, ClientDelegate<unknown>>(
+		client,
+		phase
+	);
+}

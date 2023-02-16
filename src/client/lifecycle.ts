@@ -23,17 +23,20 @@
  *
  */
 
+import type {ClientFlagsData} from './flags/data';
+import type {ClientPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
-import type {LifecycleEntityData} from './entity/data';
-import type {LifecycleEntityPhase} from './entity/phase';
-import {lifecycleEntityPhases} from './entity/phases';
+import {clientPhases} from './phases';
 
 /**
- * @category Lifecycle
+ * Manages client lifecycle flow for owner. Tracks which phases have executed to prevent
+ * multiple executions per phase.
+ *
+ * @category Client Lifecycle
  */
-export class LifecycleEntity extends Lifecycle<LifecycleEntityPhase, LifecycleEntityData> {
+export class ClientLifecycle extends Lifecycle<ClientPhase> {
 	constructor() {
-		super(lifecycleEntityPhases);
+		super(clientPhases);
 	}
 
 	/**
@@ -41,5 +44,32 @@ export class LifecycleEntity extends Lifecycle<LifecycleEntityPhase, LifecycleEn
 	 */
 	public reset(): void {
 		super.reset();
+	}
+
+	public toData(): ClientFlagsData {
+		return {
+			didBecomeReady: this.get('didBecomeReady'),
+			didGainFocus: this.get('didGainFocus'),
+			didInit: this.get('didInit'),
+			didLoad: this.get('didLoad'),
+			didLoseFocus: this.get('didLoseFocus'),
+			didPause: this.get('didPause'),
+			didStart: this.get('didStart'),
+			didStop: this.get('didStop'),
+			didUnpause: this.get('didUnpause'),
+			memoryWarning: this.get('memoryWarning'),
+			onInit: this.get('onInit'),
+			onLoad: this.get('onLoad'),
+			onReady: this.get('onReady'),
+			onStart: this.get('onStart'),
+			willBecomeReady: this.get('willBecomeReady'),
+			willGainFocus: this.get('willGainFocus'),
+			willInit: this.get('willInit'),
+			willLoad: this.get('willLoad'),
+			willLoseFocus: this.get('willLoseFocus'),
+			willPause: this.get('willPause'),
+			willStart: this.get('willStart'),
+			willStop: this.get('willStop')
+		};
 	}
 }

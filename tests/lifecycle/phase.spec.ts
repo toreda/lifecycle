@@ -1,12 +1,13 @@
 import {CLIENT_PHASES, SampleClient} from '../_data/lifecycle';
 
-import {LifecycleServerPhase} from '../../src/lifecycle/server/phase';
 import {SampleServer} from '../_data/sample/server';
+import type {ServerPhase} from '../../src/server/phase';
+import {clientPhase} from '../../src/client/phase';
 import {lifecyclePhase} from '../../src/lifecycle/phase';
 
 const PHASE_NAME = 'didInit';
 
-const SERVER_PHASES: LifecycleServerPhase[] = [
+const SERVER_PHASES: ServerPhase[] = [
 	'didInit',
 	'didLoad',
 	'didStart',
@@ -22,35 +23,36 @@ const SERVER_PHASES: LifecycleServerPhase[] = [
 ];
 
 describe('lifecyclePhase handler', () => {
-	let sampleServer: SampleServer;
-	let sampleClient: SampleClient;
+	let server: SampleServer;
+	let client: SampleClient;
 
 	beforeAll(() => {
-		sampleServer = new SampleServer();
+		server = new SampleServer();
+		client = new SampleClient();
 	});
 
-	beforeEach(() => {
-		sampleServer.reset();
-	});
-
-	describe('', () => {
-		it(`should return false when o arg is undefined`, async () => {
-			expect(await lifecyclePhase(undefined as any, PHASE_NAME)).toBe(false);
-		});
-	});
+	describe('Entity Phases', () => {});
 
 	describe('Server Phases', () => {
+		beforeEach(() => {
+			server.reset();
+		});
+
 		for (const phase of SERVER_PHASES) {
 			it(`should return true for supported phase '${phase}'`, async () => {
-				expect(await lifecyclePhase(sampleServer, phase)).toBe(true);
+				expect(await lifecyclePhase(server, phase)).toBe(true);
 			});
 		}
 	});
 
 	describe('Client Phases', () => {
+		beforeEach(() => {
+			client.reset();
+		});
+
 		for (const phase of CLIENT_PHASES) {
 			it(`should return true for supported phase '${phase.name}'`, async () => {
-				expect(await lifecyclePhase(sampleClient, phase.listener)).toBe(true);
+				expect(await clientPhase(client, phase.key)).toBe(true);
 			});
 		}
 	});

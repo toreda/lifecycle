@@ -1,12 +1,12 @@
-import {LifecycleClient} from '../../../src/lifecycle/client';
-import {LifecycleClientDelegate} from '../../../src/lifecycle/client/delegate';
+import type {ClientDelegate} from '../../../src/client/delegate';
+import {ClientLifecycle} from '../../../src/client/lifecycle';
 import {lifecycleForEach} from '../../../src/lifecycle/for/each';
 
-class SampleClient implements LifecycleClientDelegate {
-	public lifecycle: LifecycleClient;
+class SampleClient implements ClientDelegate {
+	public lifecycle: ClientLifecycle;
 
 	constructor() {
-		this.lifecycle = new LifecycleClient();
+		this.lifecycle = new ClientLifecycle();
 	}
 
 	public async willInit(): Promise<boolean> {

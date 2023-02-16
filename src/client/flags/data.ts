@@ -23,9 +23,12 @@
  *
  */
 
+import type {ClientPhase} from '../phase';
+import type {LifecycleFlags} from '../../lifecycle/flags';
+
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ * Required for data objects storing Lifecycle Client
  *
- * @category Lifecycle
+ * @category Clients
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export type ClientFlagsData = LifecycleFlags<ClientPhase>;

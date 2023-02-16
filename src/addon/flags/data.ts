@@ -23,9 +23,11 @@
  *
  */
 
+import type {AddonPhase} from '../phase';
+
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ *  Status flags indicating which handlers have already been called in an Addon Lifecycle.
  *
- * @category Lifecycle
+ * @category Addons
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export type AddonFlagsData = Record<AddonPhase, boolean>;

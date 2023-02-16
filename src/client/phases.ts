@@ -23,9 +23,30 @@
  *
  */
 
+import type {ClientPhase} from './phase';
+
 /**
- * Signature for listener functions executed in response to lifecycle events.
- *
- * @category Lifecycle
+ * @category Clients
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export const clientPhases: ClientPhase[] = [
+	'didBecomeReady',
+	'didGainFocus',
+	'didInit',
+	'didLoad',
+	'didLoseFocus',
+	'didStart',
+	'didUnpause',
+	'memoryWarning',
+	'onInit',
+	'onLoad',
+	'onReady',
+	'onStart',
+	'willBecomeReady',
+	'willGainFocus',
+	'willInit',
+	'willLoad',
+	'willLoseFocus',
+	'willPause',
+	'willStart',
+	'willStop'
+];

@@ -24,8 +24,27 @@
  */
 
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ * Identifiers for each phase in the Entity Lifecycle flow.
  *
- * @category Lifecycle
+ * @category Entities
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export type EntityPhase =
+	| 'entityDidAppear'
+	| 'entityDidDespawn'
+	| 'entityDidHide'
+	| 'entityDidInit'
+	| 'entityDidLoad'
+	| 'entityDidSpawn'
+	| 'entityDidStart'
+	| 'entityDidStop'
+	| 'entityDidUnpause'
+	| 'entityWillAppear'
+	| 'entityWillDespawn'
+	| 'entityWillHide'
+	| 'entityWillInit'
+	| 'entityWillLoad'
+	| 'entityWillPause'
+	| 'entityWillSpawn'
+	| 'entityWillStart'
+	| 'entityWillStop'
+	| 'entityMemoryWarning';

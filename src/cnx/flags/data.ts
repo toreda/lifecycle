@@ -23,9 +23,11 @@
  *
  */
 
+import type {CnxPhase} from '../phase';
+
 /**
- * Signature for listener functions executed in response to lifecycle events.
+ * Required properties for clients using the Network Connection Lifecycle.
  *
- * @category Lifecycle
+ * @category Connections
  */
-export type LifecycleListener<ArgsT = unknown> = (args?: ArgsT) => Promise<boolean> | boolean;
+export type CnxFlagsData = Record<CnxPhase, boolean>;

@@ -28,7 +28,7 @@ import Defaults from './lifecycle/defaults';
 /**
  * @category Lifecycle
  */
-export class Lifecycle<PhaseT extends string, DataT> extends Map<PhaseT, boolean> {
+export class Lifecycle<PhaseT extends string> extends Map<PhaseT, boolean> {
 	constructor(phases?: PhaseT[]) {
 		super();
 
@@ -85,5 +85,18 @@ export class Lifecycle<PhaseT extends string, DataT> extends Map<PhaseT, boolean
 		for (const phase of this.keys()) {
 			this.set(phase, Defaults.LifecyclePhase.Status);
 		}
+	}
+
+	public override get(key?: PhaseT): boolean {
+		if (typeof key !== 'string' || key === '') {
+			return false;
+		}
+
+		const value = super.get(key);
+		if (typeof value !== 'boolean') {
+			return false;
+		}
+
+		return value;
 	}
 }
