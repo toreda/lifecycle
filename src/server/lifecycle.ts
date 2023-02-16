@@ -24,7 +24,7 @@
  */
 
 import {Lifecycle} from '../lifecycle';
-import type {LifecycleServerData} from './data';
+import type {ServerFlags} from './flags';
 import {ServerPhase} from './phase';
 import {serverPhases} from './phases';
 
@@ -38,7 +38,7 @@ export class ServerLifecycle extends Lifecycle<ServerPhase> {
 		super(serverPhases);
 	}
 
-	public toData(): LifecycleServerData {
+	public toData(): ServerFlags {
 		return {
 			didBecomeReady: this.get('didBecomeReady'),
 			didInit: this.get('didInit'),

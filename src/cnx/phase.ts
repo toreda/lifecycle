@@ -23,10 +23,14 @@
  *
  */
 
+import type {CnxDelegate} from './delegate';
+import type {CnxLifecycle} from './lifecycle';
+import {lifecyclePhase} from '../lifecycle/phase';
+
 /**
  * Expressive type describing phase names used in client lifecycle flow.
  *
- * @category Connections
+ * @category Connection
  */
 export type CnxPhase =
 	| 'cnxDidClose'
@@ -56,3 +60,15 @@ export type CnxPhase =
 	| 'cnxWillStartConnect'
 	| 'cnxWillStopConnect'
 	| 'cnxWillStopReconnect';
+
+/**
+ *
+ * @param delegate
+ * @param phase
+ * @returns
+ *
+ * @category Connection
+ */
+export async function cnxPhase(delegate: CnxDelegate, phase: CnxPhase): Promise<boolean> {
+	return lifecyclePhase<CnxPhase, CnxLifecycle, CnxDelegate<CnxLifecycle>>(delegate, phase);
+}

@@ -23,32 +23,12 @@
  *
  */
 
+import type {ClientPhase} from './phase';
+import type {LifecycleFlags} from '../lifecycle/flags';
 
 /**
- * Managed flag data for lifecycle phases used by server-side lifecycle flows.
+ * Required for data objects storing Lifecycle Client
  *
- * @category Lifecycle
+ * @category Client
  */
-export interface LifecycleServerData {
-	didBecomeReady: boolean;
-	didInit: boolean;
-	didLoad: boolean;
-	didShutdown: boolean;
-	didStart: boolean;
-	didRestart: boolean;
-	didStop: boolean;
-	onInit: boolean;
-	onLoad: boolean;
-	onReady: boolean;
-	onRestart: boolean;
-	onShutdown: boolean;
-	onStart: boolean;
-	onStop: boolean;
-	willBecomeReady: boolean;
-	willInit: boolean;
-	willLoad: boolean;
-	willRestart: boolean;
-	willShutdown: boolean;
-	willStart: boolean;
-	willStop: boolean;
-}
+export type ClientFlags = LifecycleFlags<ClientPhase>;

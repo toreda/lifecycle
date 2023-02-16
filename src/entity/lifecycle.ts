@@ -23,23 +23,40 @@
  *
  */
 
+import type {EntityFlags} from './flags';
+import type {EntityPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
-import type {LifecycleEntityData} from './entity/data';
-import type {LifecycleEntityPhase} from './entity/phase';
-import {lifecycleEntityPhases} from './entity/phases';
+import {entityPhases} from './phases';
 
 /**
- * @category Lifecycle
+ * @category Entity
  */
-export class LifecycleEntity extends Lifecycle<LifecycleEntityPhase, LifecycleEntityData> {
+export class EntityLifecycle extends Lifecycle<EntityPhase> {
 	constructor() {
-		super(lifecycleEntityPhases);
+		super(entityPhases);
 	}
 
-	/**
-	 * Reset all phase properties to their starting value.
-	 */
-	public reset(): void {
-		super.reset();
+	public toData(): EntityFlags {
+		return {
+			entityDidAppear: this.get('entityDidAppear'),
+			entityDidDespawn: this.get('entityDidDespawn'),
+			entityDidHide: this.get('entityDidHide'),
+			entityDidInit: this.get('entityDidInit'),
+			entityDidLoad: this.get('entityDidLoad'),
+			entityDidSpawn: this.get('entityDidSpawn'),
+			entityDidStart: this.get('entityDidStart'),
+			entityDidStop: this.get('entityDidStop'),
+			entityDidUnpause: this.get('entityDidUnpause'),
+			entityWillAppear: this.get('entityWillAppear'),
+			entityWillDespawn: this.get('entityWillDespawn'),
+			entityWillHide: this.get('entityWillHide'),
+			entityWillInit: this.get('entityWillInit'),
+			entityWillLoad: this.get('entityWillLoad'),
+			entityWillPause: this.get('entityWillPause'),
+			entityWillSpawn: this.get('entityWillSpawn'),
+			entityWillStart: this.get('entityWillStart'),
+			entityWillStop: this.get('entityWillStop'),
+			entityMemoryWarning: this.get('entityMemoryWarning')
+		};
 	}
 }

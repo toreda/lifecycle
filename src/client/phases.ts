@@ -26,7 +26,7 @@
 import type {ClientPhase} from './phase';
 
 /**
- * @category Clients
+ * @category Client
  */
 export const clientPhases: ClientPhase[] = [
 	'didBecomeReady',

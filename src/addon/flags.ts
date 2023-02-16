@@ -23,11 +23,11 @@
  *
  */
 
-import type {CnxPhase} from '../phase';
+import type {AddonPhase} from './phase';
 
 /**
- * Required properties for clients using the Network Connection Lifecycle.
+ *  Status flags indicating which handlers have already been called in an Addon Lifecycle.
  *
- * @category Connections
+ * @category Addons
  */
-export type CnxFlagsData = Record<CnxPhase, boolean>;
+export type AddonFlags = Record<AddonPhase, boolean>;

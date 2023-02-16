@@ -23,20 +23,20 @@
  *
  */
 
-import {CnxFlagsData} from './flags/data';
+import {CnxFlags} from './flags';
 import type {CnxPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
 import {cnxPhases} from './phases';
 
 /**
- * @category Lifecycle - Network Connections
+ * @category Connection
  */
 export class CnxLifecycle extends Lifecycle<CnxPhase> {
 	constructor() {
 		super(cnxPhases);
 	}
 
-	public toData(): CnxFlagsData {
+	public toData(): CnxFlags {
 		return {
 			cnxDidClose: this.get('cnxDidClose'),
 			cnxDidConnect: this.get('cnxDidConnect'),

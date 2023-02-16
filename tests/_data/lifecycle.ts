@@ -1,3 +1,4 @@
+import {AddonPhase} from '../../src/addon/phase';
 import type {ClientDelegate} from '../../src/client/delegate';
 import {ClientLifecycle} from '../../src/client/lifecycle';
 import {ClientPhase} from '../../src/client/phase';
@@ -152,7 +153,10 @@ export class SampleClient implements ClientDelegate {
 	}
 }
 
-export const ADDON_PHASES = [];
+export const ADDON_PHASES: {
+	name: string;
+	key: AddonPhase;
+}[] = [];
 
 export const CLIENT_PHASES: {
 	name: string;
@@ -168,10 +172,8 @@ export const CLIENT_PHASES: {
 	{name: 'memoryWarning', key: 'memoryWarning'},
 	{name: 'willBecomeReady', key: 'willBecomeReady'},
 	{name: 'willGainFocus', key: 'willGainFocus'},
-	{name: 'willGainFocus', key: 'willGainFocus'},
 	{name: 'willInit', key: 'willInit'},
 	{name: 'willLoad', key: 'willLoad'},
-	{name: 'willLoseFocus', key: 'willLoseFocus'},
 	{name: 'willLoseFocus', key: 'willLoseFocus'},
 	{name: 'willPause', key: 'willPause'},
 	{name: 'willStart', key: 'willStart'},

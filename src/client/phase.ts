@@ -26,7 +26,7 @@
 /**
  * Expressive type describing phase names used in client lifecycle flow.
  *
- * @category Clients
+ * @category Client
  */
 export type ClientPhase =
 	| 'didBecomeReady'
@@ -63,9 +63,6 @@ import {lifecyclePhase} from '../lifecycle/phase';
  *
  * @category Client
  */
-export async function clientPhase(client: unknown, phase: ClientPhase): Promise<boolean> {
-	return lifecyclePhase<ClientPhase, ClientDelegate<ClientLifecycle>, ClientDelegate<unknown>>(
-		client,
-		phase
-	);
+export async function clientPhase(delegate: ClientDelegate, phase: ClientPhase): Promise<boolean> {
+	return lifecyclePhase<ClientPhase, ClientLifecycle, ClientDelegate<unknown>>(delegate, phase);
 }

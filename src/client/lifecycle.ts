@@ -23,7 +23,7 @@
  *
  */
 
-import type {ClientFlagsData} from './flags/data';
+import type {ClientFlags} from './flags';
 import type {ClientPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
 import {clientPhases} from './phases';
@@ -32,21 +32,14 @@ import {clientPhases} from './phases';
  * Manages client lifecycle flow for owner. Tracks which phases have executed to prevent
  * multiple executions per phase.
  *
- * @category Client Lifecycle
+ * @category Client
  */
 export class ClientLifecycle extends Lifecycle<ClientPhase> {
 	constructor() {
 		super(clientPhases);
 	}
 
-	/**
-	 * Reset all phase properties to their starting value.
-	 */
-	public reset(): void {
-		super.reset();
-	}
-
-	public toData(): ClientFlagsData {
+	public toData(): ClientFlags {
 		return {
 			didBecomeReady: this.get('didBecomeReady'),
 			didGainFocus: this.get('didGainFocus'),

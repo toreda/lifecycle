@@ -23,7 +23,6 @@
  *
  */
 
-
 /**
  * Common properties shared by all Lifecycle delegates.
  *

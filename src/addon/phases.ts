@@ -23,23 +23,28 @@
  *
  */
 
-import {LifecycleAddonPhase} from '../addon/phase';
-import type {LifecycleClientPhase} from '../client/phase';
-import {LifecycleEntityPhase} from '../entity/phase';
-import {LifecycleNetworkCnxPhase} from '../network/cnx/phase';
-import type {LifecycleServerPhase} from '../../server/phase';
+import type {AddonPhase} from './phase';
 
 /**
- * Used for arguments specifying a target lifecycle phase.
- *
- * @category Lifecycle
+ * @category Client
  */
-export type LifecyclePhaseId =
-	| (
-			| LifecycleAddonPhase
-			| LifecycleServerPhase
-			| LifecycleClientPhase
-			| LifecycleNetworkCnxPhase
-			| LifecycleEntityPhase
-	  )
-	| string;
+export const addonPhases: AddonPhase[] = [
+	'didBecomeReady',
+	'didGainFocus',
+	'didInit',
+	'didLoad',
+	'didLoseFocus',
+	'didStart',
+	'didStop',
+	'didUnpause',
+	'memoryWarning',
+	'willBecomeReady',
+	'willGainFocus',
+	'willInit',
+	'willLoad',
+	'willLoseFocus',
+	'willPause',
+	'willShutdown',
+	'willStart',
+	'willStop'
+];

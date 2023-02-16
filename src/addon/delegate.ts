@@ -23,7 +23,7 @@
  *
  */
 
-import {LifecycleAddon} from '../lifecycle/addon';
+import {AddonLifecycle} from './lifecycle';
 import type {LifecycleListener} from '../lifecycle/listener';
 
 /**
@@ -32,7 +32,7 @@ import type {LifecycleListener} from '../lifecycle/listener';
  * @category Addons
  */
 export interface AddonDelegate {
-	lifecycle: LifecycleAddon;
+	lifecycle: AddonLifecycle;
 	/** Starting 'init' lifecycle phase. */
 	willInit?: LifecycleListener;
 	/** Server completed 'init' lifecycle phase. */

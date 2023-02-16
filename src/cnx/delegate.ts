@@ -23,15 +23,16 @@
  *
  */
 
+import {CnxLifecycle} from './lifecycle';
 import type {LifecycleListener} from '../lifecycle/listener';
 
 /**
  * Delegate interface for classes implementing Network Client listeners.
  *
- * @category Connections
+ * @category Connection
  */
 export interface CnxDelegate<ArgT = unknown> {
-	lifecycle: LifecycleCnx;
+	lifecycle: CnxLifecycle;
 	cnxDidClose?: LifecycleListener<ArgT>;
 	cnxDidConnect?: LifecycleListener<ArgT>;
 	cnxDidDisconnect?: LifecycleListener<ArgT>;

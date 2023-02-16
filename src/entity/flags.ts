@@ -23,11 +23,12 @@
  *
  */
 
-import type {AddonPhase} from '../phase';
+import type {EntityPhase} from './phase';
+import type {LifecycleFlags} from '../lifecycle/flags';
 
 /**
- *  Status flags indicating which handlers have already been called in an Addon Lifecycle.
+ * Data format for entity lifecycle flags.
  *
- * @category Addons
+ * @category Entity
  */
-export type AddonFlagsData = Record<AddonPhase, boolean>;
+export type EntityFlags = LifecycleFlags<EntityPhase>;

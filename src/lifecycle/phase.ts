@@ -37,9 +37,8 @@ import type {LifecycleDelegateCommon} from './delegate/common';
 export async function lifecyclePhase<
 	PhaseKeyT extends string,
 	LifecycleT extends Lifecycle<PhaseKeyT>,
-	DelegateT extends LifecycleDelegateCommon<LifecycleT>,
-	DelegateKeyT extends keyof DelegateT
->(o: DelegateT, phase: PhaseKeyT & DelegateKeyT): Promise<boolean> {
+	DelegateT extends LifecycleDelegateCommon<LifecycleT>
+>(o: DelegateT, phase: PhaseKeyT & keyof DelegateT): Promise<boolean> {
 	if (!phase || !o || !o.lifecycle) {
 		return false;
 	}

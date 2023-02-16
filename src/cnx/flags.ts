@@ -23,29 +23,11 @@
  *
  */
 
+import type {CnxPhase} from './phase';
+
 /**
- * Data format for entity lifecycle flags.
+ * Required properties for clients using the Network Connection Lifecycle.
  *
- * @category Lifecycle - Entities
+ * @category Connections
  */
-export interface EntityFlagsData {
-	entityDidAppear: boolean;
-	entityDidDespawn: boolean;
-	entityDidHide: boolean;
-	entityDidInit: boolean;
-	entityDidLoad: boolean;
-	entityDidSpawn: boolean;
-	entityDidStart: boolean;
-	entityDidStop: boolean;
-	entityDidUnpause: boolean;
-	entityMemoryWarning: boolean;
-	entityWillAppear: boolean;
-	entityWillDespawn: boolean;
-	entityWillHide: boolean;
-	entityWillInit: boolean;
-	entityWillLoad: boolean;
-	entityWillPause: boolean;
-	entityWillSpawn: boolean;
-	entityWillStart: boolean;
-	entityWillStop: boolean;
-}
+export type CnxFlags = Record<CnxPhase, boolean>;

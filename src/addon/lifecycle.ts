@@ -23,12 +23,40 @@
  *
  */
 
-import type {ClientPhase} from '../phase';
-import type {LifecycleFlags} from '../../lifecycle/flags';
+import type {AddonFlags} from './flags';
+import type {AddonPhase} from './phase';
+import {Lifecycle} from '../lifecycle';
+import {addonPhases} from './phases';
 
 /**
- * Required for data objects storing Lifecycle Client
- *
- * @category Clients
+ * @category Addon
  */
-export type ClientFlagsData = LifecycleFlags<ClientPhase>;
+export class AddonLifecycle extends Lifecycle<AddonPhase> {
+	constructor() {
+		super(addonPhases);
+	}
+
+	public toData(): AddonFlags {
+		return {
+			didBecomeReady: this.get('didBecomeReady'),
+			didGainFocus: this.get('didGainFocus'),
+			didInit: this.get('didInit'),
+			didLoad: this.get('didLoad'),
+			didPause: this.get('didPause'),
+			didLoseFocus: this.get('didLoseFocus'),
+			didStart: this.get('didStart'),
+			didStop: this.get('didStop'),
+			didUnpause: this.get('didUnpause'),
+			memoryWarning: this.get('memoryWarning'),
+			willBecomeReady: this.get('willBecomeReady'),
+			willGainFocus: this.get('willGainFocus'),
+			willInit: this.get('willInit'),
+			willLoad: this.get('willLoad'),
+			willLoseFocus: this.get('willLoseFocus'),
+			willPause: this.get('willPause'),
+			willShutdown: this.get('willShutdown'),
+			willStart: this.get('willStart'),
+			willStop: this.get('willStop')
+		};
+	}
+}
