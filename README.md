@@ -28,7 +28,7 @@
 &nbsp;
 
 # Client Lifecycle
-
+Lifecycle flow for s
 
 # Server Lifecycle
 
@@ -36,10 +36,7 @@
 
 # Addon Lifecycle
 
-
-# Network Connection Lifecycle
-
-### Example
+# Connection Lifecycle
 
 # Install
 

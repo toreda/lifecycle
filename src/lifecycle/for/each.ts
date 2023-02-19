@@ -24,8 +24,6 @@
  */
 
 import type {LifecycleListener} from '../listener';
-import {lifecyclePhaseListenerName} from '../phase/listener/name';
-
 /**
  *
  * @param phase

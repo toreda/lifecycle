@@ -23,7 +23,10 @@
  *
  */
 
+import type {LifecycleFlags} from '../lifecycle/flags';
+import type {ScenePhase} from './phase';
 
-export async function lifecycleForEachNetworkCnx(): Promise<boolean> {
-	return false;
-}
+/**
+ * @category Scenes
+ */
+export type SceneFlag = LifecycleFlags<ScenePhase>;

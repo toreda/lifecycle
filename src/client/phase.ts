@@ -64,5 +64,5 @@ import {lifecyclePhase} from '../lifecycle/phase';
  * @category Client
  */
 export async function clientPhase(delegate: ClientDelegate, phase: ClientPhase): Promise<boolean> {
-	return lifecyclePhase<ClientPhase, ClientLifecycle, ClientDelegate<unknown>>(delegate, phase);
+	return lifecyclePhase<ClientPhase, ClientLifecycle, ClientDelegate<ClientLifecycle>>(delegate, phase);
 }

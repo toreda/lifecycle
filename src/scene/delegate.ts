@@ -23,6 +23,25 @@
  *
  */
 
-export function lifecycleSetFlag<LifecycleT>(o: LifecycleT, key: unknown): boolean {
-	return false;
+import type {LifecycleListener} from '../lifecycle/listener';
+
+/**
+ * Delegate for scene related
+ *
+ * @category Lifecycle
+ */
+export interface SceneDelegate<ArgsT = unknown> {
+	sceneWillAppear?: LifecycleListener<ArgsT>;
+	sceneDidAppear?: LifecycleListener<ArgsT>;
+	sceneDidBecomeReady?: LifecycleListener<ArgsT>;
+	scenewillReset?: LifecycleListener<ArgsT>;
+	didInit?: LifecycleListener<ArgsT>;
+	didLoad?: LifecycleListener<ArgsT>;
+	didStart?: LifecycleListener<ArgsT>;
+	didStop?: LifecycleListener<ArgsT>;
+	willBecomeReady?: LifecycleListener<ArgsT>;
+	willInit?: LifecycleListener<ArgsT>;
+	willLoad?: LifecycleListener<ArgsT>;
+	willStart?: LifecycleListener<ArgsT>;
+	willStop?: LifecycleListener<ArgsT>;
 }

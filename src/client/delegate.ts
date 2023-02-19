@@ -23,12 +23,14 @@
  *
  */
 
+import {ClientLifecycle} from './lifecycle';
 import type {LifecycleListener} from '../lifecycle/listener';
 
 /**
  * @category Lifecycle
  */
 export interface ClientDelegate<ArgsT = unknown> {
+	lifecycle: ClientLifecycle;
 	willInit?: LifecycleListener<ArgsT>;
 	/** Entered 'init' phase - creating all necessary instances. **/
 	onInit: LifecycleListener<ArgsT>;
