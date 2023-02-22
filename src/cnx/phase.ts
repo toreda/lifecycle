@@ -24,7 +24,7 @@
  */
 
 import type {CnxDelegate} from './delegate';
-import type {CnxLifecycle} from './lifecycle';
+import {CnxLifecycle} from './lifecycle';
 import {lifecyclePhase} from '../lifecycle/phase';
 
 /**
@@ -69,6 +69,6 @@ export type CnxPhase =
  *
  * @category Connection
  */
-export async function cnxPhase(delegate: CnxDelegate, phase: CnxPhase): Promise<boolean> {
+export async function cnxPhase(delegate: CnxDelegate<CnxLifecycle>, phase: CnxPhase): Promise<boolean> {
 	return lifecyclePhase<CnxPhase, CnxLifecycle, CnxDelegate<CnxLifecycle>>(delegate, phase);
 }

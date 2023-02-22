@@ -29,6 +29,6 @@
  * @category Lifecycle
  */
 export interface LifecycleDelegateCommon<LifecycleT> {
-	children?: unknown[];
+	children?: LifecycleDelegateCommon<unknown>[];
 	lifecycle: LifecycleT;
 }

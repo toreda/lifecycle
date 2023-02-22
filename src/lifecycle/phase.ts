@@ -38,7 +38,7 @@ export async function lifecyclePhase<
 	PhaseKeyT extends string,
 	LifecycleT extends Lifecycle<PhaseKeyT>,
 	DelegateT extends LifecycleDelegateCommon<LifecycleT>
->(o: DelegateT, phase: PhaseKeyT & keyof DelegateT): Promise<boolean> {
+>(o: DelegateT, phase: PhaseKeyT): Promise<boolean> {
 	if (!phase || !o || !o.lifecycle) {
 		return false;
 	}
@@ -48,11 +48,6 @@ export async function lifecyclePhase<
 		return false;
 	}
 
-	// @HACK: Using ANY here disables type safety.
-	// phase is checked above before use, and checked
-	// below. Type intersections haven't worked well and this
-	// needs a carefully thought out non-ANY solution.
-	// eslint-disable-next-line
 	const ln = o[phase];
 	if (typeof ln !== 'function') {
 		return false;
