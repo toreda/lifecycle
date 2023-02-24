@@ -23,37 +23,9 @@
  *
  */
 
-import type {CnxPhase} from './phase';
+import {CnxPhase} from './phase';
 
 /**
  * @category Clients
  */
-export const cnxPhases: CnxPhase[] = [
-	'cnxDidClose',
-	'cnxDidConnect',
-	'cnxDidDisconnect',
-	'cnxDidFailClose',
-	'cnxDidFailConnect',
-	'cnxDidFailReconnect',
-	'cnxDidInit',
-	'cnxDidLoad',
-	'cnxDidOpen',
-	'cnxDidPing',
-	'cnxDidPong',
-	'cnxDidReset',
-	'cnxWillReset',
-	'cnxDidReconnect',
-	'cnxDidStartConnect',
-	'cnxDidStopConnect',
-	'cnxDidStopReconnect',
-	'cnxWillClose',
-	'cnxWillConnect',
-	'cnxWillDisconnect',
-	'cnxWillInit',
-	'cnxWillLoad',
-	'cnxWillOpen',
-	'cnxWillReconnect',
-	'cnxWillStartConnect',
-	'cnxWillStopConnect',
-	'cnxWillStopReconnect'
-];
+export const cnxPhases: CnxPhase[] = [];

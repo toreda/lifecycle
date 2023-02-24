@@ -23,31 +23,53 @@
  *
  */
 
+import type {SceneDelegate} from './delegate';
+import {canInvoke} from '../can/invoke';
+import {invokeListener} from '../invoke/listener';
+
 /**
  * Unique scene-related phase IDs.
  *
  * @category Scenes
  */
-export type ScenePhase =
-	| 'didBecomeReady'
-	| 'didGainFocus'
-	| 'didInit'
-	| 'didLoad'
-	| 'didLoseFocus'
-	| 'didPause'
-	| 'didStart'
-	| 'didStop'
-	| 'didUnpause'
-	| 'memoryWarning'
-	| 'onInit'
-	| 'onLoad'
-	| 'onReady'
-	| 'onStart'
-	| 'willBecomeReady'
-	| 'willGainFocus'
-	| 'willInit'
-	| 'willLoad'
-	| 'willLoseFocus'
-	| 'willPause'
-	| 'willStart'
-	| 'willStop';
+export type ScenePhase = Pick<
+	SceneDelegate,
+	| 'sceneDidAppear'
+	| 'sceneDidBecomeReady'
+	| 'sceneDidInit'
+	| 'sceneDidLoad'
+	| 'sceneDidReset'
+	| 'sceneDidStart'
+	| 'sceneDidStop'
+	| 'sceneWillAppear'
+	| 'sceneWillBecomeReady'
+	| 'sceneWillInit'
+	| 'sceneWillLoad'
+	| 'scenewillReset'
+	| 'sceneWillStart'
+	| 'sceneWillStop'
+>;
+
+/**
+ *
+ * @param delegate
+ * @param phase
+ * @returns
+ *
+ * @category Addon
+ */
+export async function scenePhase(delegate: SceneDelegate, phase: keyof ScenePhase): Promise<boolean> {
+	if (!canInvoke<ScenePhase, SceneDelegate>(delegate, phase)) {
+		return false;
+	}
+
+	const ran = delegate.lifecycle.get(phase);
+	if (ran !== true) {
+		return false;
+	}
+
+	const result = await invokeListener(delegate[phase]);
+	delegate.lifecycle.set(phase, true);
+
+	return result;
+}

@@ -24,6 +24,8 @@
  */
 
 import {AddonLifecycle} from './lifecycle';
+import type {AddonPhase} from './phase';
+import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 
 /**
@@ -31,35 +33,36 @@ import type {LifecycleListener} from '../lifecycle/listener';
  *
  * @category Addons
  */
-export interface AddonDelegate {
+export interface AddonDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<AddonPhase> {
 	lifecycle: AddonLifecycle;
 	/** Starting 'init' lifecycle phase. */
-	willInit?: LifecycleListener;
+	willInit?: LifecycleListener<ArgsT>;
 	/** Server completed 'init' lifecycle phase. */
-	didInit?: LifecycleListener;
+	didInit?: LifecycleListener<ArgsT>;
 	/** Server will enter 'load' lifecycle phase. */
-	willLoad?: LifecycleListener;
+	willLoad?: LifecycleListener<ArgsT>;
 	/** Server completed 'load' lifecycle phase. */
-	didLoad?: LifecycleListener;
+	didLoad?: LifecycleListener<ArgsT>;
 	/** Server will enter 'start' lifecycle phase but is not yet ready. */
-	willStart?: LifecycleListener;
+	willStart?: LifecycleListener<ArgsT>;
 	/** Server completed 'start' lifecycle phase. */
-	didStart?: LifecycleListener;
+	didStart?: LifecycleListener<ArgsT>;
 	/** Server entered the 'ready' lifecycle phase and is now fully available. */
-	willBecomeReady?: LifecycleListener;
+	willBecomeReady?: LifecycleListener<ArgsT>;
 	/** Server entered 'ready' lifecycle phase and is now fully available. */
-	didBecomeReady?: LifecycleListener;
-	memoryWarning?: LifecycleListener;
-	willPause?: LifecycleListener;
-	didUnpause?: LifecycleListener;
+	didBecomeReady?: LifecycleListener<ArgsT>;
+	memoryWarning?: LifecycleListener<ArgsT>;
+	willPause?: LifecycleListener<ArgsT>;
+	didPause?: LifecycleListener<ArgsT>;
+	didUnpause?: LifecycleListener<ArgsT>;
 	/** Server will enter the stop lifecycle phase soon. */
-	willStop?: LifecycleListener;
+	willStop?: LifecycleListener<ArgsT>;
 	/** Server entered the stop lifecycle phase. */
-	didStop?: LifecycleListener;
+	didStop?: LifecycleListener<ArgsT>;
 	/** Server will shutdown completely. */
-	willShutdown?: LifecycleListener;
-	willLoseFocus?: LifecycleListener;
-	didLoseFocus?: LifecycleListener;
-	willGainFocus?: LifecycleListener;
-	didGainFocus?: LifecycleListener;
+	willShutdown?: LifecycleListener<ArgsT>;
+	willLoseFocus?: LifecycleListener<ArgsT>;
+	didLoseFocus?: LifecycleListener<ArgsT>;
+	willGainFocus?: LifecycleListener<ArgsT>;
+	didGainFocus?: LifecycleListener<ArgsT>;
 }

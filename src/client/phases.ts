@@ -28,25 +28,4 @@ import type {ClientPhase} from './phase';
 /**
  * @category Client
  */
-export const clientPhases: ClientPhase[] = [
-	'didBecomeReady',
-	'didGainFocus',
-	'didInit',
-	'didLoad',
-	'didLoseFocus',
-	'didStart',
-	'didUnpause',
-	'memoryWarning',
-	'onInit',
-	'onLoad',
-	'onReady',
-	'onStart',
-	'willBecomeReady',
-	'willGainFocus',
-	'willInit',
-	'willLoad',
-	'willLoseFocus',
-	'willPause',
-	'willStart',
-	'willStop'
-];
+export const clientPhases: ClientPhase[] = [];

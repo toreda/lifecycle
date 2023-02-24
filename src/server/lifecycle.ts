@@ -25,8 +25,7 @@
 
 import {Lifecycle} from '../lifecycle';
 import type {ServerFlags} from './flags';
-import {ServerPhase} from './phase';
-import {serverPhases} from './phases';
+import type {ServerPhase} from './phase';
 
 /**
  * Managed flags for lifecycle phases used by server-side lifecycle flows.
@@ -35,7 +34,7 @@ import {serverPhases} from './phases';
  */
 export class ServerLifecycle extends Lifecycle<ServerPhase> {
 	constructor() {
-		super(serverPhases);
+		super();
 	}
 
 	public toData(): ServerFlags {

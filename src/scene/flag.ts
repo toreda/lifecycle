@@ -27,6 +27,6 @@ import type {LifecycleFlags} from '../lifecycle/flags';
 import type {ScenePhase} from './phase';
 
 /**
- * @category Scenes
+ * @category Scene
  */
 export type SceneFlag = LifecycleFlags<ScenePhase>;

@@ -25,26 +25,4 @@
 
 import type {ServerPhase} from './phase';
 
-export const serverPhases: ServerPhase[] = [
-	'didBecomeReady',
-	'didInit',
-	'didLoad',
-	'didRestart',
-	'didShutdown',
-	'didStart',
-	'didStop',
-	'onInit',
-	'onLoad',
-	'onReady',
-	'onRestart',
-	'onShutdown',
-	'onStart',
-	'onStop',
-	'willBecomeReady',
-	'willInit',
-	'willLoad',
-	'willRestart',
-	'willShutdown',
-	'willStart',
-	'willStop'
-];
+export const serverPhases: ServerPhase[] = [];

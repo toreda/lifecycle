@@ -23,12 +23,17 @@
  *
  */
 
+import type {ClientDelegate} from './delegate';
+import {canInvoke} from '../can/invoke';
+import {invokeListener} from '../invoke/listener';
+
 /**
  * Expressive type describing phase names used in client lifecycle flow.
  *
  * @category Client
  */
-export type ClientPhase =
+export type ClientPhase = Pick<
+	ClientDelegate,
 	| 'didBecomeReady'
 	| 'didGainFocus'
 	| 'didInit'
@@ -50,19 +55,29 @@ export type ClientPhase =
 	| 'willLoseFocus'
 	| 'willPause'
 	| 'willStart'
-	| 'willStop';
-
-import type {ClientDelegate} from './delegate';
-import {ClientLifecycle} from './lifecycle';
-import {lifecyclePhase} from '../lifecycle/phase';
+	| 'willStop'
+>;
 
 /**
  *
+ * @param delegate
  * @param phase
  * @returns
  *
- * @category Client
+ * @category Connection
  */
-export async function clientPhase(delegate: ClientDelegate, phase: ClientPhase): Promise<boolean> {
-	return lifecyclePhase<ClientPhase, ClientLifecycle, ClientDelegate<ClientLifecycle>>(delegate, phase);
+export async function clientPhase(delegate: ClientDelegate, phase: keyof ClientPhase): Promise<boolean> {
+	if (!canInvoke<ClientPhase, ClientDelegate>(delegate, phase)) {
+		return false;
+	}
+
+	const ran = delegate.lifecycle.get(phase);
+	if (ran !== true) {
+		return false;
+	}
+
+	const result = await invokeListener(delegate[phase]);
+	delegate.lifecycle.set(phase, true);
+
+	return result;
 }

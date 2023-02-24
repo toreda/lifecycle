@@ -23,29 +23,15 @@
  *
  */
 
-import Defaults from './lifecycle/defaults';
-
 /**
  * @category Lifecycle
  */
-export class Lifecycle<PhaseT extends string> extends Map<PhaseT, boolean> {
-	constructor(phases?: PhaseT[]) {
+export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
+	constructor() {
 		super();
-
-		this.init(phases);
 	}
 
-	private init(phases?: PhaseT[]): void {
-		if (!Array.isArray(phases)) {
-			return;
-		}
-
-		for (const phase of phases) {
-			this.set(phase, Defaults.LifecyclePhase.Status);
-		}
-	}
-
-	public async phase(id: PhaseT): Promise<boolean> {
+	public async phase(id: keyof PhaseT): Promise<boolean> {
 		if (typeof id !== 'string') {
 			return false;
 		}
@@ -63,7 +49,7 @@ export class Lifecycle<PhaseT extends string> extends Map<PhaseT, boolean> {
 		return true;
 	}
 
-	public execute(phase: PhaseT): boolean {
+	public execute(phase: keyof PhaseT): boolean {
 		if (!this.has(phase)) {
 			return false;
 		}
@@ -82,13 +68,11 @@ export class Lifecycle<PhaseT extends string> extends Map<PhaseT, boolean> {
 	 * Reset all phase flag values to starting state.
 	 */
 	public reset(): void {
-		for (const phase of this.keys()) {
-			this.set(phase, Defaults.LifecyclePhase.Status);
-		}
+		this.clear();
 	}
 
-	public override get(key?: PhaseT): boolean {
-		if (typeof key !== 'string' || key === '') {
+	public override get(key?: keyof PhaseT): boolean {
+		if (!key || key === '') {
 			return false;
 		}
 

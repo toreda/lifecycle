@@ -23,7 +23,6 @@
  *
  */
 
-import type {LifecycleListener} from '../listener';
 /**
  *
  * @param phase
@@ -32,8 +31,9 @@ import type {LifecycleListener} from '../listener';
  *
  * @category Lifecycle
  */
-export async function lifecycleForEach(objects: unknown[], phase: string): Promise<boolean> {
-	const listenerName = lifecyclePhaseListenerName(phase);
+export async function lifecycleForEach(_objects: unknown[], _phase: string): Promise<boolean> {
+	return false;
+	/**  	const listenerName = lifecyclePhaseListenerName(phase);
 
 	if (!listenerName) {
 		return false;
@@ -63,5 +63,5 @@ export async function lifecycleForEach(objects: unknown[], phase: string): Promi
 		}
 	}
 
-	return executionCount > 0;
+	return executionCount > 0; */
 }

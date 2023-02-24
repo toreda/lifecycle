@@ -23,34 +23,36 @@
  *
  */
 
+import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
+import type {ServerPhase} from './phase';
 
 /**
  * Delegate interface for server-side classes.
  *
  * @category Lifecycle
  */
-export interface ServerDelegate<ArgsT = unknown> {
+export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ServerPhase> {
 	/** Starting 'init' lifecycle phase. */
-	willInit?: LifecycleListener<ArgsT>;
-	/** Server completed 'init' lifecycle phase. */
-	didInit?: LifecycleListener<ArgsT>;
-	/** Server completed 'load' lifecycle phase. */
-	didLoad?: LifecycleListener<ArgsT>;
-	/** Server will enter 'load' lifecycle phase. */
-	willLoad?: LifecycleListener<ArgsT>;
-	/** Server will enter 'start' lifecycle phase but is not yet ready. */
-	willStart?: LifecycleListener<ArgsT>;
-	/** Server completed 'start' lifecycle phase. */
-	didStart?: LifecycleListener<ArgsT>;
-	/** Server entered the 'ready' lifecycle phase and is now fully available. */
-	willBecomeReady?: LifecycleListener<ArgsT>;
-	/** Server entered 'ready' lifecycle phase and is now fully available. */
 	didBecomeReady?: LifecycleListener<ArgsT>;
-	/** Server will enter the stop lifecycle phase soon. */
-	willStop?: LifecycleListener<ArgsT>;
-	/** Server entered the stop lifecycle phase. */
+	didInit?: LifecycleListener<ArgsT>;
+	didLoad?: LifecycleListener<ArgsT>;
+	didRestart?: LifecycleListener<ArgsT>;
+	didShutdown?: LifecycleListener<ArgsT>;
+	didStart?: LifecycleListener<ArgsT>;
 	didStop?: LifecycleListener<ArgsT>;
-	/** Server will shutdown completely. */
+	onInit?: LifecycleListener<ArgsT>;
+	onLoad?: LifecycleListener<ArgsT>;
+	onReady?: LifecycleListener<ArgsT>;
+	onRestart?: LifecycleListener<ArgsT>;
+	onShutdown?: LifecycleListener<ArgsT>;
+	onStart?: LifecycleListener<ArgsT>;
+	onStop?: LifecycleListener<ArgsT>;
+	willBecomeReady?: LifecycleListener<ArgsT>;
+	willInit?: LifecycleListener<ArgsT>;
+	willLoad?: LifecycleListener<ArgsT>;
+	willRestart?: LifecycleListener<ArgsT>;
 	willShutdown?: LifecycleListener<ArgsT>;
+	willStart?: LifecycleListener<ArgsT>;
+	willStop?: LifecycleListener<ArgsT>;
 }

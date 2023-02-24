@@ -24,10 +24,11 @@
  */
 
 import type {CnxPhase} from './phase';
+import {LifecycleFlags} from '../lifecycle/flags';
 
 /**
  * Required properties for clients using the Network Connection Lifecycle.
  *
  * @category Connections
  */
-export type CnxFlags = Record<CnxPhase, boolean>;
+export type CnxFlags = LifecycleFlags<CnxPhase>;

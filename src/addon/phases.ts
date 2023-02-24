@@ -28,23 +28,4 @@ import type {AddonPhase} from './phase';
 /**
  * @category Client
  */
-export const addonPhases: AddonPhase[] = [
-	'didBecomeReady',
-	'didGainFocus',
-	'didInit',
-	'didLoad',
-	'didLoseFocus',
-	'didStart',
-	'didStop',
-	'didUnpause',
-	'memoryWarning',
-	'willBecomeReady',
-	'willGainFocus',
-	'willInit',
-	'willLoad',
-	'willLoseFocus',
-	'willPause',
-	'willShutdown',
-	'willStart',
-	'willStop'
-];
+export const addonPhases: AddonPhase[] = [];

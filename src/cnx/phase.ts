@@ -24,15 +24,16 @@
  */
 
 import type {CnxDelegate} from './delegate';
-import {CnxLifecycle} from './lifecycle';
-import {lifecyclePhase} from '../lifecycle/phase';
+import {canInvoke} from '../can/invoke';
+import {invokeListener} from '../invoke/listener';
 
 /**
  * Expressive type describing phase names used in client lifecycle flow.
  *
  * @category Connection
  */
-export type CnxPhase =
+export type CnxPhase = Pick<
+	CnxDelegate,
 	| 'cnxDidClose'
 	| 'cnxDidConnect'
 	| 'cnxDidDisconnect'
@@ -59,7 +60,8 @@ export type CnxPhase =
 	| 'cnxWillReset'
 	| 'cnxWillStartConnect'
 	| 'cnxWillStopConnect'
-	| 'cnxWillStopReconnect';
+	| 'cnxWillStopReconnect'
+>;
 
 /**
  *
@@ -69,6 +71,18 @@ export type CnxPhase =
  *
  * @category Connection
  */
-export async function cnxPhase(delegate: CnxDelegate<CnxLifecycle>, phase: CnxPhase): Promise<boolean> {
-	return lifecyclePhase<CnxPhase, CnxLifecycle, CnxDelegate<CnxLifecycle>>(delegate, phase);
+export async function cnxPhase(delegate: CnxDelegate, phase: keyof CnxPhase): Promise<boolean> {
+	if (!canInvoke<CnxPhase, CnxDelegate>(delegate, phase)) {
+		return false;
+	}
+
+	const ran = delegate.lifecycle.get(phase);
+	if (ran !== true) {
+		return false;
+	}
+
+	const result = await invokeListener(delegate[phase]);
+	delegate.lifecycle.set(phase, true);
+
+	return result;
 }

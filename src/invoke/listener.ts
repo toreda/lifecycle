@@ -23,46 +23,18 @@
  *
  */
 
-import {Lifecycle} from '../lifecycle';
-import type {LifecycleDelegateCommon} from './delegate/common';
-
-/**
- *
- * @param o
- * @param phase
- * @returns
- *
- * @category Lifecycle
- */
-export async function lifecyclePhase<
-	PhaseKeyT extends string,
-	LifecycleT extends Lifecycle<PhaseKeyT>,
-	DelegateT extends LifecycleDelegateCommon<LifecycleT>
->(o: DelegateT, phase: PhaseKeyT): Promise<boolean> {
-	if (!phase || !o || !o.lifecycle) {
-		return false;
-	}
-
-	const flag = o.lifecycle.get(phase);
-	if (flag === true) {
-		return false;
-	}
-
-	const ln = o[phase];
-	if (typeof ln !== 'function') {
+export async function invokeListener(listener: unknown): Promise<boolean> {
+	if (typeof listener !== 'function') {
 		return false;
 	}
 
 	let result: boolean = false;
 
 	try {
-		result = await ln();
-	} catch (e) {
+		result = await listener();
+	} catch (e: unknown) {
 		result = false;
 	}
-
-	// Set flag active.
-	o.lifecycle.set(phase, true);
 
 	return result;
 }

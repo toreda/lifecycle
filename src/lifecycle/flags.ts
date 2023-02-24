@@ -26,4 +26,4 @@
 /**
  * @category Lifecycle
  */
-export type LifecycleFlags<PhaseT extends string> = Record<PhaseT, boolean>;
+export type LifecycleFlags<PhaseT> = Record<keyof PhaseT, boolean>;

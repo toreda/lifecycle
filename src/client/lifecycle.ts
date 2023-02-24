@@ -26,7 +26,6 @@
 import type {ClientFlags} from './flags';
 import type {ClientPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
-import {clientPhases} from './phases';
 
 /**
  * Manages client lifecycle flow for owner. Tracks which phases have executed to prevent
@@ -36,7 +35,7 @@ import {clientPhases} from './phases';
  */
 export class ClientLifecycle extends Lifecycle<ClientPhase> {
 	constructor() {
-		super(clientPhases);
+		super();
 	}
 
 	public toData(): ClientFlags {

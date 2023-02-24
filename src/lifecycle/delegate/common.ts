@@ -23,12 +23,14 @@
  *
  */
 
+import {Lifecycle} from '../../lifecycle';
+
 /**
  * Common properties shared by all Lifecycle delegates.
  *
  * @category Lifecycle
  */
-export interface LifecycleDelegateCommon<LifecycleT> {
+export interface LifecycleDelegateCommon<PhaseT> {
 	children?: LifecycleDelegateCommon<unknown>[];
-	lifecycle: LifecycleT;
+	lifecycle: Lifecycle<PhaseT>;
 }

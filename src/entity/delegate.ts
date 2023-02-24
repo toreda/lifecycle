@@ -24,12 +24,14 @@
  */
 
 import {EntityLifecycle} from './lifecycle';
+import type {EntityPhase} from './phase';
+import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 
 /**
  * @category Entity
  */
-export interface EntityDelegate<ArgsT = unknown> {
+export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<EntityPhase> {
 	lifecycle: EntityLifecycle;
 
 	/**
@@ -44,14 +46,6 @@ export interface EntityDelegate<ArgsT = unknown> {
 	 * add listeners, reach out to other objects.
 	 */
 	entityDidInit?: LifecycleListener<ArgsT>;
-
-	/**
-	 * Scene is entering load phase.
-	 * Start loading this entity's textures and resources.
-	 */
-	sceneWillLoad?: LifecycleListener<ArgsT>;
-	/** Scene just completed load phase. */
-	sceneDidLoad?: LifecycleListener<ArgsT>;
 
 	/**
 	 * Entity is entering load phase.
@@ -84,11 +78,6 @@ export interface EntityDelegate<ArgsT = unknown> {
 	 */
 	entityDidAppear?: LifecycleListener<ArgsT>;
 
-	/** Scene is about to start. */
-	sceneWillStart?: LifecycleListener<ArgsT>;
-	/** Scene just started. */
-	sceneDidStart?: LifecycleListener<ArgsT>;
-
 	/**
 	 * Entity is about to start running and it'sonUpdate
 	 * method will be called on each frame.
@@ -100,23 +89,20 @@ export interface EntityDelegate<ArgsT = unknown> {
 	 */
 	entityDidStart?: LifecycleListener<ArgsT>;
 
-	/** Scene is about to pause. */
-	sceneWillPause?: LifecycleListener<ArgsT>;
-
 	/** Entity will be paused. */
 	entityWillPause?: LifecycleListener<ArgsT>;
 
-	/** Scene just unpaused. */
-	sceneDidUnpause?: LifecycleListener<ArgsT>;
-
 	/** Entity just unpaused. */
 	entityDidUnpause?: LifecycleListener<ArgsT>;
+	entityMemoryWarning?: LifecycleListener<ArgsT>;
 
 	/** Entity is about to be hidden, but is still active. */
 	entityWillHide?: LifecycleListener<ArgsT>;
 	/** Entity was just hidden, but is still active. */
 	entityDidHide?: LifecycleListener<ArgsT>;
 
+	entityDidShow?: LifecycleListener<ArgsT>;
+	entityWillShow?: LifecycleListener<ArgsT>;
 	/** Entity is about to be removed from scene. */
 	entityWillDespawn?: LifecycleListener<ArgsT>;
 	/**
@@ -125,10 +111,6 @@ export interface EntityDelegate<ArgsT = unknown> {
 	 * work before entity is recycled into the entity pool.
 	 */
 	entityDidDespawn?: LifecycleListener<ArgsT>;
-
-	/** Scene is about to stop running. */
-	sceneWillStop?: LifecycleListener<ArgsT>;
-
 	/**
 	 * Entity is about to stop. It's onUpdate
 	 * method will no longer be called each frame.
@@ -139,11 +121,4 @@ export interface EntityDelegate<ArgsT = unknown> {
 	 * method is no longer being called each frame
 	 */
 	entityDidStop?: LifecycleListener<ArgsT>;
-
-	/**
-	 * OS-level event fired indicating the app and
-	 * all systems should clear unused resources and
-	 * remove cached items to free memory.
-	 */
-	memoryWarning?: LifecycleListener<ArgsT>;
 }

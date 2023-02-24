@@ -26,14 +26,13 @@
 import type {EntityFlags} from './flags';
 import type {EntityPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
-import {entityPhases} from './phases';
 
 /**
  * @category Entity
  */
 export class EntityLifecycle extends Lifecycle<EntityPhase> {
 	constructor() {
-		super(entityPhases);
+		super();
 	}
 
 	public toData(): EntityFlags {

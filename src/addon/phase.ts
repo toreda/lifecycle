@@ -22,13 +22,17 @@
  * 	SOFTWARE.
  *
  */
+import type {AddonDelegate} from './delegate';
+import {canInvoke} from '../can/invoke';
+import {invokeListener} from '../invoke/listener';
 
 /**
  * Expressive type describing phase names used in client lifecycle flow.
  *
  * @category Addons
  */
-export type AddonPhase =
+export type AddonPhase = Pick<
+	AddonDelegate,
 	| 'didBecomeReady'
 	| 'didGainFocus'
 	| 'didInit'
@@ -47,4 +51,29 @@ export type AddonPhase =
 	| 'willPause'
 	| 'willShutdown'
 	| 'willStart'
-	| 'willStop';
+	| 'willStop'
+>;
+
+/**
+ *
+ * @param delegate
+ * @param phase
+ * @returns
+ *
+ * @category Addon
+ */
+export async function addonPhase(delegate: AddonDelegate, phase: keyof AddonPhase): Promise<boolean> {
+	if (!canInvoke<AddonPhase, AddonDelegate>(delegate, phase)) {
+		return false;
+	}
+
+	const ran = delegate.lifecycle.get(phase);
+	if (ran !== true) {
+		return false;
+	}
+
+	const result = await invokeListener(delegate[phase]);
+	delegate.lifecycle.set(phase, true);
+
+	return result;
+}

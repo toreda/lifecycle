@@ -23,17 +23,16 @@
  *
  */
 
-import {CnxFlags} from './flags';
+import type {CnxFlags} from './flags';
 import type {CnxPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
-import {cnxPhases} from './phases';
 
 /**
  * @category Connection
  */
 export class CnxLifecycle extends Lifecycle<CnxPhase> {
 	constructor() {
-		super(cnxPhases);
+		super();
 	}
 
 	public toData(): CnxFlags {

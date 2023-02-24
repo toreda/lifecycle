@@ -23,12 +23,17 @@
  *
  */
 
+import type {EntityDelegate} from './delegate';
+import {canInvoke} from '../can/invoke';
+import {invokeListener} from '../invoke/listener';
+
 /**
  * Identifiers for each phase in the Entity Lifecycle flow.
  *
  * @category Entities
  */
-export type EntityPhase =
+export type EntityPhase = Pick<
+	EntityDelegate<unknown>,
 	| 'entityDidAppear'
 	| 'entityDidDespawn'
 	| 'entityDidHide'
@@ -47,4 +52,29 @@ export type EntityPhase =
 	| 'entityWillSpawn'
 	| 'entityWillStart'
 	| 'entityWillStop'
-	| 'entityMemoryWarning';
+	| 'entityMemoryWarning'
+>;
+
+/**
+ *
+ * @param delegate
+ * @param phase
+ * @returns
+ *
+ * @category Connection
+ */
+export async function entityPhase(delegate: EntityDelegate, phase: keyof EntityPhase): Promise<boolean> {
+	if (!canInvoke<EntityPhase, EntityDelegate>(delegate, phase)) {
+		return false;
+	}
+
+	const ran = delegate.lifecycle.get(phase);
+	if (ran === true) {
+		return false;
+	}
+
+	const result = await invokeListener(delegate[phase]);
+	delegate.lifecycle.set(phase, true);
+
+	return result;
+}

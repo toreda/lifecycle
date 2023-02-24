@@ -23,12 +23,17 @@
  *
  */
 
+import type {ServerDelegate} from './delegate';
+import {canInvoke} from '../can/invoke';
+import {invokeListener} from '../invoke/listener';
+
 /**
  * Type describing phase names used in server lifecycle flow.
  *
- * @category Servers
+ * @category Server
  */
-export type ServerPhase =
+export type ServerPhase = Pick<
+	ServerDelegate,
 	| 'didBecomeReady'
 	| 'didInit'
 	| 'didLoad'
@@ -49,4 +54,29 @@ export type ServerPhase =
 	| 'willRestart'
 	| 'willShutdown'
 	| 'willStart'
-	| 'willStop';
+	| 'willStop'
+>;
+
+/**
+ *
+ * @param delegate
+ * @param phase
+ * @returns
+ *
+ * @category Server
+ */
+export async function serverPhase(delegate: ServerDelegate, phase: keyof ServerPhase): Promise<boolean> {
+	if (!canInvoke<ServerPhase, ServerDelegate>(delegate, phase)) {
+		return false;
+	}
+
+	const ran = delegate.lifecycle.get(phase);
+	if (ran !== true) {
+		return false;
+	}
+
+	const result = await invokeListener(delegate[phase]);
+	delegate.lifecycle.set(phase, true);
+
+	return result;
+}

@@ -26,14 +26,13 @@
 import type {AddonFlags} from './flags';
 import type {AddonPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
-import {addonPhases} from './phases';
 
 /**
  * @category Addon
  */
 export class AddonLifecycle extends Lifecycle<AddonPhase> {
 	constructor() {
-		super(addonPhases);
+		super();
 	}
 
 	public toData(): AddonFlags {
