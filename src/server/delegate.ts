@@ -55,4 +55,5 @@ export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 	willShutdown?: LifecycleListener<ArgsT>;
 	willStart?: LifecycleListener<ArgsT>;
 	willStop?: LifecycleListener<ArgsT>;
+	reset: () => void;
 }

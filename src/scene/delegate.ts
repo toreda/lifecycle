@@ -23,7 +23,7 @@
  *
  */
 
-import {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 import type {ScenePhase} from '../scene/phase';
 

@@ -1,67 +1,56 @@
 import type {ServerDelegate} from '../../../src/server/delegate';
 import {ServerLifecycle} from '../../../src/server/lifecycle';
-import {lifecyclePhase} from '../../../src/lifecycle/phase';
+import {serverPhase} from '../../../src/server/phase';
 
-export class SampleServer implements ServerDelegate {
-	public readonly children: ServerDelegate[];
+export class SampleServer implements ServerDelegate<unknown> {
 	public readonly lifecycle: ServerLifecycle;
-	[k: string]: unknown;
 
 	constructor() {
 		this.lifecycle = new ServerLifecycle();
-		this.children = [];
 	}
 
 	public async willInit(): Promise<boolean> {
-		return lifecyclePhase(this, 'willInit');
+		return serverPhase(this, 'willInit');
 	}
 
 	public async didInit(): Promise<boolean> {
-		return lifecyclePhase(this, 'didInit');
+		return serverPhase(this, 'didInit');
 	}
 
 	public async willLoad(): Promise<boolean> {
-		return lifecyclePhase(this, 'willLoad');
+		return serverPhase(this, 'willLoad');
 	}
 
 	public async didLoad(): Promise<boolean> {
-		return lifecyclePhase(this, 'didLoad');
+		return serverPhase(this, 'didLoad');
 	}
 
 	public async willStart(): Promise<boolean> {
-		return lifecyclePhase(this, 'willStart');
+		return serverPhase(this, 'willStart');
 	}
 
 	public async didStart(): Promise<boolean> {
-		return lifecyclePhase(this, 'didStart');
+		return serverPhase(this, 'didStart');
 	}
 
 	public async willBecomeReady(): Promise<boolean> {
-		return lifecyclePhase(this, 'willBecomeReady');
+		return serverPhase(this, 'willBecomeReady');
 	}
 
 	public async didBecomeReady(): Promise<boolean> {
-		return lifecyclePhase(this, 'didBecomeReady');
+		return serverPhase(this, 'didBecomeReady');
 	}
 
 	public async willStop(): Promise<boolean> {
-		return lifecyclePhase(this, 'willStop');
+		return serverPhase(this, 'willStop');
 	}
 
 	public async didStop(): Promise<boolean> {
-		return lifecyclePhase(this, 'didStop');
+		return serverPhase(this, 'didStop');
 	}
 
 	public async willShutdown(): Promise<boolean> {
-		return lifecyclePhase(this, 'willShutdown');
-	}
-
-	public async cnxDidReconnect(): Promise<boolean> {
-		return lifecyclePhase(this, 'cnxDidReconnect');
-	}
-
-	public async cnxWillDisconnect(): Promise<boolean> {
-		return lifecyclePhase(this, 'cnxWillDisconnect');
+		return serverPhase(this, 'willShutdown');
 	}
 
 	public reset(): void {

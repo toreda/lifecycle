@@ -1,7 +1,7 @@
-import {SERVER_PHASES} from '../_data/lifecycle';
+import {SERVER_PHASES} from '../_data/server/phases';
 import {ServerLifecycle} from '../../src/server/lifecycle';
 
-describe('ServerLifecycle', () => {
+describe('Server Phases', () => {
 	let instance: ServerLifecycle;
 
 	beforeAll(() => {

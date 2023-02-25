@@ -30,7 +30,7 @@ import type {ServerPhase} from './phase';
 /**
  * Managed flags for lifecycle phases used by server-side lifecycle flows.
  *
- * @category Lifecycle
+ * @category Server
  */
 export class ServerLifecycle extends Lifecycle<ServerPhase> {
 	constructor() {
