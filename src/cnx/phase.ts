@@ -71,8 +71,8 @@ export type CnxPhase = Pick<
  *
  * @category Connection
  */
-export async function cnxPhase(delegate: CnxDelegate, phase: keyof CnxPhase): Promise<boolean> {
-	if (!canInvoke<CnxPhase, CnxDelegate>(delegate, phase)) {
+export async function cnxPhase(phase: keyof CnxPhase, delegate: CnxDelegate): Promise<boolean> {
+	if (!canInvoke<CnxPhase, CnxDelegate>(phase, delegate)) {
 		return false;
 	}
 
@@ -81,7 +81,7 @@ export async function cnxPhase(delegate: CnxDelegate, phase: keyof CnxPhase): Pr
 		return false;
 	}
 
-	const result = await invokeListener(delegate[phase]);
+	const result = await invokeListener(phase, delegate);
 	delegate.lifecycle.set(phase, true);
 
 	return result;

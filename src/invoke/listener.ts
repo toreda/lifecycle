@@ -23,17 +23,45 @@
  *
  */
 
-export async function invokeListener(listener: unknown): Promise<boolean> {
-	if (typeof listener !== 'function') {
+import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import {Log} from '@toreda/log';
+import {canInvoke} from '../can/invoke';
+
+export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
+	phase: keyof PhaseT,
+	delegate: DelegateT,
+	log?: Log
+): Promise<boolean> {
+	if (!canInvoke<PhaseT, DelegateT>(phase, delegate, log)) {
+		if (log) {
+			log.warn(`Can't invoke listener for server phase '${String(phase)}'.`);
+		}
+
+		return false;
+	}
+
+	// @HACK: casting to any to disable typechecks here due to type mismatch,
+	// even though the result type is verified before invoking. Should use a typesafe
+	// method so typechecking remains enabled.
+	const ln = delegate[phase as keyof DelegateT];
+	if (typeof ln !== 'function') {
 		return false;
 	}
 
 	let result: boolean = false;
 
 	try {
-		result = await listener();
+		result = await ln();
+		delegate.lifecycle.set(phase, true);
 	} catch (e: unknown) {
 		result = false;
+		if (log) {
+			if (e instanceof Error) {
+				log.error(`'${String(phase)}' listener threw: ${e.message}.`);
+			} else {
+				log.error(`'${String(phase)}' listener threw: unknown exception type.`);
+			}
+		}
 	}
 
 	return result;

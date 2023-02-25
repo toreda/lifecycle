@@ -1,4 +1,5 @@
-import {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import {Log} from '@toreda/log';
 
 /**
  * Determine if delegate has listener that can be invoked for target phase.
@@ -10,7 +11,8 @@ import {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
  */
 export function canInvoke<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	phase: keyof PhaseT,
-	delegate: DelegateT
+	delegate: DelegateT,
+	log?: Log
 ): boolean {
 	if (!delegate || !phase || !delegate.lifecycle) {
 		return false;

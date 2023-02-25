@@ -63,18 +63,10 @@ export type EntityPhase = Pick<
  *
  * @category Connection
  */
-export async function entityPhase(delegate: EntityDelegate, phase: keyof EntityPhase): Promise<boolean> {
-	if (!canInvoke<EntityPhase, EntityDelegate>(delegate, phase)) {
+export async function entityPhase(phase: keyof EntityPhase, delegate: EntityDelegate): Promise<boolean> {
+	if (!canInvoke<EntityPhase, EntityDelegate>(phase, delegate)) {
 		return false;
 	}
 
-	const ran = delegate.lifecycle.get(phase);
-	if (ran === true) {
-		return false;
-	}
-
-	const result = await invokeListener(delegate[phase]);
-	delegate.lifecycle.set(phase, true);
-
-	return result;
+	return invokeListener(phase, delegate);
 }

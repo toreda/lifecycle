@@ -1,5 +1,6 @@
 import {SERVER_PHASES} from '../_data/server/phases';
 import {SampleServer} from '../_data/sample/server';
+import {serverPhase} from '../../src/server/phase';
 
 describe('Server Phases', () => {
 	describe('Initial Values', () => {
@@ -31,10 +32,12 @@ describe('Server Phases', () => {
 			it(`should invoke '${phase.name}' listener and return true`, async () => {
 				const spy = jest.spyOn(server, phase.key as any);
 				expect(spy).not.toHaveBeenCalled();
-				const result = await server[phase.key]();
 
-				expect(result).toBe(true);
+				const result = await serverPhase(phase.key, server);
+
 				expect(spy).toHaveBeenCalledTimes(1);
+				expect(result).toBe(true);
+
 				spy.mockRestore();
 			});
 		}

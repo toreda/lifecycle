@@ -23,6 +23,7 @@
  *
  */
 
+import {Log} from '@toreda/log';
 import type {ServerDelegate} from './delegate';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
@@ -65,18 +66,10 @@ export type ServerPhase = Pick<
  *
  * @category Server
  */
-export async function serverPhase(delegate: ServerDelegate, phase: keyof ServerPhase): Promise<boolean> {
-	if (!canInvoke<ServerPhase, ServerDelegate>(delegate, phase)) {
-		return false;
-	}
-
-	const ran = delegate.lifecycle.get(phase);
-	if (ran !== true) {
-		return false;
-	}
-
-	const result = await invokeListener(delegate[phase]);
-	delegate.lifecycle.set(phase, true);
-
-	return result;
+export async function serverPhase(
+	phase: keyof ServerPhase,
+	delegate: ServerDelegate,
+	log?: Log
+): Promise<boolean> {
+	return invokeListener<ServerPhase, ServerDelegate>(phase, delegate, log);
 }

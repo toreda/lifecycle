@@ -23,6 +23,7 @@
  *
  */
 
+import {Log} from '@toreda/log';
 import type {SceneDelegate} from './delegate';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
@@ -58,18 +59,14 @@ export type ScenePhase = Pick<
  *
  * @category Addon
  */
-export async function scenePhase(delegate: SceneDelegate, phase: keyof ScenePhase): Promise<boolean> {
-	if (!canInvoke<ScenePhase, SceneDelegate>(delegate, phase)) {
+export async function scenePhase(
+	phase: keyof ScenePhase,
+	delegate: SceneDelegate,
+	log?: Log
+): Promise<boolean> {
+	if (!canInvoke<ScenePhase, SceneDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	const ran = delegate.lifecycle.get(phase);
-	if (ran !== true) {
-		return false;
-	}
-
-	const result = await invokeListener(delegate[phase]);
-	delegate.lifecycle.set(phase, true);
-
-	return result;
+	return invokeListener(phase, delegate, log);
 }

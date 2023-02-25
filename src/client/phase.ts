@@ -24,6 +24,7 @@
  */
 
 import type {ClientDelegate} from './delegate';
+import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
 
@@ -66,18 +67,14 @@ export type ClientPhase = Pick<
  *
  * @category Connection
  */
-export async function clientPhase(delegate: ClientDelegate, phase: keyof ClientPhase): Promise<boolean> {
-	if (!canInvoke<ClientPhase, ClientDelegate>(delegate, phase)) {
+export async function clientPhase(
+	phase: keyof ClientPhase,
+	delegate: ClientDelegate,
+	log?: Log
+): Promise<boolean> {
+	if (!canInvoke<ClientPhase, ClientDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	const ran = delegate.lifecycle.get(phase);
-	if (ran !== true) {
-		return false;
-	}
-
-	const result = await invokeListener(delegate[phase]);
-	delegate.lifecycle.set(phase, true);
-
-	return result;
+	return invokeListener(phase, delegate, log);
 }

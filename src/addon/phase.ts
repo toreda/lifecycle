@@ -63,7 +63,7 @@ export type AddonPhase = Pick<
  * @category Addon
  */
 export async function addonPhase(delegate: AddonDelegate, phase: keyof AddonPhase): Promise<boolean> {
-	if (!canInvoke<AddonPhase, AddonDelegate>(delegate, phase)) {
+	if (!canInvoke<AddonPhase, AddonDelegate>(phase, delegate)) {
 		return false;
 	}
 
@@ -72,8 +72,7 @@ export async function addonPhase(delegate: AddonDelegate, phase: keyof AddonPhas
 		return false;
 	}
 
-	const result = await invokeListener(delegate[phase]);
-	delegate.lifecycle.set(phase, true);
+	const result = await invokeListener(phase, delegate);
 
 	return result;
 }

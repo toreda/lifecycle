@@ -13,6 +13,7 @@
     "@swc/jest": "^0.2.24",
     "@toreda/build-tools": "^0.8.0",
     "@toreda/eslint-config": "^2.2.0",
+    "@toreda/log": "^0.6.16",
     "@toreda/prettier-config": "^1.0.1",
     "@toreda/types": "^2.16.0",
     "@types/eslint": "^8.21.1",

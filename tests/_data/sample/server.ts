@@ -10,47 +10,47 @@ export class SampleServer implements ServerDelegate<unknown> {
 	}
 
 	public async willInit(): Promise<boolean> {
-		return serverPhase(this, 'willInit');
+		return serverPhase('willInit', this);
 	}
 
 	public async didInit(): Promise<boolean> {
-		return serverPhase(this, 'didInit');
+		return serverPhase('didInit', this);
 	}
 
 	public async willLoad(): Promise<boolean> {
-		return serverPhase(this, 'willLoad');
+		return serverPhase('willLoad', this);
 	}
 
 	public async didLoad(): Promise<boolean> {
-		return serverPhase(this, 'didLoad');
+		return serverPhase('didLoad', this);
 	}
 
 	public async willStart(): Promise<boolean> {
-		return serverPhase(this, 'willStart');
+		return serverPhase('willStart', this);
 	}
 
 	public async didStart(): Promise<boolean> {
-		return serverPhase(this, 'didStart');
+		return serverPhase('didStart', this);
 	}
 
 	public async willBecomeReady(): Promise<boolean> {
-		return serverPhase(this, 'willBecomeReady');
+		return serverPhase('willBecomeReady', this);
 	}
 
 	public async didBecomeReady(): Promise<boolean> {
-		return serverPhase(this, 'didBecomeReady');
+		return serverPhase('didBecomeReady', this);
 	}
 
 	public async willStop(): Promise<boolean> {
-		return serverPhase(this, 'willStop');
+		return serverPhase('willStop', this);
 	}
 
 	public async didStop(): Promise<boolean> {
-		return serverPhase(this, 'didStop');
+		return serverPhase('didStop', this);
 	}
 
 	public async willShutdown(): Promise<boolean> {
-		return serverPhase(this, 'willShutdown');
+		return serverPhase('willShutdown', this);
 	}
 
 	public reset(): void {
