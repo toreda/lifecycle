@@ -40,7 +40,7 @@
     "build": "yarn gulp",
     "make:docs": "yarn typedoc",
     "make:depgraph": "yarn madge src/index.ts --image dependency-graph.png",
-    "test": "yarn jest --coverage --maxWorkers=50%"
+    "test": "yarn jest --silent=false --coverage --maxWorkers=50%"
   },
   "prettier": "@toreda/prettier-config"
 }

@@ -1,8 +1,19 @@
+import {Levels, Log} from '@toreda/log';
+
 import {SERVER_PHASES} from '../_data/server/phases';
 import {SampleServer} from '../_data/sample/server';
 import {serverPhase} from '../../src/server/phase';
 
 describe('Server Phases', () => {
+	let log: Log;
+
+	beforeAll(() => {
+		log = new Log({
+			globalLevel: Levels.ALL,
+			consoleEnabled: true
+		});
+	});
+
 	describe('Initial Values', () => {
 		let initialValues: SampleServer;
 
@@ -32,8 +43,9 @@ describe('Server Phases', () => {
 			it(`should invoke '${phase.name}' listener and return true`, async () => {
 				const spy = jest.spyOn(server, phase.key as any);
 				expect(spy).not.toHaveBeenCalled();
+				expect(server.lifecycle.get(phase.key)).toBe(false);
 
-				const result = await serverPhase(phase.key, server);
+				const result = await serverPhase(phase.key, server, log);
 
 				expect(spy).toHaveBeenCalledTimes(1);
 				expect(result).toBe(true);

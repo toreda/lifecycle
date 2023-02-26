@@ -25,7 +25,6 @@
 
 import {Log} from '@toreda/log';
 import type {ServerDelegate} from './delegate';
-import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
 
 /**

@@ -32,35 +32,11 @@ export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
 	}
 
 	public async phase(id: keyof PhaseT): Promise<boolean> {
-		if (typeof id !== 'string') {
-			return false;
-		}
-
-		if (!this.has(id)) {
-			return false;
-		}
-
-		const status = this.get(id);
-		if (typeof status !== 'boolean' || status === true) {
+		if (this.get(id) === true) {
 			return false;
 		}
 
 		this.set(id, true);
-		return true;
-	}
-
-	public execute(phase: keyof PhaseT): boolean {
-		if (!this.has(phase)) {
-			return false;
-		}
-
-		const hasExecuted = this.get(phase);
-		if (hasExecuted !== true) {
-			return false;
-		}
-
-		this.set(phase, true);
-
 		return true;
 	}
 

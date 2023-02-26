@@ -27,16 +27,18 @@ import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 
+/**
+ * @category Helpers
+ */
 export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	phase: keyof PhaseT,
 	delegate: DelegateT,
 	log?: Log
 ): Promise<boolean> {
 	if (!canInvoke<PhaseT, DelegateT>(phase, delegate, log)) {
-		if (log) {
-			log.warn(`Can't invoke listener for server phase '${String(phase)}'.`);
-		}
-
+		log?.makeLog(`invokeListener:${String(phase)}`).warn(
+			`Can't invoke listener for server phase '${String(phase)}'.`
+		);
 		return false;
 	}
 
@@ -44,23 +46,31 @@ export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegate
 	// even though the result type is verified before invoking. Should use a typesafe
 	// method so typechecking remains enabled.
 	const ln = delegate[phase as keyof DelegateT];
+
+	// Calling a non-existent listener is valid and should abort here.
+	if (!ln) {
+		return false;
+	}
+
 	if (typeof ln !== 'function') {
+		log?.makeLog(`invokeListener:${String(phase)}`).error(`listener exists but is not a function.`);
 		return false;
 	}
 
 	let result: boolean = false;
 
 	try {
-		result = await ln();
+		// Must call listener from its original context within delegate or 'this' will
+		// be unbound here.
+		result = await ln.call(delegate);
 		delegate.lifecycle.set(phase, true);
 	} catch (e: unknown) {
 		result = false;
-		if (log) {
-			if (e instanceof Error) {
-				log.error(`'${String(phase)}' listener threw: ${e.message}.`);
-			} else {
-				log.error(`'${String(phase)}' listener threw: unknown exception type.`);
-			}
+
+		if (e instanceof Error) {
+			log?.makeLog(`invokeListener:${String(phase)}`).error(`listener threw: ${e.message}.`);
+		} else {
+			log?.makeLog(`invokeListener:${String(phase)}`).error(`listener threw: unknown exception type.`);
 		}
 	}
 
