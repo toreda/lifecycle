@@ -32,6 +32,10 @@ export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
 	}
 
 	public async phase(id: keyof PhaseT): Promise<boolean> {
+		if (!id) {
+			return false;
+		}
+
 		if (this.get(id) === true) {
 			return false;
 		}
@@ -48,7 +52,7 @@ export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
 	}
 
 	public override get(key?: keyof PhaseT): boolean {
-		if (!key || key === '') {
+		if (!key) {
 			return false;
 		}
 

@@ -95,10 +95,24 @@ describe('canInvoke', () => {
 		expect(result).toBe(false);
 	});
 
+	it(`should return false when delegate.lifecycle.get is defined but not a function`, () => {
+		mockDelegate.lifecycle.get = {} as any;
+
+		const result = canInvoke<ServerPhase, ServerDelegate>('willStop', mockDelegate);
+		expect(result).toBe(false);
+	});
+
 	it(`should return false when delegate.lifecycle.set is undefined`, () => {
 		mockDelegate.lifecycle.set = undefined as any;
 
 		const result = canInvoke<ServerPhase, ServerDelegate>('didInit', mockDelegate);
+		expect(result).toBe(false);
+	});
+
+	it(`should return false when delegate.lifecycle.set is defined but not a function`, () => {
+		mockDelegate.lifecycle.set = {} as any;
+
+		const result = canInvoke<ServerPhase, ServerDelegate>('willStop', mockDelegate);
 		expect(result).toBe(false);
 	});
 
