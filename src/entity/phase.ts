@@ -31,29 +31,29 @@ import {invokeListener} from '../invoke/listener';
 /**
  * Identifiers for each phase in the Entity Lifecycle flow.
  *
- * @category Entities
+ * @category Entity
  */
 export type EntityPhase = Pick<
 	EntityDelegate<unknown>,
-	| 'entityDidAppear'
-	| 'entityDidDespawn'
-	| 'entityDidHide'
-	| 'entityDidInit'
-	| 'entityDidLoad'
-	| 'entityDidSpawn'
-	| 'entityDidStart'
-	| 'entityDidStop'
-	| 'entityDidUnpause'
-	| 'entityWillAppear'
-	| 'entityWillDespawn'
-	| 'entityWillHide'
-	| 'entityWillInit'
-	| 'entityWillLoad'
-	| 'entityWillPause'
-	| 'entityWillSpawn'
-	| 'entityWillStart'
-	| 'entityWillStop'
-	| 'entityMemoryWarning'
+	| 'didAppear'
+	| 'didDespawn'
+	| 'didHide'
+	| 'didInit'
+	| 'didLoad'
+	| 'didSpawn'
+	| 'didStart'
+	| 'didStop'
+	| 'didUnpause'
+	| 'willAppear'
+	| 'willDespawn'
+	| 'willHide'
+	| 'willInit'
+	| 'willLoad'
+	| 'willPause'
+	| 'willSpawn'
+	| 'willStart'
+	| 'willStop'
+	| 'memoryWarning'
 >;
 
 /**

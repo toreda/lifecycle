@@ -30,7 +30,7 @@ import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 
 /**
- * @category Lifecycle
+ * @category Client
  */
 export interface ClientDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ClientPhase, ClientFlags> {
 	lifecycle: ClientLifecycle;
@@ -66,4 +66,7 @@ export interface ClientDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 	didLoseFocus?: LifecycleListener<ArgsT>;
 	didGainFocus?: LifecycleListener<ArgsT>;
 	willGainFocus?: LifecycleListener<ArgsT>;
+	willShutdown?: LifecycleListener<ArgsT>;
+	didShutdown?: LifecycleListener<ArgsT>;
+	onShutdown?: LifecycleListener<ArgsT>;
 }

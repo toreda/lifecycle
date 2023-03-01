@@ -23,12 +23,37 @@
  *
  */
 
-import type {LifecycleFlags} from '../lifecycle/flags';
-import type {ServerPhase} from './phase';
+import type {CnxPhase} from './phase';
 
 /**
- * Managed flag data for lifecycle phases used by server-side lifecycle flows.
- *
- * @category Server
+ * @category Connection
  */
-export type ServerFlags = LifecycleFlags<ServerPhase>;
+export const cnxPhases: (keyof CnxPhase)[] = [
+	'didClose',
+	'didConnect',
+	'didDisconnect',
+	'didFailClose',
+	'didFailConnect',
+	'didFailReconnect',
+	'didInit',
+	'didLoad',
+	'didOpen',
+	'didPing',
+	'didPong',
+	'didReconnect',
+	'didReset',
+	'didStartConnect',
+	'didStopConnect',
+	'didStopReconnect',
+	'willClose',
+	'willConnect',
+	'willDisconnect',
+	'willInit',
+	'willLoad',
+	'willOpen',
+	'willReconnect',
+	'willReset',
+	'willStartConnect',
+	'willStopConnect',
+	'willStopReconnect'
+];

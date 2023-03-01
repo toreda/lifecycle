@@ -24,11 +24,11 @@
  */
 
 import type {AddonPhase} from './phase';
-import {LifecycleFlags} from '../lifecycle/flags';
+import type {LifecycleFlags} from '../lifecycle/flags';
 
 /**
  *  Status flags indicating which handlers have already been called in an Addon Lifecycle.
  *
- * @category Addons
+ * @category Addon
  */
 export type AddonFlags = LifecycleFlags<AddonPhase>;

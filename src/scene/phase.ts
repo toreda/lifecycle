@@ -32,24 +32,24 @@ import {invokeListener} from '../invoke/listener';
 /**
  * Unique scene-related phase IDs.
  *
- * @category Scenes
+ * @category Scene
  */
 export type ScenePhase = Pick<
 	SceneDelegate,
-	| 'sceneDidAppear'
-	| 'sceneDidBecomeReady'
-	| 'sceneDidInit'
-	| 'sceneDidLoad'
-	| 'sceneDidReset'
-	| 'sceneDidStart'
-	| 'sceneDidStop'
-	| 'sceneWillAppear'
-	| 'sceneWillBecomeReady'
-	| 'sceneWillInit'
-	| 'sceneWillLoad'
-	| 'scenewillReset'
-	| 'sceneWillStart'
-	| 'sceneWillStop'
+	| 'didAppear'
+	| 'didBecomeReady'
+	| 'didInit'
+	| 'didLoad'
+	| 'didReset'
+	| 'didStart'
+	| 'didStop'
+	| 'willAppear'
+	| 'willBecomeReady'
+	| 'willInit'
+	| 'willLoad'
+	| 'willReset'
+	| 'willStart'
+	| 'willStop'
 >;
 
 /**
@@ -58,7 +58,7 @@ export type ScenePhase = Pick<
  * @param phase
  * @returns
  *
- * @category Addon
+ * @category Scene
  */
 export async function scenePhase(
 	phase: keyof ScenePhase,
@@ -69,5 +69,5 @@ export async function scenePhase(
 		return false;
 	}
 
-	return invokeListener(phase, delegate, log);
+	return invokeListener<ScenePhase, SceneFlags, SceneDelegate>(phase, delegate, log);
 }

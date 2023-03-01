@@ -23,12 +23,47 @@
  *
  */
 
-import type {LifecycleFlags} from '../lifecycle/flags';
-import type {ServerPhase} from './phase';
+import type {AddonPhase} from './phase';
 
 /**
- * Managed flag data for lifecycle phases used by server-side lifecycle flows.
- *
- * @category Server
+ * @category Addon
  */
-export type ServerFlags = LifecycleFlags<ServerPhase>;
+export const addonPhases: (keyof AddonPhase)[] = [
+	'didBecomeReady',
+	'didEnterCache',
+	'didGainFocus',
+	'didInit',
+	'didLeaveCache',
+	'didLoad',
+	'didLoseFocus',
+	'didPause',
+	'didRestart',
+	'didShutdown',
+	'didStart',
+	'didStop',
+	'didUnpause',
+	'memoryWarning',
+	'onEnterCache',
+	'onInit',
+	'onLoad',
+	'onPause',
+	'onReady',
+	'onRestart',
+	'onShutdown',
+	'onStart',
+	'onStop',
+	'onUnpause',
+	'willBecomeReady',
+	'willEnterCache',
+	'willGainFocus',
+	'willInit',
+	'willLeaveCache',
+	'willLoad',
+	'willLoseFocus',
+	'willPause',
+	'willRestart',
+	'willShutdown',
+	'willStart',
+	'willStop',
+	'onLeaveCache'
+];

@@ -32,38 +32,45 @@ import type {LifecycleListener} from '../lifecycle/listener';
 /**
  * Adds support for calling optional addon lifecycle methods.
  *
- * @category Addons
+ * @category Addon
  */
 export interface AddonDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<AddonPhase, AddonFlags> {
 	lifecycle: AddonLifecycle;
-	/** Starting 'init' lifecycle phase. */
-	willInit?: LifecycleListener<ArgsT>;
-	/** Server completed 'init' lifecycle phase. */
-	didInit?: LifecycleListener<ArgsT>;
-	/** Server will enter 'load' lifecycle phase. */
-	willLoad?: LifecycleListener<ArgsT>;
-	/** Server completed 'load' lifecycle phase. */
-	didLoad?: LifecycleListener<ArgsT>;
-	/** Server will enter 'start' lifecycle phase but is not yet ready. */
-	willStart?: LifecycleListener<ArgsT>;
-	/** Server completed 'start' lifecycle phase. */
-	didStart?: LifecycleListener<ArgsT>;
-	/** Server entered the 'ready' lifecycle phase and is now fully available. */
-	willBecomeReady?: LifecycleListener<ArgsT>;
-	/** Server entered 'ready' lifecycle phase and is now fully available. */
 	didBecomeReady?: LifecycleListener<ArgsT>;
-	memoryWarning?: LifecycleListener<ArgsT>;
-	willPause?: LifecycleListener<ArgsT>;
-	didPause?: LifecycleListener<ArgsT>;
-	didUnpause?: LifecycleListener<ArgsT>;
-	/** Server will enter the stop lifecycle phase soon. */
-	willStop?: LifecycleListener<ArgsT>;
-	/** Server entered the stop lifecycle phase. */
-	didStop?: LifecycleListener<ArgsT>;
-	/** Server will shutdown completely. */
-	willShutdown?: LifecycleListener<ArgsT>;
-	willLoseFocus?: LifecycleListener<ArgsT>;
-	didLoseFocus?: LifecycleListener<ArgsT>;
-	willGainFocus?: LifecycleListener<ArgsT>;
+	didEnterCache?: LifecycleListener<ArgsT>;
 	didGainFocus?: LifecycleListener<ArgsT>;
+	didInit?: LifecycleListener<ArgsT>;
+	didLeaveCache?: LifecycleListener<ArgsT>;
+	didLoad?: LifecycleListener<ArgsT>;
+	didLoseFocus?: LifecycleListener<ArgsT>;
+	didPause?: LifecycleListener<ArgsT>;
+	didRestart?: LifecycleListener<ArgsT>;
+	didShutdown?: LifecycleListener<ArgsT>;
+	didStart?: LifecycleListener<ArgsT>;
+	didStop?: LifecycleListener<ArgsT>;
+	didUnpause?: LifecycleListener<ArgsT>;
+	memoryWarning?: LifecycleListener<ArgsT>;
+	onEnterCache?: LifecycleListener<ArgsT>;
+	onInit?: LifecycleListener<ArgsT>;
+	onLeaveCache?: LifecycleListener<ArgsT>;
+	onLoad?: LifecycleListener<ArgsT>;
+	onPause?: LifecycleListener<ArgsT>;
+	onReady?: LifecycleListener<ArgsT>;
+	onRestart?: LifecycleListener<ArgsT>;
+	onShutdown?: LifecycleListener<ArgsT>;
+	onStart?: LifecycleListener<ArgsT>;
+	onStop?: LifecycleListener<ArgsT>;
+	onUnpause?: LifecycleListener<ArgsT>;
+	willBecomeReady?: LifecycleListener<ArgsT>;
+	willEnterCache?: LifecycleListener<ArgsT>;
+	willGainFocus?: LifecycleListener<ArgsT>;
+	willInit?: LifecycleListener<ArgsT>;
+	willLeaveCache?: LifecycleListener<ArgsT>;
+	willLoad?: LifecycleListener<ArgsT>;
+	willLoseFocus?: LifecycleListener<ArgsT>;
+	willPause?: LifecycleListener<ArgsT>;
+	willRestart?: LifecycleListener<ArgsT>;
+	willShutdown?: LifecycleListener<ArgsT>;
+	willStart?: LifecycleListener<ArgsT>;
+	willStop?: LifecycleListener<ArgsT>;
 }

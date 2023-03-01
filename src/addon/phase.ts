@@ -30,26 +30,44 @@ import {invokeListener} from '../invoke/listener';
 /**
  * Expressive type describing phase names used in client lifecycle flow.
  *
- * @category Addons
+ * @category Addon
  */
 export type AddonPhase = Pick<
 	AddonDelegate,
 	| 'didBecomeReady'
+	| 'didEnterCache'
 	| 'didGainFocus'
 	| 'didInit'
+	| 'didLeaveCache'
 	| 'didLoad'
-	| 'didPause'
 	| 'didLoseFocus'
+	| 'didPause'
+	| 'didShutdown'
 	| 'didStart'
+	| 'didRestart'
 	| 'didStop'
 	| 'didUnpause'
 	| 'memoryWarning'
+	| 'onEnterCache'
+	| 'onInit'
+	| 'onLeaveCache'
+	| 'onLoad'
+	| 'onPause'
+	| 'onReady'
+	| 'onRestart'
+	| 'onShutdown'
+	| 'onStart'
+	| 'onStop'
+	| 'onUnpause'
 	| 'willBecomeReady'
+	| 'willEnterCache'
 	| 'willGainFocus'
 	| 'willInit'
+	| 'willLeaveCache'
 	| 'willLoad'
 	| 'willLoseFocus'
 	| 'willPause'
+	| 'willRestart'
 	| 'willShutdown'
 	| 'willStart'
 	| 'willStop'

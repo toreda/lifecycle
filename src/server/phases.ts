@@ -23,12 +23,31 @@
  *
  */
 
-import type {LifecycleFlags} from '../lifecycle/flags';
 import type {ServerPhase} from './phase';
 
 /**
- * Managed flag data for lifecycle phases used by server-side lifecycle flows.
- *
  * @category Server
  */
-export type ServerFlags = LifecycleFlags<ServerPhase>;
+export const serverPhases: (keyof ServerPhase)[] = [
+	'didBecomeReady',
+	'didInit',
+	'didLoad',
+	'didRestart',
+	'didShutdown',
+	'didStart',
+	'didStop',
+	'onInit',
+	'onLoad',
+	'onReady',
+	'onRestart',
+	'onShutdown',
+	'onStart',
+	'onStop',
+	'willBecomeReady',
+	'willInit',
+	'willLoad',
+	'willRestart',
+	'willShutdown',
+	'willStart',
+	'willStop'
+];

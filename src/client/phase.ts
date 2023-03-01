@@ -45,11 +45,13 @@ export type ClientPhase = Pick<
 	| 'didStart'
 	| 'didStop'
 	| 'didUnpause'
+	| 'didShutdown'
 	| 'memoryWarning'
 	| 'onInit'
 	| 'onLoad'
 	| 'onReady'
 	| 'onStart'
+	| 'onShutdown'
 	| 'willBecomeReady'
 	| 'willGainFocus'
 	| 'willInit'
@@ -58,6 +60,7 @@ export type ClientPhase = Pick<
 	| 'willPause'
 	| 'willStart'
 	| 'willStop'
+	| 'willShutdown'
 >;
 
 /**

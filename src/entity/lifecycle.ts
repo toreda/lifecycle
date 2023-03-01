@@ -37,25 +37,25 @@ export class EntityLifecycle extends Lifecycle<EntityPhase> {
 
 	public toData(): EntityFlags {
 		return {
-			entityDidAppear: this.get('entityDidAppear'),
-			entityDidDespawn: this.get('entityDidDespawn'),
-			entityDidHide: this.get('entityDidHide'),
-			entityDidInit: this.get('entityDidInit'),
-			entityDidLoad: this.get('entityDidLoad'),
-			entityDidSpawn: this.get('entityDidSpawn'),
-			entityDidStart: this.get('entityDidStart'),
-			entityDidStop: this.get('entityDidStop'),
-			entityDidUnpause: this.get('entityDidUnpause'),
-			entityWillAppear: this.get('entityWillAppear'),
-			entityWillDespawn: this.get('entityWillDespawn'),
-			entityWillHide: this.get('entityWillHide'),
-			entityWillInit: this.get('entityWillInit'),
-			entityWillLoad: this.get('entityWillLoad'),
-			entityWillPause: this.get('entityWillPause'),
-			entityWillSpawn: this.get('entityWillSpawn'),
-			entityWillStart: this.get('entityWillStart'),
-			entityWillStop: this.get('entityWillStop'),
-			entityMemoryWarning: this.get('entityMemoryWarning')
+			didAppear: this.get('didAppear'),
+			didDespawn: this.get('didDespawn'),
+			didHide: this.get('didHide'),
+			didInit: this.get('didInit'),
+			didLoad: this.get('didLoad'),
+			didSpawn: this.get('didSpawn'),
+			didStart: this.get('didStart'),
+			didStop: this.get('didStop'),
+			didUnpause: this.get('didUnpause'),
+			willAppear: this.get('willAppear'),
+			willDespawn: this.get('willDespawn'),
+			willHide: this.get('willHide'),
+			willInit: this.get('willInit'),
+			willLoad: this.get('willLoad'),
+			willPause: this.get('willPause'),
+			willSpawn: this.get('willSpawn'),
+			willStart: this.get('willStart'),
+			willStop: this.get('willStop'),
+			memoryWarning: this.get('memoryWarning')
 		};
 	}
 }

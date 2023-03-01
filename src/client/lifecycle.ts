@@ -46,6 +46,7 @@ export class ClientLifecycle extends Lifecycle<ClientPhase> {
 			didLoad: this.get('didLoad'),
 			didLoseFocus: this.get('didLoseFocus'),
 			didPause: this.get('didPause'),
+			didShutdown: this.get('didShutdown'),
 			didStart: this.get('didStart'),
 			didStop: this.get('didStop'),
 			didUnpause: this.get('didUnpause'),
@@ -53,6 +54,7 @@ export class ClientLifecycle extends Lifecycle<ClientPhase> {
 			onInit: this.get('onInit'),
 			onLoad: this.get('onLoad'),
 			onReady: this.get('onReady'),
+			onShutdown: this.get('onShutdown'),
 			onStart: this.get('onStart'),
 			willBecomeReady: this.get('willBecomeReady'),
 			willGainFocus: this.get('willGainFocus'),
@@ -60,6 +62,7 @@ export class ClientLifecycle extends Lifecycle<ClientPhase> {
 			willLoad: this.get('willLoad'),
 			willLoseFocus: this.get('willLoseFocus'),
 			willPause: this.get('willPause'),
+			willShutdown: this.get('willShutdown'),
 			willStart: this.get('willStart'),
 			willStop: this.get('willStop')
 		};

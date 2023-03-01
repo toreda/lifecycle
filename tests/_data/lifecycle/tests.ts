@@ -1,27 +1,37 @@
 import type {LifecycleDelegateCommon} from '../../../src/lifecycle/delegate/common';
 
-export async function generatePhaseTests<PhaseT, FlagsT>(
+export function generatePhaseTests<PhaseT, FlagsT>(
 	suiteName: string,
 	o: LifecycleDelegateCommon<PhaseT, FlagsT>,
-	phases: PhaseT[]
-): Promise<void> {
-	describe(`${suiteName} Flags`, async () => {
-		beforeEach(() => {
-			o.reset();
-		});
+	phases: (keyof PhaseT)[]
+): void {
+	describe(`${suiteName}`, () => {
+		const flags = o.toData();
 
-		for (const phase of phases) {
-			await generatePhaseTest<PhaseT, FlagsT>(o, phase);
-		}
+		describe(`toData()`, () => {
+			beforeEach(() => {
+				o.reset();
+			});
+
+			it(`should have delegate object`, () => {
+				expect(o).not.toBeUndefined();
+			});
+
+			for (const phase of phases) {
+				generatePhaseFlagTest<PhaseT, FlagsT>(o, phase, flags);
+			}
+		});
 	});
 }
 
-export async function generatePhaseTest<PhaseT, FlagsT>(
+export function generatePhaseFlagTest<PhaseT, FlagsT>(
 	o: LifecycleDelegateCommon<PhaseT, FlagsT>,
-	phase: keyof PhaseT
-): Promise<void> {
-
-	it(`should `, async () => {
+	phase: keyof PhaseT,
+	flags: FlagsT
+): void {
+	const name = String(phase);
+	it(`should include property '${name} with value 'true'`, async () => {
 		o.lifecycle.set(phase, true);
+		expect(flags).toHaveProperty(name);
 	});
 }

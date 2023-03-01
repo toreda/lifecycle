@@ -31,7 +31,7 @@ import type {ServerPhase} from './phase';
 /**
  * Delegate interface for server-side classes.
  *
- * @category Lifecycle
+ * @category Server
  */
 export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ServerPhase, ServerFlags> {
 	didBecomeReady?: LifecycleListener<ArgsT>;

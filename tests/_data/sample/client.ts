@@ -1,5 +1,7 @@
 import type {ClientDelegate} from '../../../src/client/delegate';
+import type {ClientFlags} from '../../../src/client/flags';
 import {ClientLifecycle} from '../../../src/client/lifecycle';
+import {clientPhases} from '../../../src/client/phases';
 
 export class SampleClient implements ClientDelegate<unknown> {
 	public readonly lifecycle: ClientLifecycle;
@@ -93,6 +95,16 @@ export class SampleClient implements ClientDelegate<unknown> {
 	}
 
 	public reset(): void {
-		//
+		this.lifecycle.reset();
+	}
+
+	public toData(): ClientFlags {
+		const o: ClientFlags = {} as any;
+
+		for (const phase of clientPhases) {
+			o[phase] = this.lifecycle.get(phase);
+		}
+
+		return o;
 	}
 }

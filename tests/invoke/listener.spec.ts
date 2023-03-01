@@ -1,6 +1,7 @@
 import {Levels, Log} from '@toreda/log';
 
 import {SampleServer} from '../_data/sample/server';
+import type {ServerFlags} from '../../src/server/flags';
 import type {ServerPhase} from '../../src/server/phase';
 import {invokeListener} from '../../src/invoke/listener';
 
@@ -23,25 +24,31 @@ describe('invokeListener', () => {
 	});
 
 	it(`should return false when phase has no listener`, async () => {
-		const result = await invokeListener<ServerPhase, SampleServer>('___9297249274' as any, server);
+		const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>(
+			'___9297249274' as any,
+			server
+		);
 
 		expect(result).toBe(false);
 	});
 
 	it(`should return false when phase arg is undefined`, async () => {
-		const result = await invokeListener<ServerPhase, SampleServer>(undefined as any, server);
+		const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>(undefined as any, server);
 
 		expect(result).toBe(false);
 	});
 
 	it(`should return false when phase arg is null`, async () => {
-		const result = await invokeListener<ServerPhase, SampleServer>(null as any, server);
+		const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>(null as any, server);
 
 		expect(result).toBe(false);
 	});
 
 	it(`should return false when phase arg is an empty string`, async () => {
-		const result = await invokeListener<ServerPhase, SampleServer>(EMPTY_STRING as any, server);
+		const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>(
+			EMPTY_STRING as any,
+			server
+		);
 
 		expect(result).toBe(false);
 	});
@@ -49,7 +56,7 @@ describe('invokeListener', () => {
 	it(`should return false when listener is defined but is not a function`, async () => {
 		const custom = new SampleServer();
 		custom.didRestart = {} as any;
-		const result = await invokeListener<ServerPhase, SampleServer>('didRestart', custom);
+		const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>('didRestart', custom);
 
 		expect(result).toBe(false);
 	});
@@ -57,7 +64,7 @@ describe('invokeListener', () => {
 	it(`should return false when listener is undefined`, async () => {
 		const custom = new SampleServer();
 		custom.didInit = undefined as any;
-		const result = await invokeListener<ServerPhase, SampleServer>('didInit', custom);
+		const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>('didInit', custom);
 
 		expect(result).toBe(false);
 	});
@@ -67,7 +74,7 @@ describe('invokeListener', () => {
 		custom.didStop = jest.fn(async () => {
 			throw new Error('exception here');
 		}) as any;
-		const result = await invokeListener<ServerPhase, SampleServer>('didStop', custom);
+		const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>('didStop', custom);
 
 		expect(result).toBe(false);
 	});
@@ -76,7 +83,7 @@ describe('invokeListener', () => {
 		const spy = jest.spyOn(server, 'didRestart');
 		expect(spy).not.toHaveBeenCalled();
 
-		const result = await invokeListener<ServerPhase, SampleServer>('didRestart', server);
+		const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>('didRestart', server);
 		expect(result).toBe(true);
 		expect(spy).toHaveBeenCalledTimes(1);
 
@@ -88,7 +95,7 @@ describe('invokeListener', () => {
 		expect(spy).not.toHaveBeenCalled();
 
 		server.lifecycle.set('didBecomeReady', true);
-		const result = await invokeListener<ServerPhase, SampleServer>('didBecomeReady', server);
+		const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>('didBecomeReady', server);
 		expect(result).toBe(false);
 		expect(spy).not.toHaveBeenCalled();
 
@@ -99,11 +106,14 @@ describe('invokeListener', () => {
 		const spy = jest.spyOn(server, 'didBecomeReady');
 		expect(spy).not.toHaveBeenCalled();
 
-		const a = await invokeListener<ServerPhase, SampleServer>('didBecomeReady', server);
+		const a = await invokeListener<ServerPhase, ServerFlags, SampleServer>('didBecomeReady', server);
 		expect(a).toBe(true);
 
 		for (let i = 0; i < 4; i++) {
-			const result = await invokeListener<ServerPhase, SampleServer>('didBecomeReady', server);
+			const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>(
+				'didBecomeReady',
+				server
+			);
 			expect(result).toBe(false);
 		}
 
@@ -125,17 +135,13 @@ describe('invokeListener', () => {
 			expect(spyA).not.toHaveBeenCalled();
 			expect(spyB).not.toHaveBeenCalled();
 
-			const result = await invokeListener<ServerPhase, SampleServer>('didLoad', custom);
+			const result = await invokeListener<ServerPhase, ServerFlags, SampleServer>('didLoad', custom);
 
 			expect(spyA).toHaveBeenCalledTimes(1);
 			expect(spyB).toHaveBeenCalledTimes(1);
 
 			spyA.mockRestore();
 			spyB.mockRestore();
-		});
-
-		it(``, async () => {
-
 		});
 	});
 });

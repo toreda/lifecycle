@@ -31,21 +31,21 @@ import type {ScenePhase} from '../scene/phase';
 /**
  * Delegate for scene related
  *
- * @category Lifecycle
+ * @category Scene
  */
 export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ScenePhase, SceneFlags> {
-	sceneDidAppear?: LifecycleListener<ArgsT>;
-	sceneDidBecomeReady?: LifecycleListener<ArgsT>;
-	sceneDidInit?: LifecycleListener<ArgsT>;
-	sceneDidLoad?: LifecycleListener<ArgsT>;
-	sceneDidReset?: LifecycleListener<ArgsT>;
-	sceneDidStart?: LifecycleListener<ArgsT>;
-	sceneDidStop?: LifecycleListener<ArgsT>;
-	sceneWillAppear?: LifecycleListener<ArgsT>;
-	sceneWillBecomeReady?: LifecycleListener<ArgsT>;
-	sceneWillInit?: LifecycleListener<ArgsT>;
-	sceneWillLoad?: LifecycleListener<ArgsT>;
-	scenewillReset?: LifecycleListener<ArgsT>;
-	sceneWillStart?: LifecycleListener<ArgsT>;
-	sceneWillStop?: LifecycleListener<ArgsT>;
+	didAppear?: LifecycleListener<ArgsT>;
+	didBecomeReady?: LifecycleListener<ArgsT>;
+	didInit?: LifecycleListener<ArgsT>;
+	didLoad?: LifecycleListener<ArgsT>;
+	didReset?: LifecycleListener<ArgsT>;
+	didStart?: LifecycleListener<ArgsT>;
+	didStop?: LifecycleListener<ArgsT>;
+	willAppear?: LifecycleListener<ArgsT>;
+	willBecomeReady?: LifecycleListener<ArgsT>;
+	willInit?: LifecycleListener<ArgsT>;
+	willLoad?: LifecycleListener<ArgsT>;
+	willReset?: LifecycleListener<ArgsT>;
+	willStart?: LifecycleListener<ArgsT>;
+	willStop?: LifecycleListener<ArgsT>;
 }
