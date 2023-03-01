@@ -2,6 +2,7 @@
 .gitattributes
 .github
 .gitignore
+.npmignore
 .swcrc
 *.code-workspace
 coverage
