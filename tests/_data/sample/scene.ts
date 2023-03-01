@@ -16,6 +16,34 @@ export class SampleScene implements SceneDelegate<unknown> {
 		return this.lifecycle.phase('willInit');
 	}
 
+	public async willStop(): Promise<boolean> {
+		return this.lifecycle.phase('willStop');
+	}
+
+	public async didBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('didBecomeReady');
+	}
+
+	public async willBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('willBecomeReady');
+	}
+
+	public async didAppear(): Promise<boolean> {
+		return this.lifecycle.phase('didAppear');
+	}
+
+	public async didReset(): Promise<boolean> {
+		return this.lifecycle.phase('didReset');
+	}
+
+	public async willAppear(): Promise<boolean> {
+		return this.lifecycle.phase('willAppear');
+	}
+
+	public async willReset(): Promise<boolean> {
+		return this.lifecycle.phase('willReset');
+	}
+
 	public async didInit(): Promise<boolean> {
 		return this.lifecycle.phase('didInit');
 	}

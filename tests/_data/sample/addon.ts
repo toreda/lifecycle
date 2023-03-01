@@ -12,6 +12,50 @@ export class SampleAddon implements AddonDelegate<unknown> {
 		this.lifecycle = new AddonLifecycle();
 	}
 
+	public async willEnterCache(): Promise<boolean> {
+		return this.lifecycle.phase('willEnterCache');
+	}
+
+	public async onEnterCache(): Promise<boolean> {
+		return this.lifecycle.phase('onEnterCache');
+	}
+
+	public async didPause(): Promise<boolean> {
+		return this.lifecycle.phase('didPause');
+	}
+
+	public async willLeaveCache(): Promise<boolean> {
+		return this.lifecycle.phase('willLeaveCache');
+	}
+
+	public async willLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('willLoseFocus');
+	}
+
+	public async willGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('willGainFocus');
+	}
+
+	public async willPause(): Promise<boolean> {
+		return this.lifecycle.phase('willPause');
+	}
+
+	public async onPause(): Promise<boolean> {
+		return this.lifecycle.phase('onPause');
+	}
+
+	public async didUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('didUnpause');
+	}
+
+	public async onLeaveCache(): Promise<boolean> {
+		return this.lifecycle.phase('onLeaveCache');
+	}
+
+	public async onUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('onUnpause');
+	}
+
 	public async willInit(): Promise<boolean> {
 		return this.lifecycle.phase('willInit');
 	}
@@ -22,6 +66,22 @@ export class SampleAddon implements AddonDelegate<unknown> {
 
 	public async willLoad(): Promise<boolean> {
 		return this.lifecycle.phase('willLoad');
+	}
+
+	public async didLeaveCache(): Promise<boolean> {
+		return this.lifecycle.phase('didLeaveCache');
+	}
+
+	public async didGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('didGainFocus');
+	}
+
+	public async didEnterCache(): Promise<boolean> {
+		return this.lifecycle.phase('didEnterCache');
+	}
+
+	public async didLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('didLoseFocus');
 	}
 
 	public async didLoad(): Promise<boolean> {
@@ -94,6 +154,10 @@ export class SampleAddon implements AddonDelegate<unknown> {
 
 	public async onLoad(): Promise<boolean> {
 		return this.lifecycle.phase('onLoad');
+	}
+
+	public async memoryWarning(): Promise<boolean> {
+		return this.lifecycle.phase('memoryWarning');
 	}
 
 	public reset(): void {

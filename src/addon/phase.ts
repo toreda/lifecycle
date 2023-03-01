@@ -24,6 +24,7 @@
  */
 import type {AddonDelegate} from './delegate';
 import type {AddonFlags} from './flags';
+import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
 
@@ -81,17 +82,14 @@ export type AddonPhase = Pick<
  *
  * @category Addon
  */
-export async function addonPhase(delegate: AddonDelegate, phase: keyof AddonPhase): Promise<boolean> {
-	if (!canInvoke<AddonPhase, AddonFlags, AddonDelegate>(phase, delegate)) {
+export async function addonPhase(
+	phase: keyof AddonPhase,
+	delegate: AddonDelegate,
+	log?: Log
+): Promise<boolean> {
+	if (!canInvoke<AddonPhase, AddonFlags, AddonDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	const ran = delegate.lifecycle.get(phase);
-	if (ran !== true) {
-		return false;
-	}
-
-	const result = await invokeListener(phase, delegate);
-
-	return result;
+	return invokeListener<AddonPhase, AddonFlags, AddonDelegate>(phase, delegate, log);
 }
