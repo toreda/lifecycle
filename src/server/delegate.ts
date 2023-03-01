@@ -25,6 +25,7 @@
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
+import type {ServerFlags} from './flags';
 import type {ServerPhase} from './phase';
 
 /**
@@ -32,8 +33,7 @@ import type {ServerPhase} from './phase';
  *
  * @category Lifecycle
  */
-export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ServerPhase> {
-	/** Starting 'init' lifecycle phase. */
+export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ServerPhase, ServerFlags> {
 	didBecomeReady?: LifecycleListener<ArgsT>;
 	didInit?: LifecycleListener<ArgsT>;
 	didLoad?: LifecycleListener<ArgsT>;
@@ -55,5 +55,4 @@ export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 	willShutdown?: LifecycleListener<ArgsT>;
 	willStart?: LifecycleListener<ArgsT>;
 	willStop?: LifecycleListener<ArgsT>;
-	reset: () => void;
 }

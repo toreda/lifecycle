@@ -23,9 +23,10 @@
  *
  */
 
-import {CnxPhase} from './phase';
+import type {LifecycleFlags} from '../lifecycle/flags';
+import type {ScenePhase} from './phase';
 
 /**
- * @category Clients
+ * @category Scene
  */
-export const cnxPhases: CnxPhase[] = [];
+export type SceneFlags = LifecycleFlags<ScenePhase>;

@@ -64,6 +64,12 @@ describe('Lifecycle', () => {
 				expect(await instance.phase('didInit')).toBe(false);
 				expect(await instance.phase('didInit')).toBe(false);
 			});
+
+			it(`should return false when phase is already true`, async () => {
+				instance.set('didStop', true);
+
+				expect(await instance.phase('didStop')).toBe(false);
+			});
 		});
 
 		describe('reset', () => {});

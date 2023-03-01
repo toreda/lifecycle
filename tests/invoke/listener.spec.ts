@@ -111,4 +111,31 @@ describe('invokeListener', () => {
 
 		spy.mockRestore();
 	});
+
+	describe('Children', () => {
+		it(`should invoke listeners on all children`, async () => {
+			const custom = new SampleServer();
+			const a = new SampleServer();
+			const spyA = jest.spyOn(a, 'didLoad');
+			const b = new SampleServer();
+			const spyB = jest.spyOn(b, 'didLoad');
+			custom.children.push(a);
+			custom.children.push(b);
+
+			expect(spyA).not.toHaveBeenCalled();
+			expect(spyB).not.toHaveBeenCalled();
+
+			const result = await invokeListener<ServerPhase, SampleServer>('didLoad', custom);
+
+			expect(spyA).toHaveBeenCalledTimes(1);
+			expect(spyB).toHaveBeenCalledTimes(1);
+
+			spyA.mockRestore();
+			spyB.mockRestore();
+		});
+
+		it(``, async () => {
+
+		});
+	});
 });

@@ -25,6 +25,7 @@
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
+import type {SceneFlags} from './flags';
 import type {ScenePhase} from '../scene/phase';
 
 /**
@@ -32,7 +33,7 @@ import type {ScenePhase} from '../scene/phase';
  *
  * @category Lifecycle
  */
-export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ScenePhase> {
+export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ScenePhase, SceneFlags> {
 	sceneDidAppear?: LifecycleListener<ArgsT>;
 	sceneDidBecomeReady?: LifecycleListener<ArgsT>;
 	sceneDidInit?: LifecycleListener<ArgsT>;

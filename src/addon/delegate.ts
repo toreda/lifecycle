@@ -23,6 +23,7 @@
  *
  */
 
+import type {AddonFlags} from './flags';
 import {AddonLifecycle} from './lifecycle';
 import type {AddonPhase} from './phase';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
@@ -33,7 +34,7 @@ import type {LifecycleListener} from '../lifecycle/listener';
  *
  * @category Addons
  */
-export interface AddonDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<AddonPhase> {
+export interface AddonDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<AddonPhase, AddonFlags> {
 	lifecycle: AddonLifecycle;
 	/** Starting 'init' lifecycle phase. */
 	willInit?: LifecycleListener<ArgsT>;

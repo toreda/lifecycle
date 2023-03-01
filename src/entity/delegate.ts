@@ -23,6 +23,7 @@
  *
  */
 
+import type {EntityFlags} from './flags';
 import {EntityLifecycle} from './lifecycle';
 import type {EntityPhase} from './phase';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
@@ -31,7 +32,7 @@ import type {LifecycleListener} from '../lifecycle/listener';
 /**
  * @category Entity
  */
-export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<EntityPhase> {
+export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<EntityPhase, EntityFlags> {
 	lifecycle: EntityLifecycle;
 
 	/**

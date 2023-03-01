@@ -24,6 +24,7 @@
  */
 
 import type {ClientDelegate} from './delegate';
+import type {ClientFlags} from './flags';
 import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
@@ -72,9 +73,9 @@ export async function clientPhase(
 	delegate: ClientDelegate,
 	log?: Log
 ): Promise<boolean> {
-	if (!canInvoke<ClientPhase, ClientDelegate>(phase, delegate, log)) {
+	if (!canInvoke<ClientPhase, ClientFlags, ClientDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	return invokeListener(phase, delegate, log);
+	return invokeListener<ClientPhase, ClientFlags, ClientDelegate>(phase, delegate, log);
 }

@@ -24,6 +24,7 @@
  */
 
 import type {EntityDelegate} from './delegate';
+import type {EntityFlags} from './flags';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
 
@@ -64,9 +65,9 @@ export type EntityPhase = Pick<
  * @category Connection
  */
 export async function entityPhase(phase: keyof EntityPhase, delegate: EntityDelegate): Promise<boolean> {
-	if (!canInvoke<EntityPhase, EntityDelegate>(phase, delegate)) {
+	if (!canInvoke<EntityPhase, EntityFlags, EntityDelegate>(phase, delegate)) {
 		return false;
 	}
 
-	return invokeListener(phase, delegate);
+	return invokeListener<EntityPhase, EntityFlags, EntityDelegate>(phase, delegate);
 }

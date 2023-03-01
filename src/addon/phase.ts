@@ -23,6 +23,7 @@
  *
  */
 import type {AddonDelegate} from './delegate';
+import type {AddonFlags} from './flags';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
 
@@ -63,7 +64,7 @@ export type AddonPhase = Pick<
  * @category Addon
  */
 export async function addonPhase(delegate: AddonDelegate, phase: keyof AddonPhase): Promise<boolean> {
-	if (!canInvoke<AddonPhase, AddonDelegate>(phase, delegate)) {
+	if (!canInvoke<AddonPhase, AddonFlags, AddonDelegate>(phase, delegate)) {
 		return false;
 	}
 

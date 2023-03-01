@@ -24,6 +24,7 @@
  */
 
 import type {CnxDelegate} from './delegate';
+import type {CnxFlags} from './flags';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
 
@@ -72,7 +73,7 @@ export type CnxPhase = Pick<
  * @category Connection
  */
 export async function cnxPhase(phase: keyof CnxPhase, delegate: CnxDelegate): Promise<boolean> {
-	if (!canInvoke<CnxPhase, CnxDelegate>(phase, delegate)) {
+	if (!canInvoke<CnxPhase, CnxFlags, CnxDelegate>(phase, delegate)) {
 		return false;
 	}
 
@@ -81,7 +82,7 @@ export async function cnxPhase(phase: keyof CnxPhase, delegate: CnxDelegate): Pr
 		return false;
 	}
 
-	const result = await invokeListener(phase, delegate);
+	const result = await invokeListener<CnxPhase, CnxFlags, CnxDelegate>(phase, delegate);
 	delegate.lifecycle.set(phase, true);
 
 	return result;
