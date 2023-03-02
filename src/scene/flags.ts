@@ -27,6 +27,8 @@ import type {LifecycleFlags} from '../lifecycle/flags';
 import type {ScenePhase} from './phase';
 
 /**
+ * Dictionary key->value pairs returned in `scene.toData()`.
+ *
  * @category Scene
  */
-export type SceneFlags = LifecycleFlags<ScenePhase>;
+export type SceneFlags = LifecycleFlags<Exclude<ScenePhase, 'memoryWarning'>>;

@@ -29,18 +29,24 @@ import type {ScenePhase} from './phase';
  * @category Scene
  */
 export const scenePhases: (keyof ScenePhase)[] = [
-	'didAppear',
 	'didBecomeReady',
+	'didHide',
 	'didInit',
 	'didLoad',
+	'didPause',
 	'didReset',
+	'didShow',
 	'didStart',
 	'didStop',
-	'willAppear',
+	'didUnpause',
 	'willBecomeReady',
+	'willHide',
 	'willInit',
 	'willLoad',
+	'willPause',
 	'willReset',
+	'willShow',
 	'willStart',
-	'willStop'
+	'willStop',
+	'willUnpause'
 ];

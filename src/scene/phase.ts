@@ -36,20 +36,26 @@ import {invokeListener} from '../invoke/listener';
  */
 export type ScenePhase = Pick<
 	SceneDelegate,
-	| 'didAppear'
 	| 'didBecomeReady'
+	| 'didHide'
 	| 'didInit'
 	| 'didLoad'
+	| 'didPause'
 	| 'didReset'
+	| 'didShow'
 	| 'didStart'
 	| 'didStop'
-	| 'willAppear'
+	| 'didUnpause'
 	| 'willBecomeReady'
+	| 'willHide'
 	| 'willInit'
 	| 'willLoad'
+	| 'willPause'
 	| 'willReset'
+	| 'willShow'
 	| 'willStart'
 	| 'willStop'
+	| 'willUnpause'
 >;
 
 /**

@@ -3,7 +3,7 @@ module.exports = {
 	out: './docs',
 	entryPoints: ['./src/index.ts'],
 	tsconfig: './tsconfig.json',
-	emit: true,
+	emit: 'docs',
 	pretty: true,
 	includeVersion: true,
 	sort: 'alphabetical',

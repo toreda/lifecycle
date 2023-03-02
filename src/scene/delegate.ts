@@ -29,23 +29,94 @@ import type {SceneFlags} from './flags';
 import type {ScenePhase} from '../scene/phase';
 
 /**
- * Delegate for scene related
+ * Lifecycle listener implementation for game engine scenes.
  *
  * @category Scene
  */
 export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ScenePhase, SceneFlags> {
-	didAppear?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children finished the 'ready' lifecycle phase.
+	 */
 	didBecomeReady?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene was hidden.
+	 */
+	didHide?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children finished the 'init' lifecycle phase.
+	 */
 	didInit?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children finished the 'load' lifecycle phase.
+	 */
 	didLoad?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children were paused by game engine.
+	 */
+	didPause?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children were reset to initial state.
+	 */
 	didReset?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene was hidden and is now visible.
+	 */
+	didShow?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children will finished the 'start' lifecycle phase.
+	 */
 	didStart?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children were stopped by game engine.
+	 */
 	didStop?: LifecycleListener<ArgsT>;
-	willAppear?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children are paused and were unpaused.
+	 */
+	didUnpause?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children will begin the 'ready' lifecycle phase.
+	 */
 	willBecomeReady?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is visible and will be hidden.
+	 */
+	willHide?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children will begin the 'init' lifecycle phase.
+	 */
 	willInit?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children will begin the 'load' lifecycle phase.
+	 */
 	willLoad?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children are running will be paused by game engine.
+	 */
+	willPause?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children will reset and should return to initial states.
+	 */
 	willReset?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children are hidden and will be visible.
+	 */
+	willShow?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene and all children will be started.
+	 */
 	willStart?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene will be stopped immediately.
+	 */
 	willStop?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is paused and will be unpaused by the game engine.
+	 */
+	willUnpause?: LifecycleListener<ArgsT>;
+	/**
+	 * Low memory warning relayed from the underlying system. Clear any volatile/cached
+	 * assets which can safely be destroyed and recreated again later.
+	 */
+	memoryWarning?: LifecycleListener<ArgsT>;
 }

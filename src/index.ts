@@ -20,6 +20,7 @@ export {EntityLifecycle} from './entity/lifecycle';
 export {EntityPhase, entityPhase} from './entity/phase';
 export {entityPhases} from './entity/phases';
 export {invokeListener} from './invoke/listener';
+export {Lifecycle} from './lifecycle';
 export {LifecycleDelegateCommon} from './lifecycle/delegate/common';
 export {LifecycleFlags} from './lifecycle/flags';
 export {lifecycleForEach} from './lifecycle/for/each';

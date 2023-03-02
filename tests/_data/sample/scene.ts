@@ -28,16 +28,8 @@ export class SampleScene implements SceneDelegate<unknown> {
 		return this.lifecycle.phase('willBecomeReady');
 	}
 
-	public async didAppear(): Promise<boolean> {
-		return this.lifecycle.phase('didAppear');
-	}
-
 	public async didReset(): Promise<boolean> {
 		return this.lifecycle.phase('didReset');
-	}
-
-	public async willAppear(): Promise<boolean> {
-		return this.lifecycle.phase('willAppear');
 	}
 
 	public async willReset(): Promise<boolean> {
@@ -66,6 +58,38 @@ export class SampleScene implements SceneDelegate<unknown> {
 
 	public async didStop(): Promise<boolean> {
 		return this.lifecycle.phase('didStop');
+	}
+
+	public async willHide(): Promise<boolean> {
+		return this.lifecycle.phase('willHide');
+	}
+
+	public async didHide(): Promise<boolean> {
+		return this.lifecycle.phase('didHide');
+	}
+
+	public async didShow(): Promise<boolean> {
+		return this.lifecycle.phase('didShow');
+	}
+
+	public async willShow(): Promise<boolean> {
+		return this.lifecycle.phase('willShow');
+	}
+
+	public async willPause(): Promise<boolean> {
+		return this.lifecycle.phase('willPause');
+	}
+
+	public async willUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('willUnpause');
+	}
+
+	public async didPause(): Promise<boolean> {
+		return this.lifecycle.phase('didPause');
+	}
+
+	public async didUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('didUnpause');
 	}
 
 	public reset(): void {

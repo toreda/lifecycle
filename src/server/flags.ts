@@ -27,7 +27,7 @@ import type {LifecycleFlags} from '../lifecycle/flags';
 import type {ServerPhase} from './phase';
 
 /**
- * Managed flag data for lifecycle phases used by server-side lifecycle flows.
+ * Dictionary key->value pairs returned by server.toData()`.
  *
  * @category Server
  */

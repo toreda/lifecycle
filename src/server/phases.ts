@@ -26,6 +26,8 @@
 import type {ServerPhase} from './phase';
 
 /**
+ * Phases used by Server Delegates.
+ *
  * @category Server
  */
 export const serverPhases: (keyof ServerPhase)[] = [

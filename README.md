@@ -28,27 +28,34 @@
 &nbsp;
 
 # Client Lifecycle
-Lifecycle flow for s
+Lifecycle flow for client and app-side implementations.
 
 # Server Lifecycle
+Lifecycle flow for server-side implementations.
 
 # Entity Lifecycle
+Lifecycle flow for game engine Entities.
+
+# Scene Lifecycle
+Lifecycle flow for game engine scenes containing Entities.
 
 # Addon Lifecycle
+Lifecycle flow typically for client-side implementations but also used for server-side addons.
 
 # Connection Lifecycle
+Lifecycle flow for remote connections established by both clients and servers.
 
 # Install
 
 ## Yarn
 ```bash
-$ yarn add @toreda/types --dev
+$ yarn add @toreda/lifecycle
 ```
 
 
 ## NPM
 ```bash
-$ yarn add @toreda/types --D
+$ yarn add @toreda/lifecycle
 ```
 
 &nbsp;

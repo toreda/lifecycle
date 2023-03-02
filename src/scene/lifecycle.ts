@@ -40,19 +40,25 @@ export class SceneLifecycle extends Lifecycle<ScenePhase> {
 	public toData(): SceneFlags {
 		return {
 			didBecomeReady: this.get('didBecomeReady'),
+			didHide: this.get('didHide'),
 			didInit: this.get('didInit'),
 			didLoad: this.get('didLoad'),
+			didPause: this.get('didPause'),
+			didReset: this.get('didReset'),
+			didShow: this.get('didShow'),
 			didStart: this.get('didStart'),
 			didStop: this.get('didStop'),
+			didUnpause: this.get('didUnpause'),
 			willBecomeReady: this.get('willBecomeReady'),
+			willHide: this.get('willHide'),
 			willInit: this.get('willInit'),
 			willLoad: this.get('willLoad'),
+			willPause: this.get('willPause'),
+			willReset: this.get('willReset'),
+			willShow: this.get('willShow'),
 			willStart: this.get('willStart'),
 			willStop: this.get('willStop'),
-			willReset: this.get('willReset'),
-			didReset: this.get('didReset'),
-			didAppear: this.get('didAppear'),
-			willAppear: this.get('willAppear')
+			willUnpause: this.get('willUnpause')
 		};
 	}
 }
