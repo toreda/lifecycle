@@ -14,6 +14,18 @@
 			"**/Thumbs.db": true,
 			"node_modules": true,
 			"coverage": true
-		}
+		},
+		"eslint.lintTask.enable": true,
+		"prettier.bracketSameLine": true,
+		"prettier.requireConfig": true
+	},
+	"extensions": {
+		"recommendations": [
+			"sonarsource.sonarlint-vscode",
+			"aaron-bond.better-comments",
+			"dbaeumer.vscode-eslint",
+			"esbenp.prettier-vscode",
+			"yzhang.markdown-all-in-one"
+		]
 	}
 }

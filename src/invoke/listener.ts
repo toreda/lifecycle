@@ -57,7 +57,7 @@ export async function invokeListener<
 		return false;
 	}
 
-	let result: boolean = false;
+	let result = false;
 
 	try {
 		// Must call listener from its original context within delegate or 'this' will

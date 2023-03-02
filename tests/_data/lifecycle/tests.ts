@@ -71,14 +71,23 @@ export function generatePhaseResetTests<PhaseT, FlagsT>(
 	phases: (keyof PhaseT)[]
 ): void {
 	for (const phase of phases) {
-		generatePhaseResetTest(o, phase);
+		generatePhaseResetTest(o, phase, false);
 	}
 }
 
 export function generatePhaseResetTest<PhaseT, FlagsT>(
 	o: LifecycleDelegateCommon<PhaseT, FlagsT>,
-	phase: keyof PhaseT
-): void {}
+	phase: keyof PhaseT,
+	initial: boolean
+): void {
+	it(`should reset '${String(phase)}' to '${String(initial)}'`, () => {
+		const targetValue = !!initial;
+		o.lifecycle.set(phase, targetValue);
+		expect(o.lifecycle.get(phase)).toBe(targetValue);
+		o.reset();
+		expect(o.lifecycle.get(phase)).toBe(initial);
+	});
+}
 
 export function generatePhaseListenerTest<
 	PhaseT,
