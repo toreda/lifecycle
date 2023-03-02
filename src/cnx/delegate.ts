@@ -55,6 +55,7 @@ export interface CnxDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<Cn
 	didSndMsg?: LifecycleListener<ArgsT>;
 	didStartConnect?: LifecycleListener<ArgsT>;
 	didStopConnect?: LifecycleListener<ArgsT>;
+	didStopHandshake?: LifecycleListener<ArgsT>;
 	didStopReconnect?: LifecycleListener<ArgsT>;
 	willClose?: LifecycleListener<ArgsT>;
 	willConnect?: LifecycleListener<ArgsT>;
@@ -68,7 +69,11 @@ export interface CnxDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<Cn
 	willReconnect?: LifecycleListener<ArgsT>;
 	willReset?: LifecycleListener<ArgsT>;
 	willStartConnect?: LifecycleListener<ArgsT>;
+	willStartHandshake?: LifecycleListener<ArgsT>;
 	willStartReconnect?: LifecycleListener<ArgsT>;
 	willStopConnect?: LifecycleListener<ArgsT>;
+	willStopHandshake?: LifecycleListener<ArgsT>;
 	willStopReconnect?: LifecycleListener<ArgsT>;
+	willTimeout?: LifecycleListener<ArgsT>;
+	didTimeout?: LifecycleListener<ArgsT>;
 }

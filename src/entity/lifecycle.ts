@@ -37,24 +37,36 @@ export class EntityLifecycle extends Lifecycle<EntityPhase> {
 
 	public toData(): EntityFlags {
 		return {
-			didAppear: this.get('didAppear'),
+			didChangeState: this.get('didChangeState'),
 			didDespawn: this.get('didDespawn'),
 			didHide: this.get('didHide'),
 			didInit: this.get('didInit'),
 			didLoad: this.get('didLoad'),
+			didLoadAsset: this.get('didLoadAsset'),
+			didMove: this.get('didMove'),
+			didPause: this.get('didPause'),
+			didPlayAnimation: this.get('didPlayAnimation'),
+			didPlaySound: this.get('didPlaySound'),
+			didShow: this.get('didShow'),
 			didSpawn: this.get('didSpawn'),
 			didStart: this.get('didStart'),
 			didStop: this.get('didStop'),
 			didUnpause: this.get('didUnpause'),
-			willAppear: this.get('willAppear'),
+			willChangeState: this.get('willChangeState'),
 			willDespawn: this.get('willDespawn'),
 			willHide: this.get('willHide'),
 			willInit: this.get('willInit'),
 			willLoad: this.get('willLoad'),
+			willLoadAsset: this.get('willLoadAsset'),
+			willMove: this.get('willMove'),
 			willPause: this.get('willPause'),
+			willPlayAnimation: this.get('willPlayAnimation'),
+			willPlaySound: this.get('willPlaySound'),
+			willShow: this.get('willShow'),
 			willSpawn: this.get('willSpawn'),
 			willStart: this.get('willStart'),
 			willStop: this.get('willStop'),
+			willUnpause: this.get('willUnpause'),
 			memoryWarning: this.get('memoryWarning')
 		};
 	}

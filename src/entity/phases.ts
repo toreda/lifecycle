@@ -29,23 +29,35 @@ import type {EntityPhase} from './phase';
  * @category Entity
  */
 export const entityPhases: (keyof EntityPhase)[] = [
-	'didAppear',
 	'didDespawn',
 	'didHide',
 	'didInit',
 	'didLoad',
+	'didLoadAsset',
+	'didMove',
+	'didPause',
+	'willChangeState',
+	'didChangeState',
+
+	'didPlayAnimation',
+	'didPlaySound',
+	'didShow',
 	'didSpawn',
 	'didStart',
 	'didStop',
 	'didUnpause',
-	'willAppear',
+	'memoryWarning',
 	'willDespawn',
 	'willHide',
 	'willInit',
 	'willLoad',
+	'willLoadAsset',
+	'willMove',
 	'willPause',
+	'willPlayAnimation',
+	'willPlaySound',
 	'willSpawn',
 	'willStart',
 	'willStop',
-	'memoryWarning'
+	'willUnpause'
 ];

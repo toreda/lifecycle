@@ -37,6 +37,7 @@ export class CnxLifecycle extends Lifecycle<CnxPhase> {
 
 	public toData(): CnxFlags {
 		return {
+			didTimeout: this.get('didTimeout'),
 			didClose: this.get('didClose'),
 			didConnect: this.get('didConnect'),
 			didDisconnect: this.get('didDisconnect'),
@@ -60,9 +61,13 @@ export class CnxLifecycle extends Lifecycle<CnxPhase> {
 			willLoad: this.get('willLoad'),
 			willOpen: this.get('willOpen'),
 			willReconnect: this.get('willReconnect'),
+			willStartReconnect: this.get('willStartReconnect'),
+			willStopHandshake: this.get('willStopHandshake'),
+			willStartHandshake: this.get('willStartHandshake'),
+			willTimeout: this.get('willTimeout'),
 			willReset: this.get('willReset'),
 			willStartConnect: this.get('willStartConnect'),
-			willStopConnect: this.get('willStopReconnect'),
+			willStopConnect: this.get('willStopConnect'),
 			willStopReconnect: this.get('willStopReconnect')
 		};
 	}

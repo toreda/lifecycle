@@ -165,12 +165,6 @@ export class SampleAddon implements AddonDelegate<unknown> {
 	}
 
 	public toData(): AddonFlags {
-		const o: AddonFlags = {} as any;
-
-		for (const phase of addonPhases) {
-			o[phase] = this.lifecycle.get(phase);
-		}
-
-		return o;
+		return this.lifecycle.toData();
 	}
 }

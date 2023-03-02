@@ -73,12 +73,6 @@ export class SampleScene implements SceneDelegate<unknown> {
 	}
 
 	public toData(): SceneFlags {
-		const o: SceneFlags = {} as any;
-
-		for (const phase of scenePhases) {
-			o[phase] = this.lifecycle.get(phase);
-		}
-
-		return o;
+		return this.lifecycle.toData();
 	}
 }

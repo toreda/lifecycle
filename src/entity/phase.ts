@@ -25,6 +25,7 @@
 
 import type {EntityDelegate} from './delegate';
 import type {EntityFlags} from './flags';
+import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
 
@@ -35,25 +36,37 @@ import {invokeListener} from '../invoke/listener';
  */
 export type EntityPhase = Pick<
 	EntityDelegate<unknown>,
-	| 'didAppear'
 	| 'didDespawn'
+	| 'didChangeState'
 	| 'didHide'
 	| 'didInit'
 	| 'didLoad'
+	| 'didLoadAsset'
+	| 'didMove'
+	| 'didPause'
+	| 'didPlayAnimation'
+	| 'didPlaySound'
+	| 'didShow'
 	| 'didSpawn'
 	| 'didStart'
 	| 'didStop'
 	| 'didUnpause'
-	| 'willAppear'
+	| 'memoryWarning'
+	| 'willChangeState'
 	| 'willDespawn'
 	| 'willHide'
 	| 'willInit'
 	| 'willLoad'
+	| 'willLoadAsset'
+	| 'willMove'
 	| 'willPause'
+	| 'willPlayAnimation'
+	| 'willPlaySound'
+	| 'willShow'
 	| 'willSpawn'
 	| 'willStart'
 	| 'willStop'
-	| 'memoryWarning'
+	| 'willUnpause'
 >;
 
 /**
@@ -62,12 +75,16 @@ export type EntityPhase = Pick<
  * @param phase
  * @returns
  *
- * @category Connection
+ * @category Entity
  */
-export async function entityPhase(phase: keyof EntityPhase, delegate: EntityDelegate): Promise<boolean> {
-	if (!canInvoke<EntityPhase, EntityFlags, EntityDelegate>(phase, delegate)) {
+export async function entityPhase(
+	phase: keyof EntityPhase,
+	delegate: EntityDelegate,
+	log?: Log
+): Promise<boolean> {
+	if (!canInvoke<EntityPhase, EntityFlags, EntityDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	return invokeListener<EntityPhase, EntityFlags, EntityDelegate>(phase, delegate);
+	return invokeListener<EntityPhase, EntityFlags, EntityDelegate>(phase, delegate, log);
 }

@@ -25,6 +25,7 @@
 
 import type {CnxDelegate} from './delegate';
 import type {CnxFlags} from './flags';
+import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
 
@@ -51,6 +52,7 @@ export type CnxPhase = Pick<
 	| 'didStartConnect'
 	| 'didStopConnect'
 	| 'didStopReconnect'
+	| 'didTimeout'
 	| 'willClose'
 	| 'willConnect'
 	| 'willDisconnect'
@@ -60,8 +62,12 @@ export type CnxPhase = Pick<
 	| 'willReconnect'
 	| 'willReset'
 	| 'willStartConnect'
+	| 'willStartHandshake'
+	| 'willStartReconnect'
 	| 'willStopConnect'
+	| 'willStopHandshake'
 	| 'willStopReconnect'
+	| 'willTimeout'
 >;
 
 /**
@@ -72,18 +78,10 @@ export type CnxPhase = Pick<
  *
  * @category Connection
  */
-export async function cnxPhase(phase: keyof CnxPhase, delegate: CnxDelegate): Promise<boolean> {
-	if (!canInvoke<CnxPhase, CnxFlags, CnxDelegate>(phase, delegate)) {
+export async function cnxPhase(phase: keyof CnxPhase, delegate: CnxDelegate, log?: Log): Promise<boolean> {
+	if (!canInvoke<CnxPhase, CnxFlags, CnxDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	const ran = delegate.lifecycle.get(phase);
-	if (ran !== true) {
-		return false;
-	}
-
-	const result = await invokeListener<CnxPhase, CnxFlags, CnxDelegate>(phase, delegate);
-	delegate.lifecycle.set(phase, true);
-
-	return result;
+	return invokeListener<CnxPhase, CnxFlags, CnxDelegate>(phase, delegate, log);
 }

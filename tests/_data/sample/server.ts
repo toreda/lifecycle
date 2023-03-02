@@ -100,28 +100,6 @@ export class SampleServer implements ServerDelegate<unknown> {
 	}
 
 	public toData(): ServerFlags {
-		return {
-			didBecomeReady: false,
-			didInit: false,
-			didLoad: false,
-			didRestart: false,
-			didShutdown: false,
-			didStart: false,
-			didStop: false,
-			onInit: false,
-			onLoad: false,
-			onReady: false,
-			onStart: false,
-			onStop: false,
-			onRestart: false,
-			onShutdown: false,
-			willBecomeReady: false,
-			willInit: false,
-			willLoad: false,
-			willRestart: false,
-			willShutdown: false,
-			willStart: false,
-			willStop: false
-		};
+		return this.lifecycle.toData();
 	}
 }

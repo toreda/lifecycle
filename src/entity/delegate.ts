@@ -42,12 +42,22 @@ export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 	 * they are not guaranteed to exist yet.
 	 */
 	willInit?: LifecycleListener<ArgsT>;
+	willChangeState?: LifecycleListener<ArgsT>;
+	didChangeState?: LifecycleListener<ArgsT>;
+	willPlaySound?: LifecycleListener<ArgsT>;
+	didPlaySound?: LifecycleListener<ArgsT>;
+	willPlayAnimation?: LifecycleListener<ArgsT>;
+	didPlayAnimation?: LifecycleListener<ArgsT>;
+	willMove?: LifecycleListener<ArgsT>;
+	didMove?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity just finished init. Now you can
 	 * add listeners, reach out to other objects.
 	 */
 	didInit?: LifecycleListener<ArgsT>;
 
+	willLoadAsset?: LifecycleListener<ArgsT>;
+	didLoadAsset?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity is entering load phase.
 	 * Start loading required textures & resources.
@@ -69,17 +79,6 @@ export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 	didSpawn?: LifecycleListener<ArgsT>;
 
 	/**
-	 * Entity is about to appear on screen,
-	 * but was already spawned and active.
-	 */
-	willAppear?: LifecycleListener<ArgsT>;
-	/**
-	 * Entity just appeared on screen,
-	 * but was already spawned and active.
-	 */
-	didAppear?: LifecycleListener<ArgsT>;
-
-	/**
 	 * Entity is about to start running and it'sonUpdate
 	 * method will be called on each frame.
 	 */
@@ -92,11 +91,11 @@ export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 
 	/** Entity will be paused. */
 	willPause?: LifecycleListener<ArgsT>;
-
+	willUnpause?: LifecycleListener<ArgsT>;
 	/** Entity just unpaused. */
 	didUnpause?: LifecycleListener<ArgsT>;
 	memoryWarning?: LifecycleListener<ArgsT>;
-
+	didPause?: LifecycleListener<ArgsT>;
 	/** Entity is about to be hidden, but is still active. */
 	willHide?: LifecycleListener<ArgsT>;
 	/** Entity was just hidden, but is still active. */

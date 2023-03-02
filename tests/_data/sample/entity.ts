@@ -12,8 +12,32 @@ export class SampleEntity implements EntityDelegate<unknown> {
 		this.lifecycle = new EntityLifecycle();
 	}
 
+	public async willChangeState(): Promise<boolean> {
+		return this.lifecycle.phase('willChangeState');
+	}
+
+	public async didChangeState(): Promise<boolean> {
+		return this.lifecycle.phase('didChangeState');
+	}
+
 	public async willInit(): Promise<boolean> {
 		return this.lifecycle.phase('willInit');
+	}
+
+	public async willPlaySound(): Promise<boolean> {
+		return this.lifecycle.phase('willPlaySound');
+	}
+
+	public async didPlaySound(): Promise<boolean> {
+		return this.lifecycle.phase('didPlaySound');
+	}
+
+	public async willPlayAnimation(): Promise<boolean> {
+		return this.lifecycle.phase('willPlayAnimation');
+	}
+
+	public async didPlayAnimation(): Promise<boolean> {
+		return this.lifecycle.phase('didPlayAnimation');
 	}
 
 	public async didInit(): Promise<boolean> {
@@ -22,6 +46,70 @@ export class SampleEntity implements EntityDelegate<unknown> {
 
 	public async willLoad(): Promise<boolean> {
 		return this.lifecycle.phase('willLoad');
+	}
+
+	public async didHide(): Promise<boolean> {
+		return this.lifecycle.phase('didHide');
+	}
+
+	public async didShow(): Promise<boolean> {
+		return this.lifecycle.phase('didShow');
+	}
+
+	public async willPause(): Promise<boolean> {
+		return this.lifecycle.phase('willPause');
+	}
+
+	public async willMove(): Promise<boolean> {
+		return this.lifecycle.phase('willMove');
+	}
+
+	public async didMove(): Promise<boolean> {
+		return this.lifecycle.phase('didMove');
+	}
+
+	public async willLoadAsset(): Promise<boolean> {
+		return this.lifecycle.phase('willLoadAsset');
+	}
+
+	public async didLoadAsset(): Promise<boolean> {
+		return this.lifecycle.phase('didLoadAsset');
+	}
+
+	public async didDespawn(): Promise<boolean> {
+		return this.lifecycle.phase('didDespawn');
+	}
+
+	public async didPause(): Promise<boolean> {
+		return this.lifecycle.phase('didPause');
+	}
+
+	public async didUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('didUnpause');
+	}
+
+	public async willUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('willUnpause');
+	}
+
+	public async willHide(): Promise<boolean> {
+		return this.lifecycle.phase('willHide');
+	}
+
+	public async willShow(): Promise<boolean> {
+		return this.lifecycle.phase('willShow');
+	}
+
+	public async willDespawn(): Promise<boolean> {
+		return this.lifecycle.phase('willDespawn');
+	}
+
+	public async didSpawn(): Promise<boolean> {
+		return this.lifecycle.phase('didSpawn');
+	}
+
+	public async willSpawn(): Promise<boolean> {
+		return this.lifecycle.phase('willSpawn');
 	}
 
 	public async didLoad(): Promise<boolean> {
@@ -36,8 +124,16 @@ export class SampleEntity implements EntityDelegate<unknown> {
 		return this.lifecycle.phase('didStart');
 	}
 
+	public async willStop(): Promise<boolean> {
+		return this.lifecycle.phase('willStop');
+	}
+
 	public async didStop(): Promise<boolean> {
 		return this.lifecycle.phase('didStop');
+	}
+
+	public async memoryWarning(): Promise<boolean> {
+		return this.lifecycle.phase('memoryWarning');
 	}
 
 	public reset(): void {
@@ -45,12 +141,6 @@ export class SampleEntity implements EntityDelegate<unknown> {
 	}
 
 	public toData(): EntityFlags {
-		const o: EntityFlags = {} as any;
-
-		for (const phase of entityPhases) {
-			o[phase] = this.lifecycle.get(phase);
-		}
-
-		return o;
+		return this.lifecycle.toData();
 	}
 }
