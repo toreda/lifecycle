@@ -24,7 +24,6 @@
  */
 
 import {Lifecycle} from '../lifecycle';
-import type {ServerFlags} from './flags';
 import type {ServerPhase} from './phase';
 
 /**
@@ -35,31 +34,5 @@ import type {ServerPhase} from './phase';
 export class ServerLifecycle extends Lifecycle<ServerPhase> {
 	constructor() {
 		super();
-	}
-
-	public toData(): ServerFlags {
-		return {
-			didBecomeReady: this.get('didBecomeReady'),
-			didInit: this.get('didInit'),
-			didLoad: this.get('didLoad'),
-			didStart: this.get('didStart'),
-			didStop: this.get('didStop'),
-			didShutdown: this.get('didShutdown'),
-			didRestart: this.get('didRestart'),
-			onInit: this.get('onInit'),
-			onLoad: this.get('onLoad'),
-			onReady: this.get('onReady'),
-			onRestart: this.get('onRestart'),
-			onShutdown: this.get('onShutdown'),
-			onStart: this.get('onStart'),
-			onStop: this.get('onStop'),
-			willBecomeReady: this.get('willBecomeReady'),
-			willInit: this.get('willInit'),
-			willLoad: this.get('willLoad'),
-			willShutdown: this.get('willShutdown'),
-			willStart: this.get('willStart'),
-			willStop: this.get('willStop'),
-			willRestart: this.get('willRestart')
-		};
 	}
 }

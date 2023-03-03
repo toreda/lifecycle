@@ -24,7 +24,6 @@
  */
 
 import type {CnxDelegate} from './delegate';
-import type {CnxFlags} from './flags';
 import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
@@ -79,9 +78,9 @@ export type CnxPhase = Pick<
  * @category Connection
  */
 export async function cnxPhase(phase: keyof CnxPhase, delegate: CnxDelegate, log?: Log): Promise<boolean> {
-	if (!canInvoke<CnxPhase, CnxFlags, CnxDelegate>(phase, delegate, log)) {
+	if (!canInvoke<CnxPhase, CnxDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	return invokeListener<CnxPhase, CnxFlags, CnxDelegate>(phase, delegate, log);
+	return invokeListener<CnxPhase, CnxDelegate>(phase, delegate, log);
 }

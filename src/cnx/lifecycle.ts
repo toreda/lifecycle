@@ -23,7 +23,6 @@
  *
  */
 
-import type {CnxFlags} from './flags';
 import type {CnxPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
 
@@ -33,42 +32,5 @@ import {Lifecycle} from '../lifecycle';
 export class CnxLifecycle extends Lifecycle<CnxPhase> {
 	constructor() {
 		super();
-	}
-
-	public toData(): CnxFlags {
-		return {
-			didTimeout: this.get('didTimeout'),
-			didClose: this.get('didClose'),
-			didConnect: this.get('didConnect'),
-			didDisconnect: this.get('didDisconnect'),
-			didFailClose: this.get('didFailClose'),
-			didFailConnect: this.get('didFailConnect'),
-			didFailReconnect: this.get('didFailReconnect'),
-			didInit: this.get('didInit'),
-			didLoad: this.get('didLoad'),
-			didOpen: this.get('didOpen'),
-			didPing: this.get('didPing'),
-			didPong: this.get('didPong'),
-			didReconnect: this.get('didReconnect'),
-			didReset: this.get('didReset'),
-			didStartConnect: this.get('didStartConnect'),
-			didStopConnect: this.get('didStopConnect'),
-			didStopReconnect: this.get('didStopReconnect'),
-			willClose: this.get('willClose'),
-			willConnect: this.get('willConnect'),
-			willDisconnect: this.get('willDisconnect'),
-			willInit: this.get('willInit'),
-			willLoad: this.get('willLoad'),
-			willOpen: this.get('willOpen'),
-			willReconnect: this.get('willReconnect'),
-			willStartReconnect: this.get('willStartReconnect'),
-			willStopHandshake: this.get('willStopHandshake'),
-			willStartHandshake: this.get('willStartHandshake'),
-			willTimeout: this.get('willTimeout'),
-			willReset: this.get('willReset'),
-			willStartConnect: this.get('willStartConnect'),
-			willStopConnect: this.get('willStopConnect'),
-			willStopReconnect: this.get('willStopReconnect')
-		};
 	}
 }

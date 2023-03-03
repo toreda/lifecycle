@@ -1,6 +1,6 @@
 {
 	"name": "@toreda/lifecycle",
-	"version": "1.0.1",
+	"version": "1.1.1",
 	"description": "Server and client lifecycle flows in TypeScript. Hierarchical delegates with event handlers similar to Android, Objective C, Swift.",
 	"main": "./dist/index.js",
 	"repository": "https://github.com/toreda/lifecycle",

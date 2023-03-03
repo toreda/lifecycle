@@ -23,7 +23,6 @@
  *
  */
 
-import type {ClientFlags} from './flags';
 import type {ClientPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
 
@@ -36,35 +35,5 @@ import {Lifecycle} from '../lifecycle';
 export class ClientLifecycle extends Lifecycle<ClientPhase> {
 	constructor() {
 		super();
-	}
-
-	public toData(): ClientFlags {
-		return {
-			didBecomeReady: this.get('didBecomeReady'),
-			didGainFocus: this.get('didGainFocus'),
-			didInit: this.get('didInit'),
-			didLoad: this.get('didLoad'),
-			didLoseFocus: this.get('didLoseFocus'),
-			didPause: this.get('didPause'),
-			didShutdown: this.get('didShutdown'),
-			didStart: this.get('didStart'),
-			didStop: this.get('didStop'),
-			didUnpause: this.get('didUnpause'),
-			memoryWarning: this.get('memoryWarning'),
-			onInit: this.get('onInit'),
-			onLoad: this.get('onLoad'),
-			onReady: this.get('onReady'),
-			onShutdown: this.get('onShutdown'),
-			onStart: this.get('onStart'),
-			willBecomeReady: this.get('willBecomeReady'),
-			willGainFocus: this.get('willGainFocus'),
-			willInit: this.get('willInit'),
-			willLoad: this.get('willLoad'),
-			willLoseFocus: this.get('willLoseFocus'),
-			willPause: this.get('willPause'),
-			willShutdown: this.get('willShutdown'),
-			willStart: this.get('willStart'),
-			willStop: this.get('willStop')
-		};
 	}
 }

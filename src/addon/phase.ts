@@ -23,7 +23,6 @@
  *
  */
 import type {AddonDelegate} from './delegate';
-import type {AddonFlags} from './flags';
 import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
@@ -87,9 +86,9 @@ export async function addonPhase(
 	delegate: AddonDelegate,
 	log?: Log
 ): Promise<boolean> {
-	if (!canInvoke<AddonPhase, AddonFlags, AddonDelegate>(phase, delegate, log)) {
+	if (!canInvoke<AddonPhase, AddonDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	return invokeListener<AddonPhase, AddonFlags, AddonDelegate>(phase, delegate, log);
+	return invokeListener<AddonPhase, AddonDelegate>(phase, delegate, log);
 }

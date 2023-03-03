@@ -111,8 +111,4 @@ export class SampleClient implements ClientDelegate<unknown> {
 	public reset(): void {
 		this.lifecycle.reset();
 	}
-
-	public toData(): ClientFlags {
-		return this.lifecycle.toData();
-	}
 }

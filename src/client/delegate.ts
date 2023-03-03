@@ -23,7 +23,6 @@
  *
  */
 
-import type {ClientFlags} from './flags';
 import {ClientLifecycle} from './lifecycle';
 import type {ClientPhase} from './phase';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
@@ -32,7 +31,7 @@ import type {LifecycleListener} from '../lifecycle/listener';
 /**
  * @category Client
  */
-export interface ClientDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ClientPhase, ClientFlags> {
+export interface ClientDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ClientPhase> {
 	lifecycle: ClientLifecycle;
 	willInit?: LifecycleListener<ArgsT>;
 	/** Entered 'init' phase - creating all necessary instances. **/

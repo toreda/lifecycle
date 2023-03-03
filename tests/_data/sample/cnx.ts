@@ -139,8 +139,4 @@ export class SampleCnx implements CnxDelegate<unknown> {
 	public reset(): void {
 		this.lifecycle.reset();
 	}
-
-	public toData(): CnxFlags {
-		return this.lifecycle.toData();
-	}
 }

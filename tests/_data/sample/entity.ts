@@ -139,8 +139,4 @@ export class SampleEntity implements EntityDelegate<unknown> {
 	public reset(): void {
 		this.lifecycle.reset();
 	}
-
-	public toData(): EntityFlags {
-		return this.lifecycle.toData();
-	}
 }

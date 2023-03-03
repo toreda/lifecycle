@@ -95,8 +95,4 @@ export class SampleScene implements SceneDelegate<unknown> {
 	public reset(): void {
 		this.lifecycle.reset();
 	}
-
-	public toData(): SceneFlags {
-		return this.lifecycle.toData();
-	}
 }

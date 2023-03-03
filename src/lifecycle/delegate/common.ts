@@ -30,9 +30,8 @@ import {Lifecycle} from '../../lifecycle';
  *
  * @category Lifecycle
  */
-export interface LifecycleDelegateCommon<PhaseT, FlagsT> {
-	children?: LifecycleDelegateCommon<PhaseT, FlagsT>[];
+export interface LifecycleDelegateCommon<PhaseT> {
+	children?: LifecycleDelegateCommon<PhaseT>[];
 	lifecycle: Lifecycle<PhaseT>;
 	reset: () => void;
-	toData: () => FlagsT;
 }

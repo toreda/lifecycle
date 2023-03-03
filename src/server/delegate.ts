@@ -25,7 +25,6 @@
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
-import type {ServerFlags} from './flags';
 import type {ServerPhase} from './phase';
 
 /**
@@ -33,7 +32,7 @@ import type {ServerPhase} from './phase';
  *
  * @category Server
  */
-export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ServerPhase, ServerFlags> {
+export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ServerPhase> {
 	/**
 	 * Server completed the 'ready' lifecycle phase.
 	 */

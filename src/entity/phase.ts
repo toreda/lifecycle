@@ -24,7 +24,6 @@
  */
 
 import type {EntityDelegate} from './delegate';
-import type {EntityFlags} from './flags';
 import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
@@ -82,9 +81,9 @@ export async function entityPhase(
 	delegate: EntityDelegate,
 	log?: Log
 ): Promise<boolean> {
-	if (!canInvoke<EntityPhase, EntityFlags, EntityDelegate>(phase, delegate, log)) {
+	if (!canInvoke<EntityPhase, EntityDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	return invokeListener<EntityPhase, EntityFlags, EntityDelegate>(phase, delegate, log);
+	return invokeListener<EntityPhase, EntityDelegate>(phase, delegate, log);
 }

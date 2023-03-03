@@ -98,8 +98,4 @@ export class SampleServer implements ServerDelegate<unknown> {
 	public reset(): void {
 		this.lifecycle.reset();
 	}
-
-	public toData(): ServerFlags {
-		return this.lifecycle.toData();
-	}
 }

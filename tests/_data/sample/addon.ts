@@ -163,8 +163,4 @@ export class SampleAddon implements AddonDelegate<unknown> {
 	public reset(): void {
 		this.lifecycle.reset();
 	}
-
-	public toData(): AddonFlags {
-		return this.lifecycle.toData();
-	}
 }

@@ -30,12 +30,12 @@ import {canInvoke} from '../can/invoke';
 /**
  * @category Helpers
  */
-export async function invokeListener<
-	PhaseT,
-	FlagsT,
-	DelegateT extends LifecycleDelegateCommon<PhaseT, FlagsT>
->(phase: keyof PhaseT, delegate: DelegateT, log?: Log): Promise<boolean> {
-	if (!canInvoke<PhaseT, FlagsT, DelegateT>(phase, delegate, log)) {
+export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
+	phase: keyof PhaseT,
+	delegate: DelegateT,
+	log?: Log
+): Promise<boolean> {
+	if (!canInvoke<PhaseT, DelegateT>(phase, delegate, log)) {
 		log?.makeLog(`invokeListener:${String(phase)}`).warn(
 			`Can't invoke listener for server phase '${String(phase)}'.`
 		);
@@ -68,11 +68,7 @@ export async function invokeListener<
 		if (Array.isArray(delegate.children)) {
 			for (const child of delegate.children) {
 				try {
-					await invokeListener<PhaseT, FlagsT, LifecycleDelegateCommon<PhaseT, FlagsT>>(
-						phase,
-						child,
-						log
-					);
+					await invokeListener<PhaseT, LifecycleDelegateCommon<PhaseT>>(phase, child, log);
 				} catch (e) {}
 			}
 		}

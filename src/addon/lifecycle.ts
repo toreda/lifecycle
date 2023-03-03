@@ -23,7 +23,6 @@
  *
  */
 
-import type {AddonFlags} from './flags';
 import type {AddonPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
 
@@ -33,47 +32,5 @@ import {Lifecycle} from '../lifecycle';
 export class AddonLifecycle extends Lifecycle<AddonPhase> {
 	constructor() {
 		super();
-	}
-
-	public toData(): AddonFlags {
-		return {
-			didBecomeReady: this.get('didBecomeReady'),
-			didEnterCache: this.get('didEnterCache'),
-			didGainFocus: this.get('didGainFocus'),
-			didInit: this.get('didInit'),
-			didLeaveCache: this.get('didLeaveCache'),
-			didLoad: this.get('didLoad'),
-			didLoseFocus: this.get('didLoseFocus'),
-			didPause: this.get('didPause'),
-			didRestart: this.get('didRestart'),
-			didShutdown: this.get('didShutdown'),
-			didStart: this.get('didStart'),
-			didStop: this.get('didStop'),
-			didUnpause: this.get('didUnpause'),
-			memoryWarning: this.get('memoryWarning'),
-			onEnterCache: this.get('onEnterCache'),
-			onInit: this.get('onInit'),
-			onLeaveCache: this.get('onLeaveCache'),
-			onLoad: this.get('onLoad'),
-			onPause: this.get('onPause'),
-			onReady: this.get('onReady'),
-			onRestart: this.get('onRestart'),
-			onShutdown: this.get('onShutdown'),
-			onStart: this.get('onStart'),
-			onStop: this.get('onStop'),
-			onUnpause: this.get('onUnpause'),
-			willBecomeReady: this.get('willBecomeReady'),
-			willEnterCache: this.get('willEnterCache'),
-			willGainFocus: this.get('willGainFocus'),
-			willInit: this.get('willInit'),
-			willLeaveCache: this.get('willLeaveCache'),
-			willLoad: this.get('willLoad'),
-			willLoseFocus: this.get('willLoseFocus'),
-			willPause: this.get('willPause'),
-			willRestart: this.get('willRestart'),
-			willShutdown: this.get('willShutdown'),
-			willStart: this.get('willStart'),
-			willStop: this.get('willStop')
-		};
 	}
 }

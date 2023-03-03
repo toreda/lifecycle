@@ -25,7 +25,6 @@
 
 import {Log} from '@toreda/log';
 import type {SceneDelegate} from './delegate';
-import type {SceneFlags} from './flags';
 import {canInvoke} from '../can/invoke';
 import {invokeListener} from '../invoke/listener';
 
@@ -71,9 +70,9 @@ export async function scenePhase(
 	delegate: SceneDelegate,
 	log?: Log
 ): Promise<boolean> {
-	if (!canInvoke<ScenePhase, SceneFlags, SceneDelegate>(phase, delegate, log)) {
+	if (!canInvoke<ScenePhase, SceneDelegate>(phase, delegate, log)) {
 		return false;
 	}
 
-	return invokeListener<ScenePhase, SceneFlags, SceneDelegate>(phase, delegate, log);
+	return invokeListener<ScenePhase, SceneDelegate>(phase, delegate, log);
 }

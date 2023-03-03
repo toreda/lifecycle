@@ -25,7 +25,6 @@
 
 import {Log} from '@toreda/log';
 import type {ServerDelegate} from './delegate';
-import type {ServerFlags} from './flags';
 import {invokeListener} from '../invoke/listener';
 
 /**
@@ -71,5 +70,5 @@ export async function serverPhase(
 	delegate: ServerDelegate,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListener<ServerPhase, ServerFlags, ServerDelegate>(phase, delegate, log);
+	return invokeListener<ServerPhase, ServerDelegate>(phase, delegate, log);
 }
