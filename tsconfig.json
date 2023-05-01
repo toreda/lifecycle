@@ -1,6 +1,6 @@
 {
 	"exclude": ["**/node_modules", "dist/**"],
-	"include": ["src/index.ts", "src/*.ts", "src/**/*.ts"],
+	"include": ["src/*.ts", "src/**/*.ts", "./gulpfile.ts"],
 	"filesGlob": ["./src/*.ts", "./src/**/*.ts", "!./node_modules/**"],
 	"compilerOptions": {
 		"allowUnreachableCode": false,
@@ -8,9 +8,10 @@
 		"declaration": true,
 		"esModuleInterop": true,
 		"isolatedModules": false,
-		"lib": ["es6", "ES2017", "ES2015", "ESNext"],
+		"lib": ["es6", "ES2015"],
 		"module": "CommonJS",
 		"moduleResolution": "node",
+		"noFallthroughCasesInSwitch": true,
 		"noImplicitUseStrict": false,
 		"outDir": "./dist",
 		"preserveConstEnums": true,
@@ -22,10 +23,12 @@
 		"strictBindCallApply": true,
 		"strictNullChecks": true,
 		"strictPropertyInitialization": false,
-		"target": "es2015",
-		"traceResolution": false
+		"target": "ESNext",
+		"traceResolution": false,
+		"useUnknownInCatchVariables": true
 	},
 	"ts-node": {
+		"esm": true,
 		"swc": true
 	}
 }
