@@ -64,22 +64,8 @@ export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegate
 		// be unbound here.
 		result = await ln.call(delegate);
 		delegate.lifecycle.set(phase, true);
-
-		if (Array.isArray(delegate.children)) {
-			for (const child of delegate.children) {
-				try {
-					await invokeListener<PhaseT, LifecycleDelegateCommon<PhaseT>>(phase, child, log);
-				} catch (e) {}
-			}
-		}
 	} catch (e: unknown) {
 		result = false;
-
-		if (e instanceof Error) {
-			log?.makeLog(`invokeListener:${String(phase)}`).error(`listener threw: ${e.message}.`);
-		} else {
-			log?.makeLog(`invokeListener:${String(phase)}`).error(`listener threw: unknown exception type.`);
-		}
 	}
 
 	return result;

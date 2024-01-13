@@ -25,8 +25,7 @@
 
 import type {ClientDelegate} from './delegate';
 import {Log} from '@toreda/log';
-import {canInvoke} from '../can/invoke';
-import {invokeListener} from '../invoke/listener';
+import {invokeListeners} from '../invoke/listeners';
 
 /**
  * Expressive type describing phase names used in client lifecycle flow.
@@ -75,9 +74,5 @@ export async function clientPhase(
 	delegate: ClientDelegate,
 	log?: Log
 ): Promise<boolean> {
-	if (!canInvoke<ClientPhase, ClientDelegate>(phase, delegate, log)) {
-		return false;
-	}
-
-	return invokeListener<ClientPhase, ClientDelegate>(phase, delegate, log);
+	return invokeListeners<ClientPhase, ClientDelegate>(phase, delegate, log);
 }

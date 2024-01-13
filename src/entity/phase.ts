@@ -25,8 +25,7 @@
 
 import type {EntityDelegate} from './delegate';
 import {Log} from '@toreda/log';
-import {canInvoke} from '../can/invoke';
-import {invokeListener} from '../invoke/listener';
+import {invokeListeners} from '../invoke/listeners';
 
 /**
  * Identifiers for each phase in the Entity Lifecycle flow.
@@ -81,9 +80,5 @@ export async function entityPhase(
 	delegate: EntityDelegate,
 	log?: Log
 ): Promise<boolean> {
-	if (!canInvoke<EntityPhase, EntityDelegate>(phase, delegate, log)) {
-		return false;
-	}
-
-	return invokeListener<EntityPhase, EntityDelegate>(phase, delegate, log);
+	return invokeListeners<EntityPhase, EntityDelegate>(phase, delegate, log);
 }

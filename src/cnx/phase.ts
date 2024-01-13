@@ -25,8 +25,7 @@
 
 import type {CnxDelegate} from './delegate';
 import {Log} from '@toreda/log';
-import {canInvoke} from '../can/invoke';
-import {invokeListener} from '../invoke/listener';
+import {invokeListeners} from '../invoke/listeners';
 
 /**
  * Expressive type describing phase names used in client lifecycle flow.
@@ -78,9 +77,5 @@ export type CnxPhase = Pick<
  * @category Connection
  */
 export async function cnxPhase(phase: keyof CnxPhase, delegate: CnxDelegate, log?: Log): Promise<boolean> {
-	if (!canInvoke<CnxPhase, CnxDelegate>(phase, delegate, log)) {
-		return false;
-	}
-
-	return invokeListener<CnxPhase, CnxDelegate>(phase, delegate, log);
+	return invokeListeners<CnxPhase, CnxDelegate>(phase, delegate, log);
 }

@@ -24,8 +24,7 @@
  */
 import type {AddonDelegate} from './delegate';
 import {Log} from '@toreda/log';
-import {canInvoke} from '../can/invoke';
-import {invokeListener} from '../invoke/listener';
+import {invokeListeners} from '../invoke/listeners';
 
 /**
  * Expressive type describing phase names used in client lifecycle flow.
@@ -86,9 +85,5 @@ export async function addonPhase(
 	delegate: AddonDelegate,
 	log?: Log
 ): Promise<boolean> {
-	if (!canInvoke<AddonPhase, AddonDelegate>(phase, delegate, log)) {
-		return false;
-	}
-
-	return invokeListener<AddonPhase, AddonDelegate>(phase, delegate, log);
+	return invokeListeners<AddonPhase, AddonDelegate>(phase, delegate, log);
 }

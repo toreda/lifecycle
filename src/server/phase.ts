@@ -25,7 +25,7 @@
 
 import {Log} from '@toreda/log';
 import type {ServerDelegate} from './delegate';
-import {invokeListener} from '../invoke/listener';
+import {invokeListeners} from '../invoke/listeners';
 
 /**
  * Type describing phase names used in server lifecycle flow.
@@ -70,5 +70,5 @@ export async function serverPhase(
 	delegate: ServerDelegate,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListener<ServerPhase, ServerDelegate>(phase, delegate, log);
+	return invokeListeners<ServerPhase, ServerDelegate>(phase, delegate, log);
 }
