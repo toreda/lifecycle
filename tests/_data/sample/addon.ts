@@ -1,7 +1,5 @@
 import type {AddonDelegate} from '../../../src/addon/delegate';
-import type {AddonFlags} from '../../../src/addon/flags';
 import {AddonLifecycle} from '../../../src/addon/lifecycle';
-import {addonPhases} from '../../../src/addon/phases';
 
 export class SampleAddon implements AddonDelegate<unknown> {
 	public readonly lifecycle: AddonLifecycle;

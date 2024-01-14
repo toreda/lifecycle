@@ -1,5 +1,4 @@
 import type {ServerDelegate} from '../../../src/server/delegate';
-import {ServerFlags} from '../../../src';
 import {ServerLifecycle} from '../../../src/server/lifecycle';
 
 export class SampleServer implements ServerDelegate<unknown> {

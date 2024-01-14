@@ -1,5 +1,5 @@
 import {SampleServer} from '../_data/sample/server';
-import {ServerDelegate} from '../../src/server/delegate';
+import {type ServerDelegate} from '../../src/server/delegate';
 import {ServerLifecycle} from '../../src/server/lifecycle';
 import type {ServerPhase} from '../../src/server/phase';
 import {canInvoke} from '../../src/can/invoke';

@@ -1,7 +1,5 @@
 import type {EntityDelegate} from '../../../src/entity/delegate';
-import type {EntityFlags} from '../../../src/entity/flags';
 import {EntityLifecycle} from '../../../src/entity/lifecycle';
-import {entityPhases} from '../../../src/entity/phases';
 
 export class SampleEntity implements EntityDelegate<unknown> {
 	public readonly lifecycle: EntityLifecycle;

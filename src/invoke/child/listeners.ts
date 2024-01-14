@@ -22,9 +22,9 @@ export async function invokeChildListeners<PhaseT, DelegateT extends LifecycleDe
 			if (e instanceof Error) {
 				base?.makeLog(`invokeListener:${String(phase)}`).error(`listener threw: ${e.message}.`);
 			} else {
-				base?.makeLog(`invokeListener:${String(phase)}`).error(
-					`listener threw: unknown exception type.`
-				);
+				base
+					?.makeLog(`invokeListener:${String(phase)}`)
+					.error(`listener threw: unknown exception type.`);
 			}
 		}
 	}

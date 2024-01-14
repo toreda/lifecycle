@@ -1,7 +1,5 @@
 import type {CnxDelegate} from '../../../src/cnx/delegate';
-import type {CnxFlags} from '../../../src/cnx/flags';
 import {CnxLifecycle} from '../../../src/cnx/lifecycle';
-import {cnxPhases} from '../../../src/cnx/phases';
 
 export class SampleCnx implements CnxDelegate<unknown> {
 	public readonly lifecycle: CnxLifecycle;

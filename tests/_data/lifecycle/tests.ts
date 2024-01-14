@@ -1,5 +1,5 @@
-import type {LifecycleDelegateCommon} from '../../../src/lifecycle/delegate/common';
 import {Log} from '@toreda/log';
+import type {LifecycleDelegateCommon} from '../../../src/lifecycle/delegate/common';
 
 export type Invoker<PhaseT, DelegateT> = (
 	phase: keyof PhaseT,

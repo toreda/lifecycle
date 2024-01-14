@@ -33,9 +33,9 @@ export function canInvoke<PhaseT, DelegateT extends LifecycleDelegateCommon<Phas
 	}
 
 	if (typeof delegate.lifecycle.get !== 'function') {
-		log?.makeLog(`canInvoke:${String(phase)}`).error(
-			`delegate.lifecycle.get exists but is not a function`
-		);
+		log
+			?.makeLog(`canInvoke:${String(phase)}`)
+			.error(`delegate.lifecycle.get exists but is not a function`);
 		return false;
 	}
 
@@ -45,9 +45,9 @@ export function canInvoke<PhaseT, DelegateT extends LifecycleDelegateCommon<Phas
 	}
 
 	if (typeof delegate.lifecycle.set !== 'function') {
-		log?.makeLog(`canInvoke:${String(phase)}`).error(
-			`delegate.lifecycle.set exists but is not a function`
-		);
+		log
+			?.makeLog(`canInvoke:${String(phase)}`)
+			.error(`delegate.lifecycle.set exists but is not a function`);
 		return false;
 	}
 

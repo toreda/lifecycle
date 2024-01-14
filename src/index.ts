@@ -19,7 +19,6 @@ export {invokeListener} from './invoke/listener';
 export {Lifecycle} from './lifecycle';
 export {LifecycleDelegateCommon} from './lifecycle/delegate/common';
 export {LifecycleFlags} from './lifecycle/flags';
-export {lifecycleForEach} from './lifecycle/for/each';
 export {LifecycleListener} from './lifecycle/listener';
 export {lifecyclePhaseOption} from './lifecycle/phase/option';
 export {LifecyclePhaseOptions} from './lifecycle/phase/options';

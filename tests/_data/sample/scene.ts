@@ -1,7 +1,5 @@
 import type {SceneDelegate} from '../../../src/scene/delegate';
-import type {SceneFlags} from '../../../src/scene/flags';
 import {SceneLifecycle} from '../../../src/scene/lifecycle';
-import {scenePhases} from '../../../src/scene/phases';
 
 export class SampleScene implements SceneDelegate<unknown> {
 	public readonly lifecycle: SceneLifecycle;

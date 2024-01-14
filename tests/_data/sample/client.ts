@@ -1,7 +1,5 @@
 import type {ClientDelegate} from '../../../src/client/delegate';
-import type {ClientFlags} from '../../../src/client/flags';
 import {ClientLifecycle} from '../../../src/client/lifecycle';
-import {clientPhases} from '../../../src/client/phases';
 
 export class SampleClient implements ClientDelegate<unknown> {
 	public readonly lifecycle: ClientLifecycle;

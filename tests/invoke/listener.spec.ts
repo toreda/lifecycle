@@ -126,7 +126,7 @@ describe('invokeListener', () => {
 			expect(spyA).not.toHaveBeenCalled();
 			expect(spyB).not.toHaveBeenCalled();
 
-			const result = await invokeListeners<ServerPhase, SampleServer>('didLoad', custom);
+			const _result = await invokeListeners<ServerPhase, SampleServer>('didLoad', custom);
 
 			expect(spyA).toHaveBeenCalledTimes(1);
 			expect(spyB).toHaveBeenCalledTimes(1);

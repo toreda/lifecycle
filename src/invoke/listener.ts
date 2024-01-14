@@ -36,9 +36,9 @@ export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegate
 	log?: Log
 ): Promise<boolean> {
 	if (!canInvoke<PhaseT, DelegateT>(phase, delegate, log)) {
-		log?.makeLog(`invokeListener:${String(phase)}`).warn(
-			`Can't invoke listener for server phase '${String(phase)}'.`
-		);
+		log
+			?.makeLog(`invokeListener:${String(phase)}`)
+			.warn(`Can't invoke listener for server phase '${String(phase)}'.`);
 		return false;
 	}
 
