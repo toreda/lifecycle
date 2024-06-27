@@ -66,7 +66,7 @@ $ yarn add @toreda/lifecycle
 
 
 ## Copyright
-Copyright &copy; 2019 – 2023 Toreda, Inc. All rights reserved.
+Copyright &copy; 2019 – 2024 Toreda, Inc. All rights reserved.
 
 
 ## Website

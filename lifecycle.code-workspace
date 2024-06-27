@@ -17,7 +17,17 @@
 		},
 		"eslint.lintTask.enable": true,
 		"prettier.bracketSameLine": true,
-		"prettier.requireConfig": true
+		"prettier.requireConfig": true,
+		"files.eol": "\n",
+		"[typescript]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"[javascriptreact]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"telemetry.telemetryLevel": "off",
+		"prettier.singleQuote": true,
+		"prettier.useTabs": true
 	},
 	"extensions": {
 		"recommendations": [

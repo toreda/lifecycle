@@ -1,4 +1,10 @@
+export {AdapterDelegate} from './adapter/delegate';
+export {AdapterFlags} from './adapter/flags';
+export {AdapterLifecycle} from './adapter/lifecycle';
+export {AdapterPhase, adapterPhase} from './adapter/phase';
+export {adapterPhases} from './adapter/phases';
 export {AddonDelegate} from './addon/delegate';
+export {AddonFlags} from './addon/flags';
 export {AddonLifecycle} from './addon/lifecycle';
 export {AddonPhase, addonPhase} from './addon/phase';
 export {addonPhases} from './addon/phases';

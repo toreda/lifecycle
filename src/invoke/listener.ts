@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 – 2023 Toreda, Inc.
+ *	Copyright (c) 2019 – 2024 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -64,7 +64,7 @@ export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegate
 		// be unbound here.
 		result = await ln.call(delegate);
 		delegate.lifecycle.set(phase, true);
-	} catch (e: unknown) {
+	} catch (_e: unknown) {
 		result = false;
 	}
 
