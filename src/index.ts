@@ -36,3 +36,7 @@ export {ServerDelegate} from './server/delegate';
 export {ServerLifecycle} from './server/lifecycle';
 export {ServerPhase, serverPhase} from './server/phase';
 export {serverPhases} from './server/phases';
+export {TxnDelegate} from './txn/delegate';
+export {TxnLifecycle} from './txn/lifecycle';
+export {TxnPhase} from './txn/phase';
+export {txnPhases} from './txn/phases';
