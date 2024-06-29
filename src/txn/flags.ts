@@ -24,29 +24,11 @@
  */
 
 import type {TxnPhase} from './phase';
+import type {LifecycleFlags} from '../lifecycle/flags';
 
 /**
- * Txn phases supported by TxnDelegate listeners.
+ *  Status flags indicating which handlers have already been called in an Txn Lifecycle.
  *
  * @category Transactions
  */
-export const txnPhases: (keyof TxnPhase)[] = [
-	'willBegin',
-	'didBegin',
-	'willInterrupt',
-	'didInterrupt',
-	'willPause',
-	'didPause',
-	'willResume',
-	'didResume',
-	'willCancel',
-	'didCancel',
-	'willTimeout',
-	'didTimeout',
-	'willRevert',
-	'didRevert',
-	'willFail',
-	'didFail',
-	'willSucceed',
-	'didSucceed'
-];
+export type TxnFlags = LifecycleFlags<TxnPhase>;

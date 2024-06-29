@@ -29,9 +29,9 @@ import type {LifecycleListener} from '../lifecycle/listener';
 import {TxnPhase} from './phase';
 
 /**
- * Adds support for calling optional addon lifecycle methods.
+ * Adds support for calling optional txn lifecycle methods.
  *
- * @category Txns
+ * @category Transactions
  */
 export interface TxnDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<TxnPhase> {
 	lifecycle: TxnLifecycle;

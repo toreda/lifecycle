@@ -28,9 +28,9 @@ import {Log} from '@toreda/log';
 import {invokeListeners} from '../invoke/listeners';
 
 /**
- * Expressive type describing phase names used in client lifecycle flow.
+ * Expressive type describing phase names used in txn lifecycle flow.
  *
- * @category Txn
+ * @category Transactions
  */
 export type TxnPhase = Pick<
 	TxnDelegate,
@@ -60,7 +60,7 @@ export type TxnPhase = Pick<
  * @param phase
  * @returns
  *
- * @category Connection
+ * @category Transactions
  */
 export async function txnPhase(phase: keyof TxnPhase, delegate: TxnDelegate, log?: Log): Promise<boolean> {
 	return invokeListeners<TxnPhase, TxnDelegate>(phase, delegate, log);

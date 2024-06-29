@@ -27,7 +27,7 @@ import type {TxnPhase} from './phase';
 import {Lifecycle} from '../lifecycle';
 
 /**
- * TXN lifecycle flags.
+ * Txn lifecycle flags.
  *
  * @category Transactions
  */
