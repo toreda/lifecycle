@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 – 2024 Toreda, Inc.
+ *	Copyright (c) 2019 – 2025 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -35,11 +35,16 @@ import type {LifecycleListener} from '../lifecycle/listener';
  */
 export interface AddonDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<AddonPhase> {
 	lifecycle: AddonLifecycle;
+
+	cacheDidEnter?: LifecycleListener<ArgsT>;
+	cacheDidLeave?: LifecycleListener<ArgsT>;
+	cacheOnEnter?: LifecycleListener<ArgsT>;
+	cacheOnLeave?: LifecycleListener<ArgsT>;
+	cacheWillEnter?: LifecycleListener<ArgsT>;
+	cacheWillLeave?: LifecycleListener<ArgsT>;
 	didBecomeReady?: LifecycleListener<ArgsT>;
-	didEnterCache?: LifecycleListener<ArgsT>;
 	didGainFocus?: LifecycleListener<ArgsT>;
 	didInit?: LifecycleListener<ArgsT>;
-	didLeaveCache?: LifecycleListener<ArgsT>;
 	didLoad?: LifecycleListener<ArgsT>;
 	didLoseFocus?: LifecycleListener<ArgsT>;
 	didPause?: LifecycleListener<ArgsT>;
@@ -49,9 +54,7 @@ export interface AddonDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<
 	didStop?: LifecycleListener<ArgsT>;
 	didUnpause?: LifecycleListener<ArgsT>;
 	memoryWarning?: LifecycleListener<ArgsT>;
-	onEnterCache?: LifecycleListener<ArgsT>;
 	onInit?: LifecycleListener<ArgsT>;
-	onLeaveCache?: LifecycleListener<ArgsT>;
 	onLoad?: LifecycleListener<ArgsT>;
 	onPause?: LifecycleListener<ArgsT>;
 	onReady?: LifecycleListener<ArgsT>;
@@ -61,7 +64,6 @@ export interface AddonDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<
 	onStop?: LifecycleListener<ArgsT>;
 	onUnpause?: LifecycleListener<ArgsT>;
 	willBecomeReady?: LifecycleListener<ArgsT>;
-	willEnterCache?: LifecycleListener<ArgsT>;
 	willGainFocus?: LifecycleListener<ArgsT>;
 	willInit?: LifecycleListener<ArgsT>;
 	willLeaveCache?: LifecycleListener<ArgsT>;

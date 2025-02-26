@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 – 2024 Toreda, Inc.
+ *	Copyright (c) 2019 – 2025 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -37,30 +37,38 @@ export interface TxnDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<Tx
 	lifecycle: TxnLifecycle;
 
 	willBegin?: LifecycleListener<ArgsT>;
+	onBegin?: LifecycleListener<ArgsT>;
 	didBegin?: LifecycleListener<ArgsT>;
 
 	willInterrupt?: LifecycleListener<ArgsT>;
+	onInterrupt?: LifecycleListener<ArgsT>;
 	didInterrupt?: LifecycleListener<ArgsT>;
 
 	willPause?: LifecycleListener<ArgsT>;
+	onPause?: LifecycleListener<ArgsT>;
 	didPause?: LifecycleListener<ArgsT>;
 
 	willResume?: LifecycleListener<ArgsT>;
+	onResume?: LifecycleListener<ArgsT>;
 	didResume?: LifecycleListener<ArgsT>;
 
 	willCancel?: LifecycleListener<ArgsT>;
+	onCancel?: LifecycleListener<ArgsT>;
 	didCancel?: LifecycleListener<ArgsT>;
 
 	willTimeout?: LifecycleListener<ArgsT>;
+	onTimeout?: LifecycleListener<ArgsT>;
 	didTimeout?: LifecycleListener<ArgsT>;
 
 	willRevert?: LifecycleListener<ArgsT>;
+	onRevert?: LifecycleListener<ArgsT>;
 	didRevert?: LifecycleListener<ArgsT>;
 
 	/**
 	 * Transaction will fail.
 	 */
 	willFail?: LifecycleListener<ArgsT>;
+	onFail?: LifecycleListener<ArgsT>;
 	/**
 	 * Transaction failed due to error, timeout, or other problem.
 	 */
@@ -69,6 +77,7 @@ export interface TxnDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<Tx
 	 * Transaction will finish successfully.
 	 */
 	willSucceed?: LifecycleListener<ArgsT>;
+	onSucceed?: LifecycleListener<ArgsT>;
 	/**
 	 * Transaction completed successfully.
 	 */

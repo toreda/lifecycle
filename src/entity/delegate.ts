@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 – 2024 Toreda, Inc.
+ *	Copyright (c) 2019 – 2025 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -27,11 +27,21 @@ import {EntityLifecycle} from './lifecycle';
 import type {EntityPhase} from './phase';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
+import {type AnimDelegate} from '../anim/delegate';
+import {type AssetDelegate} from '../asset/delegate';
+import {type TweenDelegate} from '../tween/delegate';
+import {type TextureDelegate} from '../texture/delegate';
 
 /**
+ *
  * @category Entity
  */
-export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<EntityPhase> {
+export interface EntityDelegate<ArgsT = unknown>
+	extends LifecycleDelegateCommon<EntityPhase>,
+		AnimDelegate<ArgsT>,
+		AssetDelegate<ArgsT>,
+		TweenDelegate<ArgsT>,
+		TextureDelegate<ArgsT> {
 	lifecycle: EntityLifecycle;
 
 	/**
@@ -41,22 +51,18 @@ export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 	 * they are not guaranteed to exist yet.
 	 */
 	willInit?: LifecycleListener<ArgsT>;
-	willChangeState?: LifecycleListener<ArgsT>;
-	didChangeState?: LifecycleListener<ArgsT>;
-	willPlaySound?: LifecycleListener<ArgsT>;
-	didPlaySound?: LifecycleListener<ArgsT>;
-	willPlayAnimation?: LifecycleListener<ArgsT>;
-	didPlayAnimation?: LifecycleListener<ArgsT>;
+	stateWillChange?: LifecycleListener<ArgsT>;
+	stateDidChange?: LifecycleListener<ArgsT>;
+	stateOnChange?: LifecycleListener<ArgsT>;
 	willMove?: LifecycleListener<ArgsT>;
 	didMove?: LifecycleListener<ArgsT>;
+	onMove?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity just finished init. Now you can
 	 * add listeners, reach out to other objects.
 	 */
 	didInit?: LifecycleListener<ArgsT>;
 
-	willLoadAsset?: LifecycleListener<ArgsT>;
-	didLoadAsset?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity is entering load phase.
 	 * Start loading required textures & resources.
@@ -76,7 +82,7 @@ export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 	willSpawn?: LifecycleListener<ArgsT>;
 	/** Entity spawned in scene. */
 	didSpawn?: LifecycleListener<ArgsT>;
-
+	onSpawn?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity is about to start running and it'sonUpdate
 	 * method will be called on each frame.
@@ -97,9 +103,10 @@ export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 	didPause?: LifecycleListener<ArgsT>;
 	/** Entity is about to be hidden, but is still active. */
 	willHide?: LifecycleListener<ArgsT>;
-	/** Entity was just hidden, but is still active. */
+	/** Entity was hidden, but is still active. */
 	didHide?: LifecycleListener<ArgsT>;
-
+	/** Execute entity load logic. */
+	onLoad?: LifecycleListener<ArgsT>;
 	didShow?: LifecycleListener<ArgsT>;
 	willShow?: LifecycleListener<ArgsT>;
 	/** Entity is about to be removed from scene. */
@@ -120,4 +127,22 @@ export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon
 	 * method is no longer being called each frame
 	 */
 	didStop?: LifecycleListener<ArgsT>;
+	onStop?: LifecycleListener<ArgsT>;
+	onStart?: LifecycleListener<ArgsT>;
+	onPause?: LifecycleListener<ArgsT>;
+	onUnpause?: LifecycleListener<ArgsT>;
+	onDespawn?: LifecycleListener<ArgsT>;
+	onShow?: LifecycleListener<ArgsT>;
+
+	onInteract?: LifecycleListener<ArgsT>;
+	didInteract?: LifecycleListener<ArgsT>;
+	willInteract?: LifecycleListener<ArgsT>;
+
+	willHover?: LifecycleListener<ArgsT>;
+	onHover?: LifecycleListener<ArgsT>;
+	didHover?: LifecycleListener<ArgsT>;
+
+	orientationWillChange?: LifecycleListener<ArgsT>;
+	orientationOnChange?: LifecycleListener<ArgsT>;
+	orientationDidChange?: LifecycleListener<ArgsT>;
 }

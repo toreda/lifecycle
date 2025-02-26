@@ -23,54 +23,28 @@
  *
  */
 
-import type {TxnDelegate} from './delegate';
-import {Log} from '@toreda/log';
-import {invokeListeners} from '../invoke/listeners';
+import {type SoundDelegate} from './delegate';
 
 /**
- * Expressive type describing phase names used in txn lifecycle flow.
- *
- * @category Transactions
+ * @category Sounds
  */
-export type TxnPhase = Pick<
-	TxnDelegate,
-	| 'didBegin'
-	| 'didCancel'
-	| 'didFail'
-	| 'didInterrupt'
-	| 'didPause'
-	| 'didResume'
-	| 'didRevert'
-	| 'didSucceed'
-	| 'didTimeout'
-	| 'onBegin'
-	| 'onCancel'
-	| 'onFail'
-	| 'onInterrupt'
-	| 'onPause'
-	| 'onResume'
-	| 'onRevert'
-	| 'onSucceed'
-	| 'onTimeout'
-	| 'willBegin'
-	| 'willCancel'
-	| 'willFail'
-	| 'willInterrupt'
-	| 'willPause'
-	| 'willResume'
-	| 'willRevert'
-	| 'willSucceed'
-	| 'willTimeout'
+export type SoundPhase = Pick<
+	SoundDelegate<unknown>,
+	| 'soundDidCancel'
+	| 'soundDidFinish'
+	| 'soundDidPause'
+	| 'soundDidStart'
+	| 'soundDidUnpause'
+	| 'soundMissing'
+	| 'soundOnCancel'
+	| 'soundOnError'
+	| 'soundOnFinish'
+	| 'soundOnPause'
+	| 'soundOnStart'
+	| 'soundOnUnpause'
+	| 'soundWillCancel'
+	| 'soundWillFinish'
+	| 'soundWillPause'
+	| 'soundWillStart'
+	| 'soundWillUnpause'
 >;
-
-/**
- *
- * @param delegate
- * @param phase
- * @returns
- *
- * @category Transactions
- */
-export async function txnPhase(phase: keyof TxnPhase, delegate: TxnDelegate, log?: Log): Promise<boolean> {
-	return invokeListeners<TxnPhase, TxnDelegate>(phase, delegate, log);
-}

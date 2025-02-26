@@ -23,54 +23,28 @@
  *
  */
 
-import type {TxnDelegate} from './delegate';
-import {Log} from '@toreda/log';
-import {invokeListeners} from '../invoke/listeners';
+import {type TextureDelegate} from './delegate';
 
 /**
- * Expressive type describing phase names used in txn lifecycle flow.
- *
- * @category Transactions
+ * @category Textures
  */
-export type TxnPhase = Pick<
-	TxnDelegate,
-	| 'didBegin'
-	| 'didCancel'
-	| 'didFail'
-	| 'didInterrupt'
-	| 'didPause'
-	| 'didResume'
-	| 'didRevert'
-	| 'didSucceed'
-	| 'didTimeout'
-	| 'onBegin'
-	| 'onCancel'
-	| 'onFail'
-	| 'onInterrupt'
-	| 'onPause'
-	| 'onResume'
-	| 'onRevert'
-	| 'onSucceed'
-	| 'onTimeout'
-	| 'willBegin'
-	| 'willCancel'
-	| 'willFail'
-	| 'willInterrupt'
-	| 'willPause'
-	| 'willResume'
-	| 'willRevert'
-	| 'willSucceed'
-	| 'willTimeout'
+export type TexturePhase = Pick<
+	TextureDelegate<unknown>,
+	| 'textureDidChange'
+	| 'textureLoadDidFinish'
+	| 'textureLoadDidStart'
+	| 'textureLoadOnError'
+	| 'textureLoadOnFinish'
+	| 'textureLoadOnStart'
+	| 'textureLoadWillFinish'
+	| 'textureLoadWillStart'
+	| 'textureOnChange'
+	| 'textureUnloadDidFinish'
+	| 'textureUnloadDidStart'
+	| 'textureUnloadOnError'
+	| 'textureUnloadOnFinish'
+	| 'textureUnloadOnStart'
+	| 'textureUnloadWillFinish'
+	| 'textureUnloadWillStart'
+	| 'textureWillChange'
 >;
-
-/**
- *
- * @param delegate
- * @param phase
- * @returns
- *
- * @category Transactions
- */
-export async function txnPhase(phase: keyof TxnPhase, delegate: TxnDelegate, log?: Log): Promise<boolean> {
-	return invokeListeners<TxnPhase, TxnDelegate>(phase, delegate, log);
-}

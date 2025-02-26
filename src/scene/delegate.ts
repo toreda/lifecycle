@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 – 2024 Toreda, Inc.
+ *	Copyright (c) 2019 – 2025 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -70,6 +70,19 @@ export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<
 	 */
 	didStop?: LifecycleListener<ArgsT>;
 	/**
+	 * Scene is stopping now.
+	 *
+	 */
+	onStop?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is starting now.
+	 */
+	onStart?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is initializing now.
+	 */
+	onInit?: LifecycleListener<ArgsT>;
+	/**
 	 * Scene and all children are paused and were unpaused.
 	 */
 	didUnpause?: LifecycleListener<ArgsT>;
@@ -78,6 +91,14 @@ export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<
 	 */
 	willBecomeReady?: LifecycleListener<ArgsT>;
 	/**
+	 * Scene is becoming ready now.
+	 */
+	onReady?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is unpausing now.
+	 */
+	onUnpause?: LifecycleListener<ArgsT>;
+	/**
 	 * Scene is visible and will be hidden.
 	 */
 	willHide?: LifecycleListener<ArgsT>;
@@ -85,6 +106,10 @@ export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<
 	 * Scene and all children will begin the 'init' lifecycle phase.
 	 */
 	willInit?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is loading now.
+	 */
+	onLoad?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children will begin the 'load' lifecycle phase.
 	 */
@@ -97,6 +122,14 @@ export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<
 	 * Scene and all children will reset and should return to initial states.
 	 */
 	willReset?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is resetting now.
+	 */
+	onReset?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is showing now.
+	 */
+	onShow?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children are hidden and will be visible.
 	 */
@@ -113,6 +146,14 @@ export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<
 	 * Scene is paused and will be unpaused by the game engine.
 	 */
 	willUnpause?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is pausing now.
+	 */
+	onPause?: LifecycleListener<ArgsT>;
+	/**
+	 * Scene is hiding now.
+	 */
+	onHide?: LifecycleListener<ArgsT>;
 	/**
 	 * Low memory warning relayed from the underlying system. Clear any volatile/cached
 	 * assets which can safely be destroyed and recreated again later.

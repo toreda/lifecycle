@@ -23,54 +23,27 @@
  *
  */
 
-import type {TxnDelegate} from './delegate';
-import {Log} from '@toreda/log';
-import {invokeListeners} from '../invoke/listeners';
+import {type LifecycleListener} from '../lifecycle/listener';
 
 /**
- * Expressive type describing phase names used in txn lifecycle flow.
- *
- * @category Transactions
+ * @category Textures
  */
-export type TxnPhase = Pick<
-	TxnDelegate,
-	| 'didBegin'
-	| 'didCancel'
-	| 'didFail'
-	| 'didInterrupt'
-	| 'didPause'
-	| 'didResume'
-	| 'didRevert'
-	| 'didSucceed'
-	| 'didTimeout'
-	| 'onBegin'
-	| 'onCancel'
-	| 'onFail'
-	| 'onInterrupt'
-	| 'onPause'
-	| 'onResume'
-	| 'onRevert'
-	| 'onSucceed'
-	| 'onTimeout'
-	| 'willBegin'
-	| 'willCancel'
-	| 'willFail'
-	| 'willInterrupt'
-	| 'willPause'
-	| 'willResume'
-	| 'willRevert'
-	| 'willSucceed'
-	| 'willTimeout'
->;
-
-/**
- *
- * @param delegate
- * @param phase
- * @returns
- *
- * @category Transactions
- */
-export async function txnPhase(phase: keyof TxnPhase, delegate: TxnDelegate, log?: Log): Promise<boolean> {
-	return invokeListeners<TxnPhase, TxnDelegate>(phase, delegate, log);
+export interface TextureDelegate<ArgsT = unknown> {
+	textureDidChange?: LifecycleListener<ArgsT>;
+	textureLoadDidFinish?: LifecycleListener<ArgsT>;
+	textureLoadDidStart?: LifecycleListener<ArgsT>;
+	textureLoadOnError?: LifecycleListener<ArgsT>;
+	textureLoadOnFinish?: LifecycleListener<ArgsT>;
+	textureLoadOnStart?: LifecycleListener<ArgsT>;
+	textureLoadWillFinish?: LifecycleListener<ArgsT>;
+	textureLoadWillStart?: LifecycleListener<ArgsT>;
+	textureOnChange?: LifecycleListener<ArgsT>;
+	textureUnloadDidFinish?: LifecycleListener<ArgsT>;
+	textureUnloadDidStart?: LifecycleListener<ArgsT>;
+	textureUnloadOnError?: LifecycleListener<ArgsT>;
+	textureUnloadOnFinish?: LifecycleListener<ArgsT>;
+	textureUnloadOnStart?: LifecycleListener<ArgsT>;
+	textureUnloadWillFinish?: LifecycleListener<ArgsT>;
+	textureUnloadWillStart?: LifecycleListener<ArgsT>;
+	textureWillChange?: LifecycleListener<ArgsT>;
 }

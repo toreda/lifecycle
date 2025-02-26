@@ -86,6 +86,10 @@ export class SampleScene implements SceneDelegate<unknown> {
 		return this.lifecycle.phase('didPause');
 	}
 
+	public async onPause(): Promise<boolean> {
+		return this.lifecycle.phase('onPause');
+	}
+
 	public async didUnpause(): Promise<boolean> {
 		return this.lifecycle.phase('didUnpause');
 	}

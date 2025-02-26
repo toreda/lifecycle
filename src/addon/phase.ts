@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 – 2024 Toreda, Inc.
+ *	Copyright (c) 2019 – 2025 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -33,23 +33,25 @@ import {invokeListeners} from '../invoke/listeners';
  */
 export type AddonPhase = Pick<
 	AddonDelegate,
+	| 'cacheDidEnter'
+	| 'cacheDidLeave'
+	| 'cacheOnEnter'
+	| 'cacheOnLeave'
+	| 'cacheWillEnter'
+	| 'cacheWillLeave'
 	| 'didBecomeReady'
-	| 'didEnterCache'
 	| 'didGainFocus'
 	| 'didInit'
-	| 'didLeaveCache'
 	| 'didLoad'
 	| 'didLoseFocus'
 	| 'didPause'
+	| 'didRestart'
 	| 'didShutdown'
 	| 'didStart'
-	| 'didRestart'
 	| 'didStop'
 	| 'didUnpause'
 	| 'memoryWarning'
-	| 'onEnterCache'
 	| 'onInit'
-	| 'onLeaveCache'
 	| 'onLoad'
 	| 'onPause'
 	| 'onReady'
@@ -59,10 +61,8 @@ export type AddonPhase = Pick<
 	| 'onStop'
 	| 'onUnpause'
 	| 'willBecomeReady'
-	| 'willEnterCache'
 	| 'willGainFocus'
 	| 'willInit'
-	| 'willLeaveCache'
 	| 'willLoad'
 	| 'willLoseFocus'
 	| 'willPause'
