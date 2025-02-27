@@ -33,37 +33,37 @@ import {invokeListeners} from '../invoke/listeners';
  * @category Scene
  */
 export type ScenePhase = Pick<
-	SceneDelegate,
-	| 'didBecomeReady'
-	| 'didHide'
-	| 'didInit'
-	| 'didLoad'
-	| 'didPause'
-	| 'didReset'
-	| 'didShow'
-	| 'didStart'
-	| 'didStop'
-	| 'didUnpause'
-	| 'onHide'
-	| 'onInit'
-	| 'onLoad'
-	| 'onPause'
-	| 'onReady'
-	| 'onReset'
-	| 'onShow'
-	| 'onStart'
-	| 'onStop'
-	| 'onUnpause'
-	| 'willBecomeReady'
-	| 'willHide'
-	| 'willInit'
-	| 'willLoad'
-	| 'willPause'
-	| 'willReset'
-	| 'willShow'
-	| 'willStart'
-	| 'willStop'
-	| 'willUnpause'
+	SceneDelegate<unknown, unknown>,
+	| 'sceneDidBecomeReady'
+	| 'sceneDidHide'
+	| 'sceneDidInit'
+	| 'sceneDidLoad'
+	| 'sceneDidPause'
+	| 'sceneDidReset'
+	| 'sceneDidShow'
+	| 'sceneDidStart'
+	| 'sceneDidStop'
+	| 'sceneDidUnpause'
+	| 'sceneOnHide'
+	| 'sceneOnInit'
+	| 'sceneOnLoad'
+	| 'sceneOnPause'
+	| 'sceneOnReady'
+	| 'sceneOnReset'
+	| 'sceneOnShow'
+	| 'sceneOnStart'
+	| 'sceneOnStop'
+	| 'sceneOnUnpause'
+	| 'sceneWillBecomeReady'
+	| 'sceneWillHide'
+	| 'sceneWillInit'
+	| 'sceneWillLoad'
+	| 'sceneWillPause'
+	| 'sceneWillReset'
+	| 'sceneWillShow'
+	| 'sceneWillStart'
+	| 'sceneWillStop'
+	| 'sceneWillUnpause'
 >;
 
 /**
@@ -74,10 +74,10 @@ export type ScenePhase = Pick<
  *
  * @category Scene
  */
-export async function scenePhase(
+export async function scenePhase<ArgsT = unknown>(
 	phase: keyof ScenePhase,
-	delegate: SceneDelegate,
+	delegate: SceneDelegate<ScenePhase, ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<ScenePhase, SceneDelegate>(phase, delegate, log);
+	return invokeListeners<ScenePhase, SceneDelegate<ScenePhase, ArgsT>>(phase, delegate, log);
 }

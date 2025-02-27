@@ -23,13 +23,15 @@
  *
  */
 
+import {Log} from '@toreda/log';
 import {type SoundDelegate} from './delegate';
+import {invokeListeners} from '../invoke/listeners';
 
 /**
  * @category Sounds
  */
 export type SoundPhase = Pick<
-	SoundDelegate<unknown>,
+	SoundDelegate<unknown, unknown>,
 	| 'soundDidCancel'
 	| 'soundDidFinish'
 	| 'soundDidPause'
@@ -48,3 +50,19 @@ export type SoundPhase = Pick<
 	| 'soundWillStart'
 	| 'soundWillUnpause'
 >;
+
+/**
+ *
+ * @param delegate
+ * @param phase
+ * @returns
+ *
+ * @category Sounds
+ */
+export async function soundPhase<ArgsT = unknown>(
+	phase: keyof SoundPhase,
+	delegate: SoundDelegate<SoundPhase, ArgsT>,
+	log?: Log
+): Promise<boolean> {
+	return invokeListeners<SoundPhase, SoundDelegate<SoundPhase, ArgsT>>(phase, delegate, log);
+}

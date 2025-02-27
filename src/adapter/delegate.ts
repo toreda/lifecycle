@@ -23,8 +23,6 @@
  *
  */
 
-import {AdapterLifecycle} from './lifecycle';
-import type {AdapterPhase} from './phase';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 
@@ -33,9 +31,7 @@ import type {LifecycleListener} from '../lifecycle/listener';
  *
  * @category Adapters
  */
-export interface AdapterDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<AdapterPhase> {
-	lifecycle: AdapterLifecycle;
-
+export interface AdapterDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	// Registering the adapter as spawnable.
 	willRegister?: LifecycleListener<ArgsT>;
 	didRegister?: LifecycleListener<ArgsT>;

@@ -23,26 +23,16 @@
  *
  */
 
-import {EntityLifecycle} from './lifecycle';
-import type {EntityPhase} from './phase';
-import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
-import type {LifecycleListener} from '../lifecycle/listener';
-import {type AnimDelegate} from '../anim/delegate';
-import {type AssetDelegate} from '../asset/delegate';
-import {type TweenDelegate} from '../tween/delegate';
-import {type TextureDelegate} from '../texture/delegate';
+
+import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import {type LifecycleListener} from '../lifecycle/listener';;
 
 /**
  *
  * @category Entity
  */
-export interface EntityDelegate<ArgsT = unknown>
-	extends LifecycleDelegateCommon<EntityPhase>,
-		AnimDelegate<ArgsT>,
-		AssetDelegate<ArgsT>,
-		TweenDelegate<ArgsT>,
-		TextureDelegate<ArgsT> {
-	lifecycle: EntityLifecycle;
+export interface EntityDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT>
+{
 
 	/**
 	 * Entity is about to initialize. Handle internal

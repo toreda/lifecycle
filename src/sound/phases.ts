@@ -23,14 +23,30 @@
  *
  */
 
-import type {AddonPhase} from './phase';
-import {Lifecycle} from '../lifecycle';
+import type {SoundPhase} from './phase';
 
 /**
- * @category Addon
+ * Iterable phases that invoke SoundDelegate listeners.
+ *
+ * @category Sounds
  */
-export class AddonLifecycle extends Lifecycle<AddonPhase> {
-	constructor() {
-		super();
-	}
-}
+export const SoundPhases: (keyof SoundPhase)[] = [
+	'soundDidCancel',
+	'soundDidFinish',
+	'soundDidPause',
+	'soundDidStart',
+	'soundDidUnpause',
+	'soundMissing',
+	'soundOnCancel',
+	'soundOnError',
+	'soundOnFinish',
+	'soundOnPause',
+	'soundOnStart',
+	'soundOnUnpause',
+	'soundWillCancel',
+	'soundWillFinish',
+	'soundWillPause',
+	'soundWillStart',
+	'soundWillUnpause'
+];
+

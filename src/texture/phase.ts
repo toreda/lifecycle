@@ -8,7 +8,8 @@
  *	in the Software without restriction, including without limitation the rights
  *	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *	copies of the Software, and to permit persons to whom the Software is
- *	furnished to do so, subject to the following conditions:
+ *	furnish
+ ed to do so, subject to the following conditions:
 
  * 	The above copyright notice and this permission notice shall be included in all
  * 	copies or substantial portions of the Software.
@@ -23,13 +24,15 @@
  *
  */
 
+import {Log} from '@toreda/log';
 import {type TextureDelegate} from './delegate';
+import {invokeListeners} from '../invoke/listeners';
 
 /**
  * @category Textures
  */
 export type TexturePhase = Pick<
-	TextureDelegate<unknown>,
+	TextureDelegate<unknown, unknown>,
 	| 'textureDidChange'
 	| 'textureLoadDidFinish'
 	| 'textureLoadDidStart'
@@ -48,3 +51,19 @@ export type TexturePhase = Pick<
 	| 'textureUnloadWillStart'
 	| 'textureWillChange'
 >;
+
+/**
+ * Invoke a 
+ * @param delegate
+ * @param phase
+ * @returns
+ *
+ * @category Textures
+ */
+export async function texturePhase<ArgsT = unknown>(
+	phase: keyof TexturePhase,
+	delegate: TextureDelegate<TexturePhase, ArgsT>,
+	log?: Log
+): Promise<boolean> {
+	return invokeListeners<TexturePhase, TextureDelegate<TexturePhase, ArgsT>>(phase, delegate, log);
+}

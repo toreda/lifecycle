@@ -1,7 +1,8 @@
+import {AnimDelegate, SoundDelegate} from '../../../src';
 import type {EntityDelegate} from '../../../src/entity/delegate';
 import {EntityLifecycle} from '../../../src/entity/lifecycle';
 
-export class SampleEntity implements EntityDelegate<unknown> {
+export class SampleEntity implements EntityDelegate<unknown>, SoundDelegate<unknown>, AnimDelegate<unknown> {
 	public readonly lifecycle: EntityLifecycle;
 	public readonly children: EntityDelegate[];
 
@@ -293,8 +294,8 @@ export class SampleEntity implements EntityDelegate<unknown> {
 		return this.lifecycle.phase('textureWillChange');
 	}
 
-	public async textureOnLoad(): Promise<boolean> {
-		return this.lifecycle.phase('textureOnLoad');
+	public async textureLoadDidFinish(): Promise<boolean> {
+		return this.lifecycle.phase('textureLoadDidFinish');
 	}
 
 	public async textureWillLoad(): Promise<boolean> {

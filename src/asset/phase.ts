@@ -23,17 +23,38 @@
  *
  */
 
-import type {ClientPhase} from './phase';
-import {Lifecycle} from '../lifecycle';
+import {Log} from '@toreda/log';
+import {invokeListeners} from '../invoke/listeners';
+import {type AssetDelegate} from './delegate';
 
 /**
- * Manages client lifecycle flow for owner. Tracks which phases have executed to prevent
- * multiple executions per phase.
- *
- * @category Client
+ * @category Assets
  */
-export class ClientLifecycle extends Lifecycle<ClientPhase> {
-	constructor() {
-		super();
-	}
+export type AssetPhase = Pick<
+	AssetDelegate<unknown, unknown>,
+	| 'assetLoadDidFinish'
+	| 'assetLoadDidStart'
+	| 'assetLoadOnAbort'
+	| 'assetLoadOnFinish'
+	| 'assetLoadOnProgress'
+	| 'assetLoadOnStart'
+	| 'assetLoadWillFinish'
+	| 'assetLoadWillStart'
+	| 'assetUnloadDidFinish'
+	| 'assetUnloadDidStart'
+>;
+
+/**
+ *
+ * @param delegate
+ * @param phase
+ *
+ * @category Animations
+ */
+export async function assetPhase<ArgsT = unknown>(
+	phase: keyof AssetPhase,
+	delegate: AssetDelegate<AssetPhase, ArgsT>,
+	log?: Log
+): Promise<boolean> {
+	return invokeListeners<AssetPhase, AssetDelegate<AssetPhase, ArgsT>>(phase, delegate, log);
 }

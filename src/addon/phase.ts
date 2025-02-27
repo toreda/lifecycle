@@ -32,44 +32,44 @@ import {invokeListeners} from '../invoke/listeners';
  * @category Addon
  */
 export type AddonPhase = Pick<
-	AddonDelegate,
-	| 'cacheDidEnter'
-	| 'cacheDidLeave'
-	| 'cacheOnEnter'
-	| 'cacheOnLeave'
-	| 'cacheWillEnter'
-	| 'cacheWillLeave'
-	| 'didBecomeReady'
-	| 'didGainFocus'
-	| 'didInit'
-	| 'didLoad'
-	| 'didLoseFocus'
-	| 'didPause'
-	| 'didRestart'
-	| 'didShutdown'
-	| 'didStart'
-	| 'didStop'
-	| 'didUnpause'
-	| 'memoryWarning'
-	| 'onInit'
-	| 'onLoad'
-	| 'onPause'
-	| 'onReady'
-	| 'onRestart'
-	| 'onShutdown'
-	| 'onStart'
-	| 'onStop'
-	| 'onUnpause'
-	| 'willBecomeReady'
-	| 'willGainFocus'
-	| 'willInit'
-	| 'willLoad'
-	| 'willLoseFocus'
-	| 'willPause'
-	| 'willRestart'
-	| 'willShutdown'
-	| 'willStart'
-	| 'willStop'
+	AddonDelegate<unknown, unknown>,
+	| 'addonCacheDidEnter'
+	| 'addonCacheDidLeave'
+	| 'addonCacheOnEnter'
+	| 'addonCacheOnLeave'
+	| 'addonCacheWillEnter'
+	| 'addonCacheWillLeave'
+	| 'addonDidBecomeReady'
+	| 'addonDidGainFocus'
+	| 'addonDidInit'
+	| 'addonDidLoad'
+	| 'addonDidLoseFocus'
+	| 'addonDidPause'
+	| 'addonDidRestart'
+	| 'addonDidShutdown'
+	| 'addonDidStart'
+	| 'addonDidStop'
+	| 'addonDidUnpause'
+	| 'addonMemoryWarning'
+	| 'addonOnInit'
+	| 'addonOnLoad'
+	| 'addonOnPause'
+	| 'addonOnReady'
+	| 'addonOnRestart'
+	| 'addonOnShutdown'
+	| 'addonOnStart'
+	| 'addonOnStop'
+	| 'addonOnUnpause'
+	| 'addonWillBecomeReady'
+	| 'addonWillGainFocus'
+	| 'addonWillInit'
+	| 'addonWillLoad'
+	| 'addonWillLoseFocus'
+	| 'addonWillPause'
+	| 'addonWillRestart'
+	| 'addonWillShutdown'
+	| 'addonWillStart'
+	| 'addonWillStop'
 >;
 
 /**
@@ -80,10 +80,10 @@ export type AddonPhase = Pick<
  *
  * @category Addon
  */
-export async function addonPhase(
+export async function addonPhase<ArgsT = unknown>(
 	phase: keyof AddonPhase,
-	delegate: AddonDelegate,
+	delegate: AddonDelegate<AddonPhase, ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<AddonPhase, AddonDelegate>(phase, delegate, log);
+	return invokeListeners<AddonPhase, AddonDelegate<AddonPhase, ArgsT>>(phase, delegate, log);
 }

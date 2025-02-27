@@ -33,7 +33,7 @@ import {invokeListeners} from '../invoke/listeners';
  * @category Connection
  */
 export type CnxPhase = Pick<
-	CnxDelegate,
+	CnxDelegate<unknown, unknown>,
 	| 'didClose'
 	| 'didConnect'
 	| 'didDisconnect'
@@ -76,6 +76,6 @@ export type CnxPhase = Pick<
  *
  * @category Connection
  */
-export async function cnxPhase(phase: keyof CnxPhase, delegate: CnxDelegate, log?: Log): Promise<boolean> {
-	return invokeListeners<CnxPhase, CnxDelegate>(phase, delegate, log);
+export async function cnxPhase<ArgsT = unknown>(phase: keyof CnxPhase, delegate: CnxDelegate<CnxPhase, ArgsT>, log?: Log): Promise<boolean> {
+	return invokeListeners<CnxPhase, CnxDelegate<CnxPhase, ArgsT>>(phase, delegate, log);
 }

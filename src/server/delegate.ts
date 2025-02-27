@@ -25,96 +25,95 @@
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
-import type {ServerPhase} from './phase';
 
 /**
  * Delegate interface for server-side classes.
  *
  * @category Server
  */
-export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ServerPhase> {
+export interface ServerDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	/**
 	 * Server completed the 'ready' lifecycle phase.
 	 */
-	didBecomeReady?: LifecycleListener<ArgsT>;
+	serverDidBecomeReady?: LifecycleListener<ArgsT>;
 	/**
 	 * Server completed the 'init' lifecycle phase.
 	 */
-	didInit?: LifecycleListener<ArgsT>;
+	serverDidInit?: LifecycleListener<ArgsT>;
 	/**
 	 * Server completed the 'load' lifecycle phase.
 	 */
-	didLoad?: LifecycleListener<ArgsT>;
+	serverDidLoad?: LifecycleListener<ArgsT>;
 	/**
 	 * Server completed a restart.
 	 */
-	didRestart?: LifecycleListener<ArgsT>;
+	serverDidRestart?: LifecycleListener<ArgsT>;
 	/**
 	 * Server completed the 'shutdown' lifecycle phase.
 	 */
-	didShutdown?: LifecycleListener<ArgsT>;
+	serverDidShutdown?: LifecycleListener<ArgsT>;
 	/**
 	 * Server completed the 'start' lifecycle phase.
 	 */
-	didStart?: LifecycleListener<ArgsT>;
+	serverDidStart?: LifecycleListener<ArgsT>;
 	/**
 	 * Server completed the 'stop' lifecycle phase.
 	 */
-	didStop?: LifecycleListener<ArgsT>;
+	serverDidStop?: LifecycleListener<ArgsT>;
 	/**
 	 * Server enters the 'init' lifecycle phase.
 	 */
-	onInit?: LifecycleListener<ArgsT>;
+	serverOnInit?: LifecycleListener<ArgsT>;
 	/**
 	 * Server enters the 'load' lifecycle phase.
 	 */
-	onLoad?: LifecycleListener<ArgsT>;
+	serverOnLoad?: LifecycleListener<ArgsT>;
 	/**
 	 * Server enters the 'ready' lifecycle phase.
 	 */
-	onReady?: LifecycleListener<ArgsT>;
+	serverOnReady?: LifecycleListener<ArgsT>;
 	/**
 	 * Server process is restarting. Does not indicate whether the parent server instance restarted.
 	 */
-	onRestart?: LifecycleListener<ArgsT>;
+	serverOnRestart?: LifecycleListener<ArgsT>;
 	/**
 	 * Server enters the 'shutdown' lifecycle phase.
 	 */
-	onShutdown?: LifecycleListener<ArgsT>;
+	serverOnShutdown?: LifecycleListener<ArgsT>;
 	/**
 	 * Server enters the 'start' lifecycle phase.
 	 */
-	onStart?: LifecycleListener<ArgsT>;
+	serverOnStart?: LifecycleListener<ArgsT>;
 	/**
 	 * Server is processing the 'stop' lifecycle phase.
 	 */
-	onStop?: LifecycleListener<ArgsT>;
+	serverOnStop?: LifecycleListener<ArgsT>;
 	/**
 	 * Server will begin 'ready' lifecycle phase.
 	 */
-	willBecomeReady?: LifecycleListener<ArgsT>;
+	serverWillBecomeReady?: LifecycleListener<ArgsT>;
 	/**
 	 * Server will begin 'init' lifecycle phase.
 	 */
-	willInit?: LifecycleListener<ArgsT>;
+	serverWillInit?: LifecycleListener<ArgsT>;
 	/**
 	 * Server will begin 'load' lifecycle phase.
 	 */
-	willLoad?: LifecycleListener<ArgsT>;
+	serverWillLoad?: LifecycleListener<ArgsT>;
 	/**
 	 * Server will restart and restore all objects to initial states.
 	 */
-	willRestart?: LifecycleListener<ArgsT>;
+	serverWillRestart?: LifecycleListener<ArgsT>;
 	/**
 	 * Server will begin 'shutdown' lifecycle phase.
 	 */
-	willShutdown?: LifecycleListener<ArgsT>;
+	serverWillShutdown?: LifecycleListener<ArgsT>;
 	/**
 	 * Server will begin 'start' lifecycle phase.
 	 */
-	willStart?: LifecycleListener<ArgsT>;
+	serverWillStart?: LifecycleListener<ArgsT>;
 	/**
 	 * Server will begin 'stop' lifecycle phase.
 	 */
-	willStop?: LifecycleListener<ArgsT>;
+	serverWillStop?: LifecycleListener<ArgsT>;
 }

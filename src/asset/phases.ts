@@ -23,16 +23,20 @@
  *
  */
 
-import type {TxnPhase} from './phase';
-import {Lifecycle} from '../lifecycle';
+import {type AssetPhase} from './phase';
 
 /**
- * Txn lifecycle flags.
- *
- * @category Transactions
+ * @category Assets
  */
-export class TxnLifecycle extends Lifecycle<TxnPhase> {
-	constructor() {
-		super();
-	}
-}
+export const assetPhases: (keyof AssetPhase)[] = [
+	'assetLoadDidFinish',
+	'assetLoadDidStart',
+	'assetLoadOnAbort',
+	'assetLoadOnFinish',
+	'assetLoadOnProgress',
+	'assetLoadOnStart',
+	'assetLoadWillFinish',
+	'assetLoadWillStart',
+	'assetUnloadDidFinish',
+	'assetUnloadDidStart'
+];

@@ -25,138 +25,137 @@
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
-import type {ScenePhase} from '../scene/phase';
 
 /**
  * Lifecycle listener implementation for game engine scenes.
  *
  * @category Scene
  */
-export interface SceneDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ScenePhase> {
+export interface SceneDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	/**
 	 * Scene and all children finished the 'ready' lifecycle phase.
 	 */
-	didBecomeReady?: LifecycleListener<ArgsT>;
+	sceneDidBecomeReady?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene was hidden.
 	 */
-	didHide?: LifecycleListener<ArgsT>;
+	sceneDidHide?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children finished the 'init' lifecycle phase.
 	 */
-	didInit?: LifecycleListener<ArgsT>;
+	sceneDidInit?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children finished the 'load' lifecycle phase.
 	 */
-	didLoad?: LifecycleListener<ArgsT>;
+	sceneDidLoad?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children were paused by game engine.
 	 */
-	didPause?: LifecycleListener<ArgsT>;
+	sceneDidPause?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children were reset to initial state.
 	 */
-	didReset?: LifecycleListener<ArgsT>;
+	sceneDidReset?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene was hidden and is now visible.
 	 */
-	didShow?: LifecycleListener<ArgsT>;
+	sceneDidShow?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children will finished the 'start' lifecycle phase.
 	 */
-	didStart?: LifecycleListener<ArgsT>;
+	sceneDidStart?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children were stopped by game engine.
 	 */
-	didStop?: LifecycleListener<ArgsT>;
+	sceneDidStop?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is stopping now.
 	 *
 	 */
-	onStop?: LifecycleListener<ArgsT>;
+	sceneOnStop?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is starting now.
 	 */
-	onStart?: LifecycleListener<ArgsT>;
+	sceneOnStart?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is initializing now.
 	 */
-	onInit?: LifecycleListener<ArgsT>;
+	sceneOnInit?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children are paused and were unpaused.
 	 */
-	didUnpause?: LifecycleListener<ArgsT>;
+	sceneDidUnpause?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children will begin the 'ready' lifecycle phase.
 	 */
-	willBecomeReady?: LifecycleListener<ArgsT>;
+	sceneWillBecomeReady?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is becoming ready now.
 	 */
-	onReady?: LifecycleListener<ArgsT>;
+	sceneOnReady?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is unpausing now.
 	 */
-	onUnpause?: LifecycleListener<ArgsT>;
+	sceneOnUnpause?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is visible and will be hidden.
 	 */
-	willHide?: LifecycleListener<ArgsT>;
+	sceneWillHide?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children will begin the 'init' lifecycle phase.
 	 */
-	willInit?: LifecycleListener<ArgsT>;
+	sceneWillInit?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is loading now.
 	 */
-	onLoad?: LifecycleListener<ArgsT>;
+	sceneOnLoad?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children will begin the 'load' lifecycle phase.
 	 */
-	willLoad?: LifecycleListener<ArgsT>;
+	sceneWillLoad?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children are running will be paused by game engine.
 	 */
-	willPause?: LifecycleListener<ArgsT>;
+	sceneWillPause?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children will reset and should return to initial states.
 	 */
-	willReset?: LifecycleListener<ArgsT>;
+	sceneWillReset?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is resetting now.
 	 */
-	onReset?: LifecycleListener<ArgsT>;
+	sceneOnReset?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is showing now.
 	 */
-	onShow?: LifecycleListener<ArgsT>;
+	sceneOnShow?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children are hidden and will be visible.
 	 */
-	willShow?: LifecycleListener<ArgsT>;
+	sceneWillShow?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene and all children will be started.
 	 */
-	willStart?: LifecycleListener<ArgsT>;
+	sceneWillStart?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene will be stopped immediately.
 	 */
-	willStop?: LifecycleListener<ArgsT>;
+	sceneWillStop?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is paused and will be unpaused by the game engine.
 	 */
-	willUnpause?: LifecycleListener<ArgsT>;
+	sceneWillUnpause?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is pausing now.
 	 */
-	onPause?: LifecycleListener<ArgsT>;
+	sceneOnPause?: LifecycleListener<ArgsT>;
 	/**
 	 * Scene is hiding now.
 	 */
-	onHide?: LifecycleListener<ArgsT>;
+	sceneOnHide?: LifecycleListener<ArgsT>;
 	/**
 	 * Low memory warning relayed from the underlying system. Clear any volatile/cached
 	 * assets which can safely be destroyed and recreated again later.
 	 */
-	memoryWarning?: LifecycleListener<ArgsT>;
+	sceneMemoryWarning?: LifecycleListener<ArgsT>;
 }

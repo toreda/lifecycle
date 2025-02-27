@@ -33,7 +33,7 @@ import {invokeListeners} from '../invoke/listeners';
  * @category Client
  */
 export type ClientPhase = Pick<
-	ClientDelegate,
+	ClientDelegate<unknown, unknown>,
 	| 'didBecomeReady'
 	| 'didGainFocus'
 	| 'didInit'
@@ -69,10 +69,10 @@ export type ClientPhase = Pick<
  *
  * @category Connection
  */
-export async function clientPhase(
+export async function clientPhase<ArgsT = unknown>(
 	phase: keyof ClientPhase,
-	delegate: ClientDelegate,
+	delegate: ClientDelegate<ClientPhase, ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<ClientPhase, ClientDelegate>(phase, delegate, log);
+	return invokeListeners<ClientPhase, ClientDelegate<ClientPhase, ArgsT>>(phase, delegate, log);
 }

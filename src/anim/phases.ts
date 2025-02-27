@@ -23,14 +23,21 @@
  *
  */
 
-import type {CnxPhase} from './phase';
-import {Lifecycle} from '../lifecycle';
+import {type AnimPhase} from './phase';
 
 /**
- * @category Connection
+ * @category Assets
  */
-export class CnxLifecycle extends Lifecycle<CnxPhase> {
-	constructor() {
-		super();
-	}
-}
+export const animPhases: (keyof AnimPhase)[] = [
+	'animDidCancel',
+	'animDidFinish',
+	'animDidStart',
+	'animOnCancel',
+	'animOnError',
+	'animOnFinish',
+	'animOnMissing',
+	'animOnStart',
+	'animWillCancel',
+	'animWillFinish',
+	'animWillStart'
+];

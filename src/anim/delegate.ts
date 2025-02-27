@@ -23,12 +23,13 @@
  *
  */
 
+import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {type LifecycleListener} from '../lifecycle/listener';
 
 /**
  * @category Animations
  */
-export interface AnimDelegate<ArgsT = unknown> {
+export interface AnimDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	animDidCancel?: LifecycleListener<ArgsT>;
 	animDidFinish?: LifecycleListener<ArgsT>;
 	animDidStart?: LifecycleListener<ArgsT>;

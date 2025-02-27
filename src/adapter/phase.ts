@@ -33,7 +33,7 @@ import {invokeListeners} from '../invoke/listeners';
  * @category Adapters
  */
 export type AdapterPhase = Pick<
-	AdapterDelegate,
+	AdapterDelegate<unknown, unknown>,
 	| 'didBecomeReady'
 	| 'didBecomeSpawnable'
 	| 'didClearCache'
@@ -74,10 +74,10 @@ export type AdapterPhase = Pick<
  *
  * @category Adapter
  */
-export async function adapterPhase(
+export async function adapterPhase<ArgsT = unknown>(
 	phase: keyof AdapterPhase,
-	delegate: AdapterDelegate,
+	delegate: AdapterDelegate<AdapterPhase, ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<AdapterPhase, AdapterDelegate>(phase, delegate, log);
+	return invokeListeners<AdapterPhase, AdapterDelegate<AdapterPhase, ArgsT>>(phase, delegate, log);
 }

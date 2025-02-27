@@ -33,32 +33,7 @@ import {invokeListeners} from '../invoke/listeners';
  * @category Entity
  */
 export type EntityPhase = Pick<
-	EntityDelegate<unknown>,
-	| 'animDidCancel'
-	| 'animDidFinish'
-	| 'animDidStart'
-	| 'animOnCancel'
-	| 'animOnError'
-	| 'animOnFinish'
-	| 'animOnMissing'
-	| 'animOnStart'
-	| 'animWillCancel'
-	| 'animWillFinish'
-	| 'animWillStart'
-	| 'assetLoadDidFinish'
-	| 'assetLoadDidStart'
-	| 'assetLoadOnAbort'
-	| 'assetLoadOnFinish'
-	| 'assetLoadOnProgress'
-	| 'assetLoadOnStart'
-	| 'assetLoadWillFinish'
-	| 'assetLoadWillStart'
-	| 'assetUnloadDidFinish'
-	| 'assetUnloadDidStart'
-	| 'assetUnloadOnFinish'
-	| 'assetUnloadOnStart'
-	| 'assetUnloadWillFinish'
-	| 'assetUnloadWillStart'
+	EntityDelegate<unknown, unknown>,
 	| 'didDespawn'
 	| 'didHide'
 	| 'didHover'
@@ -90,17 +65,6 @@ export type EntityPhase = Pick<
 	| 'stateDidChange'
 	| 'stateOnChange'
 	| 'stateWillChange'
-	| 'tweenDidCancel'
-	| 'tweenDidFinish'
-	| 'tweenDidReplay'
-	| 'tweenDidReset'
-	| 'tweenDidStart'
-	| 'tweenOnCancel'
-	| 'tweenOnFinish'
-	| 'tweenOnStart'
-	| 'tweenWillCancel'
-	| 'tweenWillFinish'
-	| 'tweenWillStart'
 	| 'willDespawn'
 	| 'willHide'
 	| 'willHover'
@@ -124,10 +88,10 @@ export type EntityPhase = Pick<
  *
  * @category Entity
  */
-export async function entityPhase(
+export async function entityPhase<ArgsT = unknown>(
 	phase: keyof EntityPhase,
-	delegate: EntityDelegate,
+	delegate: EntityDelegate<EntityPhase, ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<EntityPhase, EntityDelegate>(phase, delegate, log);
+	return invokeListeners<EntityPhase, EntityDelegate<EntityPhase, ArgsT>>(phase, delegate, log);
 }

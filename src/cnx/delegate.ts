@@ -23,8 +23,6 @@
  *
  */
 
-import {CnxLifecycle} from './lifecycle';
-import type {CnxPhase} from './phase';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 
@@ -33,8 +31,7 @@ import type {LifecycleListener} from '../lifecycle/listener';
  *
  * @category Connection
  */
-export interface CnxDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<CnxPhase> {
-	lifecycle: CnxLifecycle;
+export interface CnxDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	didClose?: LifecycleListener<ArgsT>;
 	didConnect?: LifecycleListener<ArgsT>;
 	didDisconnect?: LifecycleListener<ArgsT>;

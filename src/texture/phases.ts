@@ -23,16 +23,29 @@
  *
  */
 
-import {Lifecycle} from '../lifecycle';
-import type {ScenePhase} from './phase';
+import type {TexturePhase} from './phase';
 
 /**
- * Managed flags for lifecycle phases used by game engine Scenes.
+ * Iterable phases that invoke TextureDelegate listeners.
  *
- * @category Scene
+ * @category Textures
  */
-export class SceneLifecycle extends Lifecycle<ScenePhase> {
-	constructor() {
-		super();
-	}
-}
+export const texturePhases: (keyof TexturePhase)[] = [
+	'textureDidChange',
+	'textureLoadDidFinish',
+	'textureLoadDidStart',
+	'textureLoadOnError',
+	'textureLoadOnFinish',
+	'textureLoadOnStart',
+	'textureLoadWillFinish',
+	'textureLoadWillStart',
+	'textureOnChange',
+	'textureUnloadDidFinish',
+	'textureUnloadDidStart',
+	'textureUnloadOnError',
+	'textureUnloadOnFinish',
+	'textureUnloadOnStart',
+	'textureUnloadWillFinish',
+	'textureUnloadWillStart',
+	'textureWillChange'
+];

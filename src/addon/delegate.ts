@@ -23,8 +23,6 @@
  *
  */
 
-import {AddonLifecycle} from './lifecycle';
-import type {AddonPhase} from './phase';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 
@@ -33,45 +31,43 @@ import type {LifecycleListener} from '../lifecycle/listener';
  *
  * @category Addon
  */
-export interface AddonDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<AddonPhase> {
-	lifecycle: AddonLifecycle;
-
-	cacheDidEnter?: LifecycleListener<ArgsT>;
-	cacheDidLeave?: LifecycleListener<ArgsT>;
-	cacheOnEnter?: LifecycleListener<ArgsT>;
-	cacheOnLeave?: LifecycleListener<ArgsT>;
-	cacheWillEnter?: LifecycleListener<ArgsT>;
-	cacheWillLeave?: LifecycleListener<ArgsT>;
-	didBecomeReady?: LifecycleListener<ArgsT>;
-	didGainFocus?: LifecycleListener<ArgsT>;
-	didInit?: LifecycleListener<ArgsT>;
-	didLoad?: LifecycleListener<ArgsT>;
-	didLoseFocus?: LifecycleListener<ArgsT>;
-	didPause?: LifecycleListener<ArgsT>;
-	didRestart?: LifecycleListener<ArgsT>;
-	didShutdown?: LifecycleListener<ArgsT>;
-	didStart?: LifecycleListener<ArgsT>;
-	didStop?: LifecycleListener<ArgsT>;
-	didUnpause?: LifecycleListener<ArgsT>;
-	memoryWarning?: LifecycleListener<ArgsT>;
-	onInit?: LifecycleListener<ArgsT>;
-	onLoad?: LifecycleListener<ArgsT>;
-	onPause?: LifecycleListener<ArgsT>;
-	onReady?: LifecycleListener<ArgsT>;
-	onRestart?: LifecycleListener<ArgsT>;
-	onShutdown?: LifecycleListener<ArgsT>;
-	onStart?: LifecycleListener<ArgsT>;
-	onStop?: LifecycleListener<ArgsT>;
-	onUnpause?: LifecycleListener<ArgsT>;
-	willBecomeReady?: LifecycleListener<ArgsT>;
-	willGainFocus?: LifecycleListener<ArgsT>;
-	willInit?: LifecycleListener<ArgsT>;
-	willLeaveCache?: LifecycleListener<ArgsT>;
-	willLoad?: LifecycleListener<ArgsT>;
-	willLoseFocus?: LifecycleListener<ArgsT>;
-	willPause?: LifecycleListener<ArgsT>;
-	willRestart?: LifecycleListener<ArgsT>;
-	willShutdown?: LifecycleListener<ArgsT>;
-	willStart?: LifecycleListener<ArgsT>;
-	willStop?: LifecycleListener<ArgsT>;
+export interface AddonDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
+	addonCacheDidEnter?: LifecycleListener<ArgsT>;
+	addonCacheDidLeave?: LifecycleListener<ArgsT>;
+	addonCacheOnEnter?: LifecycleListener<ArgsT>;
+	addonCacheOnLeave?: LifecycleListener<ArgsT>;
+	addonCacheWillEnter?: LifecycleListener<ArgsT>;
+	addonCacheWillLeave?: LifecycleListener<ArgsT>;
+	addonDidBecomeReady?: LifecycleListener<ArgsT>;
+	addonDidGainFocus?: LifecycleListener<ArgsT>;
+	addonDidInit?: LifecycleListener<ArgsT>;
+	addonDidLoad?: LifecycleListener<ArgsT>;
+	addonDidLoseFocus?: LifecycleListener<ArgsT>;
+	addonDidPause?: LifecycleListener<ArgsT>;
+	addonDidRestart?: LifecycleListener<ArgsT>;
+	addonDidShutdown?: LifecycleListener<ArgsT>;
+	addonDidStart?: LifecycleListener<ArgsT>;
+	addonDidStop?: LifecycleListener<ArgsT>;
+	addonDidUnpause?: LifecycleListener<ArgsT>;
+	addonMemoryWarning?: LifecycleListener<ArgsT>;
+	addonOnInit?: LifecycleListener<ArgsT>;
+	addonOnLoad?: LifecycleListener<ArgsT>;
+	addonOnPause?: LifecycleListener<ArgsT>;
+	addonOnReady?: LifecycleListener<ArgsT>;
+	addonOnRestart?: LifecycleListener<ArgsT>;
+	addonOnShutdown?: LifecycleListener<ArgsT>;
+	addonOnStart?: LifecycleListener<ArgsT>;
+	addonOnStop?: LifecycleListener<ArgsT>;
+	addonOnUnpause?: LifecycleListener<ArgsT>;
+	addonWillBecomeReady?: LifecycleListener<ArgsT>;
+	addonWillGainFocus?: LifecycleListener<ArgsT>;
+	addonWillInit?: LifecycleListener<ArgsT>;
+	addonWillLeaveCache?: LifecycleListener<ArgsT>;
+	addonWillLoad?: LifecycleListener<ArgsT>;
+	addonWillLoseFocus?: LifecycleListener<ArgsT>;
+	addonWillPause?: LifecycleListener<ArgsT>;
+	addonWillRestart?: LifecycleListener<ArgsT>;
+	addonWillShutdown?: LifecycleListener<ArgsT>;
+	addonWillStart?: LifecycleListener<ArgsT>;
+	addonWillStop?: LifecycleListener<ArgsT>;
 }

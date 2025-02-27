@@ -23,16 +23,13 @@
  *
  */
 
-import {ClientLifecycle} from './lifecycle';
-import type {ClientPhase} from './phase';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 
 /**
  * @category Client
  */
-export interface ClientDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ClientPhase> {
-	lifecycle: ClientLifecycle;
+export interface ClientDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	willInit?: LifecycleListener<ArgsT>;
 	/** Entered 'init' phase - creating all necessary instances. **/
 	onInit: LifecycleListener<ArgsT>;

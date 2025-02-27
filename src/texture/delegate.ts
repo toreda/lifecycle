@@ -23,12 +23,13 @@
  *
  */
 
+import {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {type LifecycleListener} from '../lifecycle/listener';
 
 /**
  * @category Textures
  */
-export interface TextureDelegate<ArgsT = unknown> {
+export interface TextureDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	textureDidChange?: LifecycleListener<ArgsT>;
 	textureLoadDidFinish?: LifecycleListener<ArgsT>;
 	textureLoadDidStart?: LifecycleListener<ArgsT>;

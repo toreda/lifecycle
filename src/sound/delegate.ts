@@ -1,9 +1,10 @@
+import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {type LifecycleListener} from '../lifecycle/listener';
 
 /**
  * @category Sounds
  */
-export interface SoundDelegate<ArgsT = unknown> {
+export interface SoundDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT>{
 	soundDidCancel?: LifecycleListener<ArgsT>;
 	soundDidFinish?: LifecycleListener<ArgsT>;
 	soundDidPause?: LifecycleListener<ArgsT>;
