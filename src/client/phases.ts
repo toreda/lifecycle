@@ -1,32 +1,32 @@
-import {ClientPhase} from './phase';
+import {type ClientPhase} from './phase';
 
 /**
  * @category Client
  */
 export const clientPhases: (keyof ClientPhase)[] = [
-	'didBecomeReady',
-	'didGainFocus',
-	'didInit',
-	'didLoad',
-	'didLoseFocus',
-	'didPause',
-	'didShutdown',
-	'didStart',
-	'didStop',
-	'didUnpause',
-	'memoryWarning',
-	'onInit',
-	'onLoad',
-	'onReady',
-	'onShutdown',
-	'onStart',
-	'willBecomeReady',
-	'willGainFocus',
-	'willInit',
-	'willLoad',
-	'willLoseFocus',
-	'willPause',
-	'willShutdown',
-	'willStart',
-	'willStop'
+	'clientDidBecomeReady',
+	'clientDidGainFocus',
+	'clientDidInit',
+	'clientDidLoad',
+	'clientDidLoseFocus',
+	'clientDidPause',
+	'clientDidShutdown',
+	'clientDidStart',
+	'clientDidStop',
+	'clientDidUnpause',
+	'clientMemoryWarning',
+	'clientOnInit',
+	'clientOnLoad',
+	'clientOnReady',
+	'clientOnShutdown',
+	'clientOnStart',
+	'clientWillBecomeReady',
+	'clientWillGainFocus',
+	'clientWillInit',
+	'clientWillLoad',
+	'clientWillLoseFocus',
+	'clientWillPause',
+	'clientWillShutdown',
+	'clientWillStart',
+	'clientWillStop'
 ];

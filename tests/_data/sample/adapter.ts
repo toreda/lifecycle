@@ -1,14 +1,16 @@
-import {AdapterDelegate, AdapterLifecycle} from '../../../src';
+import {AdapterDelegate} from '../../../src/adapter/delegate';
+import {AdapterPhase} from '../../../src/adapter/phase';
+import {Lifecycle} from '../../../src/lifecycle';
 import type {ServerDelegate} from '../../../src/server/delegate';
 import {ServerLifecycle} from '../../../src/server/lifecycle';
 
-export class SampleAdapter implements AdapterDelegate<unknown> {
-	public readonly lifecycle: AdapterLifecycle;
-	public readonly children: AdapterDelegate[];
+export class SampleAdapter implements AdapterDelegate<AdapterPhase> {
+	public readonly lifecycle: Lifecycle<AdapterPhase>;
+	public readonly children: AdapterDelegate<AdapterPhase, unknown>[];
 
 	constructor() {
 		this.children = [];
-		this.lifecycle = new AdapterLifecycle();
+		this.lifecycle = new Lifecycle<AdapterPhase>();
 	}
 
 	public async willInit(): Promise<boolean> {

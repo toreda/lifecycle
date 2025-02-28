@@ -29,6 +29,14 @@
 export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
 	constructor() {
 		super();
+
+		this.bindListeners();
+	}
+
+	public bindListeners(): void {
+		this.phase = this.phase.bind(this);
+		this.endPhase = this.endPhase.bind(this);
+
 	}
 
 	public async phase(id: keyof PhaseT): Promise<boolean> {
@@ -42,6 +50,10 @@ export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
 
 		this.set(id, true);
 		return true;
+	}
+
+	public async endPhase(id: keyof PhaseT): Promise<boolean> {
+		return this.phase(id);
 	}
 
 	/**

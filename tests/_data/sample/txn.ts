@@ -1,84 +1,88 @@
-import {TxnDelegate, TxnLifecycle} from '../../../src';
+import {Lifecycle, TxnDelegate, TxnPhase} from '../../../src';
 
 export class SampleTxn implements TxnDelegate<unknown> {
-	public readonly lifecycle: TxnLifecycle;
+	public readonly lifecycle: Lifecycle<TxnPhase>;
 	public readonly children: TxnDelegate[];
 
 	constructor() {
 		this.children = [];
-		this.lifecycle = new TxnLifecycle();
+		this.lifecycle = new Lifecycle<TxnPhase>();
 	}
 
-	public async willBegin(): Promise<boolean> {
-		return this.lifecycle.phase('willBegin');
+	public async txnWillBegin(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillBegin');
 	}
 
-	public async didBegin(): Promise<boolean> {
-		return this.lifecycle.phase('didBegin');
+	public async txnDidBegin(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidBegin');
 	}
 
-	public async willInterrupt(): Promise<boolean> {
-		return this.lifecycle.phase('willInterrupt');
+	public async txnWillInterrupt(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillInterrupt');
 	}
 
-	public async didInterrupt(): Promise<boolean> {
-		return this.lifecycle.phase('didInterrupt');
+	public async txnDidInterrupt(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidInterrupt');
 	}
 
-	public async willPause(): Promise<boolean> {
-		return this.lifecycle.phase('willPause');
+	public async txnWillPause(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillPause');
 	}
 
-	public async didPause(): Promise<boolean> {
-		return this.lifecycle.phase('didPause');
+	public async txnDidPause(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidPause');
 	}
 
-	public async willTimeout(): Promise<boolean> {
-		return this.lifecycle.phase('willTimeout');
+	public async txnWillTimeout(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillTimeout');
 	}
 
-	public async didTimeout(): Promise<boolean> {
-		return this.lifecycle.phase('didTimeout');
+	public async txnDidTimeout(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidTimeout');
 	}
 
-	public async willResume(): Promise<boolean> {
-		return this.lifecycle.phase('willResume');
+	public async txnWillResume(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillResume');
 	}
 
-	public async didResume(): Promise<boolean> {
-		return this.lifecycle.phase('didResume');
+	public async txnDidResume(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidResume');
 	}
 
-	public async willCancel(): Promise<boolean> {
-		return this.lifecycle.phase('willCancel');
+	public async txnWillCancel(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillCancel');
 	}
 
-	public async didCancel(): Promise<boolean> {
-		return this.lifecycle.phase('didCancel');
+	public async txnOnCancel(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnCancel');
 	}
 
-	public async willRevert(): Promise<boolean> {
-		return this.lifecycle.phase('willRevert');
+	public async txnDidCancel(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidCancel');
 	}
 
-	public async didRevert(): Promise<boolean> {
-		return this.lifecycle.phase('didRevert');
+	public async txnWillRevert(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillRevert');
 	}
 
-	public async willFail(): Promise<boolean> {
-		return this.lifecycle.phase('willFail');
+	public async txnDidRevert(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidRevert');
 	}
 
-	public async didFail(): Promise<boolean> {
-		return this.lifecycle.phase('didFail');
+	public async txnWillFail(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillFail');
 	}
 
-	public async willSucceed(): Promise<boolean> {
-		return this.lifecycle.phase('willSucceed');
+	public async txnDidFail(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidFail');
 	}
 
-	public async didSucceed(): Promise<boolean> {
-		return this.lifecycle.phase('didSucceed');
+	public async txnWillSucceed(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillSucceed');
+	}
+
+	public async txnDidSucceed(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidSucceed');
 	}
 
 	public reset(): void {

@@ -1,137 +1,138 @@
+import {Lifecycle} from '../../../src/lifecycle';
+import {CnxPhase} from '../../../src/cnx/phase';
 import type {CnxDelegate} from '../../../src/cnx/delegate';
-import {CnxLifecycle} from '../../../src/cnx/lifecycle';
 
-export class SampleCnx implements CnxDelegate<unknown> {
-	public readonly lifecycle: CnxLifecycle;
-	public readonly children: CnxDelegate[];
+export class SampleCnx implements CnxDelegate<CnxPhase> {
+	public readonly lifecycle: Lifecycle<CnxPhase>;
+	public readonly children: CnxDelegate<CnxPhase>[];
 
 	constructor() {
 		this.children = [];
-		this.lifecycle = new CnxLifecycle();
+		this.lifecycle = new Lifecycle<CnxPhase>();
 	}
 
-	public async didDisconnect(): Promise<boolean> {
-		return this.lifecycle.phase('didDisconnect');
+	public async cnxDidDisconnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidDisconnect');
 	}
 
-	public async didFailClose(): Promise<boolean> {
-		return this.lifecycle.phase('didFailClose');
+	public async cnxDidFailClose(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidFailClose');
 	}
 
-	public async didFailConnect(): Promise<boolean> {
-		return this.lifecycle.phase('didFailConnect');
+	public async cnxDidFailConnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidFailConnect');
 	}
 
-	public async didConnect(): Promise<boolean> {
-		return this.lifecycle.phase('didConnect');
+	public async cnxDidConnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidConnect');
 	}
 
-	public async didReconnect(): Promise<boolean> {
-		return this.lifecycle.phase('didReconnect');
+	public async cnxDidReconnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidReconnect');
 	}
 
-	public async didClose(): Promise<boolean> {
-		return this.lifecycle.phase('didClose');
+	public async cnxDidClose(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidClose');
 	}
 
-	public async willTimeout(): Promise<boolean> {
-		return this.lifecycle.phase('willTimeout');
+	public async cnxWillTimeout(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillTimeout');
 	}
 
-	public async didTimeout(): Promise<boolean> {
-		return this.lifecycle.phase('didTimeout');
+	public async cnxDidTimeout(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidTimeout');
 	}
 
-	public async didFailReconnect(): Promise<boolean> {
-		return this.lifecycle.phase('didFailReconnect');
+	public async cnxDidFailReconnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidFailReconnect');
 	}
 
-	public async didInit(): Promise<boolean> {
-		return this.lifecycle.phase('didInit');
+	public async cnxDidInit(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidInit');
 	}
 
-	public async didLoad(): Promise<boolean> {
-		return this.lifecycle.phase('didLoad');
+	public async cnxDidLoad(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidLoad');
 	}
 
-	public async didOpen(): Promise<boolean> {
-		return this.lifecycle.phase('didOpen');
+	public async cnxDidOpen(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidOpen');
 	}
 
-	public async didPing(): Promise<boolean> {
-		return this.lifecycle.phase('didPing');
+	public async cnxDidPing(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidPing');
 	}
 
-	public async didPong(): Promise<boolean> {
-		return this.lifecycle.phase('didPong');
+	public async cnxDidPong(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidPong');
 	}
 
-	public async didReset(): Promise<boolean> {
-		return this.lifecycle.phase('didReset');
+	public async cnxDidReset(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidReset');
 	}
 
-	public async didStartConnect(): Promise<boolean> {
-		return this.lifecycle.phase('didStartConnect');
+	public async cnxDidStartConnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidStartConnect');
 	}
 
-	public async didStopConnect(): Promise<boolean> {
-		return this.lifecycle.phase('didStopConnect');
+	public async cnxDidStopConnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidStopConnect');
 	}
 
-	public async didStopReconnect(): Promise<boolean> {
-		return this.lifecycle.phase('didStopReconnect');
+	public async cnxDidStopReconnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxDidStopReconnect');
 	}
 
-	public async willClose(): Promise<boolean> {
-		return this.lifecycle.phase('willClose');
+	public async cnxWillClose(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillClose');
 	}
 
-	public async willConnect(): Promise<boolean> {
-		return this.lifecycle.phase('willConnect');
+	public async cnxWillConnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillConnect');
 	}
 
-	public async willDisconnect(): Promise<boolean> {
-		return this.lifecycle.phase('willDisconnect');
+	public async cnxWillDisconnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillDisconnect');
 	}
 
-	public async willStopHandshake(): Promise<boolean> {
-		return this.lifecycle.phase('willStopHandshake');
+	public async cnxWillStopHandshake(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillStopHandshake');
 	}
 
-	public async willStopReconnect(): Promise<boolean> {
-		return this.lifecycle.phase('willStopReconnect');
+	public async cnxWillStopReconnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillStopReconnect');
 	}
 
-	public async willInit(): Promise<boolean> {
-		return this.lifecycle.phase('willInit');
+	public async cnxWillInit(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillInit');
 	}
 
-	public async willLoad(): Promise<boolean> {
-		return this.lifecycle.phase('willLoad');
+	public async cnxWillLoad(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillLoad');
 	}
 
-	public async willOpen(): Promise<boolean> {
-		return this.lifecycle.phase('willOpen');
+	public async cnxWillOpen(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillOpen');
 	}
 
-	public async willStopConnect(): Promise<boolean> {
-		return this.lifecycle.phase('willStopConnect');
+	public async cnxWillStopConnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillStopConnect');
 	}
 
-	public async willReconnect(): Promise<boolean> {
-		return this.lifecycle.phase('willReconnect');
+	public async cnxWillReconnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillReconnect');
 	}
 
-	public async willReset(): Promise<boolean> {
-		return this.lifecycle.phase('willReset');
+	public async cnxWillReset(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillReset');
 	}
 
-	public async willStartConnect(): Promise<boolean> {
-		return this.lifecycle.phase('willStartConnect');
+	public async cnxWillStartConnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillStartConnect');
 	}
 
-	public async willStartReconnect(): Promise<boolean> {
-		return this.lifecycle.phase('willStartReconnect');
+	public async cnxWillStartReconnect(): Promise<boolean> {
+		return this.lifecycle.phase('cnxWillStartReconnect');
 	}
 
 	public reset(): void {

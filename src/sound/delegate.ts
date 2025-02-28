@@ -22,4 +22,6 @@ export interface SoundDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegat
 	soundWillPause?: LifecycleListener<ArgsT>;
 	soundWillStart?: LifecycleListener<ArgsT>;
 	soundWillUnpause?: LifecycleListener<ArgsT>;
+	soundWillReset?: LifecycleListener<ArgsT>;
+	soundDidReset?: LifecycleListener<ArgsT>;
 }

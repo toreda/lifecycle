@@ -23,10 +23,9 @@
  *
  */
 
-import {TxnLifecycle} from './lifecycle';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
-import {TxnPhase} from './phase';
+import {type TxnPhase} from './phase';
 
 /**
  * Adds support for calling optional txn lifecycle methods.
@@ -34,52 +33,50 @@ import {TxnPhase} from './phase';
  * @category Transactions
  */
 export interface TxnDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<TxnPhase> {
-	lifecycle: TxnLifecycle;
-
-	willBegin?: LifecycleListener<ArgsT>;
+	txnWillBegin?: LifecycleListener<ArgsT>;
 	onBegin?: LifecycleListener<ArgsT>;
-	didBegin?: LifecycleListener<ArgsT>;
+	txnDidBegin?: LifecycleListener<ArgsT>;
 
-	willInterrupt?: LifecycleListener<ArgsT>;
-	onInterrupt?: LifecycleListener<ArgsT>;
-	didInterrupt?: LifecycleListener<ArgsT>;
+	txnWillInterrupt?: LifecycleListener<ArgsT>;
+	txnOnInterrupt?: LifecycleListener<ArgsT>;
+	txnDidInterrupt?: LifecycleListener<ArgsT>;
 
-	willPause?: LifecycleListener<ArgsT>;
-	onPause?: LifecycleListener<ArgsT>;
-	didPause?: LifecycleListener<ArgsT>;
+	txnWillPause?: LifecycleListener<ArgsT>;
+	txnOnPause?: LifecycleListener<ArgsT>;
+	txnDidPause?: LifecycleListener<ArgsT>;
 
-	willResume?: LifecycleListener<ArgsT>;
-	onResume?: LifecycleListener<ArgsT>;
-	didResume?: LifecycleListener<ArgsT>;
+	txnWillResume?: LifecycleListener<ArgsT>;
+	txnOnResume?: LifecycleListener<ArgsT>;
+	txnDidResume?: LifecycleListener<ArgsT>;
 
-	willCancel?: LifecycleListener<ArgsT>;
-	onCancel?: LifecycleListener<ArgsT>;
-	didCancel?: LifecycleListener<ArgsT>;
+	txnWillCancel?: LifecycleListener<ArgsT>;
+	txnOnCancel?: LifecycleListener<ArgsT>;
+	txnDidCancel?: LifecycleListener<ArgsT>;
 
-	willTimeout?: LifecycleListener<ArgsT>;
-	onTimeout?: LifecycleListener<ArgsT>;
-	didTimeout?: LifecycleListener<ArgsT>;
+	txnWillTimeout?: LifecycleListener<ArgsT>;
+	txnOnTimeout?: LifecycleListener<ArgsT>;
+	txnDidTimeout?: LifecycleListener<ArgsT>;
 
-	willRevert?: LifecycleListener<ArgsT>;
-	onRevert?: LifecycleListener<ArgsT>;
-	didRevert?: LifecycleListener<ArgsT>;
+	txnWillRevert?: LifecycleListener<ArgsT>;
+	txnOnRevert?: LifecycleListener<ArgsT>;
+	txnDidRevert?: LifecycleListener<ArgsT>;
 
 	/**
 	 * Transaction will fail.
 	 */
-	willFail?: LifecycleListener<ArgsT>;
-	onFail?: LifecycleListener<ArgsT>;
+	txnWillFail?: LifecycleListener<ArgsT>;
+	txnOnFail?: LifecycleListener<ArgsT>;
 	/**
 	 * Transaction failed due to error, timeout, or other problem.
 	 */
-	didFail?: LifecycleListener<ArgsT>;
+	txnDidFail?: LifecycleListener<ArgsT>;
 	/**
 	 * Transaction will finish successfully.
 	 */
-	willSucceed?: LifecycleListener<ArgsT>;
-	onSucceed?: LifecycleListener<ArgsT>;
+	txnWillSucceed?: LifecycleListener<ArgsT>;
+	txnOnSucceed?: LifecycleListener<ArgsT>;
 	/**
 	 * Transaction completed successfully.
 	 */
-	didSucceed?: LifecycleListener<ArgsT>;
+	txnDidSucceed?: LifecycleListener<ArgsT>;
 }

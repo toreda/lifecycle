@@ -1,97 +1,98 @@
+import {Lifecycle} from '../../../src/lifecycle';
+import {ScenePhase} from '../../../src/scene/phase';
 import type {SceneDelegate} from '../../../src/scene/delegate';
-import {SceneLifecycle} from '../../../src/scene/lifecycle';
 
-export class SampleScene implements SceneDelegate<unknown> {
-	public readonly lifecycle: SceneLifecycle;
-	public readonly children: SceneDelegate[];
+export class SampleScene implements SceneDelegate<ScenePhase> {
+	public readonly lifecycle: Lifecycle<ScenePhase>;
+	public readonly children: SceneDelegate<ScenePhase>[];
 
 	constructor() {
 		this.children = [];
-		this.lifecycle = new SceneLifecycle();
+		this.lifecycle = new Lifecycle<ScenePhase>();
 	}
 
-	public async willInit(): Promise<boolean> {
-		return this.lifecycle.phase('willInit');
+	public async sceneWillInit(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillInit');
 	}
 
-	public async willStop(): Promise<boolean> {
-		return this.lifecycle.phase('willStop');
+	public async sceneWillStop(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillStop');
 	}
 
 	public async didBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('didBecomeReady');
+		return this.lifecycle.phase('sceneDidBecomeReady');
 	}
 
-	public async willBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('willBecomeReady');
+	public async sceneWillBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillBecomeReady');
 	}
 
 	public async didReset(): Promise<boolean> {
-		return this.lifecycle.phase('didReset');
+		return this.lifecycle.phase('sceneDidReset');
 	}
 
-	public async willReset(): Promise<boolean> {
-		return this.lifecycle.phase('willReset');
+	public async sceneWillReset(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillReset');
 	}
 
 	public async didInit(): Promise<boolean> {
-		return this.lifecycle.phase('didInit');
+		return this.lifecycle.phase('sceneDidInit');
 	}
 
-	public async willLoad(): Promise<boolean> {
-		return this.lifecycle.phase('willLoad');
+	public async sceneWillLoad(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillLoad');
 	}
 
-	public async didLoad(): Promise<boolean> {
-		return this.lifecycle.phase('didLoad');
+	public async sceneDidLoad(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidLoad');
 	}
 
-	public async willStart(): Promise<boolean> {
-		return this.lifecycle.phase('willStart');
+	public async sceneWillStart(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillStart');
 	}
 
-	public async didStart(): Promise<boolean> {
-		return this.lifecycle.phase('didStart');
+	public async sceneDidStart(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidStart');
 	}
 
-	public async didStop(): Promise<boolean> {
-		return this.lifecycle.phase('didStop');
+	public async sceneDidStop(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidStop');
 	}
 
-	public async willHide(): Promise<boolean> {
-		return this.lifecycle.phase('willHide');
+	public async sceneWillHide(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillHide');
 	}
 
-	public async didHide(): Promise<boolean> {
-		return this.lifecycle.phase('didHide');
+	public async sceneDidHide(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidHide');
 	}
 
-	public async didShow(): Promise<boolean> {
-		return this.lifecycle.phase('didShow');
+	public async sceneDidShow(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidShow');
 	}
 
-	public async willShow(): Promise<boolean> {
-		return this.lifecycle.phase('willShow');
+	public async sceneWillShow(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillShow');
 	}
 
-	public async willPause(): Promise<boolean> {
-		return this.lifecycle.phase('willPause');
+	public async sceneWillPause(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillPause');
 	}
 
-	public async willUnpause(): Promise<boolean> {
-		return this.lifecycle.phase('willUnpause');
+	public async sceneWillUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillUnpause');
 	}
 
-	public async didPause(): Promise<boolean> {
-		return this.lifecycle.phase('didPause');
+	public async sceneDidPause(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidPause');
 	}
 
-	public async onPause(): Promise<boolean> {
-		return this.lifecycle.phase('onPause');
+	public async sceneOnPause(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnPause');
 	}
 
-	public async didUnpause(): Promise<boolean> {
-		return this.lifecycle.phase('didUnpause');
+	public async sceneDidUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidUnpause');
 	}
 
 	public reset(): void {

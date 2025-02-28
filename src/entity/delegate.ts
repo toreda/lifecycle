@@ -31,7 +31,7 @@ import {type LifecycleListener} from '../lifecycle/listener';;
  *
  * @category Entity
  */
-export interface EntityDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT>
+export interface EntityDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<any>
 {
 
 	/**
@@ -40,97 +40,97 @@ export interface EntityDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelega
 	 * on other entities during this phase, because
 	 * they are not guaranteed to exist yet.
 	 */
-	willInit?: LifecycleListener<ArgsT>;
-	stateWillChange?: LifecycleListener<ArgsT>;
-	stateDidChange?: LifecycleListener<ArgsT>;
-	stateOnChange?: LifecycleListener<ArgsT>;
-	willMove?: LifecycleListener<ArgsT>;
-	didMove?: LifecycleListener<ArgsT>;
-	onMove?: LifecycleListener<ArgsT>;
+	entityInit?: LifecycleListener<ArgsT>;
+	entityStateWillChange?: LifecycleListener<ArgsT>;
+	entityStateDidChange?: LifecycleListener<ArgsT>;
+	entityStateOnChange?: LifecycleListener<ArgsT>;
+	entityWillMove?: LifecycleListener<ArgsT>;
+	entityDidMove?: LifecycleListener<ArgsT>;
+	entityOnMove?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity just finished init. Now you can
 	 * add listeners, reach out to other objects.
 	 */
-	didInit?: LifecycleListener<ArgsT>;
+	entityDidInit?: LifecycleListener<ArgsT>;
 
 	/**
 	 * Entity is entering load phase.
 	 * Start loading required textures & resources.
 	 */
-	willLoad?: LifecycleListener<ArgsT>;
+	entityWillLoad?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity just finished load phase.
 	 * Handle any post-load cleanup, or settings.
 	 */
-	didLoad?: LifecycleListener<ArgsT>;
+	entityDidLoad?: LifecycleListener<ArgsT>;
 
 	/**
 	 * Entity is about to spawn in the world.
 	 * Do any required prep work such as
 	 * alpha change, settings, etc.
 	 */
-	willSpawn?: LifecycleListener<ArgsT>;
+	entityWillSpawn?: LifecycleListener<ArgsT>;
 	/** Entity spawned in scene. */
-	didSpawn?: LifecycleListener<ArgsT>;
-	onSpawn?: LifecycleListener<ArgsT>;
+	enntityDidSpawn?: LifecycleListener<ArgsT>;
+	entityOnSpawn?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity is about to start running and it'sonUpdate
 	 * method will be called on each frame.
 	 */
-	willStart?: LifecycleListener<ArgsT>;
+	entityWillStart?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity just started running and it's onUpdate
 	 * method is now being called once per frame
 	 */
-	didStart?: LifecycleListener<ArgsT>;
+	entityDidStart?: LifecycleListener<ArgsT>;
 
 	/** Entity will be paused. */
-	willPause?: LifecycleListener<ArgsT>;
-	willUnpause?: LifecycleListener<ArgsT>;
+	entityWillPause?: LifecycleListener<ArgsT>;
+	entityWillUnpause?: LifecycleListener<ArgsT>;
 	/** Entity just unpaused. */
-	didUnpause?: LifecycleListener<ArgsT>;
-	memoryWarning?: LifecycleListener<ArgsT>;
-	didPause?: LifecycleListener<ArgsT>;
+	entityDidUnpause?: LifecycleListener<ArgsT>;
+	entityMemoryWarning?: LifecycleListener<ArgsT>;
+	entityDidPause?: LifecycleListener<ArgsT>;
 	/** Entity is about to be hidden, but is still active. */
-	willHide?: LifecycleListener<ArgsT>;
+	entityWillHide?: LifecycleListener<ArgsT>;
 	/** Entity was hidden, but is still active. */
-	didHide?: LifecycleListener<ArgsT>;
+	entityDidHide?: LifecycleListener<ArgsT>;
 	/** Execute entity load logic. */
-	onLoad?: LifecycleListener<ArgsT>;
-	didShow?: LifecycleListener<ArgsT>;
-	willShow?: LifecycleListener<ArgsT>;
+	entityOnLoad?: LifecycleListener<ArgsT>;
+	entityDidShow?: LifecycleListener<ArgsT>;
+	entityWillShow?: LifecycleListener<ArgsT>;
 	/** Entity is about to be removed from scene. */
-	willDespawn?: LifecycleListener<ArgsT>;
+	entityWillDespawn?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity was removed from scene and has been
 	 * paused. Last opportunity to perform cleanup
 	 * work before entity is recycled into the entity pool.
 	 */
-	didDespawn?: LifecycleListener<ArgsT>;
+	entityDidDespawn?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity is about to stop. It's onUpdate
 	 * method will no longer be called each frame.
 	 */
-	willStop?: LifecycleListener<ArgsT>;
+	entityWillStop?: LifecycleListener<ArgsT>;
 	/**
 	 * Entity just stopped and it's onUpdate
 	 * method is no longer being called each frame
 	 */
-	didStop?: LifecycleListener<ArgsT>;
-	onStop?: LifecycleListener<ArgsT>;
-	onStart?: LifecycleListener<ArgsT>;
-	onPause?: LifecycleListener<ArgsT>;
-	onUnpause?: LifecycleListener<ArgsT>;
-	onDespawn?: LifecycleListener<ArgsT>;
-	onShow?: LifecycleListener<ArgsT>;
+	entityDidStop?: LifecycleListener<ArgsT>;
+	entityOnStop?: LifecycleListener<ArgsT>;
+	entityOnStart?: LifecycleListener<ArgsT>;
+	entityOnPause?: LifecycleListener<ArgsT>;
+	entityOnUnpause?: LifecycleListener<ArgsT>;
+	entityOnDespawn?: LifecycleListener<ArgsT>;
+	entityOnShow?: LifecycleListener<ArgsT>;
 
-	onInteract?: LifecycleListener<ArgsT>;
-	didInteract?: LifecycleListener<ArgsT>;
-	willInteract?: LifecycleListener<ArgsT>;
+	entityOnInteract?: LifecycleListener<ArgsT>;
+	entityDidInteract?: LifecycleListener<ArgsT>;
+	entityWillInteract?: LifecycleListener<ArgsT>;
 
-	willHover?: LifecycleListener<ArgsT>;
-	onHover?: LifecycleListener<ArgsT>;
-	didHover?: LifecycleListener<ArgsT>;
+	entityWillHover?: LifecycleListener<ArgsT>;
+	entityOnHover?: LifecycleListener<ArgsT>;
+	entityDidHover?: LifecycleListener<ArgsT>;
 
 	orientationWillChange?: LifecycleListener<ArgsT>;
 	orientationOnChange?: LifecycleListener<ArgsT>;

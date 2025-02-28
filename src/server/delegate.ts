@@ -25,13 +25,18 @@
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
+import {type ServerPhase} from './phase';
 
 /**
  * Delegate interface for server-side classes.
  *
  * @category Server
  */
-export interface ServerDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
+export interface ServerDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<ServerPhase> {
+	/**
+	 * The environment received a a sig interrupt.
+	 */
+	serverOnInterrupt?: LifecycleListener<ArgsT>;
 	/**
 	 * Server completed the 'ready' lifecycle phase.
 	 */

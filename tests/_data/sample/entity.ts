@@ -1,14 +1,13 @@
-import {AnimDelegate, SoundDelegate} from '../../../src';
+import {AnimDelegate, Lifecycle, SoundDelegate} from '../../../src';
 import type {EntityDelegate} from '../../../src/entity/delegate';
-import {EntityLifecycle} from '../../../src/entity/lifecycle';
 
 export class SampleEntity implements EntityDelegate<unknown>, SoundDelegate<unknown>, AnimDelegate<unknown> {
-	public readonly lifecycle: EntityLifecycle;
+	public readonly lifecycle: Lifecycle<any>;
 	public readonly children: EntityDelegate[];
 
 	constructor() {
 		this.children = [];
-		this.lifecycle = new EntityLifecycle();
+		this.lifecycle = new Lifecycle<any>();
 	}
 
 	public async orientationWillChange(): Promise<boolean> {
@@ -23,28 +22,28 @@ export class SampleEntity implements EntityDelegate<unknown>, SoundDelegate<unkn
 		return this.lifecycle.phase('orientationDidChange');
 	}
 
-	public async onHover(): Promise<boolean> {
-		return this.lifecycle.phase('onHover');
+	public async entityOnHover(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnHover');
 	}
 
-	public async onDespawn(): Promise<boolean> {
-		return this.lifecycle.phase('onDespawn');
+	public async entityOnDespawn(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnDespawn');
 	}
 
-	public async onPause(): Promise<boolean> {
-		return this.lifecycle.phase('onPause');
+	public async entityOnPause(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnPause');
 	}
 
-	public async onUnpause(): Promise<boolean> {
-		return this.lifecycle.phase('onUnpause');
+	public async entityOnUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnUnpause');
 	}
 
 	public async animWillCancel(): Promise<boolean> {
 		return this.lifecycle.phase('animWillCancel');
 	}
 
-	public async onMove(): Promise<boolean> {
-		return this.lifecycle.phase('onMove');
+	public async entityOnMove(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnMove');
 	}
 
 	public async stateDidChange(): Promise<boolean> {
@@ -223,8 +222,8 @@ export class SampleEntity implements EntityDelegate<unknown>, SoundDelegate<unkn
 		return this.lifecycle.phase('willSpawn');
 	}
 
-	public async onLoad(): Promise<boolean> {
-		return this.lifecycle.phase('onLoad');
+	public async entityOnLoad(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnLoad');
 	}
 	public async didLoad(): Promise<boolean> {
 		return this.lifecycle.phase('didLoad');

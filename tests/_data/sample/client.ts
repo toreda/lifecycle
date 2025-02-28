@@ -1,109 +1,110 @@
+import {Lifecycle} from '../../../src/lifecycle';
 import type {ClientDelegate} from '../../../src/client/delegate';
-import {ClientLifecycle} from '../../../src/client/lifecycle';
+import {ClientPhase} from '../../../src';
 
-export class SampleClient implements ClientDelegate<unknown> {
-	public readonly lifecycle: ClientLifecycle;
+export class SampleClient implements ClientDelegate<ClientPhase> {
+	public readonly lifecycle: Lifecycle<ClientPhase>;
 
 	constructor() {
-		this.lifecycle = new ClientLifecycle();
+		this.lifecycle = new Lifecycle<ClientPhase>();
 	}
 
-	public async didBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('didBecomeReady');
+	public async clientDidBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidBecomeReady');
 	}
 
-	public async didGainFocus(): Promise<boolean> {
-		return this.lifecycle.phase('didGainFocus');
+	public async clientDidGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidGainFocus');
 	}
 
-	public async didInit(): Promise<boolean> {
-		return this.lifecycle.phase('didInit');
+	public async clientDidInit(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidInit');
 	}
 
-	public async didLoad(): Promise<boolean> {
-		return this.lifecycle.phase('didLoad');
+	public async clientDidLoad(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidLoad');
 	}
-	public async didLoseFocus(): Promise<boolean> {
-		return this.lifecycle.phase('didLoseFocus');
-	}
-
-	public async didStart(): Promise<boolean> {
-		return this.lifecycle.phase('didStart');
+	public async clientDidLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidLoseFocus');
 	}
 
-	public async didPause(): Promise<boolean> {
-		return this.lifecycle.phase('didPause');
+	public async clientDidStart(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidStart');
 	}
 
-	public async didUnpause(): Promise<boolean> {
-		return this.lifecycle.phase('didUnpause');
+	public async clientDidPause(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidPause');
 	}
 
-	public async didShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('didShutdown');
+	public async clientDidUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidUnpause');
 	}
 
-	public async onLoad(): Promise<boolean> {
-		return this.lifecycle.phase('onLoad');
+	public async clientDidShutdown(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidShutdown');
 	}
 
-	public async onInit(): Promise<boolean> {
-		return this.lifecycle.phase('onInit');
+	public async clientOnLoad(): Promise<boolean> {
+		return this.lifecycle.phase('clientOnLoad');
 	}
 
-	public async onReady(): Promise<boolean> {
-		return this.lifecycle.phase('onReady');
+	public async clientOnInit(): Promise<boolean> {
+		return this.lifecycle.phase('clientOnInit');
 	}
 
-	public async onStart(): Promise<boolean> {
-		return this.lifecycle.phase('onStart');
+	public async clientOnReady(): Promise<boolean> {
+		return this.lifecycle.phase('clientOnReady');
 	}
 
-	public async onShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('onShutdown');
+	public async clientOnStart(): Promise<boolean> {
+		return this.lifecycle.phase('clientOnStart');
 	}
 
-	public async willBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('willBecomeReady');
+	public async clientOnShutdown(): Promise<boolean> {
+		return this.lifecycle.phase('clientOnShutdown');
 	}
 
-	public async willGainFocus(): Promise<boolean> {
-		return this.lifecycle.phase('willGainFocus');
+	public async clientWillBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('clientWillBecomeReady');
 	}
 
-	public async willShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('willShutdown');
+	public async clientWillGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('clientWillGainFocus');
 	}
 
-	public async willLoad(): Promise<boolean> {
-		return this.lifecycle.phase('willLoad');
+	public async clientWillShutdown(): Promise<boolean> {
+		return this.lifecycle.phase('clientWillShutdown');
 	}
 
-	public async willInit(): Promise<boolean> {
-		return this.lifecycle.phase('willInit');
+	public async clientWillLoad(): Promise<boolean> {
+		return this.lifecycle.phase('clientWillLoad');
 	}
 
-	public async willLoseFocus(): Promise<boolean> {
-		return this.lifecycle.phase('willLoseFocus');
-	}
-	public async willPause(): Promise<boolean> {
-		return this.lifecycle.phase('willPause');
+	public async clientWillInit(): Promise<boolean> {
+		return this.lifecycle.phase('clientWillInit');
 	}
 
-	public async willStart(): Promise<boolean> {
-		return this.lifecycle.phase('willStart');
+	public async clientWillLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('clientWillLoseFocus');
+	}
+	public async clientWillPause(): Promise<boolean> {
+		return this.lifecycle.phase('clientWillPause');
 	}
 
-	public async willStop(): Promise<boolean> {
-		return this.lifecycle.phase('willStop');
+	public async clientWillStart(): Promise<boolean> {
+		return this.lifecycle.phase('clientWillStart');
 	}
 
-	public async didStop(): Promise<boolean> {
-		return this.lifecycle.phase('didStop');
+	public async clientWillStop(): Promise<boolean> {
+		return this.lifecycle.phase('clientWillStop');
 	}
 
-	public async memoryWarning(): Promise<boolean> {
-		return this.lifecycle.phase('memoryWarning');
+	public async clientDidStop(): Promise<boolean> {
+		return this.lifecycle.phase('clientDidStop');
+	}
+
+	public async clientMemoryWarning(): Promise<boolean> {
+		return this.lifecycle.phase('clientMemoryWarning');
 	}
 
 	public reset(): void {
