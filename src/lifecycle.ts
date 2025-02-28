@@ -26,7 +26,7 @@
 /**
  * @category Lifecycle
  */
-export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
+export class Lifecycle<PhaseT> extends Map<PhaseT, boolean> {
 	constructor() {
 		super();
 
@@ -39,7 +39,7 @@ export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
 
 	}
 
-	public async phase(id: keyof PhaseT): Promise<boolean> {
+	public async phase(id: PhaseT): Promise<boolean> {
 		if (!id) {
 			return false;
 		}
@@ -52,7 +52,7 @@ export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
 		return true;
 	}
 
-	public async endPhase(id: keyof PhaseT): Promise<boolean> {
+	public async endPhase(id: PhaseT): Promise<boolean> {
 		return this.phase(id);
 	}
 
@@ -63,7 +63,7 @@ export class Lifecycle<PhaseT> extends Map<keyof PhaseT, boolean> {
 		this.clear();
 	}
 
-	public override get(key?: keyof PhaseT): boolean {
+	public override get(key?: PhaseT): boolean {
 		if (!key) {
 			return false;
 		}

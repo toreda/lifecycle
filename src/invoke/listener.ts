@@ -31,7 +31,7 @@ import {canInvoke} from '../can/invoke';
  * @category Helpers
  */
 export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
-	phase: keyof PhaseT,
+	phase: PhaseT,
 	delegate: DelegateT,
 	log?: Log
 ): Promise<boolean> {

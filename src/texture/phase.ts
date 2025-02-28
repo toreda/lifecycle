@@ -31,8 +31,7 @@ import {invokeListeners} from '../invoke/listeners';
 /**
  * @category Textures
  */
-export type TexturePhase = Pick<
-	TextureDelegate<unknown, unknown>,
+export type TexturePhase =
 	| 'textureDidChange'
 	| 'textureLoadDidFinish'
 	| 'textureLoadDidStart'
@@ -49,11 +48,10 @@ export type TexturePhase = Pick<
 	| 'textureUnloadOnStart'
 	| 'textureUnloadWillFinish'
 	| 'textureUnloadWillStart'
-	| 'textureWillChange'
->;
+	| 'textureWillChange';
 
 /**
- * Invoke a 
+ * Invoke a
  * @param delegate
  * @param phase
  * @returns
@@ -61,9 +59,9 @@ export type TexturePhase = Pick<
  * @category Textures
  */
 export async function texturePhase<ArgsT = unknown>(
-	phase: keyof TexturePhase,
-	delegate: TextureDelegate<TexturePhase, ArgsT>,
+	phase: TexturePhase,
+	delegate: TextureDelegate<ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<TexturePhase, TextureDelegate<TexturePhase, ArgsT>>(phase, delegate, log);
+	return invokeListeners<TexturePhase, TextureDelegate<ArgsT>>(phase, delegate, log);
 }

@@ -32,8 +32,8 @@ import {invokeListeners} from '../invoke/listeners';
  *
  * @category Scene
  */
-export type ScenePhase = Pick<
-	SceneDelegate<unknown, unknown>,
+export type ScenePhase =
+
 	| 'sceneDidBecomeReady'
 	| 'sceneDidHide'
 	| 'sceneDidInit'
@@ -63,8 +63,7 @@ export type ScenePhase = Pick<
 	| 'sceneWillShow'
 	| 'sceneWillStart'
 	| 'sceneWillStop'
-	| 'sceneWillUnpause'
->;
+	| 'sceneWillUnpause';
 
 /**
  *
@@ -75,9 +74,9 @@ export type ScenePhase = Pick<
  * @category Scene
  */
 export async function scenePhase<ArgsT = unknown>(
-	phase: keyof ScenePhase,
-	delegate: SceneDelegate<ScenePhase, ArgsT>,
+	phase: ScenePhase,
+	delegate: SceneDelegate<ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<ScenePhase, SceneDelegate<ScenePhase, ArgsT>>(phase, delegate, log);
+	return invokeListeners<ScenePhase, SceneDelegate<ArgsT>>(phase, delegate, log);
 }

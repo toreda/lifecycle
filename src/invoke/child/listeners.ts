@@ -3,7 +3,7 @@ import {type LifecycleDelegateCommon} from '../../lifecycle/delegate/common';
 import {invokeListener} from '../listener';
 
 export async function invokeChildListeners<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
-	phase: keyof PhaseT,
+	phase: PhaseT,
 	delegate: DelegateT,
 	base?: Log
 ): Promise<boolean> {

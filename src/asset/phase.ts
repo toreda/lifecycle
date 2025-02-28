@@ -30,8 +30,7 @@ import {type AssetDelegate} from './delegate';
 /**
  * @category Assets
  */
-export type AssetPhase = Pick<
-	AssetDelegate<unknown, unknown>,
+export type AssetPhase =
 	| 'assetLoadDidFinish'
 	| 'assetLoadDidStart'
 	| 'assetLoadOnAbort'
@@ -41,8 +40,7 @@ export type AssetPhase = Pick<
 	| 'assetLoadWillFinish'
 	| 'assetLoadWillStart'
 	| 'assetUnloadDidFinish'
-	| 'assetUnloadDidStart'
->;
+	| 'assetUnloadDidStart';
 
 /**
  *
@@ -52,9 +50,9 @@ export type AssetPhase = Pick<
  * @category Animations
  */
 export async function assetPhase<ArgsT = unknown>(
-	phase: keyof AssetPhase,
-	delegate: AssetDelegate<AssetPhase, ArgsT>,
+	phase: AssetPhase,
+	delegate: AssetDelegate<ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<AssetPhase, AssetDelegate<AssetPhase, ArgsT>>(phase, delegate, log);
+	return invokeListeners<AssetPhase, AssetDelegate<ArgsT>>(phase, delegate, log);
 }

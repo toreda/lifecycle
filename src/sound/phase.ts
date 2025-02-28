@@ -30,8 +30,7 @@ import {invokeListeners} from '../invoke/listeners';
 /**
  * @category Sounds
  */
-export type SoundPhase = Pick<
-	SoundDelegate<unknown, unknown>,
+export type SoundPhase =
 	| 'soundDidCancel'
 	| 'soundDidFinish'
 	| 'soundDidPause'
@@ -48,8 +47,7 @@ export type SoundPhase = Pick<
 	| 'soundWillFinish'
 	| 'soundWillPause'
 	| 'soundWillStart'
-	| 'soundWillUnpause'
->;
+	| 'soundWillUnpause';
 
 /**
  *
@@ -60,9 +58,9 @@ export type SoundPhase = Pick<
  * @category Sounds
  */
 export async function soundPhase<ArgsT = unknown>(
-	phase: keyof SoundPhase,
-	delegate: SoundDelegate<SoundPhase, ArgsT>,
+	phase: SoundPhase,
+	delegate: SoundDelegate<ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<SoundPhase, SoundDelegate<SoundPhase, ArgsT>>(phase, delegate, log);
+	return invokeListeners<SoundPhase, SoundDelegate<ArgsT>>(phase, delegate, log);
 }

@@ -4,132 +4,132 @@ import {Lifecycle} from '../../../src/lifecycle';
 import type {ServerDelegate} from '../../../src/server/delegate';
 import {ServerLifecycle} from '../../../src/server/lifecycle';
 
-export class SampleAdapter implements AdapterDelegate<AdapterPhase> {
+export class SampleAdapter implements AdapterDelegate {
 	public readonly lifecycle: Lifecycle<AdapterPhase>;
-	public readonly children: AdapterDelegate<AdapterPhase, unknown>[];
+	public readonly children: AdapterDelegate<unknown>[];
 
 	constructor() {
 		this.children = [];
 		this.lifecycle = new Lifecycle<AdapterPhase>();
 	}
 
-	public async willInit(): Promise<boolean> {
-		return this.lifecycle.phase('willInit');
+	public async adapterWillInit(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillInit');
 	}
 
-	public async didInit(): Promise<boolean> {
-		return this.lifecycle.phase('didInit');
+	public async adapterDidInit(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidInit');
 	}
 
-	public async willBecomeSpawnable(): Promise<boolean> {
-		return this.lifecycle.phase('willBecomeSpawnable');
+	public async adapterWillBecomeSpawnable(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillBecomeSpawnable');
 	}
 
-	public async didBecomeSpawnable(): Promise<boolean> {
-		return this.lifecycle.phase('didBecomeSpawnable');
+	public async adapterDidBecomeSpawnable(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidBecomeSpawnable');
 	}
 
-	public async willRegister(): Promise<boolean> {
-		return this.lifecycle.phase('willRegister');
+	public async adapterWillRegister(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillRegister');
 	}
 
-	public async didRegister(): Promise<boolean> {
-		return this.lifecycle.phase('didRegister');
+	public async adapterDidRegister(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidRegister');
 	}
 
-	public async willFetchManifest(): Promise<boolean> {
-		return this.lifecycle.phase('willFetchManifest');
+	public async adapterWillFetchManifest(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillFetchManifest');
 	}
 
-	public async didFetchManifest(): Promise<boolean> {
-		return this.lifecycle.phase('didFetchManifest');
+	public async adapterDidFetchManifest(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidFetchManifest');
 	}
 
-	public async willLoad(): Promise<boolean> {
-		return this.lifecycle.phase('willLoad');
+	public async adapterWillLoad(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillLoad');
 	}
 
-	public async didLoad(): Promise<boolean> {
-		return this.lifecycle.phase('didLoad');
+	public async adapterDidLoad(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidLoad');
 	}
 
-	public async willStart(): Promise<boolean> {
-		return this.lifecycle.phase('willStart');
+	public async adapterWillStart(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillStart');
 	}
 
-	public async didStart(): Promise<boolean> {
-		return this.lifecycle.phase('didStart');
+	public async adapterDidStart(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidStart');
 	}
 
-	public async willBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('willBecomeReady');
+	public async adapterWillBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillBecomeReady');
 	}
 
-	public async didBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('didBecomeReady');
+	public async adapterDidBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidBecomeReady');
 	}
 
-	public async willStop(): Promise<boolean> {
-		return this.lifecycle.phase('willStop');
+	public async adapterWillStop(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillStop');
 	}
 
-	public async willReset(): Promise<boolean> {
-		return this.lifecycle.phase('willReset');
+	public async adapterWillReset(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillReset');
 	}
 
-	public async didReset(): Promise<boolean> {
-		return this.lifecycle.phase('didReset');
+	public async adapterDidReset(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidReset');
 	}
 
-	public async didStop(): Promise<boolean> {
-		return this.lifecycle.phase('didStop');
+	public async adapterDidStop(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidStop');
 	}
 
-	public async didUnload(): Promise<boolean> {
-		return this.lifecycle.phase('didUnload');
+	public async adapterDidUnload(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidUnload');
 	}
 
-	public async willPause(): Promise<boolean> {
-		return this.lifecycle.phase('willPause');
+	public async adapterWillPause(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillPause');
 	}
 
-	public async willUnload(): Promise<boolean> {
-		return this.lifecycle.phase('willUnload');
+	public async adapterWillUnload(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillUnload');
 	}
 
-	public async didClearCache(): Promise<boolean> {
-		return this.lifecycle.phase('didClearCache');
+	public async adapterDidClearCache(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidClearCache');
 	}
 
-	public async willClearCache(): Promise<boolean> {
-		return this.lifecycle.phase('willClearCache');
+	public async adapterWillClearCache(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillClearCache');
 	}
 
-	public async willParseManifest(): Promise<boolean> {
-		return this.lifecycle.phase('willParseManifest');
+	public async adapterWillParseManifest(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillParseManifest');
 	}
 
-	public async didPause(): Promise<boolean> {
-		return this.lifecycle.phase('didPause');
+	public async adapterDidPause(): Promise<boolean> {
+		return this.lifecycle.endPhase('adapterDidPause');
 	}
 
-	public async didParseManifest(): Promise<boolean> {
-		return this.lifecycle.phase('didParseManifest');
+	public async adapterDidParseManifest(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidParseManifest');
 	}
 
-	public async didSpawnInstance(): Promise<boolean> {
-		return this.lifecycle.phase('didSpawnInstance');
+	public async adapterDidSpawnInstance(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidSpawnInstance');
 	}
 
-	public async willSpawnInstance(): Promise<boolean> {
-		return this.lifecycle.phase('willSpawnInstance');
+	public async adapterWillSpawnInstance(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillSpawnInstance');
 	}
 
-	public async didSuspend(): Promise<boolean> {
-		return this.lifecycle.phase('didSuspend');
+	public async adapterDidSuspend(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidSuspend');
 	}
-	public async willSuspend(): Promise<boolean> {
-		return this.lifecycle.phase('willSuspend');
+	public async adapterWillSuspend(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillSuspend');
 	}
 
 	public reset(): void {

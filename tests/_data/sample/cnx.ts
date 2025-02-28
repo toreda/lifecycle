@@ -23,6 +23,10 @@ export class SampleCnx implements CnxDelegate<CnxPhase> {
 		return this.lifecycle.phase('cnxDidFailConnect');
 	}
 
+	public async cnxWillStartHandshake(): Promise<boolean> {
+		return this.lifecycle.endPhase('cnxWillStartHandshake');
+	}
+
 	public async cnxDidConnect(): Promise<boolean> {
 		return this.lifecycle.phase('cnxDidConnect');
 	}

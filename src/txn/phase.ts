@@ -32,8 +32,7 @@ import {invokeListeners} from '../invoke/listeners';
  *
  * @category Transactions
  */
-export type TxnPhase = Pick<
-	TxnDelegate,
+export type TxnPhase =
 	| 'txnDidBegin'
 	| 'txnDidCancel'
 	| 'txnDidFail'
@@ -60,8 +59,7 @@ export type TxnPhase = Pick<
 	| 'txnWillResume'
 	| 'txnWillRevert'
 	| 'txnWillSucceed'
-	| 'txnWillTimeout'
->;
+	| 'txnWillTimeout';
 
 /**
  *
@@ -71,6 +69,10 @@ export type TxnPhase = Pick<
  *
  * @category Transactions
  */
-export async function txnPhase(phase: keyof TxnPhase, delegate: TxnDelegate, log?: Log): Promise<boolean> {
-	return invokeListeners<TxnPhase, TxnDelegate>(phase, delegate, log);
+export async function txnPhase<ArgsT = unknown>(
+	phase: TxnPhase,
+	delegate: TxnDelegate<ArgsT>,
+	log?: Log
+): Promise<boolean> {
+	return invokeListeners<TxnPhase, TxnDelegate<ArgsT>>(phase, delegate, log);
 }

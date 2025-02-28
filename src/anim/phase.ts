@@ -23,15 +23,14 @@
  *
  */
 
-import {Log} from "@toreda/log";
-import {invokeListeners} from "../invoke/listeners";
-import {type AnimDelegate} from "./delegate";
+import {Log} from '@toreda/log';
+import {invokeListeners} from '../invoke/listeners';
+import {type AnimDelegate} from './delegate';
 
 /**
  * @category Animations
  */
-export type AnimPhase = Pick<
-	AnimDelegate<unknown, unknown>,
+export type AnimPhase =
 	| 'animDidCancel'
 	| 'animDidFinish'
 	| 'animDidStart'
@@ -40,10 +39,10 @@ export type AnimPhase = Pick<
 	| 'animOnFinish'
 	| 'animOnMissing'
 	| 'animOnStart'
+	| 'animWillStart'
 	| 'animWillCancel'
 	| 'animWillFinish'
-	| 'animWillStart'
->;
+	| 'animWillStart';
 
 /**
  *
@@ -53,9 +52,9 @@ export type AnimPhase = Pick<
  * @category Animations
  */
 export async function animPhase<ArgsT = unknown>(
-	phase: keyof AnimPhase,
-	delegate: AnimDelegate<AnimPhase, ArgsT>,
+	phase: AnimPhase,
+	delegate: AnimDelegate<ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<AnimPhase, AnimDelegate<AnimPhase, ArgsT>>(phase, delegate, log);
+	return invokeListeners<AnimPhase, AnimDelegate<ArgsT>>(phase, delegate, log);
 }

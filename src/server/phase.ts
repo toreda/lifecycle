@@ -32,8 +32,7 @@ import {invokeListeners} from '../invoke/listeners';
  *
  * @category Server
  */
-export type ServerPhase = Pick<
-	ServerDelegate,
+export type ServerPhase =
 	| 'serverDidBecomeReady'
 	| 'serverDidInit'
 	| 'serverDidLoad'
@@ -54,8 +53,7 @@ export type ServerPhase = Pick<
 	| 'serverWillRestart'
 	| 'serverWillShutdown'
 	| 'serverWillStart'
-	| 'serverWillStop'
->;
+	| 'serverWillStop';
 
 /**
  *
@@ -65,10 +63,10 @@ export type ServerPhase = Pick<
  *
  * @category Server
  */
-export async function serverPhase(
-	phase: keyof ServerPhase,
-	delegate: ServerDelegate,
+export async function serverPhase<ArgsT = unknown>(
+	phase: ServerPhase,
+	delegate: ServerDelegate<ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<ServerPhase, ServerDelegate>(phase, delegate, log);
+	return invokeListeners<ServerPhase, ServerDelegate<ArgsT>>(phase, delegate, log);
 }

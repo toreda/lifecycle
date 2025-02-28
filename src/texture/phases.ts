@@ -30,7 +30,7 @@ import type {TexturePhase} from './phase';
  *
  * @category Textures
  */
-export const texturePhases: (keyof TexturePhase)[] = [
+export const texturePhases: (TexturePhase)[] = [
 	'textureDidChange',
 	'textureLoadDidFinish',
 	'textureLoadDidStart',

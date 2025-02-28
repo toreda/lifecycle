@@ -23,54 +23,23 @@
  *
  */
 
-import type {EntityPhase} from './phase';
+import type {TweenPhase} from './phase';
 
 /**
- * @category Entity
+ * Txn phases supported by TxnDelegate listeners.
+ *
+ * @category Tweens
  */
-export const entityPhases: (EntityPhase)[] = [
-	'entityDidDespawn',
-	'entityDidHide',
-	'entityDidHover',
-	'entityDidInit',
-	'entityDidInteract',
-	'entityDidLoad',
-	'entityDidMove',
-	'entityDidPause',
-	'entityDidShow',
-	'entityDidSpawn',
-	'entityDidStart',
-	'entityDidStop',
-	'entityDidUnpause',
-	'entityMemoryWarning',
-	'entityOnDespawn',
-	'entityOnHover',
-	'entityOnInteract',
-	'entityOnLoad',
-	'entityOnMove',
-	'entityOnPause',
-	'entityOnShow',
-	'entityOnSpawn',
-	'entityOnStart',
-	'entityOnStop',
-	'entityOnUnpause',
-	'orientationDidChange',
-	'orientationOnChange',
-	'orientationWillChange',
-	'entityStateDidChange',
-	'entityStateOnChange',
-	'entityStateWillChange',
-	'entityWillDespawn',
-	'entityWillHide',
-	'entityWillHover',
-	'entityWillInit',
-	'entityWillInteract',
-	'entityWillLoad',
-	'entityWillMove',
-	'entityWillPause',
-	'entityWillShow',
-	'entityWillSpawn',
-	'entityWillStart',
-	'entityWillStop',
-	'entityWillUnpause'
+export const tweenPhases: TweenPhase[] = [
+	'tweenDidCancel',
+	'tweenDidFinish',
+	'tweenDidReplay',
+	'tweenDidReset',
+	'tweenDidStart',
+	'tweenOnCancel',
+	'tweenOnFinish',
+	'tweenOnStart',
+	'tweenWillCancel',
+	'tweenWillFinish',
+	'tweenWillStart'
 ];

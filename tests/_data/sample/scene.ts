@@ -19,8 +19,32 @@ export class SampleScene implements SceneDelegate<ScenePhase> {
 		return this.lifecycle.phase('sceneWillStop');
 	}
 
-	public async didBecomeReady(): Promise<boolean> {
+	public async sceneDidBecomeReady(): Promise<boolean> {
 		return this.lifecycle.phase('sceneDidBecomeReady');
+	}
+
+	public async sceneOnInit(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnInit');
+	}
+
+	public async sceneOnReady(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnReady');
+	}
+
+	public async sceneOnHide(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnHide');
+	}
+
+	public async sceneOnShow(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnShow');
+	}
+
+	public async sceneOnLoad(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnLoad');
+	}
+
+	public async sceneDidReset(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidReset');
 	}
 
 	public async sceneWillBecomeReady(): Promise<boolean> {
@@ -35,7 +59,7 @@ export class SampleScene implements SceneDelegate<ScenePhase> {
 		return this.lifecycle.phase('sceneWillReset');
 	}
 
-	public async didInit(): Promise<boolean> {
+	public async sceneDidInit(): Promise<boolean> {
 		return this.lifecycle.phase('sceneDidInit');
 	}
 
@@ -89,6 +113,22 @@ export class SampleScene implements SceneDelegate<ScenePhase> {
 
 	public async sceneOnPause(): Promise<boolean> {
 		return this.lifecycle.phase('sceneOnPause');
+	}
+
+	public async sceneOnUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnUnpause');
+	}
+
+	public async sceneOnStop(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnStop');
+	}
+
+	public async sceneOnReset(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnReset');
+	}
+
+	public async sceneOnStart(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnStart');
 	}
 
 	public async sceneDidUnpause(): Promise<boolean> {

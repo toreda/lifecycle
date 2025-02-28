@@ -25,11 +25,16 @@
 
 import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {type LifecycleListener} from '../lifecycle/listener';
+import {type TexturePhase} from './phase';
 
 /**
  * @category Textures
  */
-export interface TextureDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
+export type TextureDelegate<ArgsT = unknown> = Record<TexturePhase, LifecycleListener<ArgsT>> &
+	LifecycleDelegateCommon<TexturePhase>;
+
+
+/* export interface TextureDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	textureDidChange?: LifecycleListener<ArgsT>;
 	textureLoadDidFinish?: LifecycleListener<ArgsT>;
 	textureLoadDidStart?: LifecycleListener<ArgsT>;
@@ -48,3 +53,4 @@ export interface TextureDelegate<PhaseT, ArgsT = unknown> extends LifecycleDeleg
 	textureUnloadWillStart?: LifecycleListener<ArgsT>;
 	textureWillChange?: LifecycleListener<ArgsT>;
 }
+ */

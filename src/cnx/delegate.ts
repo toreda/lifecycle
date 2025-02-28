@@ -25,13 +25,16 @@
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
+import {CnxPhase} from './phase';
 
 /**
  * Delegate interface for classes implementing Network Client listeners.
  *
  * @category Connection
  */
-export interface CnxDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
+export type CnxDelegate<ArgsT = unknown> = Record<CnxPhase, LifecycleListener<ArgsT>> &
+	LifecycleDelegateCommon<CnxPhase>;
+/* export interface CnxDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	cnxDidClose?: LifecycleListener<ArgsT>;
 	cnxDidConnect?: LifecycleListener<ArgsT>;
 	cnxDidDisconnect?: LifecycleListener<ArgsT>;
@@ -73,3 +76,4 @@ export interface CnxDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateC
 	cnxWillTimeout?: LifecycleListener<ArgsT>;
 	cnxDidTimeout?: LifecycleListener<ArgsT>;
 }
+ */

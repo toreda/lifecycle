@@ -28,7 +28,7 @@ import type {ScenePhase} from './phase';
 /**
  * @category Scene
  */
-export const scenePhases: (keyof ScenePhase)[] = [
+export const scenePhases: (ScenePhase)[] = [
 	'sceneDidBecomeReady',
 	'sceneDidHide',
 	'sceneDidInit',

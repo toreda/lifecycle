@@ -25,11 +25,16 @@
 
 import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {type LifecycleListener} from '../lifecycle/listener';
+import {AnimPhase} from './phase';
 
 /**
  * @category Animations
  */
-export interface AnimDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
+
+export type AnimDelegate<ArgsT = unknown> = Partial<Record<AnimPhase, LifecycleListener<ArgsT>>> &
+	LifecycleDelegateCommon<AnimPhase>;
+
+/* export interface AnimDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	animDidCancel?: LifecycleListener<ArgsT>;
 	animDidFinish?: LifecycleListener<ArgsT>;
 	animDidStart?: LifecycleListener<ArgsT>;
@@ -42,3 +47,4 @@ export interface AnimDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegate
 	animWillFinish?: LifecycleListener<ArgsT>;
 	animWillStart?: LifecycleListener<ArgsT>;
 }
+ */

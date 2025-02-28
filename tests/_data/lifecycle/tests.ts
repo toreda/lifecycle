@@ -2,7 +2,7 @@ import {Log} from '@toreda/log';
 import type {LifecycleDelegateCommon} from '../../../src/lifecycle/delegate/common';
 
 export type Invoker<PhaseT, DelegateT> = (
-	phase: keyof PhaseT,
+	phase: PhaseT,
 	delegate: DelegateT,
 	log?: Log
 ) => Promise<boolean>;
@@ -10,7 +10,7 @@ export type Invoker<PhaseT, DelegateT> = (
 export function generatePhaseTests<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	suiteName: string,
 	o: DelegateT,
-	phases: (keyof PhaseT)[],
+	phases: PhaseT[],
 	invoker: Invoker<PhaseT, DelegateT>
 ): void {
 	describe(`${suiteName}`, () => {
@@ -30,7 +30,7 @@ export function generatePhaseTests<PhaseT, DelegateT extends LifecycleDelegateCo
 
 export function generatePhaseListenerTests<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	o: DelegateT,
-	phases: (keyof PhaseT)[],
+	phases: PhaseT[],
 	fn: Invoker<PhaseT, DelegateT>
 ): void {
 	describe(`Phase Listeners`, () => {
@@ -46,7 +46,7 @@ export function generatePhaseListenerTests<PhaseT, DelegateT extends LifecycleDe
 
 export function generatePhaseResetTest<PhaseT>(
 	o: LifecycleDelegateCommon<PhaseT>,
-	phase: keyof PhaseT,
+	phase: PhaseT,
 	initial: boolean
 ): void {
 	it(`should reset '${String(phase)}' to '${String(initial)}'`, () => {
@@ -60,7 +60,7 @@ export function generatePhaseResetTest<PhaseT>(
 
 export function generatePhaseListenerTest<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	o: DelegateT,
-	phase: keyof PhaseT,
+	phase: PhaseT,
 	fn: Invoker<PhaseT, DelegateT>
 ): void {
 	it(`should invoke '${String(phase)}' listener`, async () => {

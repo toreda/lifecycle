@@ -21,8 +21,39 @@ export class SampleTxn implements TxnDelegate<unknown> {
 		return this.lifecycle.phase('txnWillInterrupt');
 	}
 
+	public async txnOnFail(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnFail');
+	}
+
+	public async txnOnInterrupt(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnInterrupt');
+	}
+
+	public async txnOnRevert(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnRevert');
+	}
+
 	public async txnDidInterrupt(): Promise<boolean> {
 		return this.lifecycle.phase('txnDidInterrupt');
+	}
+
+	public async txnOnTimeout(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnTimeout');
+	}
+
+	public async txnOnPause(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnPause');
+	}
+	public async txnOnSucceed(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnSucceed');
+	}
+
+	public async txnOnResume(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnResume');
+	}
+
+	public async txnOnBegin(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnBegin');
 	}
 
 	public async txnWillPause(): Promise<boolean> {

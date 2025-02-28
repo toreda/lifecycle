@@ -28,7 +28,7 @@ import {type AssetPhase} from './phase';
 /**
  * @category Assets
  */
-export const assetPhases: (keyof AssetPhase)[] = [
+export const assetPhases: (AssetPhase)[] = [
 	'assetLoadDidFinish',
 	'assetLoadDidStart',
 	'assetLoadOnAbort',

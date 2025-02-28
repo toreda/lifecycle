@@ -32,53 +32,51 @@ import {invokeListeners} from '../invoke/listeners';
  *
  * @category Entity
  */
-export type EntityPhase = Pick<
-	EntityDelegate<unknown, unknown>,
-	| 'didDespawn'
-	| 'didHide'
-	| 'didHover'
-	| 'didInit'
-	| 'didInteract'
-	| 'didLoad'
-	| 'didMove'
-	| 'didPause'
-	| 'didShow'
-	| 'didSpawn'
-	| 'didStart'
-	| 'didStop'
-	| 'didUnpause'
-	| 'memoryWarning'
-	| 'onDespawn'
-	| 'onHover'
-	| 'onInteract'
-	| 'onLoad'
-	| 'onMove'
-	| 'onPause'
-	| 'onShow'
-	| 'onSpawn'
-	| 'onStart'
-	| 'onStop'
-	| 'onUnpause'
+export type EntityPhase =
+	| 'entityDidDespawn'
+	| 'entityDidHide'
+	| 'entityDidHover'
+	| 'entityDidInit'
+	| 'entityDidInteract'
+	| 'entityDidLoad'
+	| 'entityDidMove'
+	| 'entityDidPause'
+	| 'entityDidShow'
+	| 'entityDidSpawn'
+	| 'entityDidStart'
+	| 'entityDidStop'
+	| 'entityDidUnpause'
+	| 'entityMemoryWarning'
+	| 'entityOnDespawn'
+	| 'entityOnHover'
+	| 'entityOnInteract'
+	| 'entityOnLoad'
+	| 'entityOnMove'
+	| 'entityOnPause'
+	| 'entityOnShow'
+	| 'entityOnSpawn'
+	| 'entityOnStart'
+	| 'entityOnStop'
+	| 'entityOnUnpause'
 	| 'orientationDidChange'
 	| 'orientationOnChange'
 	| 'orientationWillChange'
-	| 'stateDidChange'
-	| 'stateOnChange'
-	| 'stateWillChange'
-	| 'willDespawn'
-	| 'willHide'
-	| 'willHover'
-	| 'willInit'
-	| 'willInteract'
-	| 'willLoad'
-	| 'willMove'
-	| 'willPause'
-	| 'willShow'
-	| 'willSpawn'
-	| 'willStart'
-	| 'willStop'
-	| 'willUnpause'
->;
+	| 'entityStateDidChange'
+	| 'entityStateOnChange'
+	| 'entityStateWillChange'
+	| 'entityWillDespawn'
+	| 'entityWillHide'
+	| 'entityWillHover'
+	| 'entityWillInit'
+	| 'entityWillInteract'
+	| 'entityWillLoad'
+	| 'entityWillMove'
+	| 'entityWillPause'
+	| 'entityWillShow'
+	| 'entityWillSpawn'
+	| 'entityWillStart'
+	| 'entityWillStop'
+	| 'entityWillUnpause';
 
 /**
  *
@@ -89,9 +87,9 @@ export type EntityPhase = Pick<
  * @category Entity
  */
 export async function entityPhase<ArgsT = unknown>(
-	phase: keyof EntityPhase,
-	delegate: EntityDelegate<EntityPhase, ArgsT>,
+	phase: EntityPhase,
+	delegate: EntityDelegate<ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<EntityPhase, EntityDelegate<EntityPhase, ArgsT>>(phase, delegate, log);
+	return invokeListeners<EntityPhase, EntityDelegate<ArgsT>>(phase, delegate, log);
 }

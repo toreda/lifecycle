@@ -1,161 +1,167 @@
+import {Lifecycle} from '../../../src/lifecycle';
 import type {AddonDelegate} from '../../../src/addon/delegate';
-import {AddonLifecycle} from '../../../src/addon/lifecycle';
+import {AddonPhase} from '../../../src/addon/phase';
+
 
 export class SampleAddon implements AddonDelegate<unknown> {
-	public readonly lifecycle: AddonLifecycle;
+	public readonly lifecycle: Lifecycle<AddonPhase>;
 	public readonly children: AddonDelegate[];
 
 	constructor() {
 		this.children = [];
-		this.lifecycle = new AddonLifecycle();
+		this.lifecycle = new Lifecycle<AddonPhase>();
 	}
 
-	public async willEnterCache(): Promise<boolean> {
-		return this.lifecycle.phase('willEnterCache');
+	public async addonDidPause(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidPause');
 	}
 
-	public async onEnterCache(): Promise<boolean> {
-		return this.lifecycle.phase('onEnterCache');
+	public async addonWillLeaveCache(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillLeaveCache');
 	}
 
-	public async didPause(): Promise<boolean> {
-		return this.lifecycle.phase('didPause');
+	public async addonWillLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillLoseFocus');
 	}
 
-	public async willLeaveCache(): Promise<boolean> {
-		return this.lifecycle.phase('willLeaveCache');
+	public async addonWillGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillGainFocus');
 	}
 
-	public async willLoseFocus(): Promise<boolean> {
-		return this.lifecycle.phase('willLoseFocus');
+	public async addonWillPause(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillPause');
 	}
 
-	public async willGainFocus(): Promise<boolean> {
-		return this.lifecycle.phase('willGainFocus');
+	public async addonOnPause(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnPause');
 	}
 
-	public async willPause(): Promise<boolean> {
-		return this.lifecycle.phase('willPause');
+	public async addonDidUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidUnpause');
 	}
 
-	public async onPause(): Promise<boolean> {
-		return this.lifecycle.phase('onPause');
+	public async addonOnUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnUnpause');
 	}
 
-	public async didUnpause(): Promise<boolean> {
-		return this.lifecycle.phase('didUnpause');
+	public async addonWillInit(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillInit');
 	}
 
-	public async onLeaveCache(): Promise<boolean> {
-		return this.lifecycle.phase('onLeaveCache');
+	public async addonDidInit(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidInit');
 	}
 
-	public async onUnpause(): Promise<boolean> {
-		return this.lifecycle.phase('onUnpause');
+	public async addonWillLoad(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillLoad');
 	}
 
-	public async willInit(): Promise<boolean> {
-		return this.lifecycle.phase('willInit');
+	public async addonCacheOnLeave(): Promise<boolean> {
+		return this.lifecycle.phase('addonCacheOnLeave');
 	}
 
-	public async didInit(): Promise<boolean> {
-		return this.lifecycle.phase('didInit');
+	public async addonCacheWillLeave(): Promise<boolean> {
+		return this.lifecycle.phase('addonCacheWillLeave');
 	}
 
-	public async willLoad(): Promise<boolean> {
-		return this.lifecycle.phase('willLoad');
+	public async addonCacheDidEnter(): Promise<boolean> {
+		return this.lifecycle.phase('addonCacheDidEnter');
 	}
 
-	public async didLeaveCache(): Promise<boolean> {
-		return this.lifecycle.phase('didLeaveCache');
+	public async addonCacheDidLeave(): Promise<boolean> {
+		return this.lifecycle.phase('addonCacheDidLeave');
 	}
 
-	public async didGainFocus(): Promise<boolean> {
-		return this.lifecycle.phase('didGainFocus');
+	public async addonCacheWillEnter(): Promise<boolean> {
+		return this.lifecycle.phase('addonCacheWillEnter');
 	}
 
-	public async didEnterCache(): Promise<boolean> {
-		return this.lifecycle.phase('didEnterCache');
+	public async addonCacheOnEnter(): Promise<boolean> {
+		return this.lifecycle.phase('addonCacheOnEnter');
 	}
 
-	public async didLoseFocus(): Promise<boolean> {
-		return this.lifecycle.phase('didLoseFocus');
+	public async addonDidGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidGainFocus');
 	}
 
-	public async didLoad(): Promise<boolean> {
-		return this.lifecycle.phase('didLoad');
+	public async addonDidLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidLoseFocus');
 	}
 
-	public async willStart(): Promise<boolean> {
-		return this.lifecycle.phase('willStart');
+	public async addonDidLoad(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidLoad');
 	}
 
-	public async didStart(): Promise<boolean> {
-		return this.lifecycle.phase('didStart');
+	public async addonWillStart(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillStart');
 	}
 
-	public async willBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('willBecomeReady');
+	public async addonDidStart(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidStart');
 	}
 
-	public async didBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('didBecomeReady');
+	public async addonWillBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillBecomeReady');
 	}
 
-	public async willStop(): Promise<boolean> {
-		return this.lifecycle.phase('willStop');
+	public async addonDidBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidBecomeReady');
 	}
 
-	public async onStart(): Promise<boolean> {
-		return this.lifecycle.phase('onStart');
+	public async addonWillStop(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillStop');
 	}
 
-	public async onStop(): Promise<boolean> {
-		return this.lifecycle.phase('onStop');
+	public async addonOnStart(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnStart');
 	}
 
-	public async didStop(): Promise<boolean> {
-		return this.lifecycle.phase('didStop');
+	public async addonOnStop(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnStop');
 	}
 
-	public async willShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('willShutdown');
+	public async addonDidStop(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidStop');
 	}
 
-	public async willRestart(): Promise<boolean> {
-		return this.lifecycle.phase('willRestart');
+	public async addonWillShutdown(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillShutdown');
 	}
 
-	public async onShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('onShutdown');
+	public async addonWillRestart(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillRestart');
 	}
 
-	public async onRestart(): Promise<boolean> {
-		return this.lifecycle.phase('onRestart');
+	public async addonOnShutdown(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnShutdown');
 	}
 
-	public async onReady(): Promise<boolean> {
-		return this.lifecycle.phase('onReady');
+	public async addonOnRestart(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnRestart');
 	}
 
-	public async onInit(): Promise<boolean> {
-		return this.lifecycle.phase('onInit');
+	public async addonOnReady(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnReady');
 	}
 
-	public async didShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('didShutdown');
+	public async addonOnInit(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnInit');
 	}
 
-	public async didRestart(): Promise<boolean> {
-		return this.lifecycle.phase('didRestart');
+	public async addonDidShutdown(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidShutdown');
 	}
 
-	public async onLoad(): Promise<boolean> {
-		return this.lifecycle.phase('onLoad');
+	public async addonDidRestart(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidRestart');
 	}
 
-	public async memoryWarning(): Promise<boolean> {
-		return this.lifecycle.phase('memoryWarning');
+	public async addonOnLoad(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnLoad');
+	}
+
+	public async addonMemoryWarning(): Promise<boolean> {
+		return this.lifecycle.phase('addonMemoryWarning');
 	}
 
 	public reset(): void {

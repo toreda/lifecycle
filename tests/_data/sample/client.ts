@@ -2,7 +2,7 @@ import {Lifecycle} from '../../../src/lifecycle';
 import type {ClientDelegate} from '../../../src/client/delegate';
 import {ClientPhase} from '../../../src';
 
-export class SampleClient implements ClientDelegate<ClientPhase> {
+export class SampleClient implements ClientDelegate {
 	public readonly lifecycle: Lifecycle<ClientPhase>;
 
 	constructor() {

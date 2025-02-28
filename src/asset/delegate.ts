@@ -1,10 +1,13 @@
 import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {type LifecycleListener} from '../lifecycle/listener';
+import {type AssetPhase} from './phase';
 
 /**
  * @category Assets
  */
-export interface AssetDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
+export type AssetDelegate<ArgsT = unknown> = Record<AssetPhase, LifecycleListener<ArgsT>> &
+	LifecycleDelegateCommon<AssetPhase>;
+/* export interface AssetDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	assetLoadDidFinish?: LifecycleListener<ArgsT>;
 	assetLoadDidStart?: LifecycleListener<ArgsT>;
 	assetLoadOnAbort?: LifecycleListener<ArgsT>;
@@ -20,3 +23,4 @@ export interface AssetDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegat
 	assetUnloadWillFinish?: LifecycleListener<ArgsT>;
 	assetUnloadWillStart?: LifecycleListener<ArgsT>;
 }
+ */

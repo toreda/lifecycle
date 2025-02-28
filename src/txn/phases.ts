@@ -30,23 +30,23 @@ import type {TxnPhase} from './phase';
  *
  * @category Transactions
  */
-export const txnPhases: (keyof TxnPhase)[] = [
-	'willBegin',
-	'didBegin',
-	'willInterrupt',
-	'didInterrupt',
-	'willPause',
-	'didPause',
-	'willResume',
-	'didResume',
-	'willCancel',
-	'didCancel',
-	'willTimeout',
-	'didTimeout',
-	'willRevert',
-	'didRevert',
-	'willFail',
-	'didFail',
-	'willSucceed',
-	'didSucceed'
+export const txnPhases: TxnPhase[] = [
+	'txnDidBegin',
+	'txnDidCancel',
+	'txnDidFail',
+	'txnDidInterrupt',
+	'txnDidPause',
+	'txnDidResume',
+	'txnDidRevert',
+	'txnDidSucceed',
+	'txnDidTimeout',
+	'txnWillBegin',
+	'txnWillCancel',
+	'txnWillFail',
+	'txnWillInterrupt',
+	'txnWillPause',
+	'txnWillResume',
+	'txnWillRevert',
+	'txnWillSucceed',
+	'txnWillTimeout'
 ];

@@ -3,7 +3,7 @@ import {type ClientPhase} from './phase';
 /**
  * @category Client
  */
-export const clientPhases: (keyof ClientPhase)[] = [
+export const clientPhases: (ClientPhase)[] = [
 	'clientDidBecomeReady',
 	'clientDidGainFocus',
 	'clientDidInit',

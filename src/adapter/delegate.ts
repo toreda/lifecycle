@@ -25,13 +25,17 @@
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
+import {AdapterPhase} from './phase';
 
 /**
  * Adds support for calling optional addon lifecycle methods.
  *
  * @category Adapters
  */
-export interface AdapterDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
+
+export type AdapterDelegate<ArgsT = unknown> = Record<AdapterPhase, LifecycleListener<ArgsT>> &
+	LifecycleDelegateCommon<AdapterPhase>;
+/* export interface AdapterDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	// Registering the adapter as spawnable.
 	willRegister?: LifecycleListener<ArgsT>;
 	didRegister?: LifecycleListener<ArgsT>;
@@ -64,8 +68,8 @@ export interface AdapterDelegate<PhaseT, ArgsT = unknown> extends LifecycleDeleg
 	didLoad?: LifecycleListener<ArgsT>;
 
 	willClearCache?: LifecycleListener<ArgsT>;
-	didClearCache?: LifecycleListener<ArgsT>;
-
+	didClearCache?: LifecycleListener<ArgsT>; */
+/*
 	// Start Phase
 	// Adapter received a start call and
 	willStart?: LifecycleListener<ArgsT>;
@@ -91,3 +95,4 @@ export interface AdapterDelegate<PhaseT, ArgsT = unknown> extends LifecycleDeleg
 	willSuspend?: LifecycleListener<ArgsT>;
 	didSuspend?: LifecycleListener<ArgsT>;
 }
+ */

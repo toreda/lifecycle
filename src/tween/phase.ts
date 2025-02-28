@@ -23,54 +23,38 @@
  *
  */
 
-import type {EntityPhase} from './phase';
+import {Log} from '@toreda/log';
+import {TweenDelegate} from './delegate';
+import {invokeListeners} from '../invoke/listeners';
 
 /**
- * @category Entity
+ * @category Sounds
  */
-export const entityPhases: (EntityPhase)[] = [
-	'entityDidDespawn',
-	'entityDidHide',
-	'entityDidHover',
-	'entityDidInit',
-	'entityDidInteract',
-	'entityDidLoad',
-	'entityDidMove',
-	'entityDidPause',
-	'entityDidShow',
-	'entityDidSpawn',
-	'entityDidStart',
-	'entityDidStop',
-	'entityDidUnpause',
-	'entityMemoryWarning',
-	'entityOnDespawn',
-	'entityOnHover',
-	'entityOnInteract',
-	'entityOnLoad',
-	'entityOnMove',
-	'entityOnPause',
-	'entityOnShow',
-	'entityOnSpawn',
-	'entityOnStart',
-	'entityOnStop',
-	'entityOnUnpause',
-	'orientationDidChange',
-	'orientationOnChange',
-	'orientationWillChange',
-	'entityStateDidChange',
-	'entityStateOnChange',
-	'entityStateWillChange',
-	'entityWillDespawn',
-	'entityWillHide',
-	'entityWillHover',
-	'entityWillInit',
-	'entityWillInteract',
-	'entityWillLoad',
-	'entityWillMove',
-	'entityWillPause',
-	'entityWillShow',
-	'entityWillSpawn',
-	'entityWillStart',
-	'entityWillStop',
-	'entityWillUnpause'
-];
+export type TweenPhase =
+	| 'tweenDidCancel'
+	| 'tweenDidFinish'
+	| 'tweenDidReplay'
+	| 'tweenDidReset'
+	| 'tweenDidStart'
+	| 'tweenOnCancel'
+	| 'tweenOnFinish'
+	| 'tweenOnStart'
+	| 'tweenWillCancel'
+	| 'tweenWillFinish'
+	| 'tweenWillStart';
+
+/**
+ *
+ * @param delegate
+ * @param phase
+ * @returns
+ *
+ * @category Sounds
+ */
+export async function tweenPhase<ArgsT = unknown>(
+	phase: TweenPhase,
+	delegate: TweenDelegate<ArgsT>,
+	log?: Log
+): Promise<boolean> {
+	return invokeListeners<TweenPhase, TweenDelegate<ArgsT>>(phase, delegate, log);
+}

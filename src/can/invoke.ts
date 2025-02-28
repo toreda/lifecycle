@@ -10,7 +10,7 @@ import {Log} from '@toreda/log';
  * @category Helpers
  */
 export function canInvoke<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
-	phase: keyof PhaseT,
+	phase: PhaseT,
 	delegate: DelegateT,
 	log?: Log
 ): boolean {

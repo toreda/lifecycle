@@ -31,8 +31,7 @@ import {invokeListeners} from '../invoke/listeners';
  *
  * @category Addon
  */
-export type AddonPhase = Pick<
-	AddonDelegate<unknown, unknown>,
+export type AddonPhase =
 	| 'addonCacheDidEnter'
 	| 'addonCacheDidLeave'
 	| 'addonCacheOnEnter'
@@ -63,14 +62,14 @@ export type AddonPhase = Pick<
 	| 'addonWillBecomeReady'
 	| 'addonWillGainFocus'
 	| 'addonWillInit'
+	| 'addonWillLeaveCache'
 	| 'addonWillLoad'
 	| 'addonWillLoseFocus'
 	| 'addonWillPause'
 	| 'addonWillRestart'
 	| 'addonWillShutdown'
 	| 'addonWillStart'
-	| 'addonWillStop'
->;
+	| 'addonWillStop';
 
 /**
  *
@@ -81,9 +80,9 @@ export type AddonPhase = Pick<
  * @category Addon
  */
 export async function addonPhase<ArgsT = unknown>(
-	phase: keyof AddonPhase,
-	delegate: AddonDelegate<AddonPhase, ArgsT>,
+	phase: AddonPhase,
+	delegate: AddonDelegate<ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<AddonPhase, AddonDelegate<AddonPhase, ArgsT>>(phase, delegate, log);
+	return invokeListeners<AddonPhase, AddonDelegate<ArgsT>>(phase, delegate, log);
 }

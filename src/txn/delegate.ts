@@ -23,6 +23,7 @@
  *
  */
 
+import {Lifecycle} from '../lifecycle';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 import {type TxnPhase} from './phase';
@@ -32,7 +33,11 @@ import {type TxnPhase} from './phase';
  *
  * @category Transactions
  */
-export interface TxnDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<TxnPhase> {
+
+export type TxnDelegate<ArgsT = unknown> = Partial<Record<TxnPhase, LifecycleListener<ArgsT>>> &
+	LifecycleDelegateCommon<TxnPhase>;
+
+/**export interface TxnDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<TxnPhase> {
 	txnWillBegin?: LifecycleListener<ArgsT>;
 	onBegin?: LifecycleListener<ArgsT>;
 	txnDidBegin?: LifecycleListener<ArgsT>;
@@ -61,22 +66,14 @@ export interface TxnDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<Tx
 	txnOnRevert?: LifecycleListener<ArgsT>;
 	txnDidRevert?: LifecycleListener<ArgsT>;
 
-	/**
-	 * Transaction will fail.
-	 */
+
 	txnWillFail?: LifecycleListener<ArgsT>;
 	txnOnFail?: LifecycleListener<ArgsT>;
-	/**
-	 * Transaction failed due to error, timeout, or other problem.
-	 */
+
 	txnDidFail?: LifecycleListener<ArgsT>;
-	/**
-	 * Transaction will finish successfully.
-	 */
+
 	txnWillSucceed?: LifecycleListener<ArgsT>;
 	txnOnSucceed?: LifecycleListener<ArgsT>;
-	/**
-	 * Transaction completed successfully.
-	 */
+
 	txnDidSucceed?: LifecycleListener<ArgsT>;
-}
+}**/

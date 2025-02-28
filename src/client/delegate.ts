@@ -25,38 +25,32 @@
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
+import {ClientPhase} from './phase';
 
 /**
  * @category Client
  */
-export interface ClientDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
+export type ClientDelegate<ArgsT = unknown> = Record<ClientPhase, LifecycleListener<ArgsT>> &
+	LifecycleDelegateCommon<ClientPhase>;
+/* export interface ClientDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	clientWillInit?: LifecycleListener<ArgsT>;
-	/** Entered 'init' phase - creating all necessary instances. **/
 	clientOnInit: LifecycleListener<ArgsT>;
 	clientDidInit?: LifecycleListener<ArgsT>;
-	/** Client completed the 'load' phase' and will begin load phase next.*/
 	clientDidLoad?: LifecycleListener<ArgsT>;
-	/** Client is now loading resources, assets, and packages. */
 	clientOnLoad: LifecycleListener<ArgsT>;
 	clientWillLoad?: LifecycleListener<ArgsT>;
-	/** Entered 'ready' phase - all systems are running & ready. */
 	clientWillBecomeReady?: LifecycleListener<ArgsT>;
 	clientOnReady: LifecycleListener<ArgsT>;
 	clientDidBecomeReady?: LifecycleListener<ArgsT>;
-	/** Client systems are starting and will enter 'start' phase. */
 	clientWillStart?: LifecycleListener<ArgsT>;
 	clientOnStart: LifecycleListener<ArgsT>;
 	clientDidStart?: LifecycleListener<ArgsT>;
-	/** Client received memory warning from OS and cleared cached resources. */
 	clientMemoryWarning?: LifecycleListener<ArgsT>;
-	/** Client will enter 'pause' phase soon. Prepare to pause. */
 	clientWillPause?: LifecycleListener<ArgsT>;
 	clientDidPause?: LifecycleListener<ArgsT>;
-	/** Client entered 'pause' phase. All systems should now be paused. */
 	clientDidUnpause?: LifecycleListener<ArgsT>;
-	/** Client will enter 'stop' phase sometime soon. Prepare to stop systems. */
 	clientWillStop?: LifecycleListener<ArgsT>;
-	/** Client entered 'stop' phase - client has stopped running. All systems & timers are now stopped. */
+
 	clientDidStop?: LifecycleListener<ArgsT>;
 	clientWillLoseFocus?: LifecycleListener<ArgsT>;
 	clientDidLoseFocus?: LifecycleListener<ArgsT>;
@@ -66,3 +60,4 @@ export interface ClientDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelega
 	clientDidShutdown?: LifecycleListener<ArgsT>;
 	clientOnShutdown?: LifecycleListener<ArgsT>;
 }
+ */

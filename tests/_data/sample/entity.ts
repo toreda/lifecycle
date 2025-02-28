@@ -1,7 +1,7 @@
 import {AnimDelegate, Lifecycle, SoundDelegate} from '../../../src';
 import type {EntityDelegate} from '../../../src/entity/delegate';
 
-export class SampleEntity implements EntityDelegate<unknown>, SoundDelegate<unknown>, AnimDelegate<unknown> {
+export class SampleEntity implements EntityDelegate<unknown> {
 	public readonly lifecycle: Lifecycle<any>;
 	public readonly children: EntityDelegate[];
 
@@ -36,6 +36,146 @@ export class SampleEntity implements EntityDelegate<unknown>, SoundDelegate<unkn
 
 	public async entityOnUnpause(): Promise<boolean> {
 		return this.lifecycle.phase('entityOnUnpause');
+	}
+
+	public async entityWillShow(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillShow');
+	}
+
+	public async entityWillLoad(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillLoad');
+	}
+
+	public async entityWillInteract(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillInteract');
+	}
+
+	public async entityWillInit(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillInit');
+	}
+
+	public async entityWillHover(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillHover');
+	}
+
+	public async entityWillHide(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillHide');
+	}
+
+	public async entityWillDespawn(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillDespawn');
+	}
+
+	public async entityStateWillChange(): Promise<boolean> {
+		return this.lifecycle.phase('entityStateWillChange');
+	}
+
+	public async entityWillUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillUnpause');
+	}
+
+	public async entityWillStop(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillStop');
+	}
+
+	public async entityWillStart(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillStart');
+	}
+
+	public async entityWillSpawn(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillSpawn');
+	}
+
+	public async entityOnStop(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnStop');
+	}
+
+	public async entityOnStart(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnStart');
+	}
+
+	public async entityOnSpawn(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnSpawn');
+	}
+
+	public async entityOnShow(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnShow');
+	}
+
+	public async entityOnInteract(): Promise<boolean> {
+		return this.lifecycle.phase('entityOnInteract');
+	}
+
+	public async entityStateOnChange(): Promise<boolean> {
+		return this.lifecycle.phase('entityStateOnChange');
+	}
+
+	public async entityMemoryWarning(): Promise<boolean> {
+		return this.lifecycle.phase('entityMemoryWarning');
+	}
+
+	public async entityDidUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidUnpause');
+	}
+
+	public async entityDidStop(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidStop');
+	}
+
+	public async entityDidSpawn(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidSpawn');
+	}
+
+	public async entityDidShow(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidShow');
+	}
+
+	public async entityDidPause(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidPause');
+	}
+
+	public async entityDidMove(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidMove');
+	}
+
+	public async entityDidLoad(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidLoad');
+	}
+
+	public async entityDidInteract(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidInteract');
+	}
+
+	public async entityDidInit(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidInit');
+	}
+
+	public async entityDidHover(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidHover');
+	}
+
+	public async entityDidHide(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidHide');
+	}
+
+	public async entityDidDespawn(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidDespawn');
+	}
+
+	public async entityDidStart(): Promise<boolean> {
+		return this.lifecycle.phase('entityDidStart');
+	}
+
+	public async entityStateDidChange(): Promise<boolean> {
+		return this.lifecycle.phase('entityStateDidChange');
+	}
+
+	public async entityWillMove(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillMove');
+	}
+
+	public async entityWillPause(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillPause');
 	}
 
 	public async animWillCancel(): Promise<boolean> {

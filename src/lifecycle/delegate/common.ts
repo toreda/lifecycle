@@ -29,6 +29,7 @@ import {Lifecycle} from '../../lifecycle';
  * Common properties shared by all Lifecycle delegates.
  *
  * @category Lifecycle
+ *
  */
 export interface LifecycleDelegateCommon<PhaseT> {
 	children?: LifecycleDelegateCommon<PhaseT>[];

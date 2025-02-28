@@ -32,39 +32,37 @@ import {invokeListeners} from '../invoke/listeners';
  *
  * @category Adapters
  */
-export type AdapterPhase = Pick<
-	AdapterDelegate<unknown, unknown>,
-	| 'didBecomeReady'
-	| 'didBecomeSpawnable'
-	| 'didClearCache'
-	| 'didFetchManifest'
-	| 'didInit'
-	| 'didLoad'
-	| 'didParseManifest'
-	| 'didPause'
-	| 'didRegister'
-	| 'didReset'
-	| 'didSpawnInstance'
-	| 'didStart'
-	| 'didStop'
-	| 'didSuspend'
-	| 'didUnload'
-	| 'willBecomeReady'
-	| 'willBecomeSpawnable'
-	| 'willClearCache'
-	| 'willFetchManifest'
-	| 'willInit'
-	| 'willLoad'
-	| 'willParseManifest'
-	| 'willPause'
-	| 'willRegister'
-	| 'willReset'
-	| 'willSpawnInstance'
-	| 'willStart'
-	| 'willStop'
-	| 'willSuspend'
-	| 'willUnload'
->;
+export type AdapterPhase =
+	| 'adapterDidBecomeReady'
+	| 'adapterDidBecomeSpawnable'
+	| 'adapterDidClearCache'
+	| 'adapterDidFetchManifest'
+	| 'adapterDidInit'
+	| 'adapterDidLoad'
+	| 'adapterDidParseManifest'
+	| 'adapterDidPause'
+	| 'adapterDidRegister'
+	| 'adapterDidReset'
+	| 'adapterDidSpawnInstance'
+	| 'adapterDidStart'
+	| 'adapterDidStop'
+	| 'adapterDidSuspend'
+	| 'adapterDidUnload'
+	| 'adapterWillBecomeReady'
+	| 'adapterWillBecomeSpawnable'
+	| 'adapterWillClearCache'
+	| 'adapterWillFetchManifest'
+	| 'adapterWillInit'
+	| 'adapterWillLoad'
+	| 'adapterWillParseManifest'
+	| 'adapterWillPause'
+	| 'adapterWillRegister'
+	| 'adapterWillReset'
+	| 'adapterWillSpawnInstance'
+	| 'adapterWillStart'
+	| 'adapterWillStop'
+	| 'adapterWillSuspend'
+	| 'adapterWillUnload';
 
 /**
  *
@@ -75,9 +73,9 @@ export type AdapterPhase = Pick<
  * @category Adapter
  */
 export async function adapterPhase<ArgsT = unknown>(
-	phase: keyof AdapterPhase,
-	delegate: AdapterDelegate<AdapterPhase, ArgsT>,
+	phase: AdapterPhase,
+	delegate: AdapterDelegate<ArgsT>,
 	log?: Log
 ): Promise<boolean> {
-	return invokeListeners<AdapterPhase, AdapterDelegate<AdapterPhase, ArgsT>>(phase, delegate, log);
+	return invokeListeners<AdapterPhase, AdapterDelegate<ArgsT>>(phase, delegate, log);
 }
