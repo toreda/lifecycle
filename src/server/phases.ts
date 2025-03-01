@@ -3,7 +3,7 @@
  *
  *	Copyright (c) 2019 – 2025 Toreda, Inc.
  *
- *	Permission is hereby granted, free of charge, to any person obtaining a copy
+ *	PermissiserverOn is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
  *	in the Software without restriction, including without limitation the rights
  *	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -30,26 +30,26 @@ import type {ServerPhase} from './phase';
  *
  * @category Server
  */
-export const serverPhases: (keyof ServerPhase)[] = [
-	'didBecomeReady',
-	'didInit',
-	'didLoad',
-	'didRestart',
-	'didShutdown',
-	'didStart',
-	'didStop',
-	'onInit',
-	'onLoad',
-	'onReady',
-	'onRestart',
-	'onShutdown',
-	'onStart',
-	'onStop',
-	'willBecomeReady',
-	'willInit',
-	'willLoad',
-	'willRestart',
-	'willShutdown',
-	'willStart',
-	'willStop'
+export const serverPhases: ServerPhase[] = [
+	'serverDidBecomeReady',
+	'serverDidInit',
+	'serverDidLoad',
+	'serverDidRestart',
+	'serverDidShutdown',
+	'serverDidStart',
+	'serverDidStop',
+	'serverOnInit',
+	'serverOnLoad',
+	'serverOnReady',
+	'serverOnRestart',
+	'serverOnShutdown',
+	'serverOnStart',
+	'serverOnStop',
+	'serverWillBecomeReady',
+	'serverWillInit',
+	'serverWillLoad',
+	'serverWillRestart',
+	'serverWillShutdown',
+	'serverWillStart',
+	'serverWillStop'
 ];

@@ -32,5 +32,5 @@ import {type ServerPhase} from './phase';
  *
  * @category Server
  */
-export type ServerDelegate<ArgsT = unknown> = Record<ServerPhase, LifecycleListener<ArgsT>> &
+export type ServerDelegate<ArgsT = unknown> = Partial<Record<ServerPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<ServerPhase>;

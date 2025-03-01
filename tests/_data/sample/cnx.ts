@@ -2,9 +2,9 @@ import {Lifecycle} from '../../../src/lifecycle';
 import {CnxPhase} from '../../../src/cnx/phase';
 import type {CnxDelegate} from '../../../src/cnx/delegate';
 
-export class SampleCnx implements CnxDelegate<CnxPhase> {
+export class SampleCnx implements CnxDelegate {
 	public readonly lifecycle: Lifecycle<CnxPhase>;
-	public readonly children: CnxDelegate<CnxPhase>[];
+	public readonly children: CnxDelegate[];
 
 	constructor() {
 		this.children = [];

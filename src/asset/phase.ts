@@ -39,15 +39,29 @@ export type AssetPhase =
 	| 'assetLoadOnStart'
 	| 'assetLoadWillFinish'
 	| 'assetLoadWillStart'
+	| 'assetSearchDidStart'
+	| 'assetSearchDidFinish'
+	| 'assetSearchOnFinish'
+	| 'assetSearchOnStart'
+	| 'assetSearchWillFinish'
+	| 'assetSearchWillStart'
+	| 'assetUnloadDidAbort'
 	| 'assetUnloadDidFinish'
-	| 'assetUnloadDidStart';
+	| 'assetUnloadDidStart'
+	| 'assetUnloadDidStart'
+	| 'assetUnloadOnAbort'
+	| 'assetUnloadOnFinish'
+	| 'assetUnloadOnStart'
+	| 'assetUnloadWillAbort'
+	| 'assetUnloadWillFinish'
+	| 'assetUnloadWillStart';
 
 /**
  *
  * @param delegate
  * @param phase
  *
- * @category Animations
+ * @category Assets
  */
 export async function assetPhase<ArgsT = unknown>(
 	phase: AssetPhase,
