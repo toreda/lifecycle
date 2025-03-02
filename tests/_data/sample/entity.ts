@@ -1,4 +1,4 @@
-import {AnimDelegate, Lifecycle, SoundDelegate} from '../../../src';
+import {Lifecycle} from '../../../src/lifecycle';
 import type {EntityDelegate} from '../../../src/entity/delegate';
 
 export class SampleEntity implements EntityDelegate<unknown> {
@@ -48,10 +48,6 @@ export class SampleEntity implements EntityDelegate<unknown> {
 
 	public async entityWillInteract(): Promise<boolean> {
 		return this.lifecycle.phase('entityWillInteract');
-	}
-
-	public async entityWillInit(): Promise<boolean> {
-		return this.lifecycle.phase('entityWillInit');
 	}
 
 	public async entityWillHover(): Promise<boolean> {
@@ -198,8 +194,8 @@ export class SampleEntity implements EntityDelegate<unknown> {
 		return this.lifecycle.phase('stateOnChange');
 	}
 
-	public async willInit(): Promise<boolean> {
-		return this.lifecycle.phase('willInit');
+	public async entityWillInit(): Promise<boolean> {
+		return this.lifecycle.phase('entityWillInit');
 	}
 
 	public async animWillStart(): Promise<boolean> {
@@ -326,14 +322,6 @@ export class SampleEntity implements EntityDelegate<unknown> {
 		return this.lifecycle.phase('assetLoadWillStart');
 	}
 
-	public async didDespawn(): Promise<boolean> {
-		return this.lifecycle.phase('didDespawn');
-	}
-
-	public async didPause(): Promise<boolean> {
-		return this.lifecycle.phase('didPause');
-	}
-
 	public async didUnpause(): Promise<boolean> {
 		return this.lifecycle.phase('didUnpause');
 	}
@@ -364,25 +352,6 @@ export class SampleEntity implements EntityDelegate<unknown> {
 
 	public async entityOnLoad(): Promise<boolean> {
 		return this.lifecycle.phase('entityOnLoad');
-	}
-	public async didLoad(): Promise<boolean> {
-		return this.lifecycle.phase('didLoad');
-	}
-
-	public async willStart(): Promise<boolean> {
-		return this.lifecycle.phase('willStart');
-	}
-
-	public async didStart(): Promise<boolean> {
-		return this.lifecycle.phase('didStart');
-	}
-
-	public async onStart(): Promise<boolean> {
-		return this.lifecycle.phase('onStart');
-	}
-
-	public async onShow(): Promise<boolean> {
-		return this.lifecycle.phase('onShow');
 	}
 
 	public async onInteract(): Promise<boolean> {
@@ -439,10 +408,6 @@ export class SampleEntity implements EntityDelegate<unknown> {
 
 	public async textureWillLoad(): Promise<boolean> {
 		return this.lifecycle.phase('textureWillLoad');
-	}
-
-	public async willInteract(): Promise<boolean> {
-		return this.lifecycle.phase('willInteract');
 	}
 
 	public async didInteract(): Promise<boolean> {

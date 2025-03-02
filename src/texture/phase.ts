@@ -48,6 +48,7 @@ export type TexturePhase =
 	| 'textureUnloadOnStart'
 	| 'textureUnloadWillFinish'
 	| 'textureUnloadWillStart'
+	| 'textureWillResize'
 	| 'textureWillChange';
 
 /**

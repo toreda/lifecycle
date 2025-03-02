@@ -10,88 +10,89 @@ export class SampleServer implements ServerDelegate<unknown> {
 		this.lifecycle = new ServerLifecycle();
 	}
 
-	public async willInit(): Promise<boolean> {
-		return this.lifecycle.phase('willInit');
+	public async serverWillInit(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillInit');
 	}
 
-	public async didInit(): Promise<boolean> {
-		return this.lifecycle.phase('didInit');
+	public async serverDidInit(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidInit');
 	}
 
-	public async willLoad(): Promise<boolean> {
-		return this.lifecycle.phase('willLoad');
+
+	public async serverWillLoad(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillLoad');
 	}
 
-	public async didLoad(): Promise<boolean> {
-		return this.lifecycle.phase('didLoad');
+	public async serverDidLoad(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidLoad');
 	}
 
-	public async willStart(): Promise<boolean> {
-		return this.lifecycle.phase('willStart');
+	public async serverWillStart(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillStart');
 	}
 
-	public async didStart(): Promise<boolean> {
-		return this.lifecycle.phase('didStart');
+	public async serverDidStart(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidStart');
 	}
 
-	public async willBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('willBecomeReady');
+	public async serverWillBecomeReady(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillBecomeReady');
 	}
 
-	public async didBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('didBecomeReady');
+	public async serverDidBecomeReady(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidBecomeReady');
 	}
 
-	public async willStop(): Promise<boolean> {
-		return this.lifecycle.phase('willStop');
+	public async serverWillStop(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillStop');
 	}
 
-	public async onStart(): Promise<boolean> {
-		return this.lifecycle.phase('onStart');
+	public async serverOnStart(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnStart');
 	}
 
-	public async onStop(): Promise<boolean> {
-		return this.lifecycle.phase('onStop');
+	public async serverOnStop(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnStop');
 	}
 
-	public async didStop(): Promise<boolean> {
-		return this.lifecycle.phase('didStop');
+	public async serverDidStop(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidStop');
 	}
 
-	public async willShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('willShutdown');
+	public async serverWillShutdown(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillShutdown');
 	}
 
-	public async willRestart(): Promise<boolean> {
-		return this.lifecycle.phase('willRestart');
+	public async serverWillRestart(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillRestart');
 	}
 
-	public async onShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('onShutdown');
+	public async serverOnShutdown(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnShutdown');
 	}
 
-	public async onRestart(): Promise<boolean> {
-		return this.lifecycle.phase('onRestart');
+	public async serverOnRestart(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnRestart');
 	}
 
-	public async onReady(): Promise<boolean> {
-		return this.lifecycle.phase('onReady');
+	public async serverOnReady(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnReady');
 	}
 
-	public async onInit(): Promise<boolean> {
-		return this.lifecycle.phase('onInit');
+	public async serverOnInit(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnInit');
 	}
 
-	public async didShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('didShutdown');
+	public async serverDidShutdown(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidShutdown');
 	}
 
-	public async didRestart(): Promise<boolean> {
-		return this.lifecycle.phase('didRestart');
+	public async serverDidRestart(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidRestart');
 	}
 
-	public async onLoad(): Promise<boolean> {
-		return this.lifecycle.phase('onLoad');
+	public async serverOnLoad(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnLoad');
 	}
 
 	public reset(): void {

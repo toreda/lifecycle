@@ -30,27 +30,5 @@ import {type TexturePhase} from './phase';
 /**
  * @category Textures
  */
-export type TextureDelegate<ArgsT = unknown> = Record<TexturePhase, LifecycleListener<ArgsT>> &
+export type TextureDelegate<ArgsT = unknown> = Partial<Record<TexturePhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<TexturePhase>;
-
-
-/* export interface TextureDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
-	textureDidChange?: LifecycleListener<ArgsT>;
-	textureLoadDidFinish?: LifecycleListener<ArgsT>;
-	textureLoadDidStart?: LifecycleListener<ArgsT>;
-	textureLoadOnError?: LifecycleListener<ArgsT>;
-	textureLoadOnFinish?: LifecycleListener<ArgsT>;
-	textureLoadOnStart?: LifecycleListener<ArgsT>;
-	textureLoadWillFinish?: LifecycleListener<ArgsT>;
-	textureLoadWillStart?: LifecycleListener<ArgsT>;
-	textureOnChange?: LifecycleListener<ArgsT>;
-	textureUnloadDidFinish?: LifecycleListener<ArgsT>;
-	textureUnloadDidStart?: LifecycleListener<ArgsT>;
-	textureUnloadOnError?: LifecycleListener<ArgsT>;
-	textureUnloadOnFinish?: LifecycleListener<ArgsT>;
-	textureUnloadOnStart?: LifecycleListener<ArgsT>;
-	textureUnloadWillFinish?: LifecycleListener<ArgsT>;
-	textureUnloadWillStart?: LifecycleListener<ArgsT>;
-	textureWillChange?: LifecycleListener<ArgsT>;
-}
- */

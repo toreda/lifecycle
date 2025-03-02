@@ -31,9 +31,9 @@ describe('Lifecycle', () => {
 			});
 
 			it(`should return true when target phase is true`, () => {
-				expect(instance.get('didLoad')).toBe(false);
-				instance.set('didLoad', true);
-				expect(instance.get('didLoad')).toBe(true);
+				expect(instance.get('serverDidLoad')).toBe(false);
+				instance.set('serverDidLoad', true);
+				expect(instance.get('serverDidLoad')).toBe(true);
 			});
 		});
 
@@ -51,24 +51,24 @@ describe('Lifecycle', () => {
 			});
 
 			it(`should return false when target phase has already executed`, async () => {
-				instance.set('didInit', true);
-				expect(await instance.phase('didInit')).toBe(false);
+				instance.set('serverDidInit', true);
+				expect(await instance.phase('serverDidInit')).toBe(false);
 			});
 
 			it(`should return true when target phase has not yet executed`, async () => {
-				expect(await instance.phase('didInit')).toBe(true);
+				expect(await instance.phase('serverDidInit')).toBe(true);
 			});
 
 			it(`should return true when called for an unexecuted phase and false for subsequent calls`, async () => {
-				expect(await instance.phase('didInit')).toBe(true);
-				expect(await instance.phase('didInit')).toBe(false);
-				expect(await instance.phase('didInit')).toBe(false);
+				expect(await instance.phase('serverDidInit')).toBe(true);
+				expect(await instance.phase('serverDidInit')).toBe(false);
+				expect(await instance.phase('serverDidInit')).toBe(false);
 			});
 
 			it(`should return false when phase is already true`, async () => {
-				instance.set('didStop', true);
+				instance.set('serverDidStop', true);
 
-				expect(await instance.phase('didStop')).toBe(false);
+				expect(await instance.phase('serverDidStop')).toBe(false);
 			});
 		});
 

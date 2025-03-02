@@ -49,35 +49,35 @@ describe('invokeListener', () => {
 
 	it(`should return false when listener is defined but is not a function`, async () => {
 		const custom = new SampleServer();
-		custom.didRestart = {} as any;
-		const result = await invokeListener<ServerPhase, SampleServer>('didRestart', custom);
+		custom.serverDidRestart = {} as any;
+		const result = await invokeListener<ServerPhase, SampleServer>('serverDidRestart', custom);
 
 		expect(result).toBe(false);
 	});
 
 	it(`should return false when listener is undefined`, async () => {
 		const custom = new SampleServer();
-		custom.didInit = undefined as any;
-		const result = await invokeListener<ServerPhase, SampleServer>('didInit', custom);
+		custom.serverDidInit = undefined as any;
+		const result = await invokeListener<ServerPhase, SampleServer>('serverDidInit', custom);
 
 		expect(result).toBe(false);
 	});
 
 	it(`should return false when listener throws`, async () => {
 		const custom = new SampleServer();
-		custom.didStop = jest.fn(async () => {
+		custom.serverDidStop = jest.fn(async () => {
 			throw new Error('exception here');
 		}) as any;
-		const result = await invokeListener<ServerPhase, SampleServer>('didStop', custom);
+		const result = await invokeListener<ServerPhase, SampleServer>('serverDidStop', custom);
 
 		expect(result).toBe(false);
 	});
 
 	it(`should call phase listener and return true`, async () => {
-		const spy = jest.spyOn(server, 'didRestart');
+		const spy = jest.spyOn(server, 'serverDidRestart');
 		expect(spy).not.toHaveBeenCalled();
 
-		const result = await invokeListener<ServerPhase, SampleServer>('didRestart', server);
+		const result = await invokeListener<ServerPhase, SampleServer>('serverDidRestart', server);
 		expect(result).toBe(true);
 		expect(spy).toHaveBeenCalledTimes(1);
 
@@ -85,11 +85,11 @@ describe('invokeListener', () => {
 	});
 
 	it(`should not call phase listener when phase has already been called`, async () => {
-		const spy = jest.spyOn(server, 'didBecomeReady');
+		const spy = jest.spyOn(server, 'serverDidBecomeReady');
 		expect(spy).not.toHaveBeenCalled();
 
-		server.lifecycle.set('didBecomeReady', true);
-		const result = await invokeListener<ServerPhase, SampleServer>('didBecomeReady', server);
+		server.lifecycle.set('serverDidBecomeReady', true);
+		const result = await invokeListener<ServerPhase, SampleServer>('serverDidBecomeReady', server);
 		expect(result).toBe(false);
 		expect(spy).not.toHaveBeenCalled();
 
@@ -97,14 +97,14 @@ describe('invokeListener', () => {
 	});
 
 	it(`should only call listener once`, async () => {
-		const spy = jest.spyOn(server, 'didBecomeReady');
+		const spy = jest.spyOn(server, 'serverDidBecomeReady');
 		expect(spy).not.toHaveBeenCalled();
 
-		const a = await invokeListener<ServerPhase, SampleServer>('didBecomeReady', server);
+		const a = await invokeListener<ServerPhase, SampleServer>('serverDidBecomeReady', server);
 		expect(a).toBe(true);
 
 		for (let i = 0; i < 4; i++) {
-			const result = await invokeListener<ServerPhase, SampleServer>('didBecomeReady', server);
+			const result = await invokeListener<ServerPhase, SampleServer>('serverDidBecomeReady', server);
 			expect(result).toBe(false);
 		}
 
@@ -117,16 +117,16 @@ describe('invokeListener', () => {
 		it(`should invoke listeners on all children`, async () => {
 			const custom = new SampleServer();
 			const a = new SampleServer();
-			const spyA = jest.spyOn(a, 'didLoad');
+			const spyA = jest.spyOn(a, 'serverDidLoad');
 			const b = new SampleServer();
-			const spyB = jest.spyOn(b, 'didLoad');
+			const spyB = jest.spyOn(b, 'serverDidLoad');
 			custom.children.push(a);
 			custom.children.push(b);
 
 			expect(spyA).not.toHaveBeenCalled();
 			expect(spyB).not.toHaveBeenCalled();
 
-			const _result = await invokeListeners<ServerPhase, SampleServer>('didLoad', custom);
+			const _result = await invokeListeners<ServerPhase, SampleServer>('serverDidLoad', custom);
 
 			expect(spyA).toHaveBeenCalledTimes(1);
 			expect(spyB).toHaveBeenCalledTimes(1);
