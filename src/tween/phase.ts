@@ -24,7 +24,7 @@
  */
 
 import {Log} from '@toreda/log';
-import {TweenDelegate} from './delegate';
+import {type TweenDelegate} from './delegate';
 import {invokeListeners} from '../invoke/listeners';
 
 /**

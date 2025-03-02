@@ -70,7 +70,7 @@ export type AdapterPhase =
  * @param phase
  * @returns
  *
- * @category Adapter
+ * @category Adapters
  */
 export async function adapterPhase<ArgsT = unknown>(
 	phase: AdapterPhase,

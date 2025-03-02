@@ -1,4 +1,4 @@
-import {Lifecycle, TxnDelegate, TxnPhase} from '../../../src';
+import {Lifecycle, type TxnDelegate, TxnPhase} from '../../../src';
 
 export class SampleTxn implements TxnDelegate<unknown> {
 	public readonly lifecycle: Lifecycle<TxnPhase>;

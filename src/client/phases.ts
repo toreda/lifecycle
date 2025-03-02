@@ -1,7 +1,9 @@
 import {type ClientPhase} from './phase';
 
 /**
- * @category Client
+ * Iterable collection of all valid `ClientPhase` values.
+ *
+ * @category Clients
  */
 export const clientPhases: (ClientPhase)[] = [
 	'clientDidBecomeReady',

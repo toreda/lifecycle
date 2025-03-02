@@ -28,7 +28,7 @@ import {type AnimPhase} from './phase';
 /**
  * @category Assets
  */
-export const animPhases: (keyof AnimPhase)[] = [
+export const animPhases: AnimPhase[] = [
 	'animDidCancel',
 	'animDidFinish',
 	'animDidStart',

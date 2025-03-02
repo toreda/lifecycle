@@ -5,7 +5,7 @@ import {type AssetPhase} from './phase';
 /**
  * @category Assets
  */
-export type AssetDelegate<ArgsT = unknown> = Record<AssetPhase, LifecycleListener<ArgsT>> &
+export type AssetDelegate<ArgsT = unknown> = Partial<Record<AssetPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<AssetPhase>;
 /* export interface AssetDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
 	assetLoadDidFinish?: LifecycleListener<ArgsT>;

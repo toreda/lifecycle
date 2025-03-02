@@ -48,7 +48,6 @@ export type AssetPhase =
 	| 'assetUnloadDidAbort'
 	| 'assetUnloadDidFinish'
 	| 'assetUnloadDidStart'
-	| 'assetUnloadDidStart'
 	| 'assetUnloadOnAbort'
 	| 'assetUnloadOnFinish'
 	| 'assetUnloadOnStart'

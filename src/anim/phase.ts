@@ -39,7 +39,6 @@ export type AnimPhase =
 	| 'animOnFinish'
 	| 'animOnMissing'
 	| 'animOnStart'
-	| 'animWillStart'
 	| 'animWillCancel'
 	| 'animWillFinish'
 	| 'animWillStart';

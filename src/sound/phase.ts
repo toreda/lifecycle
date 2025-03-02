@@ -36,7 +36,7 @@ export type SoundPhase =
 	| 'soundDidPause'
 	| 'soundDidStart'
 	| 'soundDidUnpause'
-	| 'soundMissing'
+	| 'soundOnMissing'
 	| 'soundOnCancel'
 	| 'soundOnError'
 	| 'soundOnFinish'

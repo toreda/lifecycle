@@ -30,7 +30,7 @@ import {type AddonPhase} from './phase';
 /**
  * Adds support for calling optional addon lifecycle methods.
  *
- * @category Addon
+ * @category Addons
  */
 export type AddonDelegate<ArgsT = unknown> = Partial<Record<AddonPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<AddonPhase>;

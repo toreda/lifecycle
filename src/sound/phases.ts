@@ -30,13 +30,13 @@ import type {SoundPhase} from './phase';
  *
  * @category Sounds
  */
-export const SoundPhases: (SoundPhase)[] = [
+export const soundPhases: SoundPhase[] = [
 	'soundDidCancel',
 	'soundDidFinish',
 	'soundDidPause',
 	'soundDidStart',
 	'soundDidUnpause',
-	'soundMissing',
+	'soundOnMissing',
 	'soundOnCancel',
 	'soundOnError',
 	'soundOnFinish',

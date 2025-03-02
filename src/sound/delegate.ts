@@ -6,7 +6,7 @@ import {SoundPhase} from './phase';
  * @category Sounds
  */
 
-export type SoundDelegate<ArgsT = unknown> = Record<SoundPhase, LifecycleListener<ArgsT>> &
+export type SoundDelegate<ArgsT = unknown> = Partial<Record<SoundPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<SoundPhase>;
 //export interface SoundDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT>{
 /* 	soundDidCancel?: LifecycleListener<ArgsT>;

@@ -28,7 +28,7 @@ import type {LifecycleListener} from '../lifecycle/listener';
 import {ClientPhase} from './phase';
 
 /**
- * @category Client
+ * @category Clients
  */
 export type ClientDelegate<ArgsT = unknown> = Record<ClientPhase, LifecycleListener<ArgsT>> &
 	LifecycleDelegateCommon<ClientPhase>;

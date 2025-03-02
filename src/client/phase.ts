@@ -30,7 +30,7 @@ import {invokeListeners} from '../invoke/listeners';
 /**
  * Expressive type describing phase names used in client lifecycle flow.
  *
- * @category Client
+ * @category Clients
  */
 export type ClientPhase =
 	| 'clientDidBecomeReady'

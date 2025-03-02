@@ -26,7 +26,7 @@
 import type {AddonPhase} from './phase';
 
 /**
- * @category Addon
+ * @category Addons
  */
 export const addonPhases: AddonPhase[] = [
 	'addonCacheDidEnter',
