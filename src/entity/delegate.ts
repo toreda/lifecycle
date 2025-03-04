@@ -29,7 +29,7 @@ import {EntityLifecycle} from './lifecycle';
 import {EntityPhase} from './phase';
 /**
  *
- * @category Entity
+ * @category Entities
  */
 export type EntityDelegate<ArgsT = unknown> = Partial<Record<EntityPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<EntityPhase>;

@@ -23,57 +23,15 @@
  *
  */
 
-import {Lifecycle} from '../lifecycle';
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import type {LifecycleListener} from '../lifecycle/listener';
 import {type TxnPhase} from './phase';
 
 /**
- * Adds support for calling optional txn lifecycle methods.
+ * Interface for implementing one or more transaction lifecycle methods.
  *
  * @category Transactions
  */
 
 export type TxnDelegate<ArgsT = unknown> = Partial<Record<TxnPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<TxnPhase>;
-
-/**export interface TxnDelegate<ArgsT = unknown> extends LifecycleDelegateCommon<TxnPhase> {
-	txnWillBegin?: LifecycleListener<ArgsT>;
-	onBegin?: LifecycleListener<ArgsT>;
-	txnDidBegin?: LifecycleListener<ArgsT>;
-
-	txnWillInterrupt?: LifecycleListener<ArgsT>;
-	txnOnInterrupt?: LifecycleListener<ArgsT>;
-	txnDidInterrupt?: LifecycleListener<ArgsT>;
-
-	txnWillPause?: LifecycleListener<ArgsT>;
-	txnOnPause?: LifecycleListener<ArgsT>;
-	txnDidPause?: LifecycleListener<ArgsT>;
-
-	txnWillResume?: LifecycleListener<ArgsT>;
-	txnOnResume?: LifecycleListener<ArgsT>;
-	txnDidResume?: LifecycleListener<ArgsT>;
-
-	txnWillCancel?: LifecycleListener<ArgsT>;
-	txnOnCancel?: LifecycleListener<ArgsT>;
-	txnDidCancel?: LifecycleListener<ArgsT>;
-
-	txnWillTimeout?: LifecycleListener<ArgsT>;
-	txnOnTimeout?: LifecycleListener<ArgsT>;
-	txnDidTimeout?: LifecycleListener<ArgsT>;
-
-	txnWillRevert?: LifecycleListener<ArgsT>;
-	txnOnRevert?: LifecycleListener<ArgsT>;
-	txnDidRevert?: LifecycleListener<ArgsT>;
-
-
-	txnWillFail?: LifecycleListener<ArgsT>;
-	txnOnFail?: LifecycleListener<ArgsT>;
-
-	txnDidFail?: LifecycleListener<ArgsT>;
-
-	txnWillSucceed?: LifecycleListener<ArgsT>;
-	txnOnSucceed?: LifecycleListener<ArgsT>;
-
-	txnDidSucceed?: LifecycleListener<ArgsT>;
-}**/

@@ -26,7 +26,7 @@
 import type {CnxPhase} from './phase';
 
 /**
- * @category Connection
+ * @category Connections
  */
 export const cnxPhases: CnxPhase[] = [
 	'cnxDidClose',

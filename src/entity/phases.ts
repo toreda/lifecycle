@@ -26,7 +26,7 @@
 import type {EntityPhase} from './phase';
 
 /**
- * @category Entity
+ * @category Entities
  */
 export const entityPhases: (EntityPhase)[] = [
 	'entityDidDespawn',

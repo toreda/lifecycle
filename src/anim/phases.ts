@@ -26,7 +26,9 @@
 import {type AnimPhase} from './phase';
 
 /**
- * @category Assets
+ * Iterable collection of animation phases.
+ *
+ * @category Animations
  */
 export const animPhases: AnimPhase[] = [
 	'animDidCancel',

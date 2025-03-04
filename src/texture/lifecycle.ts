@@ -23,49 +23,14 @@
  *
  */
 
-import {Log} from '@toreda/log';
-import {invokeListeners} from '../invoke/listeners';
-import {type AssetDelegate} from './delegate';
+import {Lifecycle} from '../lifecycle';
+import {type TexturePhase} from './phase';
 
 /**
- * @category Assets
+ * @category Textures
  */
-export type AssetPhase =
-	| 'assetLoadDidFinish'
-	| 'assetLoadDidStart'
-	| 'assetLoadOnAbort'
-	| 'assetLoadOnFinish'
-	| 'assetLoadOnProgress'
-	| 'assetLoadOnStart'
-	| 'assetLoadWillFinish'
-	| 'assetLoadWillStart'
-	| 'assetSearchDidFinish'
-	| 'assetSearchDidStart'
-	| 'assetSearchOnFinish'
-	| 'assetSearchOnStart'
-	| 'assetSearchWillFinish'
-	| 'assetSearchWillStart'
-	| 'assetUnloadDidAbort'
-	| 'assetUnloadDidFinish'
-	| 'assetUnloadDidStart'
-	| 'assetUnloadOnAbort'
-	| 'assetUnloadOnFinish'
-	| 'assetUnloadOnStart'
-	| 'assetUnloadWillAbort'
-	| 'assetUnloadWillFinish'
-	| 'assetUnloadWillStart';
-
-/**
- *
- * @param delegate
- * @param phase
- *
- * @category Assets
- */
-export async function assetPhase<ArgsT = unknown>(
-	phase: AssetPhase,
-	delegate: AssetDelegate<ArgsT>,
-	log?: Log
-): Promise<boolean> {
-	return invokeListeners<AssetPhase, AssetDelegate<ArgsT>>(phase, delegate, log);
+export class TextureLifecycle extends Lifecycle<TexturePhase> {
+	constructor() {
+		super();
+	}
 }

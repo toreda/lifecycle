@@ -24,7 +24,7 @@
  */
 
 import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
-import type {LifecycleListener} from '../lifecycle/listener';
+import {type LifecycleListener} from '../lifecycle/listener';
 import {type ServerPhase} from './phase';
 
 /**

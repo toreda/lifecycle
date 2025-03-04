@@ -30,7 +30,7 @@ import {type CnxPhase} from './phase';
 /**
  * Delegate interface for classes implementing Network Client listeners.
  *
- * @category Connection
+ * @category Connections
  */
 export type CnxDelegate<ArgsT = unknown> = Partial<Record<CnxPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<CnxPhase>;

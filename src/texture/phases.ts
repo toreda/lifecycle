@@ -30,7 +30,7 @@ import type {TexturePhase} from './phase';
  *
  * @category Textures
  */
-export const texturePhases: (TexturePhase)[] = [
+export const texturePhases: TexturePhase[] = [
 	'textureDidChange',
 	'textureLoadDidFinish',
 	'textureLoadDidStart',
@@ -47,5 +47,6 @@ export const texturePhases: (TexturePhase)[] = [
 	'textureUnloadOnStart',
 	'textureUnloadWillFinish',
 	'textureUnloadWillStart',
+	'textureWillResize',
 	'textureWillChange'
 ];

@@ -28,7 +28,7 @@ import {Log} from '@toreda/log';
 import {invokeListeners} from '../invoke/listeners';
 
 /**
- * Expressive type for phase names in the adapter lifecycle flow.
+ * Adapter lifecycle phases.
  *
  * @category Adapters
  */

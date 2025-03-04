@@ -30,7 +30,7 @@ import {invokeListeners} from '../invoke/listeners';
 /**
  * Identifiers for each phase in the Entity Lifecycle flow.
  *
- * @category Entity
+ * @category Entities
  */
 export type EntityPhase =
 	| 'entityDidDespawn'

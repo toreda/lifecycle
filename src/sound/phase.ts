@@ -34,18 +34,21 @@ export type SoundPhase =
 	| 'soundDidCancel'
 	| 'soundDidFinish'
 	| 'soundDidPause'
+	| 'soundDidReset'
 	| 'soundDidStart'
 	| 'soundDidUnpause'
-	| 'soundOnMissing'
+	| 'soundMissing'
 	| 'soundOnCancel'
 	| 'soundOnError'
 	| 'soundOnFinish'
+	| 'soundOnMissing'
 	| 'soundOnPause'
 	| 'soundOnStart'
 	| 'soundOnUnpause'
 	| 'soundWillCancel'
 	| 'soundWillFinish'
 	| 'soundWillPause'
+	| 'soundWillReset'
 	| 'soundWillStart'
 	| 'soundWillUnpause';
 
@@ -53,7 +56,6 @@ export type SoundPhase =
  *
  * @param delegate
  * @param phase
- * @returns
  *
  * @category Sounds
  */

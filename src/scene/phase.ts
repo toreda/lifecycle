@@ -30,10 +30,9 @@ import {invokeListeners} from '../invoke/listeners';
 /**
  * Unique scene-related phase IDs.
  *
- * @category Scene
+ * @category Scenes
  */
 export type ScenePhase =
-
 	| 'sceneDidBecomeReady'
 	| 'sceneDidHide'
 	| 'sceneDidInit'
@@ -71,7 +70,7 @@ export type ScenePhase =
  * @param phase
  * @returns
  *
- * @category Scene
+ * @category Scenes
  */
 export async function scenePhase<ArgsT = unknown>(
 	phase: ScenePhase,

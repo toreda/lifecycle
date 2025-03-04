@@ -30,7 +30,7 @@ import {type ScenePhase} from './phase';
 /**
  * Lifecycle listener implementation for game engine scenes.
  *
- * @category Scene
+ * @category Scenes
  */
 export type SceneDelegate<ArgsT = unknown> = Partial<Record<ScenePhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<ScenePhase>;

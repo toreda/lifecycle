@@ -28,7 +28,7 @@ import {type TweenDelegate} from './delegate';
 import {invokeListeners} from '../invoke/listeners';
 
 /**
- * @category Sounds
+ * @category Tweens
  */
 export type TweenPhase =
 	| 'tweenDidCancel'
@@ -49,7 +49,7 @@ export type TweenPhase =
  * @param phase
  * @returns
  *
- * @category Sounds
+ * @category Tweens
  */
 export async function tweenPhase<ArgsT = unknown>(
 	phase: TweenPhase,

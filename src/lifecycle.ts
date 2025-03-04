@@ -24,7 +24,7 @@
  */
 
 /**
- * @category Lifecycle
+ * @category Core
  */
 export class Lifecycle<PhaseT> extends Map<PhaseT, boolean> {
 	constructor() {

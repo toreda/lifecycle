@@ -23,10 +23,10 @@
  *
  */
 
-import type {TweenPhase} from './phase';
+import {type TweenPhase} from './phase';
 
 /**
- * Txn phases supported by TxnDelegate listeners.
+ * Txn phases supported by Tween delegate listeners.
  *
  * @category Tweens
  */

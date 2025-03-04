@@ -39,25 +39,25 @@ export type ClientPhase =
 	| 'clientDidLoad'
 	| 'clientDidLoseFocus'
 	| 'clientDidPause'
+	| 'clientDidShutdown'
 	| 'clientDidStart'
 	| 'clientDidStop'
 	| 'clientDidUnpause'
-	| 'clientDidShutdown'
 	| 'clientMemoryWarning'
 	| 'clientOnInit'
 	| 'clientOnLoad'
 	| 'clientOnReady'
-	| 'clientOnStart'
 	| 'clientOnShutdown'
+	| 'clientOnStart'
 	| 'clientWillBecomeReady'
 	| 'clientWillGainFocus'
 	| 'clientWillInit'
 	| 'clientWillLoad'
 	| 'clientWillLoseFocus'
 	| 'clientWillPause'
+	| 'clientWillShutdown'
 	| 'clientWillStart'
-	| 'clientWillStop'
-	| 'clientWillShutdown';
+	| 'clientWillStop';
 
 /**
  *

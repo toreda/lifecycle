@@ -33,18 +33,3 @@ import {AnimPhase} from './phase';
 
 export type AnimDelegate<ArgsT = unknown> = Partial<Record<AnimPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<AnimPhase>;
-
-/* export interface AnimDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
-	animDidCancel?: LifecycleListener<ArgsT>;
-	animDidFinish?: LifecycleListener<ArgsT>;
-	animDidStart?: LifecycleListener<ArgsT>;
-	animOnCancel?: LifecycleListener<ArgsT>;
-	animOnError?: LifecycleListener<ArgsT>;
-	animOnFinish?: LifecycleListener<ArgsT>;
-	animOnMissing?: LifecycleListener<ArgsT>;
-	animOnStart?: LifecycleListener<ArgsT>;
-	animWillCancel?: LifecycleListener<ArgsT>;
-	animWillFinish?: LifecycleListener<ArgsT>;
-	animWillStart?: LifecycleListener<ArgsT>;
-}
- */

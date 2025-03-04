@@ -29,7 +29,7 @@ import type {ScenePhase} from './phase';
 /**
  * Managed flags for lifecycle phases used by game Scene lifecycle flows.
  *
- * @category Scene
+ * @category Scenes
  */
 export class SceneLifecycle extends Lifecycle<ScenePhase> {
 	constructor() {

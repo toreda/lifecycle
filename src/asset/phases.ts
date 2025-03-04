@@ -37,6 +37,19 @@ export const assetPhases: AssetPhase[] = [
 	'assetLoadOnStart',
 	'assetLoadWillFinish',
 	'assetLoadWillStart',
+	'assetSearchDidFinish',
+	'assetSearchDidStart',
+	'assetSearchOnFinish',
+	'assetSearchOnStart',
+	'assetSearchWillFinish',
+	'assetSearchWillStart',
+	'assetUnloadDidAbort',
 	'assetUnloadDidFinish',
-	'assetUnloadDidStart'
+	'assetUnloadDidStart',
+	'assetUnloadOnAbort',
+	'assetUnloadOnFinish',
+	'assetUnloadOnStart',
+	'assetUnloadWillAbort',
+	'assetUnloadWillFinish',
+	'assetUnloadWillStart'
 ];

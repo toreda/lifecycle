@@ -28,7 +28,7 @@ import {type AdapterPhase} from './phase';
 /**
  * @category Adapters
  */
-export const adapterPhases: (AdapterPhase)[] = [
+export const adapterPhases: AdapterPhase[] = [
 	'adapterDidBecomeReady',
 	'adapterDidBecomeSpawnable',
 	'adapterDidClearCache',
