@@ -65,7 +65,7 @@ export type ClientPhase =
  * @param phase
  * @returns
  *
- * @category Connection
+ * @category Clients
  */
 export async function clientPhase<ArgsT = unknown>(
 	phase: ClientPhase,

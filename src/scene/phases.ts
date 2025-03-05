@@ -26,6 +26,8 @@
 import type {ScenePhase} from './phase';
 
 /**
+ * Iterable collection of `SceneDelegate` phases.
+ *
  * @category Scenes
  */
 export const scenePhases: ScenePhase[] = [

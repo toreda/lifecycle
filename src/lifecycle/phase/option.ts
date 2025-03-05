@@ -23,9 +23,17 @@
  *
  */
 
-import {BaseObject} from '@toreda/types';
+import {type BaseObject} from '@toreda/types';
 import type {ValidatorFn} from '@toreda/types';
 
+/**
+ *
+ * @param o
+ * @param keyName
+ * @param testFn
+ *
+ * @category Core
+ */
 export function lifecyclePhaseOption<ValueT>(
 	o: unknown,
 	keyName: string,

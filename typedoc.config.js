@@ -4,10 +4,15 @@ module.exports = {
 	entryPoints: 'src/index.ts',
 	tsconfig: './tsconfig.json',
 	emit: 'docs',
+	name: '@toreda/verify',
 	pretty: true,
 	categorizeByGroup: false,
 	includeVersion: true,
 	sort: 'alphabetical',
+	excludePrivate: true,
 	githubPages: true,
-	cleanOutputDir: true
+	cacheBust: true,
+	cleanOutputDir: true,
+	includeVersion: true,
+	alwaysCreateEntryPointModule: true
 };

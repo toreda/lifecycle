@@ -28,6 +28,8 @@ import {type LifecycleListener} from '../lifecycle/listener';
 import {type TexturePhase} from './phase';
 
 /**
+ * Interface supporting Texture lifecycle listeners.
+ *
  * @category Textures
  */
 export type TextureDelegate<ArgsT = unknown> = Partial<Record<TexturePhase, LifecycleListener<ArgsT>>> &

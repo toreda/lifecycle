@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 – 2025 Toreda, Inc.
+ *	Copyright (c) 2019 - 2025 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,18 @@
  *
  */
 
-/**
- * @category Lifecycle
- */
-export type LifecycleFlags<PhaseT> = Record<keyof PhaseT, boolean>;
+module.exports = {
+	extends: ['@toreda/eslint-config'],
+	rules: {
+		'@typescript-eslint/no-namespace': 'off',
+		'@typescript-eslint/prefer-namespace-keyword': 'error'
+	},
+	overrides: [
+		{
+			files: ['*.spec.ts'],
+			rules: {
+				'max-len': 'off'
+			}
+		}
+	]
+};

@@ -23,12 +23,12 @@
  *
  */
 
-import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {Log} from '@toreda/log';
 import {canInvoke} from '../can/invoke';
 
 /**
- * @category Helpers
+ * @category Core
  */
 export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	phase: PhaseT,

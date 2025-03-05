@@ -16,6 +16,7 @@
 		"outDir": "./dist",
 		"preserveConstEnums": true,
 		"removeComments": false,
+		"incremental": true,
 		"resolveJsonModule": true,
 		"rootDir": ".",
 		"sourceMap": true,

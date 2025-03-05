@@ -28,6 +28,8 @@ import {type LifecycleListener} from '../lifecycle/listener';
 import {type SoundPhase} from './phase';
 
 /**
+ * Interface supporting Sound lifecycle listeners.
+ *
  * @category Sounds
  */
 

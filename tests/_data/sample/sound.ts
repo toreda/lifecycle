@@ -39,6 +39,14 @@ export class SampleSound implements SoundDelegate {
 		return this.lifecycle.phase('soundWillUnpause');
 	}
 
+	public async soundDidReset(): Promise<boolean> {
+		return this.lifecycle.phase('soundDidReset');
+	}
+
+	public async soundWillReset(): Promise<boolean> {
+		return this.lifecycle.phase('soundWillReset');
+	}
+
 	public async soundOnCancel(): Promise<boolean> {
 		return this.lifecycle.phase('soundOnCancel');
 	}

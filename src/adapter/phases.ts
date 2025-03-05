@@ -26,6 +26,8 @@
 import {type AdapterPhase} from './phase';
 
 /**
+ * Iterable collection of `AdapterDelegate` phases.
+ *
  * @category Adapters
  */
 export const adapterPhases: AdapterPhase[] = [

@@ -68,7 +68,6 @@ export type AdapterPhase =
  *
  * @param delegate
  * @param phase
- * @returns
  *
  * @category Adapters
  */

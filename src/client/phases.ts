@@ -26,7 +26,7 @@
 import {type ClientPhase} from './phase';
 
 /**
- * Iterable collection of all valid `ClientPhase` values.
+ * Iterable collection of client phases.
  *
  * @category Clients
  */

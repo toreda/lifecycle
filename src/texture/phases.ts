@@ -26,7 +26,7 @@
 import type {TexturePhase} from './phase';
 
 /**
- * Iterable phases that invoke TextureDelegate listeners.
+ * Iterable collection of `TextureDelegate` phases.
  *
  * @category Textures
  */

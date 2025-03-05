@@ -26,6 +26,8 @@
 import {type AssetPhase} from './phase';
 
 /**
+ * Iterable collection of `AssetDelegate` phases.
+ *
  * @category Assets
  */
 export const assetPhases: AssetPhase[] = [

@@ -28,6 +28,8 @@ import {type LifecycleListener} from '../lifecycle/listener';
 import {type TweenPhase} from './phase';
 
 /**
+ * Interface supporting `Tween` lifecycle listeners.
+ *
  * @category Tweens
  */
 export type TweenDelegate<ArgsT = unknown> = Partial<Record<TweenPhase, LifecycleListener<ArgsT>>> &

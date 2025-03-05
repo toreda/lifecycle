@@ -454,12 +454,16 @@ export class SampleEntity implements EntityDelegate<unknown> {
 		return this.lifecycle.phase('soundWillUnpause');
 	}
 
+	public async soundDidReset(): Promise<boolean> {
+		return this.lifecycle.phase('soundDidReset');
+	}
+
 	public async soundOnStart(): Promise<boolean> {
 		return this.lifecycle.phase('soundOnStart');
 	}
 
-	public async soundMissing(): Promise<boolean> {
-		return this.lifecycle.phase('soundMissing');
+	public async soundOnMissing(): Promise<boolean> {
+		return this.lifecycle.phase('soundOnMissing');
 	}
 
 	public async soundWillCancel(): Promise<boolean> {

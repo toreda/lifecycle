@@ -26,7 +26,7 @@
 import {type AnimPhase} from './phase';
 
 /**
- * Iterable collection of animation phases.
+ * Iterable collection of `AnimationDelegate` phases.
  *
  * @category Animations
  */

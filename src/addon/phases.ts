@@ -26,6 +26,8 @@
 import type {AddonPhase} from './phase';
 
 /**
+ * Iterable collection of `AddonDelegate` phases.
+ *
  * @category Addons
  */
 export const addonPhases: AddonPhase[] = [

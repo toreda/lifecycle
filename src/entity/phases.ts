@@ -26,9 +26,11 @@
 import type {EntityPhase} from './phase';
 
 /**
+ * Iterable collection of `EntityDelegate` phases.
+ *
  * @category Entities
  */
-export const entityPhases: (EntityPhase)[] = [
+export const entityPhases: EntityPhase[] = [
 	'entityDidDespawn',
 	'entityDidHide',
 	'entityDidHover',

@@ -1,4 +1,3 @@
-
 /**
  *	MIT License
  *
@@ -24,10 +23,8 @@
  *
  */
 
-
 import {Lifecycle} from '../lifecycle';
 import {type AdapterPhase} from './phase';
-
 
 /**
  * `AdapterPhase` typed Lifecycle convenience class.

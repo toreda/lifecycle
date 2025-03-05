@@ -18,6 +18,14 @@ export class SampleAsset implements AssetDelegate {
 		return this.lifecycle.phase('assetLoadDidStart');
 	}
 
+	public async assetSearchWillFinish(): Promise<boolean> {
+		return this.lifecycle.phase('assetSearchWillFinish');
+	}
+
+	public async assetSearchOnStart(): Promise<boolean> {
+		return this.lifecycle.phase('assetSearchOnStart');
+	}
+
 	public async assetLoadOnAbort(): Promise<boolean> {
 		return this.lifecycle.phase('assetLoadOnAbort');
 	}

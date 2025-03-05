@@ -36,7 +36,6 @@ export class Lifecycle<PhaseT> extends Map<PhaseT, boolean> {
 	public bindListeners(): void {
 		this.phase = this.phase.bind(this);
 		this.endPhase = this.endPhase.bind(this);
-
 	}
 
 	public async phase(id: PhaseT): Promise<boolean> {

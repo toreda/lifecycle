@@ -23,41 +23,15 @@
  *
  */
 
-import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
-import type {LifecycleListener} from '../lifecycle/listener';
-import {ClientPhase} from './phase';
+import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import {type LifecycleListener} from '../lifecycle/listener';
+import {type ClientPhase} from './phase';
 
 /**
+ * Interface supporting Client lifecycle listeners. Client side applications use
+ * listeners for startup, shutdown, restart, init, and other application related events.
+ *
  * @category Clients
  */
-export type ClientDelegate<ArgsT = unknown> = Record<ClientPhase, LifecycleListener<ArgsT>> &
+export type ClientDelegate<ArgsT = unknown> = Partial<Record<ClientPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<ClientPhase>;
-/* export interface ClientDelegate<PhaseT, ArgsT = unknown> extends LifecycleDelegateCommon<PhaseT> {
-	clientWillInit?: LifecycleListener<ArgsT>;
-	clientOnInit: LifecycleListener<ArgsT>;
-	clientDidInit?: LifecycleListener<ArgsT>;
-	clientDidLoad?: LifecycleListener<ArgsT>;
-	clientOnLoad: LifecycleListener<ArgsT>;
-	clientWillLoad?: LifecycleListener<ArgsT>;
-	clientWillBecomeReady?: LifecycleListener<ArgsT>;
-	clientOnReady: LifecycleListener<ArgsT>;
-	clientDidBecomeReady?: LifecycleListener<ArgsT>;
-	clientWillStart?: LifecycleListener<ArgsT>;
-	clientOnStart: LifecycleListener<ArgsT>;
-	clientDidStart?: LifecycleListener<ArgsT>;
-	clientMemoryWarning?: LifecycleListener<ArgsT>;
-	clientWillPause?: LifecycleListener<ArgsT>;
-	clientDidPause?: LifecycleListener<ArgsT>;
-	clientDidUnpause?: LifecycleListener<ArgsT>;
-	clientWillStop?: LifecycleListener<ArgsT>;
-
-	clientDidStop?: LifecycleListener<ArgsT>;
-	clientWillLoseFocus?: LifecycleListener<ArgsT>;
-	clientDidLoseFocus?: LifecycleListener<ArgsT>;
-	clientDidGainFocus?: LifecycleListener<ArgsT>
-	clientWillGainFocus?: LifecycleListener<ArgsT>;
-	clientWillShutdown?: LifecycleListener<ArgsT>;
-	clientDidShutdown?: LifecycleListener<ArgsT>;
-	clientOnShutdown?: LifecycleListener<ArgsT>;
-}
- */

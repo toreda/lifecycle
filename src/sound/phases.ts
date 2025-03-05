@@ -26,7 +26,7 @@
 import type {SoundPhase} from './phase';
 
 /**
- * Iterable phases that invoke SoundDelegate listeners.
+ * Iterable collection of `SoundDelegate` phases.
  *
  * @category Sounds
  */
@@ -37,7 +37,6 @@ export const soundPhases: SoundPhase[] = [
 	'soundDidReset',
 	'soundDidStart',
 	'soundDidUnpause',
-	'soundMissing',
 	'soundOnCancel',
 	'soundOnError',
 	'soundOnFinish',

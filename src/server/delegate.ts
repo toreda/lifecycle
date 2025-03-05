@@ -28,7 +28,7 @@ import {type LifecycleListener} from '../lifecycle/listener';
 import {type ServerPhase} from './phase';
 
 /**
- * Delegate interface for server-side classes.
+ * Interface supporting Server lifecycle listeners.
  *
  * @category Server
  */

@@ -13,7 +13,9 @@
 			"**/.DS_Store": true,
 			"**/Thumbs.db": true,
 			"node_modules": true,
-			"coverage": true
+			"coverage": true,
+			"docs/**": true,
+			"test-report.xml": true
 		},
 		"eslint.lintTask.enable": true,
 		"prettier.bracketSameLine": true,

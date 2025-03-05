@@ -24,10 +24,14 @@
  */
 
 /**
- * @category Lifecycle
+ * Default values used throughout project.
+ *
+ * @category Core
  */
 export default class LifecycleDefaults {
 	public static LifecyclePhase = {
-		Status: false
+		Status: false,
+		/** Whether to skip children when iterating a listener graph.  */
+		SkipChildren: false
 	} as const;
 }

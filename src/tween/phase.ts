@@ -28,6 +28,8 @@ import {type TweenDelegate} from './delegate';
 import {invokeListeners} from '../invoke/listeners';
 
 /**
+ * Iterable collection of `TweenDelegate` phases.
+ *
  * @category Tweens
  */
 export type TweenPhase =

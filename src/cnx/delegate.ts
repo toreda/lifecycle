@@ -23,12 +23,12 @@
  *
  */
 
-import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
-import type {LifecycleListener} from '../lifecycle/listener';
+import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import {type LifecycleListener} from '../lifecycle/listener';
 import {type CnxPhase} from './phase';
 
 /**
- * Delegate interface for classes implementing Network Client listeners.
+ * Interface supporting Connection lifecycle listeners.
  *
  * @category Connections
  */

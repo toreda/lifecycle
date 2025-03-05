@@ -26,7 +26,7 @@
 import type {TxnPhase} from './phase';
 
 /**
- * Txn phases supported by TxnDelegate listeners.
+ * Iterable collection of `TxnDelegate` phases.
  *
  * @category Transactions
  */

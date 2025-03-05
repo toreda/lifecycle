@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # [Unreleased]
 
-# [2.0.0] - 2025-02-28
+# [2.0.0] - 2025-03-03
+* All delegate listeners functions renamed to include delegate prefix, e.g. `didInit` in `ClientDelegate` became `clientDidInit`. This is a breaking change from past versions.
 * Classes can now implement multiple delegates. All listeners were renamed to include delegate name. Most listeners previously overlapped between different delegates, causing implementation name collisions.
 
 # [1.4.0] - 2024-06-28

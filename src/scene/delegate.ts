@@ -23,12 +23,12 @@
  *
  */
 
-import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
-import type {LifecycleListener} from '../lifecycle/listener';
+import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import {type LifecycleListener} from '../lifecycle/listener';
 import {type ScenePhase} from './phase';
 
 /**
- * Lifecycle listener implementation for game engine scenes.
+ * Interface supporting PIXI Scene lifecycle listeners.
  *
  * @category Scenes
  */

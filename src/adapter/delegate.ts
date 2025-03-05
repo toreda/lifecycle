@@ -23,15 +23,14 @@
  *
  */
 
-import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
-import type {LifecycleListener} from '../lifecycle/listener';
-import {AdapterPhase} from './phase';
+import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
+import {type LifecycleListener} from '../lifecycle/listener';
+import {type AdapterPhase} from './phase';
 
 /**
  * Adds support for calling optional addon lifecycle methods.
  *
  * @category Adapters
  */
-
 export type AdapterDelegate<ArgsT = unknown> = Partial<Record<AdapterPhase, LifecycleListener<ArgsT>>> &
 	LifecycleDelegateCommon<AdapterPhase>;

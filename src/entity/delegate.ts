@@ -25,9 +25,11 @@
 
 import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {type LifecycleListener} from '../lifecycle/listener';
-import {EntityLifecycle} from './lifecycle';
-import {EntityPhase} from './phase';
+import {type EntityPhase} from './phase';
+
 /**
+ * Interface supporting Entity lifecycle listeners. Entities may be based on or
+ * extend PIXI game objects.
  *
  * @category Entities
  */

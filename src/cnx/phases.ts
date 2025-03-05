@@ -26,6 +26,8 @@
 import type {CnxPhase} from './phase';
 
 /**
+ * Iterable collection of `CnxDelegate` phases.
+ *
  * @category Connections
  */
 export const cnxPhases: CnxPhase[] = [

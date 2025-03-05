@@ -75,9 +75,8 @@ export type AddonPhase =
  *
  * @param delegate
  * @param phase
- * @returns
  *
- * @category Addon
+ * @category Addons
  */
 export async function addonPhase<ArgsT = unknown>(
 	phase: AddonPhase,

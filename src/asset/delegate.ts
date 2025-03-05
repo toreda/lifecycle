@@ -28,6 +28,14 @@ import {type LifecycleListener} from '../lifecycle/listener';
 import {type AssetPhase} from './phase';
 
 /**
+ * Interface supporting the Asset lifecycle which involves fetching, loading, updating, and
+ * unloading asset files. Assets are resources like sounds, textures, fonts, images, or any
+ * other file loaded & used by an application.
+ *
+ * @remarks
+ * Note: Assets may be bundled within an application, but can also be fetched individually
+ * from a local filesytem or remote source. Specific details depend on your implementation.
+ *
  * @category Assets
  */
 export type AssetDelegate<ArgsT = unknown> = Partial<Record<AssetPhase, LifecycleListener<ArgsT>>> &
