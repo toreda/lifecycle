@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # [Unreleased]
 
+# [2.1.0] - 2025-03-06
+* Added types for handling component lifecycle through `ComponentLifecycle`, `ComponentDelegate`, and `ComponentPhase`.
+
 # [2.0.1] - 2025-03-05
 * Added missing focus related phases (`gainFocus`, `onFocus`, `loseFocus`) for several delegates.
 
