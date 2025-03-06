@@ -23,7 +23,7 @@
  *
  */
 
-import type {ScenePhase} from './phase';
+import {type ScenePhase} from './phase';
 
 /**
  * Iterable collection of `SceneDelegate` phases.
@@ -34,16 +34,20 @@ export const scenePhases: ScenePhase[] = [
 	'sceneDidBecomeReady',
 	'sceneDidHide',
 	'sceneDidInit',
+	'sceneDidGainFocus',
 	'sceneDidLoad',
+	'sceneDidLoseFocus',
 	'sceneDidPause',
 	'sceneDidReset',
 	'sceneDidShow',
 	'sceneDidStart',
 	'sceneDidStop',
 	'sceneDidUnpause',
+	'sceneOnGainFocus',
 	'sceneOnHide',
 	'sceneOnInit',
 	'sceneOnLoad',
+	'sceneOnLoseFocus',
 	'sceneOnPause',
 	'sceneOnReady',
 	'sceneOnReset',
@@ -52,9 +56,11 @@ export const scenePhases: ScenePhase[] = [
 	'sceneOnStop',
 	'sceneOnUnpause',
 	'sceneWillBecomeReady',
+	'sceneWillGainFocus',
 	'sceneWillHide',
 	'sceneWillInit',
 	'sceneWillLoad',
+	'sceneWillLoseFocus',
 	'sceneWillPause',
 	'sceneWillReset',
 	'sceneWillShow',

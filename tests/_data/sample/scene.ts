@@ -1,3 +1,4 @@
+
 import {Lifecycle} from '../../../src/lifecycle';
 import {ScenePhase} from '../../../src/scene/phase';
 import type {SceneDelegate} from '../../../src/scene/delegate';
@@ -17,6 +18,30 @@ export class SampleScene implements SceneDelegate<ScenePhase> {
 
 	public async sceneWillStop(): Promise<boolean> {
 		return this.lifecycle.phase('sceneWillStop');
+	}
+
+	public async sceneOnLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnLoseFocus');
+	}
+
+	public async sceneDidLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidLoseFocus');
+	}
+
+	public async sceneWillLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillLoseFocus');
+	}
+
+	public async sceneDidGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('sceneDidGainFocus');
+	}
+
+	public async sceneWillGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('sceneWillGainFocus');
+	}
+
+	public async sceneOnGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('sceneOnGainFocus');
 	}
 
 	public async sceneDidBecomeReady(): Promise<boolean> {

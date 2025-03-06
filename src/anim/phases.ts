@@ -33,13 +33,19 @@ import {type AnimPhase} from './phase';
 export const animPhases: AnimPhase[] = [
 	'animDidCancel',
 	'animDidFinish',
+	'animDidGainFocus',
+	'animDidLoseFocus',
 	'animDidStart',
 	'animOnCancel',
 	'animOnError',
 	'animOnFinish',
+	'animOnGainFocus',
+	'animOnLoseFocus',
 	'animOnMissing',
 	'animOnStart',
 	'animWillCancel',
 	'animWillFinish',
+	'animWillGainFocus',
+	'animWillLoseFocus',
 	'animWillStart'
 ];

@@ -27,6 +27,30 @@ export class SampleSound implements SoundDelegate {
 		return this.lifecycle.phase('soundDidPause');
 	}
 
+	public async soundOnLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('soundOnLoseFocus');
+	}
+
+	public async soundOnGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('soundOnGainFocus');
+	}
+
+	public async soundWillGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('soundWillGainFocus');
+	}
+
+	public async soundWillLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('soundWillLoseFocus');
+	}
+
+	public async soundDidGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('soundDidGainFocus');
+	}
+
+	public async soundDidLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('soundDidLoseFocus');
+	}
+
 	public async soundDidStart(): Promise<boolean> {
 		return this.lifecycle.phase('soundDidStart');
 	}

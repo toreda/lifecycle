@@ -21,6 +21,94 @@ export class SampleAdapter implements AdapterDelegate {
 		return this.lifecycle.phase('adapterDidInit');
 	}
 
+	public async adapterOnReset(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnReset');
+	}
+
+	public async adapterOnPause(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnPause');
+	}
+
+	public async adapterOnParseManifest(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnParseManifest');
+	}
+
+	public async adapterOnLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnLoseFocus');
+	}
+
+	public async adapterOnInit(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnInit');
+	}
+
+	public async adapterOnFetchManifest(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnFetchManifest');
+	}
+
+	public async adapterOnBecomeSpawnable(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnBecomeSpawnable');
+	}
+
+	public async adapterWillLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillLoseFocus');
+	}
+
+	public async adapterWillLoadManifest(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillLoadManifest');
+	}
+
+	public async adapterOnStop(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnStop');
+	}
+
+	public async adapterOnStart(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnStart');
+	}
+
+	public async adapterOnUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnUnpause');
+	}
+
+	public async adapterWillGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('adapterWillGainFocus');
+	}
+
+	public async adapterDidLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidLoseFocus');
+	}
+
+	public async adapterDidLoadManifest(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidLoadManifest');
+	}
+
+	public async adapterDidGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('adapterDidGainFocus');
+	}
+
+	public async adapterOnClearCache(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnClearCache');
+	}
+
+	public async adapterOnGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnGainFocus');
+	}
+
+	public async adapterOnLoad(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnLoad');
+	}
+
+	public async adapterOnLoadManifest(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnLoadManifest');
+	}
+
+	public async adapterOnReady(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnReady');
+	}
+
+	public async adapterOnRegister(): Promise<boolean> {
+		return this.lifecycle.phase('adapterOnRegister');
+	}
+
 	public async adapterWillBecomeSpawnable(): Promise<boolean> {
 		return this.lifecycle.phase('adapterWillBecomeSpawnable');
 	}

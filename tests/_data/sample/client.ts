@@ -10,101 +10,110 @@ export class SampleClient implements ClientDelegate {
 	}
 
 	public async clientDidBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidBecomeReady');
+		return this.lifecycle.endPhase('clientDidBecomeReady');
 	}
 
 	public async clientDidGainFocus(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidGainFocus');
+		return this.lifecycle.endPhase('clientDidGainFocus');
 	}
 
 	public async clientDidInit(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidInit');
+		return this.lifecycle.endPhase('clientDidInit');
+	}
+
+	public async clientOnGainFocus(): Promise<boolean> {
+		return this.lifecycle.endPhase('clientOnGainFocus');
+	}
+
+	public async clientOnLoseFocus(): Promise<boolean> {
+		return this.lifecycle.endPhase('clientOnLoseFocus');
 	}
 
 	public async clientDidLoad(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidLoad');
+		return this.lifecycle.endPhase('clientDidLoad');
 	}
+
 	public async clientDidLoseFocus(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidLoseFocus');
+		return this.lifecycle.endPhase('clientDidLoseFocus');
 	}
 
 	public async clientDidStart(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidStart');
+		return this.lifecycle.endPhase('clientDidStart');
 	}
 
 	public async clientDidPause(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidPause');
+		return this.lifecycle.endPhase('clientDidPause');
 	}
 
 	public async clientDidUnpause(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidUnpause');
+		return this.lifecycle.endPhase('clientDidUnpause');
 	}
 
 	public async clientDidShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidShutdown');
+		return this.lifecycle.endPhase('clientDidShutdown');
 	}
 
 	public async clientOnLoad(): Promise<boolean> {
-		return this.lifecycle.phase('clientOnLoad');
+		return this.lifecycle.endPhase('clientOnLoad');
 	}
 
 	public async clientOnInit(): Promise<boolean> {
-		return this.lifecycle.phase('clientOnInit');
+		return this.lifecycle.endPhase('clientOnInit');
 	}
 
 	public async clientOnReady(): Promise<boolean> {
-		return this.lifecycle.phase('clientOnReady');
+		return this.lifecycle.endPhase('clientOnReady');
 	}
 
 	public async clientOnStart(): Promise<boolean> {
-		return this.lifecycle.phase('clientOnStart');
+		return this.lifecycle.endPhase('clientOnStart');
 	}
 
 	public async clientOnShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('clientOnShutdown');
+		return this.lifecycle.endPhase('clientOnShutdown');
 	}
 
 	public async clientWillBecomeReady(): Promise<boolean> {
-		return this.lifecycle.phase('clientWillBecomeReady');
+		return this.lifecycle.endPhase('clientWillBecomeReady');
 	}
 
 	public async clientWillGainFocus(): Promise<boolean> {
-		return this.lifecycle.phase('clientWillGainFocus');
+		return this.lifecycle.endPhase('clientWillGainFocus');
 	}
 
 	public async clientWillShutdown(): Promise<boolean> {
-		return this.lifecycle.phase('clientWillShutdown');
+		return this.lifecycle.endPhase('clientWillShutdown');
 	}
 
 	public async clientWillLoad(): Promise<boolean> {
-		return this.lifecycle.phase('clientWillLoad');
+		return this.lifecycle.endPhase('clientWillLoad');
 	}
 
 	public async clientWillInit(): Promise<boolean> {
-		return this.lifecycle.phase('clientWillInit');
+		return this.lifecycle.endPhase('clientWillInit');
 	}
 
 	public async clientWillLoseFocus(): Promise<boolean> {
-		return this.lifecycle.phase('clientWillLoseFocus');
+		return this.lifecycle.endPhase('clientWillLoseFocus');
 	}
 	public async clientWillPause(): Promise<boolean> {
-		return this.lifecycle.phase('clientWillPause');
+		return this.lifecycle.endPhase('clientWillPause');
 	}
 
 	public async clientWillStart(): Promise<boolean> {
-		return this.lifecycle.phase('clientWillStart');
+		return this.lifecycle.endPhase('clientWillStart');
 	}
 
 	public async clientWillStop(): Promise<boolean> {
-		return this.lifecycle.phase('clientWillStop');
+		return this.lifecycle.endPhase('clientWillStop');
 	}
 
 	public async clientDidStop(): Promise<boolean> {
-		return this.lifecycle.phase('clientDidStop');
+		return this.lifecycle.endPhase('clientDidStop');
 	}
 
 	public async clientMemoryWarning(): Promise<boolean> {
-		return this.lifecycle.phase('clientMemoryWarning');
+		return this.lifecycle.endPhase('clientMemoryWarning');
 	}
 
 	public reset(): void {

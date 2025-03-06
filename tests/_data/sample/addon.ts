@@ -16,6 +16,14 @@ export class SampleAddon implements AddonDelegate<unknown> {
 		return this.lifecycle.phase('addonDidPause');
 	}
 
+	public async addonOnGainFocus(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnGainFocus');
+	}
+
+	public async addonOnLoseFocus(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnLoseFocus');
+	}
+
 	public async addonWillLeaveCache(): Promise<boolean> {
 		return this.lifecycle.phase('addonWillLeaveCache');
 	}
