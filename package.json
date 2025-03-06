@@ -64,7 +64,7 @@
 		"build:dev": "yarn gulp --dev",
 		"test": "yarn jest --coverage --maxWorkers=50%",
 		"test:dev": "yarn jest --coverage=false --maxWorkers=25% --verbose=false",
-		"make:docs": "yarn typedoc --options ./typedoc.config.js --plugin @8hobbies/typedoc-plugin-404 --plugin @knodes/typedoc-plugin-code-blocks",
+		"make:docs": "yarn typedoc --options ./typedoc.config.js --plugin @knodes/typedoc-plugin-code-blocks",
 		"make:depgraph": "yarn madge src/index.ts --image dependency-graph.png"
 	},
 	"engines": {
