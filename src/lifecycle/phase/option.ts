@@ -27,7 +27,6 @@ import {type BaseObject} from '@toreda/types';
 import type {ValidatorFn} from '@toreda/types';
 
 /**
- *
  * @param o
  * @param keyName
  * @param testFn
