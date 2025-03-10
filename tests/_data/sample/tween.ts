@@ -21,8 +21,24 @@ export class SampleTween implements TweenDelegate<unknown> {
 		return this.lifecycle.phase('tweenDidReplay');
 	}
 
+	public async tweenOnReplay(): Promise<boolean> {
+		return this.lifecycle.phase('tweenOnReplay');
+	}
+
 	public async tweenDidReset(): Promise<boolean> {
 		return this.lifecycle.phase('tweenDidReset');
+	}
+
+	public async tweenWillReset(): Promise<boolean> {
+		return this.lifecycle.phase('tweenWillReset');
+	}
+
+	public async tweenWillReplay(): Promise<boolean> {
+		return this.lifecycle.phase('tweenWillReplay');
+	}
+
+	public async tweenOnReset(): Promise<boolean> {
+		return this.lifecycle.phase('tweenOnReset');
 	}
 
 	public async tweenDidStart(): Promise<boolean> {

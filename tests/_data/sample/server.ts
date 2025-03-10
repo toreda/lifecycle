@@ -54,6 +54,10 @@ export class SampleServer implements ServerDelegate<unknown> {
 		return this.lifecycle.endPhase('serverOnStop');
 	}
 
+	public async serverWillAddConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillAddConnection');
+	}
+
 	public async serverDidStop(): Promise<boolean> {
 		return this.lifecycle.endPhase('serverDidStop');
 	}
@@ -64,6 +68,65 @@ export class SampleServer implements ServerDelegate<unknown> {
 
 	public async serverWillRestart(): Promise<boolean> {
 		return this.lifecycle.endPhase('serverWillRestart');
+	}
+
+	public async serverWillAcceptClient(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillAcceptClient');
+	}
+
+	public async serverWillAcceptConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillAcceptConnection');
+	}
+
+	public async serverDidAddClient(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidAddClient');
+	}
+
+	public async serverDidAcceptConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidAcceptConnection');
+	}
+
+	public async serverDidRemoveConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidRemoveConnection');
+	}
+
+	public async serverDidRemoveClient(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidRemoveClient');
+	}
+
+	public async serverOnAcceptClient(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnAcceptClient');
+	}
+
+	public async serverOnAcceptConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnAcceptConnection');
+	}
+
+	public async serverWillAddClient(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillAddClient');
+	}
+
+	public async serverOnAddClient(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnAddClient');
+	}
+
+	public async serverOnRemoveClient(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnRemoveClient');
+	}
+
+	public async serverOnBecomeReady(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnBecomeReady');
+	}
+	public async serverOnRemoveConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnRemoveConnection');
+	}
+
+	public async serverWillRemoveClient(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillRemoveClient');
+	}
+
+	public async serverWillRemoveConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillRemoveConnection');
 	}
 
 	public async serverOnShutdown(): Promise<boolean> {
