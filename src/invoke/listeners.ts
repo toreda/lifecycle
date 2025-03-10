@@ -41,11 +41,12 @@ export async function invokeListeners<PhaseT, DelegateT extends LifecycleDelegat
 		return false;
 	}
 
-	const queue: DelegateT[] = [];
+	let queue: DelegateT[];
+
 	if (Array.isArray(init.delegate)) {
-		queue.push(...init.delegate);
+		queue = init.delegate;
 	} else {
-		queue.push(init.delegate);
+		queue = [init.delegate];
 	}
 
 	let invokeCount = 0;

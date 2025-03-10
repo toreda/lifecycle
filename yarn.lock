@@ -1363,7 +1363,7 @@
     semver "^7.6.0"
     ts-api-utils "^1.3.0"
 
-"@typescript-eslint/typescript-estree@^8.23.0":
+"@typescript-eslint/typescript-estree@^8.23.0", "@typescript-eslint/typescript-estree@^8.26.0":
   version "8.26.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-8.26.0.tgz#128972172005a7376e34ed2ecba4e29363b0cad1"
   dependencies:

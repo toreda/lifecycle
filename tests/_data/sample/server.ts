@@ -10,6 +10,18 @@ export class SampleServer implements ServerDelegate<unknown> {
 		this.lifecycle = new ServerLifecycle();
 	}
 
+	public async serverDidCloseConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidCloseConnection');
+	}
+
+	public async serverOnCloseConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnCloseConnection');
+	}
+
+	public async serverWillCloseConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillCloseConnection');
+	}
+
 	public async serverWillInit(): Promise<boolean> {
 		return this.lifecycle.endPhase('serverWillInit');
 	}
@@ -127,6 +139,18 @@ export class SampleServer implements ServerDelegate<unknown> {
 
 	public async serverWillRemoveConnection(): Promise<boolean> {
 		return this.lifecycle.endPhase('serverWillRemoveConnection');
+	}
+
+	public async serverDidDropConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidDropConnection');
+	}
+
+	public async serverOnDropConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnDropConnection');
+	}
+
+	public async serverWillDropConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverWillDropConnection');
 	}
 
 	public async serverOnShutdown(): Promise<boolean> {
