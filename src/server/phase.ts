@@ -33,6 +33,18 @@ import {invokeListeners} from '../invoke/listeners';
  * @category Server
  */
 export type ServerPhase =
+	| 'serverWillAddClient'
+	| 'serverDidAddClient'
+	| 'serverOnAddClient'
+	| 'serverWillRemoveClient'
+	| 'serverDidRemoveClient'
+	| 'serverOnRemoveClient'
+	| 'serverWillRemoveConnection'
+	| 'serverDidRemoveConnection'
+	| 'serverOnRemoveConnection'
+	| 'serverWillAcceptConnection'
+	| 'serverDidAcceptConnection'
+	| 'serverOnAcceptConnection'
 	| 'serverDidBecomeReady'
 	| 'serverDidInit'
 	| 'serverDidLoad'
@@ -40,6 +52,7 @@ export type ServerPhase =
 	| 'serverDidShutdown'
 	| 'serverDidStart'
 	| 'serverDidStop'
+	| 'serverOnBecomeReady'
 	| 'serverOnInit'
 	| 'serverOnLoad'
 	| 'serverOnReady'
@@ -59,14 +72,17 @@ export type ServerPhase =
  *
  * @param delegate
  * @param phase
- * @returns
  *
  * @category Server
  */
 export async function serverPhase<ArgsT = unknown>(
 	phase: ServerPhase,
-	delegate: ServerDelegate<ArgsT>,
-	log?: Log
+	delegate: ServerDelegate<ArgsT> | ServerDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<ServerPhase, ServerDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<ServerPhase, ServerDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

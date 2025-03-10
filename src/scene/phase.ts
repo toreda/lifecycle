@@ -71,17 +71,19 @@ export type ScenePhase =
 	| 'sceneWillUnpause';
 
 /**
- *
  * @param delegate
  * @param phase
- * @returns
  *
  * @category Scenes
  */
 export async function scenePhase<ArgsT = unknown>(
 	phase: ScenePhase,
-	delegate: SceneDelegate<ArgsT>,
-	log?: Log
+	delegate: SceneDelegate<ArgsT> | SceneDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<ScenePhase, SceneDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<ScenePhase, SceneDelegate<ArgsT>>({
+		phase: phase,
+		base: base,
+		delegate: delegate
+	});
 }

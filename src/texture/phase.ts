@@ -52,17 +52,19 @@ export type TexturePhase =
 	| 'textureWillChange';
 
 /**
- * Invoke a
  * @param delegate
  * @param phase
- * @returns
  *
  * @category Textures
  */
 export async function texturePhase<ArgsT = unknown>(
 	phase: TexturePhase,
-	delegate: TextureDelegate<ArgsT>,
-	log?: Log
+	delegate: TextureDelegate<ArgsT> | TextureDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<TexturePhase, TextureDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<TexturePhase, TextureDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

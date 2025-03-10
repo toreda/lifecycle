@@ -88,14 +88,17 @@ export type EntityPhase =
  *
  * @param delegate
  * @param phase
- * @returns
  *
  * @category Entity
  */
 export async function entityPhase<ArgsT = unknown>(
 	phase: EntityPhase,
-	delegate: EntityDelegate<ArgsT>,
-	log?: Log
+	delegate: EntityDelegate<ArgsT> | EntityDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<EntityPhase, EntityDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<EntityPhase, EntityDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

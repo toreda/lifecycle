@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # [Unreleased]
 
+# [2.2.0] - 2025-03-10
+* All phase functions accept `DelegateT` or `DelegateT[]` instead of just `DelegateT`.
+* `invokeListeners` now expects a single `InvokeListenersInit` object instead of individual arguments.
+
 # [2.1.0] - 2025-03-06
 * Added types for handling component lifecycle through `ComponentLifecycle`, `ComponentDelegate`, and `ComponentPhase`.
 

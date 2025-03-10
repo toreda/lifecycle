@@ -55,9 +55,7 @@ export type CnxPhase =
 	| 'cnxDidStopHandshake'
 	| 'cnxDidStopReconnect'
 	| 'cnxDidTimeout'
-	| 'cnxDidTimeout'
 	| 'cnxWillClose'
-	| 'cnxWillConnect'
 	| 'cnxWillConnect'
 	| 'cnxWillDisconnect'
 	| 'cnxWillFailConnect'
@@ -80,14 +78,13 @@ export type CnxPhase =
  *
  * @param delegate
  * @param phase
- * @returns
  *
  * @category Connection
  */
 export async function cnxPhase<ArgsT = unknown>(
 	phase: CnxPhase,
-	delegate: CnxDelegate<ArgsT>,
-	log?: Log
+	delegate: CnxDelegate<ArgsT> | CnxDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<CnxPhase, CnxDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<CnxPhase, CnxDelegate<ArgsT>>({phase: phase, delegate: delegate, base: base});
 }

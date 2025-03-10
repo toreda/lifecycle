@@ -65,14 +65,17 @@ export type ClientPhase =
  *
  * @param delegate
  * @param phase
- * @returns
  *
  * @category Clients
  */
 export async function clientPhase<ArgsT = unknown>(
 	phase: ClientPhase,
-	delegate: ClientDelegate<ArgsT>,
-	log?: Log
+	delegate: ClientDelegate<ArgsT> | ClientDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<ClientPhase, ClientDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<ClientPhase, ClientDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

@@ -51,8 +51,12 @@ export type ComponentPhase =
  */
 export async function componentPhase<ArgsT = unknown>(
 	phase: ComponentPhase,
-	delegate: ComponentDelegate<ArgsT>,
-	log?: Log
+	delegate: ComponentDelegate<ArgsT> | ComponentDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<ComponentPhase, ComponentDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<ComponentPhase, ComponentDelegate<ArgsT>>({
+		phase: phase,
+		base: base,
+		delegate: delegate
+	});
 }

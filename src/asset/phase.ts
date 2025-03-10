@@ -64,8 +64,12 @@ export type AssetPhase =
  */
 export async function assetPhase<ArgsT = unknown>(
 	phase: AssetPhase,
-	delegate: AssetDelegate<ArgsT>,
-	log?: Log
+	delegate: AssetDelegate<ArgsT> | AssetDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<AssetPhase, AssetDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<AssetPhase, AssetDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

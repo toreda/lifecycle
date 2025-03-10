@@ -40,23 +40,30 @@ export type TweenPhase =
 	| 'tweenDidStart'
 	| 'tweenOnCancel'
 	| 'tweenOnFinish'
+	| 'tweenOnReplay'
+	| 'tweenOnReset'
 	| 'tweenOnStart'
 	| 'tweenWillCancel'
 	| 'tweenWillFinish'
+	| 'tweenWillReplay'
+	| 'tweenWillReset'
 	| 'tweenWillStart';
 
 /**
  *
  * @param delegate
  * @param phase
- * @returns
  *
  * @category Tweens
  */
 export async function tweenPhase<ArgsT = unknown>(
 	phase: TweenPhase,
-	delegate: TweenDelegate<ArgsT>,
-	log?: Log
+	delegate: TweenDelegate<ArgsT> | TweenDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<TweenPhase, TweenDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<TweenPhase, TweenDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

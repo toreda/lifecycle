@@ -38,40 +38,64 @@ export type AddonPhase =
 	| 'addonCacheOnLeave'
 	| 'addonCacheWillEnter'
 	| 'addonCacheWillLeave'
+	| 'addonCanFetchAsset'
+	| 'addonCanFetchManifest'
 	| 'addonDidBecomeReady'
+	| 'addonDidChangeCfg'
+	| 'addonDidChangeState'
+	| 'addonDidFetchAsset'
+	| 'addonDidFetchManifest'
 	| 'addonDidGainFocus'
 	| 'addonDidInit'
 	| 'addonDidLoad'
+	| 'addonDidLoadManifest'
 	| 'addonDidLoseFocus'
+	| 'addonDidParseManifest'
 	| 'addonDidPause'
 	| 'addonDidRestart'
 	| 'addonDidShutdown'
 	| 'addonDidStart'
 	| 'addonDidStop'
 	| 'addonDidUnpause'
+	| 'addonInstanceDidSpawn'
+	| 'addonInstanceOnSpawn'
+	| 'addonInstanceWillSpawn'
 	| 'addonMemoryWarning'
+	| 'addonOnBecomeReady'
+	| 'addonOnChangeCfg'
+	| 'addonOnChangeState'
+	| 'addonOnFetchAsset'
+	| 'addonOnFetchManifest'
 	| 'addonOnGainFocus'
 	| 'addonOnInit'
 	| 'addonOnLoad'
+	| 'addonOnLoadManifest'
 	| 'addonOnLoseFocus'
+	| 'addonOnParseManifest'
 	| 'addonOnPause'
-	| 'addonOnReady'
 	| 'addonOnRestart'
 	| 'addonOnShutdown'
 	| 'addonOnStart'
 	| 'addonOnStop'
 	| 'addonOnUnpause'
 	| 'addonWillBecomeReady'
+	| 'addonWillChangeCfg'
+	| 'addonWillChangeState'
+	| 'addonWillFetchAsset'
+	| 'addonWillFetchManifest'
 	| 'addonWillGainFocus'
 	| 'addonWillInit'
 	| 'addonWillLeaveCache'
 	| 'addonWillLoad'
+	| 'addonWillLoadManifest'
 	| 'addonWillLoseFocus'
+	| 'addonWillParseManifest'
 	| 'addonWillPause'
 	| 'addonWillRestart'
 	| 'addonWillShutdown'
 	| 'addonWillStart'
-	| 'addonWillStop';
+	| 'addonWillStop'
+	| 'addonWillUnpause';
 
 /**
  *
@@ -82,8 +106,12 @@ export type AddonPhase =
  */
 export async function addonPhase<ArgsT = unknown>(
 	phase: AddonPhase,
-	delegate: AddonDelegate<ArgsT>,
-	log?: Log
+	delegate: AddonDelegate<ArgsT> | AddonDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<AddonPhase, AddonDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<AddonPhase, AddonDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

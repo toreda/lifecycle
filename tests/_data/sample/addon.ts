@@ -24,6 +24,34 @@ export class SampleAddon implements AddonDelegate<unknown> {
 		return this.lifecycle.phase('addonOnLoseFocus');
 	}
 
+	public async addonWillUnpause(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonWillUnpause');
+	}
+
+	public async addonDidLoadManifest(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonDidLoadManifest');
+	}
+
+	public async addonOnLoadManifest(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonOnLoadManifest');
+	}
+
+	public async addonWillLoadManifest(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonWillLoadManifest');
+	}
+
+	public async addonWillParseManifest(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonWillParseManifest');
+	}
+
+	public async addonDidParseManifest(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonDidParseManifest');
+	}
+
+	public async addonOnParseManifest(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonOnParseManifest');
+	}
+
 	public async addonWillLeaveCache(): Promise<boolean> {
 		return this.lifecycle.phase('addonWillLeaveCache');
 	}
@@ -148,16 +176,76 @@ export class SampleAddon implements AddonDelegate<unknown> {
 		return this.lifecycle.phase('addonOnRestart');
 	}
 
-	public async addonOnReady(): Promise<boolean> {
-		return this.lifecycle.phase('addonOnReady');
+	public async addonOnBecomeReady(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnBecomeReady');
 	}
 
 	public async addonOnInit(): Promise<boolean> {
 		return this.lifecycle.phase('addonOnInit');
 	}
 
+	public async addonDidFetchAsset(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidFetchAsset');
+	}
+
+	public async addonCanFetchManifest(): Promise<boolean> {
+		return this.lifecycle.phase('addonCanFetchManifest');
+	}
+
+	public async addonCanFetchAsset(): Promise<boolean> {
+		return this.lifecycle.phase('addonCanFetchAsset');
+	}
+
+	public async addonDidChangeCfg(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidChangeCfg');
+	}
+
+	public async addonWillChangeCfg(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillChangeCfg');
+	}
+
+	public async addonDidFetchManifest(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidFetchManifest');
+	}
+
+	public async addonOnChangeCfg(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnChangeCfg');
+	}
+
+	public async addonOnChangeState(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnChangeState');
+	}
+
+	public async addonWillChangeState(): Promise<boolean> {
+		return this.lifecycle.phase('addonWillChangeState');
+	}
+
+	public async addonDidChangeState(): Promise<boolean> {
+		return this.lifecycle.phase('addonDidChangeState');
+	}
+
 	public async addonDidShutdown(): Promise<boolean> {
 		return this.lifecycle.phase('addonDidShutdown');
+	}
+
+	public async addonOnFetchManifest(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonOnFetchManifest');
+	}
+
+	public async addonInstanceWillSpawn(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonInstanceWillSpawn');
+	}
+
+	public async addonInstanceDidSpawn(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonInstanceDidSpawn');
+	}
+
+	public async addonInstanceOnSpawn(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonInstanceOnSpawn');
+	}
+
+	public async addonOnFetchAsset(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonOnFetchAsset');
 	}
 
 	public async addonDidRestart(): Promise<boolean> {
@@ -170,6 +258,14 @@ export class SampleAddon implements AddonDelegate<unknown> {
 
 	public async addonMemoryWarning(): Promise<boolean> {
 		return this.lifecycle.phase('addonMemoryWarning');
+	}
+
+	public async addonWillFetchAsset(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonWillFetchAsset');
+	}
+
+	public async addonWillFetchManifest(): Promise<boolean> {
+		return this.lifecycle.endPhase('addonWillFetchManifest');
 	}
 
 	public reset(): void {

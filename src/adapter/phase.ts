@@ -36,6 +36,7 @@ export type AdapterPhase =
 	| 'adapterDidBecomeReady'
 	| 'adapterDidBecomeSpawnable'
 	| 'adapterDidClearCache'
+	| 'adapterDidFetchAsset'
 	| 'adapterDidFetchManifest'
 	| 'adapterDidGainFocus'
 	| 'adapterDidInit'
@@ -51,8 +52,12 @@ export type AdapterPhase =
 	| 'adapterDidStop'
 	| 'adapterDidSuspend'
 	| 'adapterDidUnload'
+	| 'adapterDidUnpause'
+	| 'adapterDidUnregister'
+	| 'adapterOnBecomeReady'
 	| 'adapterOnBecomeSpawnable'
 	| 'adapterOnClearCache'
+	| 'adapterOnFetchAsset'
 	| 'adapterOnFetchManifest'
 	| 'adapterOnGainFocus'
 	| 'adapterOnInit'
@@ -61,15 +66,19 @@ export type AdapterPhase =
 	| 'adapterOnLoseFocus'
 	| 'adapterOnParseManifest'
 	| 'adapterOnPause'
-	| 'adapterOnReady'
 	| 'adapterOnRegister'
 	| 'adapterOnReset'
+	| 'adapterOnSpawnInstance'
 	| 'adapterOnStart'
 	| 'adapterOnStop'
+	| 'adapterOnSuspend'
+	| 'adapterOnUnload'
 	| 'adapterOnUnpause'
+	| 'adapterOnUnregister'
 	| 'adapterWillBecomeReady'
 	| 'adapterWillBecomeSpawnable'
 	| 'adapterWillClearCache'
+	| 'adapterWillFetchAsset'
 	| 'adapterWillFetchManifest'
 	| 'adapterWillGainFocus'
 	| 'adapterWillInit'
@@ -84,7 +93,9 @@ export type AdapterPhase =
 	| 'adapterWillStart'
 	| 'adapterWillStop'
 	| 'adapterWillSuspend'
-	| 'adapterWillUnload';
+	| 'adapterWillUnload'
+	| 'adapterWillUnpause'
+	| 'adapterWillUnregister';
 
 /**
  *
@@ -95,8 +106,12 @@ export type AdapterPhase =
  */
 export async function adapterPhase<ArgsT = unknown>(
 	phase: AdapterPhase,
-	delegate: AdapterDelegate<ArgsT>,
-	log?: Log
+	delegate: AdapterDelegate<ArgsT> | AdapterDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<AdapterPhase, AdapterDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<AdapterPhase, AdapterDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

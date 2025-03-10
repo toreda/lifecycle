@@ -66,8 +66,12 @@ export type SoundPhase =
  */
 export async function soundPhase<ArgsT = unknown>(
 	phase: SoundPhase,
-	delegate: SoundDelegate<ArgsT>,
-	log?: Log
+	delegate: SoundDelegate<ArgsT> | SoundDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<SoundPhase, SoundDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<SoundPhase, SoundDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

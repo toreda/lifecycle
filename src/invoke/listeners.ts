@@ -23,10 +23,10 @@
  *
  */
 
-import {Log} from '@toreda/log';
 import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
 import {invokeChildListeners} from './child/listeners';
 import {invokeListener} from './listener';
+import {type InvokeListenersInit} from './listeners/init';
 
 /**
  * Invoke all listeners on target DelegateT, then invoke the listener on all DelegateT
@@ -35,12 +35,30 @@ import {invokeListener} from './listener';
  * @category Core
  */
 export async function invokeListeners<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
-	phase: PhaseT,
-	delegate: DelegateT,
-	base?: Log
+	init: InvokeListenersInit<PhaseT, DelegateT>
 ): Promise<boolean> {
-	const mainResult = await invokeListener<PhaseT, DelegateT>(phase, delegate, base);
-	const childResult = await invokeChildListeners<PhaseT, DelegateT>(phase, delegate, base);
+	if (!init || !init.delegate) {
+		return false;
+	}
 
-	return mainResult || childResult;
+	const queue: DelegateT[] = [];
+	if (Array.isArray(init.delegate)) {
+		queue.push(...init.delegate);
+	} else {
+		queue.push(init.delegate);
+	}
+
+	let invokeCount = 0;
+	if (queue.length === 0) {
+		return false;
+	}
+
+	for (const item of queue) {
+		const mainResult = await invokeListener<PhaseT, DelegateT>(init.phase, item, init.base);
+		const childResult = await invokeChildListeners<PhaseT, DelegateT>(init.phase, item, init.base);
+		invokeCount += mainResult === true ? 1 : 0;
+		invokeCount += childResult === true ? 1 : 0;
+	}
+
+	return invokeCount >= queue.length;
 }

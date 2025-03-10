@@ -58,8 +58,12 @@ export type AnimPhase =
  */
 export async function animPhase<ArgsT = unknown>(
 	phase: AnimPhase,
-	delegate: AnimDelegate<ArgsT>,
-	log?: Log
+	delegate: AnimDelegate<ArgsT> | AnimDelegate<ArgsT>[],
+	base?: Log
 ): Promise<boolean> {
-	return invokeListeners<AnimPhase, AnimDelegate<ArgsT>>(phase, delegate, log);
+	return invokeListeners<AnimPhase, AnimDelegate<ArgsT>>({
+		phase: phase,
+		delegate: delegate,
+		base: base
+	});
 }

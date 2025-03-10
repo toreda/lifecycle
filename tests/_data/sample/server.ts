@@ -3,7 +3,7 @@ import {ServerLifecycle} from '../../../src/server/lifecycle';
 
 export class SampleServer implements ServerDelegate<unknown> {
 	public readonly lifecycle: ServerLifecycle;
-	public readonly children: ServerDelegate[];
+	public readonly children: ServerDelegate<unknown>[];
 
 	constructor() {
 		this.children = [];
@@ -17,7 +17,6 @@ export class SampleServer implements ServerDelegate<unknown> {
 	public async serverDidInit(): Promise<boolean> {
 		return this.lifecycle.endPhase('serverDidInit');
 	}
-
 
 	public async serverWillLoad(): Promise<boolean> {
 		return this.lifecycle.endPhase('serverWillLoad');

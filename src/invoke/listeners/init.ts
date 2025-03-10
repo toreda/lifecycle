@@ -23,59 +23,16 @@
  *
  */
 
-import type {TxnDelegate} from './delegate';
 import {Log} from '@toreda/log';
-import {invokeListeners} from '../invoke/listeners';
+import {type LifecycleDelegateCommon} from '../../lifecycle/delegate/common';
 
 /**
- * Expressive type describing phase names used in txn lifecycle flow.
+ * Parameters used to call `invokeListeners`.
  *
- * @category Transactions
+ * @category Core
  */
-export type TxnPhase =
-	| 'txnDidBegin'
-	| 'txnDidCancel'
-	| 'txnDidFail'
-	| 'txnDidInterrupt'
-	| 'txnDidPause'
-	| 'txnDidResume'
-	| 'txnDidRevert'
-	| 'txnDidSucceed'
-	| 'txnDidTimeout'
-	| 'txnOnBegin'
-	| 'txnOnCancel'
-	| 'txnOnFail'
-	| 'txnOnInterrupt'
-	| 'txnOnPause'
-	| 'txnOnResume'
-	| 'txnOnRevert'
-	| 'txnOnSucceed'
-	| 'txnOnTimeout'
-	| 'txnWillBegin'
-	| 'txnWillCancel'
-	| 'txnWillFail'
-	| 'txnWillInterrupt'
-	| 'txnWillPause'
-	| 'txnWillResume'
-	| 'txnWillRevert'
-	| 'txnWillSucceed'
-	| 'txnWillTimeout';
-
-/**
- *
- * @param delegate
- * @param phase
- *
- * @category Transactions
- */
-export async function txnPhase<ArgsT = unknown>(
-	phase: TxnPhase,
-	delegate: TxnDelegate<ArgsT> | TxnDelegate<ArgsT>[],
-	base?: Log
-): Promise<boolean> {
-	return invokeListeners<TxnPhase, TxnDelegate<ArgsT>>({
-		phase: phase,
-		delegate: delegate,
-		base: base
-	});
+export interface InvokeListenersInit<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>> {
+	phase: PhaseT;
+	delegate: DelegateT | DelegateT[];
+	base?: Log;
 }

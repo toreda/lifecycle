@@ -38,8 +38,12 @@ export const tweenPhases: TweenPhase[] = [
 	'tweenDidStart',
 	'tweenOnCancel',
 	'tweenOnFinish',
+	'tweenOnReplay',
+	'tweenOnReset',
 	'tweenOnStart',
 	'tweenWillCancel',
 	'tweenWillFinish',
+	'tweenWillReplay',
+	'tweenWillReset',
 	'tweenWillStart'
 ];
