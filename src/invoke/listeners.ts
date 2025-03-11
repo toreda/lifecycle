@@ -29,8 +29,8 @@ import {invokeListener} from './listener';
 import {type InvokeListenersInit} from './listeners/init';
 
 /**
- * Invoke all listeners on target DelegateT, then invoke the listener on all DelegateT
- * children.
+ * Invoke phase listener on DelegateT or all target DelegateT[] (if it exists). Then,
+ * invoke the listener on all DelegateT children.
  *
  * @category Core
  */

@@ -1,4 +1,5 @@
-import {TweenDelegate, TweenLifecycle} from '../../../src';
+import {type TweenDelegate} from '../../../src/tween/delegate';
+import {TweenLifecycle} from '../../../src/tween/lifecycle';
 
 export class SampleTween implements TweenDelegate<unknown> {
 	public readonly lifecycle: TweenLifecycle;

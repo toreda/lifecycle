@@ -31,6 +31,7 @@ import {type AssetDelegate} from './delegate';
  * @category Assets
  */
 export type AssetPhase =
+	| 'assetLoadDidAbort'
 	| 'assetLoadDidFinish'
 	| 'assetLoadDidStart'
 	| 'assetLoadOnAbort'

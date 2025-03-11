@@ -31,6 +31,7 @@ import {type AssetPhase} from './phase';
  * @category Assets
  */
 export const assetPhases: AssetPhase[] = [
+	'assetLoadDidAbort',
 	'assetLoadDidFinish',
 	'assetLoadDidStart',
 	'assetLoadOnAbort',
