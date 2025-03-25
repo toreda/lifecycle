@@ -1,13 +1,58 @@
 import {Lifecycle} from '../../../src/lifecycle';
 import type {EntityDelegate} from '../../../src/entity/delegate';
+import {EntityPhase} from '../../../src';
 
-export class SampleEntity implements EntityDelegate<unknown> {
-	public readonly lifecycle: Lifecycle<any>;
+export class SampleEntity implements EntityDelegate<EntityPhase> {
+	public readonly lifecycle: Lifecycle<EntityPhase>;
 	public readonly children: EntityDelegate[];
 
 	constructor() {
 		this.children = [];
-		this.lifecycle = new Lifecycle<any>();
+		this.lifecycle = new Lifecycle<EntityPhase>();
+	}
+
+	public async entityOnRecycle(): Promise<boolean> {
+		if (this.lifecycle.get('entityOnRecycle')) {
+			return false;
+		}
+
+		return this.lifecycle.endPhase('entityOnRecycle');
+	}
+
+	public async entityDidRecycle(): Promise<boolean> {
+		if (this.lifecycle.get('entityDidRecycle')) {
+			return false;
+		}
+
+		return this.lifecycle.endPhase('entityDidRecycle');
+	}
+
+	public async entityWillRecycle(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityWillRecycle');
+	}
+
+	public async entityOnReleaseAsset(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityOnReleaseAsset');
+	}
+
+	public async entityDidReleaseAsset(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityDidReleaseAsset');
+	}
+
+	public async entityWillReleaseAsset(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityWillReleaseAsset');
+	}
+
+	public async entityWillBecomeReady(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityWillBecomeReady');
+	}
+
+	public async entityOnBecomeReady(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityOnBecomeReady');
+	}
+
+	public async entityDidBecomeReady(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityDidBecomeReady');
 	}
 
 	public async orientationWillChange(): Promise<boolean> {
@@ -48,6 +93,10 @@ export class SampleEntity implements EntityDelegate<unknown> {
 
 	public async entityOnHover(): Promise<boolean> {
 		return this.lifecycle.endPhase('entityOnHover');
+	}
+
+	public async entityOnHide(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityOnHide');
 	}
 
 	public async entityOnDespawn(): Promise<boolean> {
@@ -120,6 +169,10 @@ export class SampleEntity implements EntityDelegate<unknown> {
 
 	public async entityOnShow(): Promise<boolean> {
 		return this.lifecycle.endPhase('entityOnShow');
+	}
+
+	public async entityOnInit(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityOnInit');
 	}
 
 	public async entityOnInteract(): Promise<boolean> {
@@ -198,360 +251,16 @@ export class SampleEntity implements EntityDelegate<unknown> {
 		return this.lifecycle.endPhase('entityWillPause');
 	}
 
-	public async animWillCancel(): Promise<boolean> {
-		return this.lifecycle.endPhase('animWillCancel');
-	}
-
 	public async entityOnMove(): Promise<boolean> {
 		return this.lifecycle.endPhase('entityOnMove');
-	}
-
-	public async stateDidChange(): Promise<boolean> {
-		return this.lifecycle.endPhase('stateDidChange');
-	}
-
-	public async stateWillChange(): Promise<boolean> {
-		return this.lifecycle.endPhase('stateWillChange');
-	}
-
-	public async stateOnChange(): Promise<boolean> {
-		return this.lifecycle.endPhase('stateOnChange');
 	}
 
 	public async entityWillInit(): Promise<boolean> {
 		return this.lifecycle.endPhase('entityWillInit');
 	}
 
-	public async animWillStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('animWillStart');
-	}
-
-	public async animDidCancel(): Promise<boolean> {
-		return this.lifecycle.endPhase('animDidCancel');
-	}
-
-	public async animDidStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('animDidStart');
-	}
-
-	public async animDidFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('animDidFinish');
-	}
-
-	public async animWillFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('animWillFinish');
-	}
-
-	public async animOnError(): Promise<boolean> {
-		return this.lifecycle.endPhase('animOnError');
-	}
-
-	public async animOnFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('animOnFinish');
-	}
-
-	public async animOnMissing(): Promise<boolean> {
-		return this.lifecycle.endPhase('animOnMissing');
-	}
-
-	public async animOnCancel(): Promise<boolean> {
-		return this.lifecycle.endPhase('animOnCancel');
-	}
-
-	public async animOnStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('animOnStart');
-	}
-
-	public async didInit(): Promise<boolean> {
-		return this.lifecycle.endPhase('didInit');
-	}
-
-	public async willLoad(): Promise<boolean> {
-		return this.lifecycle.endPhase('willLoad');
-	}
-
-	public async didHide(): Promise<boolean> {
-		return this.lifecycle.endPhase('didHide');
-	}
-
-	public async didShow(): Promise<boolean> {
-		return this.lifecycle.endPhase('didShow');
-	}
-
-	public async willPause(): Promise<boolean> {
-		return this.lifecycle.endPhase('willPause');
-	}
-
-	public async willMove(): Promise<boolean> {
-		return this.lifecycle.endPhase('willMove');
-	}
-
-	public async didMove(): Promise<boolean> {
-		return this.lifecycle.endPhase('didMove');
-	}
-
-	public async assetUnloadWillStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetUnloadWillStart');
-	}
-
-	public async assetUnloadOnStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetUnloadOnStart');
-	}
-
-	public async assetUnloadOnFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetUnloadOnFinish');
-	}
-
-	public async assetUnloadDidStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetUnloadDidStart');
-	}
-
-	public async assetUnloadDidFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetUnloadDidFinish');
-	}
-
-	public async assetUnloadWillFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetUnloadWillFinish');
-	}
-
-	public async assetLoadWillFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetLoadWillFinish');
-	}
-
-	public async assetLoadDidFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetLoadDidFinish');
-	}
-
-	public async assetLoadDidStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetLoadDidStart');
-	}
-
-	public async assetLoadOnAbort(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetLoadOnAbort');
-	}
-
-	public async assetLoadOnFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetLoadOnFinish');
-	}
-
-	public async assetLoadOnStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetLoadOnStart');
-	}
-
-	public async assetLoadOnProgress(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetLoadOnProgress');
-	}
-
-	public async assetLoadWillStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('assetLoadWillStart');
-	}
-
-	public async didUnpause(): Promise<boolean> {
-		return this.lifecycle.endPhase('didUnpause');
-	}
-
-	public async willUnpause(): Promise<boolean> {
-		return this.lifecycle.endPhase('willUnpause');
-	}
-
-	public async willHide(): Promise<boolean> {
-		return this.lifecycle.endPhase('willHide');
-	}
-
-	public async willShow(): Promise<boolean> {
-		return this.lifecycle.endPhase('willShow');
-	}
-
-	public async willDespawn(): Promise<boolean> {
-		return this.lifecycle.endPhase('willDespawn');
-	}
-
-	public async didSpawn(): Promise<boolean> {
-		return this.lifecycle.endPhase('didSpawn');
-	}
-
-	public async willSpawn(): Promise<boolean> {
-		return this.lifecycle.endPhase('willSpawn');
-	}
-
 	public async entityOnLoad(): Promise<boolean> {
 		return this.lifecycle.endPhase('entityOnLoad');
-	}
-
-	public async onInteract(): Promise<boolean> {
-		return this.lifecycle.endPhase('onInteract');
-	}
-
-	public async onSpawn(): Promise<boolean> {
-		return this.lifecycle.endPhase('onSpawn');
-	}
-
-	public async onStop(): Promise<boolean> {
-		return this.lifecycle.endPhase('onStop');
-	}
-
-	public async willStop(): Promise<boolean> {
-		return this.lifecycle.endPhase('willStop');
-	}
-
-	public async didStop(): Promise<boolean> {
-		return this.lifecycle.endPhase('didStop');
-	}
-
-	public async memoryWarning(): Promise<boolean> {
-		return this.lifecycle.endPhase('memoryWarning');
-	}
-
-	public async willHover(): Promise<boolean> {
-		return this.lifecycle.endPhase('willHover');
-	}
-
-	public async didHover(): Promise<boolean> {
-		return this.lifecycle.endPhase('didHover');
-	}
-
-	public async textureDidChange(): Promise<boolean> {
-		return this.lifecycle.endPhase('textureDidChange');
-	}
-
-	public async textureDidLoad(): Promise<boolean> {
-		return this.lifecycle.endPhase('textureDidLoad');
-	}
-
-	public async textureOnChange(): Promise<boolean> {
-		return this.lifecycle.endPhase('textureOnChange');
-	}
-
-	public async textureWillChange(): Promise<boolean> {
-		return this.lifecycle.endPhase('textureWillChange');
-	}
-
-	public async textureLoadDidFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('textureLoadDidFinish');
-	}
-
-	public async textureWillLoad(): Promise<boolean> {
-		return this.lifecycle.endPhase('textureWillLoad');
-	}
-
-	public async didInteract(): Promise<boolean> {
-		return this.lifecycle.endPhase('didInteract');
-	}
-
-	public async soundDidCancel(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundDidCancel');
-	}
-
-	public async soundDidFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundDidFinish');
-	}
-
-	public async soundOnCancel(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundOnCancel');
-	}
-
-	public async soundOnPause(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundOnPause');
-	}
-
-	public async soundOnUnpause(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundOnUnpause');
-	}
-
-	public async soundOnFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundOnFinish');
-	}
-
-	public async soundWillFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundWillFinish');
-	}
-
-	public async soundWillPause(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundWillPause');
-	}
-
-	public async soundWillStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundWillStart');
-	}
-
-	public async soundWillUnpause(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundWillUnpause');
-	}
-
-	public async soundDidReset(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundDidReset');
-	}
-
-	public async soundOnStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundOnStart');
-	}
-
-	public async soundOnMissing(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundOnMissing');
-	}
-
-	public async soundWillCancel(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundWillCancel');
-	}
-
-	public async soundDidStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundDidStart');
-	}
-
-	public async soundOnError(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundOnError');
-	}
-
-	public async soundDidPause(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundDidPause');
-	}
-
-	public async soundDidUnpause(): Promise<boolean> {
-		return this.lifecycle.endPhase('soundDidUnpause');
-	}
-
-	public async tweenWillStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenWillStart');
-	}
-
-	public async tweenWillFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenWillFinish');
-	}
-
-	public async tweenOnStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenOnStart');
-	}
-
-	public async tweenOnFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenOnFinish');
-	}
-
-	public async tweenDidStart(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenDidStart');
-	}
-
-	public async tweenDidFinish(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenDidFinish');
-	}
-
-	public async tweenOnCancel(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenOnCancel');
-	}
-
-	public async tweenDidReset(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenDidReset');
-	}
-
-	public async tweenDidReplay(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenDidReplay');
-	}
-
-	public async tweenDidCancel(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenDidCancel');
-	}
-
-	public async tweenWillCancel(): Promise<boolean> {
-		return this.lifecycle.endPhase('tweenWillCancel');
 	}
 
 	public reset(): void {

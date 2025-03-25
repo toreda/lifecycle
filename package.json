@@ -1,6 +1,6 @@
 {
 	"name": "@toreda/lifecycle",
-	"version": "2.2.0",
+	"version": "2.2.1",
 	"description": "Lifecycle flows with callbacks and event handlers similar to Android, Objective C, Swift.",
 	"main": "./dist/index.js",
 	"typings": "./dist/index.d.ts",
