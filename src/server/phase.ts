@@ -38,7 +38,6 @@ export type ServerPhase =
 	| 'serverDidBecomeReady'
 	| 'serverDidCloseConnection'
 	| 'serverDidDropConnection'
-	| 'serverDidDropConnection'
 	| 'serverDidInit'
 	| 'serverDidLoad'
 	| 'serverDidRemoveClient'
