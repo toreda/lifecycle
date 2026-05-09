@@ -61,7 +61,7 @@ export async function invokeListener<
 	try {
 		// Must call listener from its original context within delegate or 'this' will
 		// be unbound here.
-		result = await ln.call(delegate);
+		result = (await ln.call(delegate)) === true;
 		delegate.lifecycle.set(phase, true);
 	} catch (e: unknown) {
 		result = false;
