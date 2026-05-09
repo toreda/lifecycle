@@ -23,7 +23,7 @@
  *
  */
 
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {invokeListeners} from '../invoke/listeners';
 import {type AssetDelegate} from './delegate';
 
@@ -66,7 +66,7 @@ export type AssetPhase =
 export async function assetPhase<ArgsT = unknown>(
 	phase: AssetPhase,
 	delegate: AssetDelegate<ArgsT> | AssetDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<AssetPhase, AssetDelegate<ArgsT>>({
 		phase: phase,

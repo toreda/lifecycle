@@ -23,7 +23,7 @@
  *
  */
 
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {type TweenDelegate} from './delegate';
 import {invokeListeners} from '../invoke/listeners';
 
@@ -59,7 +59,7 @@ export type TweenPhase =
 export async function tweenPhase<ArgsT = unknown>(
 	phase: TweenPhase,
 	delegate: TweenDelegate<ArgsT> | TweenDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<TweenPhase, TweenDelegate<ArgsT>>({
 		phase: phase,

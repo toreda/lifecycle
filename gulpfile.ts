@@ -29,9 +29,7 @@ import {ESLint} from 'eslint';
 import del from 'del';
 import ts from 'gulp-typescript';
 
-const eslint = new ESLint({
-	useEslintrc: true
-});
+const eslint = new ESLint();
 
 const srcPatterns = ['src/**.ts', 'src/**/*.ts'];
 const tsc = ts.createProject('tsconfig.json');

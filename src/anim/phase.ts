@@ -23,7 +23,7 @@
  *
  */
 
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {invokeListeners} from '../invoke/listeners';
 import {type AnimDelegate} from './delegate';
 
@@ -59,7 +59,7 @@ export type AnimPhase =
 export async function animPhase<ArgsT = unknown>(
 	phase: AnimPhase,
 	delegate: AnimDelegate<ArgsT> | AnimDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<AnimPhase, AnimDelegate<ArgsT>>({
 		phase: phase,

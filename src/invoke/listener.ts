@@ -24,21 +24,20 @@
  */
 
 import {type LifecycleDelegateCommon} from '../lifecycle/delegate/common';
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {canInvoke} from '../can/invoke';
 
 /**
  * @category Core
  */
-export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
-	phase: PhaseT,
-	delegate: DelegateT,
-	log?: Log
-): Promise<boolean> {
+export async function invokeListener<
+	PhaseT extends string,
+	DelegateT extends LifecycleDelegateCommon<PhaseT>
+>(phase: PhaseT, delegate: DelegateT, log?: LogLike): Promise<boolean> {
 	if (!canInvoke<PhaseT, DelegateT>(phase, delegate, log)) {
-		log
-			?.makeLog(`invokeListener:${String(phase)}`)
-			.warn(`Can't invoke listener for server phase '${String(phase)}'.`);
+		log?.warn(
+			`[invokeListener:${String(phase)}] Can't invoke listener for server phase '${String(phase)}'.`
+		);
 		return false;
 	}
 
@@ -53,7 +52,7 @@ export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegate
 	}
 
 	if (typeof ln !== 'function') {
-		log?.makeLog(`invokeListener:${String(phase)}`).error(`listener exists but is not a function.`);
+		log?.error(`[invokeListener:${String(phase)}] listener exists but is not a function.`);
 		return false;
 	}
 
@@ -64,8 +63,13 @@ export async function invokeListener<PhaseT, DelegateT extends LifecycleDelegate
 		// be unbound here.
 		result = await ln.call(delegate);
 		delegate.lifecycle.set(phase, true);
-	} catch (_e: unknown) {
+	} catch (e: unknown) {
 		result = false;
+		if (e instanceof Error) {
+			log?.error(`[invokeListener:${String(phase)}] listener threw: ${e.message}.`);
+		} else {
+			log?.error(`[invokeListener:${String(phase)}] listener threw: unknown exception type.`);
+		}
 	}
 
 	return result;

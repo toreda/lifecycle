@@ -23,7 +23,7 @@
  *
  */
 
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {type SoundDelegate} from './delegate';
 import {invokeListeners} from '../invoke/listeners';
 
@@ -67,7 +67,7 @@ export type SoundPhase =
 export async function soundPhase<ArgsT = unknown>(
 	phase: SoundPhase,
 	delegate: SoundDelegate<ArgsT> | SoundDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<SoundPhase, SoundDelegate<ArgsT>>({
 		phase: phase,

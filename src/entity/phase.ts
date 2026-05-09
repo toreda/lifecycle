@@ -24,7 +24,7 @@
  */
 
 import type {EntityDelegate} from './delegate';
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {invokeListeners} from '../invoke/listeners';
 
 /**
@@ -105,7 +105,7 @@ export type EntityPhase =
 export async function entityPhase<ArgsT = unknown>(
 	phase: EntityPhase,
 	delegate: EntityDelegate<ArgsT> | EntityDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<EntityPhase, EntityDelegate<ArgsT>>({
 		phase: phase,

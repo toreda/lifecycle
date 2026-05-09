@@ -31,7 +31,7 @@ import {Lifecycle} from '../../lifecycle';
  * @category Lifecycle
  *
  */
-export interface LifecycleDelegateCommon<PhaseT> {
+export interface LifecycleDelegateCommon<PhaseT extends string> {
 	children?: LifecycleDelegateCommon<PhaseT>[];
 	lifecycle: Lifecycle<PhaseT>;
 	reset: () => void;

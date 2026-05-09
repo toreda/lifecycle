@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # [Unreleased]
 
+## Added
+* `LogLike` interface and `logLike` type guard in `src/log/like.ts`. A minimal structural logger contract (`error`, `warn`, `info`, `debug`, `trace`) satisfied by both the global `console` and `@toreda/log`'s `Log`. Re-exported from the package barrel.
+
+## Changed
+* `phase` is deprecated. Use `endPhase` instead.
+* Both `phase` and `endPhase` have been changed from async to sync calls.
+* All public phase functions (`serverPhase`, `clientPhase`, `cnxPhase`, etc.), `invokeListener`, `invokeListeners`, `invokeChildListeners`, `canInvoke`, and `InvokeListenersInit.base` now accept `LogLike` instead of `@toreda/log`'s `Log`. A `Log` instance still satisfies the new contract structurally, so existing callers don't need changes.
+* Internal scoped log calls (`log.makeLog('scope').error(...)`) replaced with prefixed messages (`log.error('[scope] ...')`) since `LogLike` is intentionally minimal and does not include `makeLog`.
+
+## Removed
+* `@toreda/log` from `peerDependencies`. Consumers no longer need to install it to use this package; any logger matching `LogLike` works (including plain `console`).
+
 # [2.2.1] - 2025-03-24
 * Added missing `entityOnBecomeReady`, `entityWillBecomeReady`, and `entityDidBecomeReady`, `entityOnInit` phases for consistency between delegates.
 

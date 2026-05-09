@@ -32,7 +32,7 @@ import {type RequestPhase} from './phase';
  * @category Requests
  */
 export class RequestLifecycle extends Lifecycle<RequestPhase> {
-    constructor() {
-        super();
-    }
+	constructor() {
+		super();
+	}
 }

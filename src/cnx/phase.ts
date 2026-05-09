@@ -24,7 +24,7 @@
  */
 
 import type {CnxDelegate} from './delegate';
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {invokeListeners} from '../invoke/listeners';
 
 /**
@@ -84,7 +84,7 @@ export type CnxPhase =
 export async function cnxPhase<ArgsT = unknown>(
 	phase: CnxPhase,
 	delegate: CnxDelegate<ArgsT> | CnxDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<CnxPhase, CnxDelegate<ArgsT>>({phase: phase, delegate: delegate, base: base});
 }

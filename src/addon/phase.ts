@@ -23,7 +23,7 @@
  *
  */
 import type {AddonDelegate} from './delegate';
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {invokeListeners} from '../invoke/listeners';
 
 /**
@@ -107,7 +107,7 @@ export type AddonPhase =
 export async function addonPhase<ArgsT = unknown>(
 	phase: AddonPhase,
 	delegate: AddonDelegate<ArgsT> | AddonDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<AddonPhase, AddonDelegate<ArgsT>>({
 		phase: phase,

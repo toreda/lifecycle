@@ -23,7 +23,7 @@
  *
  */
 
-import {Log} from '@toreda/log';
+import {type LogLike} from '../../log/like';
 import {type LifecycleDelegateCommon} from '../../lifecycle/delegate/common';
 import {invokeListener} from '../listener';
 
@@ -34,11 +34,10 @@ import {invokeListener} from '../listener';
  *
  * @category Core
  */
-export async function invokeChildListeners<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
-	phase: PhaseT,
-	delegate: DelegateT,
-	base?: Log
-): Promise<boolean> {
+export async function invokeChildListeners<
+	PhaseT extends string,
+	DelegateT extends LifecycleDelegateCommon<PhaseT>
+>(phase: PhaseT, delegate: DelegateT, base?: LogLike): Promise<boolean> {
 	if (!delegate) {
 		return false;
 	}
@@ -52,11 +51,9 @@ export async function invokeChildListeners<PhaseT, DelegateT extends LifecycleDe
 			await invokeListener<PhaseT, LifecycleDelegateCommon<PhaseT>>(phase, child, base);
 		} catch (e) {
 			if (e instanceof Error) {
-				base?.makeLog(`invokeListener:${String(phase)}`).error(`listener threw: ${e.message}.`);
+				base?.error(`[invokeListener:${String(phase)}] listener threw: ${e.message}.`);
 			} else {
-				base
-					?.makeLog(`invokeListener:${String(phase)}`)
-					.error(`listener threw: unknown exception type.`);
+				base?.error(`[invokeListener:${String(phase)}] listener threw: unknown exception type.`);
 			}
 		}
 	}

@@ -33,4 +33,4 @@ import {type RequestPhase} from './phase';
  * @category Requests
  */
 export type RequestDelegate<ArgsT = unknown> = Partial<Record<RequestPhase, LifecycleListener<ArgsT>>> &
-    LifecycleDelegateCommon<RequestPhase>;
+	LifecycleDelegateCommon<RequestPhase>;

@@ -26,19 +26,19 @@
 /**
  * @category Core
  */
-export class Lifecycle<PhaseT> extends Map<PhaseT, boolean> {
+export class Lifecycle<PhaseT extends string> extends Map<PhaseT, boolean> {
 	constructor() {
 		super();
 
 		this.bindListeners();
 	}
 
-	public bindListeners(): void {
+	private bindListeners(): void {
 		this.phase = this.phase.bind(this);
 		this.endPhase = this.endPhase.bind(this);
 	}
 
-	public async phase(id: PhaseT): Promise<boolean> {
+	public endPhase(id: PhaseT): boolean {
 		if (!id) {
 			return false;
 		}
@@ -51,8 +51,11 @@ export class Lifecycle<PhaseT> extends Map<PhaseT, boolean> {
 		return true;
 	}
 
-	public async endPhase(id: PhaseT): Promise<boolean> {
-		return this.phase(id);
+	/**
+	 * @deprecated Use `endPhase` instead. Retained for backwards compatibility.
+	 */
+	public phase(id: PhaseT): boolean {
+		return this.endPhase(id);
 	}
 
 	/**
@@ -62,7 +65,7 @@ export class Lifecycle<PhaseT> extends Map<PhaseT, boolean> {
 		this.clear();
 	}
 
-	public override get(key?: PhaseT): boolean {
+	public override get(key: PhaseT): boolean {
 		if (!key) {
 			return false;
 		}

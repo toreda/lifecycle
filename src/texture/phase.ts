@@ -24,7 +24,7 @@
  *
  */
 
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {type TextureDelegate} from './delegate';
 import {invokeListeners} from '../invoke/listeners';
 
@@ -60,7 +60,7 @@ export type TexturePhase =
 export async function texturePhase<ArgsT = unknown>(
 	phase: TexturePhase,
 	delegate: TextureDelegate<ArgsT> | TextureDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<TexturePhase, TextureDelegate<ArgsT>>({
 		phase: phase,

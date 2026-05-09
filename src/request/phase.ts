@@ -23,7 +23,7 @@
  *
  */
 
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {invokeListeners} from '../invoke/listeners';
 import {type RequestDelegate} from './delegate';
 
@@ -49,16 +49,16 @@ export type RequestPhase =
 	| 'requestWillResolveHost'
 	| 'requestWillStartHandshake'
 	| 'requestWillTerminate'
-    | 'requestDidClose'
-    | 'requestDidCompleteHandshake'
-    | 'requestDidReset'
-    | 'requestDidSucceed'
-    | 'requestDidTimeout'
-    | 'requestWillClose'
-    | 'requestWillCompleteHandshake'
-    | 'requestWillReset'
-    | 'requestWillSucceed'
-    | 'requestWillTimeout';
+	| 'requestDidClose'
+	| 'requestDidCompleteHandshake'
+	| 'requestDidReset'
+	| 'requestDidSucceed'
+	| 'requestDidTimeout'
+	| 'requestWillClose'
+	| 'requestWillCompleteHandshake'
+	| 'requestWillReset'
+	| 'requestWillSucceed'
+	| 'requestWillTimeout';
 /**
  *
  * @param delegate
@@ -69,7 +69,7 @@ export type RequestPhase =
 export async function requestPhase<ArgsT = unknown>(
 	phase: RequestPhase,
 	delegate: RequestDelegate<ArgsT> | RequestDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<RequestPhase, RequestDelegate<ArgsT>>({
 		phase: phase,

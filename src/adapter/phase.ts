@@ -24,7 +24,7 @@
  */
 
 import {type AdapterDelegate} from './delegate';
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {invokeListeners} from '../invoke/listeners';
 
 /**
@@ -107,7 +107,7 @@ export type AdapterPhase =
 export async function adapterPhase<ArgsT = unknown>(
 	phase: AdapterPhase,
 	delegate: AdapterDelegate<ArgsT> | AdapterDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<AdapterPhase, AdapterDelegate<ArgsT>>({
 		phase: phase,

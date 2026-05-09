@@ -24,7 +24,7 @@
  */
 
 import type {LifecycleDelegateCommon} from '../lifecycle/delegate/common';
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 
 /**
  * Determine if delegate has listener that can be invoked for target phase.
@@ -33,10 +33,10 @@ import {Log} from '@toreda/log';
  *
  * @category Core
  */
-export function canInvoke<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
+export function canInvoke<PhaseT extends string, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	phase: PhaseT,
 	delegate: DelegateT,
-	log?: Log
+	log?: LogLike
 ): boolean {
 	if (!delegate || !phase) {
 		return false;
@@ -47,31 +47,27 @@ export function canInvoke<PhaseT, DelegateT extends LifecycleDelegateCommon<Phas
 	}
 
 	if (!delegate.lifecycle) {
-		log?.makeLog(`canInvoke:${String(phase)}`).error(`delegate.lifecycle is missing`);
+		log?.error(`[canInvoke:${String(phase)}] delegate.lifecycle is missing`);
 		return false;
 	}
 
 	if (!delegate.lifecycle.get) {
-		log?.makeLog(`canInvoke:${String(phase)}`).error(`delegate.lifecycle.get is missing`);
+		log?.error(`[canInvoke:${String(phase)}] delegate.lifecycle.get is missing`);
 		return false;
 	}
 
 	if (typeof delegate.lifecycle.get !== 'function') {
-		log
-			?.makeLog(`canInvoke:${String(phase)}`)
-			.error(`delegate.lifecycle.get exists but is not a function`);
+		log?.error(`[canInvoke:${String(phase)}] delegate.lifecycle.get exists but is not a function`);
 		return false;
 	}
 
 	if (!delegate.lifecycle.set) {
-		log?.makeLog(`canInvoke:${String(phase)}`).error(`delegate.lifecycle.set is missing`);
+		log?.error(`[canInvoke:${String(phase)}] delegate.lifecycle.set is missing`);
 		return false;
 	}
 
 	if (typeof delegate.lifecycle.set !== 'function') {
-		log
-			?.makeLog(`canInvoke:${String(phase)}`)
-			.error(`delegate.lifecycle.set exists but is not a function`);
+		log?.error(`[canInvoke:${String(phase)}] delegate.lifecycle.set exists but is not a function`);
 		return false;
 	}
 

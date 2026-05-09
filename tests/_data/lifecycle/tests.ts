@@ -7,7 +7,7 @@ export type Invoker<PhaseT, DelegateT> = (
 	log?: Log
 ) => Promise<boolean>;
 
-export function generatePhaseTests<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
+export function generatePhaseTests<PhaseT extends string, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	suiteName: string,
 	o: DelegateT,
 	phases: PhaseT[],
@@ -28,7 +28,7 @@ export function generatePhaseTests<PhaseT, DelegateT extends LifecycleDelegateCo
 	});
 }
 
-export function generatePhaseListenerTests<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
+export function generatePhaseListenerTests<PhaseT extends string, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	o: DelegateT,
 	phases: PhaseT[],
 	fn: Invoker<PhaseT, DelegateT>
@@ -44,7 +44,7 @@ export function generatePhaseListenerTests<PhaseT, DelegateT extends LifecycleDe
 	});
 }
 
-export function generatePhaseResetTest<PhaseT>(
+export function generatePhaseResetTest<PhaseT extends string>(
 	o: LifecycleDelegateCommon<PhaseT>,
 	phase: PhaseT,
 	initial: boolean
@@ -58,7 +58,7 @@ export function generatePhaseResetTest<PhaseT>(
 	});
 }
 
-export function generatePhaseListenerTest<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
+export function generatePhaseListenerTest<PhaseT extends string, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
 	o: DelegateT,
 	phase: PhaseT,
 	fn: Invoker<PhaseT, DelegateT>

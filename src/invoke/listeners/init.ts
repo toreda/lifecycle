@@ -23,7 +23,7 @@
  *
  */
 
-import {Log} from '@toreda/log';
+import {type LogLike} from '../../log/like';
 import {type LifecycleDelegateCommon} from '../../lifecycle/delegate/common';
 
 /**
@@ -31,8 +31,11 @@ import {type LifecycleDelegateCommon} from '../../lifecycle/delegate/common';
  *
  * @category Core
  */
-export interface InvokeListenersInit<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>> {
+export interface InvokeListenersInit<
+	PhaseT extends string,
+	DelegateT extends LifecycleDelegateCommon<PhaseT>
+> {
 	phase: PhaseT;
 	delegate: DelegateT | DelegateT[];
-	base?: Log;
+	base?: LogLike;
 }

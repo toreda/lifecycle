@@ -24,7 +24,7 @@
  */
 
 import {type TaskDelegate} from './delegate';
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {invokeListeners} from '../invoke/listeners';
 
 /**
@@ -115,7 +115,7 @@ export type TaskPhase =
 export async function taskPhase<ArgsT = unknown>(
 	phase: TaskPhase,
 	delegate: TaskDelegate<ArgsT> | TaskDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<TaskPhase, TaskDelegate<ArgsT>>({
 		phase: phase,

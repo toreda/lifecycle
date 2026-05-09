@@ -29,37 +29,34 @@ import {invokeListener} from './listener';
 import {type InvokeListenersInit} from './listeners/init';
 
 /**
- * Invoke phase listener on DelegateT or all target DelegateT[] (if it exists). Then,
- * invoke the listener on all DelegateT children.
+ * Invoke the phase listener on each target delegate, followed by the same
+ * listener on its children. Returns `true` only when every target's main
+ * listener succeeded.
  *
  * @category Core
  */
-export async function invokeListeners<PhaseT, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
-	init: InvokeListenersInit<PhaseT, DelegateT>
-): Promise<boolean> {
+export async function invokeListeners<
+	PhaseT extends string,
+	DelegateT extends LifecycleDelegateCommon<PhaseT>
+>(init: InvokeListenersInit<PhaseT, DelegateT>): Promise<boolean> {
 	if (!init || !init.delegate) {
 		return false;
 	}
 
-	let queue: DelegateT[];
+	const queue: DelegateT[] = Array.isArray(init.delegate) ? init.delegate : [init.delegate];
 
-	if (Array.isArray(init.delegate)) {
-		queue = init.delegate;
-	} else {
-		queue = [init.delegate];
-	}
-
-	let invokeCount = 0;
 	if (queue.length === 0) {
 		return false;
 	}
 
+	let successes = 0;
 	for (const item of queue) {
 		const mainResult = await invokeListener<PhaseT, DelegateT>(init.phase, item, init.base);
-		const childResult = await invokeChildListeners<PhaseT, DelegateT>(init.phase, item, init.base);
-		invokeCount += mainResult === true ? 1 : 0;
-		invokeCount += childResult === true ? 1 : 0;
+		await invokeChildListeners<PhaseT, DelegateT>(init.phase, item, init.base);
+		if (mainResult === true) {
+			successes++;
+		}
 	}
 
-	return invokeCount >= queue.length;
+	return successes === queue.length;
 }

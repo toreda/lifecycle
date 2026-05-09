@@ -23,7 +23,7 @@
  *
  */
 
-import {Log} from '@toreda/log';
+import {type LogLike} from '../log/like';
 import {invokeListeners} from '../invoke/listeners';
 import {type ComponentDelegate} from './delegate';
 
@@ -77,7 +77,7 @@ export type ComponentPhase =
 export async function componentPhase<ArgsT = unknown>(
 	phase: ComponentPhase,
 	delegate: ComponentDelegate<ArgsT> | ComponentDelegate<ArgsT>[],
-	base?: Log
+	base?: LogLike
 ): Promise<boolean> {
 	return invokeListeners<ComponentPhase, ComponentDelegate<ArgsT>>({
 		phase: phase,

@@ -25,18 +25,21 @@
 
 import {type BaseObject} from '@toreda/types';
 import type {ValidatorFn} from '@toreda/types';
+import {type LogLike} from '../../log/like';
 
 /**
  * @param o
  * @param keyName
  * @param testFn
+ * @param log
  *
  * @category Core
  */
 export function lifecyclePhaseOption<ValueT>(
 	o: unknown,
 	keyName: string,
-	testFn?: ValidatorFn
+	testFn?: ValidatorFn,
+	log?: LogLike
 ): ValueT | null {
 	if (!o || typeof keyName !== 'string') {
 		return null;
@@ -52,8 +55,13 @@ export function lifecyclePhaseOption<ValueT>(
 		let isValid = false;
 		try {
 			isValid = testFn(value);
-		} catch (_e: unknown) {
+		} catch (e: unknown) {
 			isValid = false;
+			if (e instanceof Error) {
+				log?.error(`[lifecyclePhaseOption:${keyName}] validator threw: ${e.message}.`);
+			} else {
+				log?.error(`[lifecyclePhaseOption:${keyName}] validator threw: unknown exception type.`);
+			}
 		}
 
 		if (isValid === true) {
