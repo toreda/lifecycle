@@ -29,6 +29,13 @@
 *.xml           text    eol=lf
 *.yaml          text    eol=lf
 *.yml           text    eol=lf
+AUTHORS         text    eol=lf
+CODE_OF_CONDUCT text    eol=lf
+CONTRIBUTORS    text    eol=lf
+COPYRIGHT       text    eol=lf
+LICENSE         text    eol=lf
+NOTICE          text    eol=lf
+
 pnpm-lock.yaml  text    eol=lf
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
