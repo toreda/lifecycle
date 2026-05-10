@@ -70,7 +70,9 @@
 		"make:depgraph": "pnpm madge src/index.ts --image dependency-graph.png"
 	},
 	"engines": {
-		"node": ">= 22"
+		"node": ">= 22",
+		"pnpm": ">= 10"
 	},
+	"packageManager": "pnpm@10.11.1",
 	"prettier": "@toreda/prettier-config"
 }

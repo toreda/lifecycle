@@ -1,8 +1,8 @@
 [![Toreda](https://content.toreda.com/logo/toreda-logo.png)](https://www.toreda.com)
 
-[![CI](https://img.shields.io/github/workflow/status/toreda/lifecycle/CI?style=for-the-badge)](https://github.com/toreda/lifecycle/actions/workflows/main.yml)
+[![CI](https://img.shields.io/github/workflow/status/toreda/lifecycle/CI?style=for-the-badge)](https://github.com/toreda/lifecycle/actions/workflows/ci.yml)
 
-[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/toreda/lifecycle/master?style=for-the-badge)](https://github.com/toreda/lifecycle/releases/latest) [![GitHub Release Date](https://img.shields.io/github/release-date/toreda/lifecycle?style=for-the-badge)](https://github.com/toreda/lifecycle/releases/latest) [![GitHub issues](https://img.shields.io/github/issues/toreda/lifecycle?style=for-the-badge)](https://github.com/toreda/lifecycle/issues)
+[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/toreda/lifecycle/master?style=for-the-badge)](https://github.com/toreda/lifecycle/releases/latest) [![GitHub Release Date](https://img.shields.io/github/release-date/toreda/lifecycle?style=for-the-badge)](https://github.com/toreda/lifecycle/releases/latest) [![GitHub issues](https://img.shields.io/github/issues/toreda/lifecycle?style=for-the-badge)](https://github.com/toreda/lifecycle/issues) [![NPM Downloads](https://img.shields.io/npm/dm/@toreda/lifecycle?style=for-the-badge&logo=npm&label=NPM)](https://www.npmjs.com/package/@toreda/lifecycle)
 
  [![license](https://img.shields.io/github/license/toreda/lifecycle?style=for-the-badge)](https://github.com/toreda/lifecycle/blob/master/LICENSE)
 
