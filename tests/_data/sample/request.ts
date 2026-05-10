@@ -1,4 +1,4 @@
-import {RequestLifecycle} from '../../../src';
+import {RequestLifecycle} from '../../../src/request/lifecycle';
 import {type RequestDelegate} from '../../../src/request/delegate';
 
 export class SampleRequest implements RequestDelegate {

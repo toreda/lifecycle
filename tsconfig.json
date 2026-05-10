@@ -1,6 +1,6 @@
 {
-	"exclude": ["**/node_modules", "dist/**"],
-	"include": ["**/src/**/*", "**/tests/**/*.ts"],
+	"exclude": ["**/node_modules", "dist/**", "tests/**"],
+	"include": ["**/src/**/*"],
 	"filesGlob": ["./src/*.ts", "./src/**/*.ts", "!./node_modules/**"],
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
