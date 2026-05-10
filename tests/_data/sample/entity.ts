@@ -55,16 +55,16 @@ export class SampleEntity implements EntityDelegate<EntityPhase> {
 		return this.lifecycle.endPhase('entityDidBecomeReady');
 	}
 
-	public async orientationWillChange(): Promise<boolean> {
-		return this.lifecycle.endPhase('orientationWillChange');
+	public async entityOrientationWillChange(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityOrientationWillChange');
 	}
 
-	public async orientationOnChange(): Promise<boolean> {
-		return this.lifecycle.endPhase('orientationOnChange');
+	public async entityOrientationOnChange(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityOrientationOnChange');
 	}
 
-	public async orientationDidChange(): Promise<boolean> {
-		return this.lifecycle.endPhase('orientationDidChange');
+	public async entityOrientationDidChange(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityOrientationDidChange');
 	}
 
 	public async entityDidGainFocus(): Promise<boolean> {
@@ -183,8 +183,8 @@ export class SampleEntity implements EntityDelegate<EntityPhase> {
 		return this.lifecycle.endPhase('entityStateOnChange');
 	}
 
-	public async entityMemoryWarning(): Promise<boolean> {
-		return this.lifecycle.endPhase('entityMemoryWarning');
+	public async entityOnMemoryWarning(): Promise<boolean> {
+		return this.lifecycle.endPhase('entityOnMemoryWarning');
 	}
 
 	public async entityDidUnpause(): Promise<boolean> {

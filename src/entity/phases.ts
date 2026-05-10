@@ -30,7 +30,7 @@ import type {EntityPhase} from './phase';
  *
  * @category Entities
  */
-export const entityPhases: EntityPhase[] = [
+export const entityPhases = [
 	'entityDidBecomeReady',
 	'entityDidDespawn',
 	'entityDidGainFocus',
@@ -49,7 +49,6 @@ export const entityPhases: EntityPhase[] = [
 	'entityDidStart',
 	'entityDidStop',
 	'entityDidUnpause',
-	'entityMemoryWarning',
 	'entityOnBecomeReady',
 	'entityOnDespawn',
 	'entityOnGainFocus',
@@ -59,6 +58,7 @@ export const entityPhases: EntityPhase[] = [
 	'entityOnInteract',
 	'entityOnLoad',
 	'entityOnLoseFocus',
+	'entityOnMemoryWarning',
 	'entityOnMove',
 	'entityOnPause',
 	'entityOnRecycle',
@@ -68,6 +68,9 @@ export const entityPhases: EntityPhase[] = [
 	'entityOnStart',
 	'entityOnStop',
 	'entityOnUnpause',
+	'entityOrientationDidChange',
+	'entityOrientationOnChange',
+	'entityOrientationWillChange',
 	'entityStateDidChange',
 	'entityStateOnChange',
 	'entityStateWillChange',
@@ -88,8 +91,11 @@ export const entityPhases: EntityPhase[] = [
 	'entityWillSpawn',
 	'entityWillStart',
 	'entityWillStop',
-	'entityWillUnpause',
-	'orientationDidChange',
-	'orientationOnChange',
-	'orientationWillChange'
-];
+	'entityWillUnpause'
+] as const satisfies readonly EntityPhase[];
+
+// Compile-time exhaustiveness check: every EntityPhase must appear in entityPhases.
+// If a new phase is added to EntityPhase but missing here, this line errors.
+type _EntityPhaseMissing = Exclude<EntityPhase, (typeof entityPhases)[number]>;
+const _entityPhasesExhaustive: [_EntityPhaseMissing] extends [never] ? true : never = true;
+void _entityPhasesExhaustive;

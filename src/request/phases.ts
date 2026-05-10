@@ -30,33 +30,49 @@ import {type RequestPhase} from './phase';
  *
  * @category Requests
  */
-export const requestPhases: RequestPhase[] = [
+export const requestPhases = [
 	'requestDidBegin',
+	'requestDidCancel',
+	'requestDidClose',
+	'requestDidCompleteHandshake',
 	'requestDidConnect',
 	'requestDidEnd',
 	'requestDidFail',
 	'requestDidProcessPayload',
+	'requestDidQueue',
+	'requestDidReceiveBody',
+	'requestDidReceiveResponse',
 	'requestDidRedirect',
 	'requestDidResolveHost',
+	'requestDidRetry',
+	'requestDidSend',
 	'requestDidStartHandshake',
+	'requestDidSucceed',
 	'requestDidTerminate',
+	'requestDidTimeout',
 	'requestWillBegin',
+	'requestWillCancel',
+	'requestWillClose',
+	'requestWillCompleteHandshake',
 	'requestWillConnect',
 	'requestWillEnd',
 	'requestWillFail',
 	'requestWillProcessPayload',
+	'requestWillQueue',
+	'requestWillReceiveBody',
+	'requestWillReceiveResponse',
 	'requestWillRedirect',
 	'requestWillResolveHost',
+	'requestWillRetry',
+	'requestWillSend',
 	'requestWillStartHandshake',
-	'requestWillTerminate',
-	'requestDidClose',
-	'requestDidCompleteHandshake',
-	'requestDidReset',
-	'requestDidSucceed',
-	'requestDidTimeout',
-	'requestWillClose',
-	'requestWillCompleteHandshake',
-	'requestWillReset',
 	'requestWillSucceed',
+	'requestWillTerminate',
 	'requestWillTimeout'
-];
+] as const satisfies readonly RequestPhase[];
+
+// Compile-time exhaustiveness check: every RequestPhase must appear in requestPhases.
+// If a new phase is added to RequestPhase but missing here, this line errors.
+type _RequestPhaseMissing = Exclude<RequestPhase, (typeof requestPhases)[number]>;
+const _requestPhasesExhaustive: [_RequestPhaseMissing] extends [never] ? true : never = true;
+void _requestPhasesExhaustive;

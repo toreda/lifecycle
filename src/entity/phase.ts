@@ -51,7 +51,6 @@ export type EntityPhase =
 	| 'entityDidStart'
 	| 'entityDidStop'
 	| 'entityDidUnpause'
-	| 'entityMemoryWarning'
 	| 'entityOnBecomeReady'
 	| 'entityOnDespawn'
 	| 'entityOnGainFocus'
@@ -61,6 +60,7 @@ export type EntityPhase =
 	| 'entityOnInteract'
 	| 'entityOnLoad'
 	| 'entityOnLoseFocus'
+	| 'entityOnMemoryWarning'
 	| 'entityOnMove'
 	| 'entityOnPause'
 	| 'entityOnRecycle'
@@ -70,6 +70,9 @@ export type EntityPhase =
 	| 'entityOnStart'
 	| 'entityOnStop'
 	| 'entityOnUnpause'
+	| 'entityOrientationDidChange'
+	| 'entityOrientationOnChange'
+	| 'entityOrientationWillChange'
 	| 'entityStateDidChange'
 	| 'entityStateOnChange'
 	| 'entityStateWillChange'
@@ -90,17 +93,34 @@ export type EntityPhase =
 	| 'entityWillSpawn'
 	| 'entityWillStart'
 	| 'entityWillStop'
-	| 'entityWillUnpause'
-	| 'orientationDidChange'
-	| 'orientationOnChange'
-	| 'orientationWillChange';
+	| 'entityWillUnpause';
 
 /**
+ * Invoke the listener registered for a given `EntityPhase` on a delegate (or
+ * array of delegates), then recurse into each delegate's children. Each phase
+ * fires at most once per delegate per lifecycle — repeat calls for the same
+ * phase on the same delegate are skipped.
  *
- * @param delegate
- * @param phase
+ * Convenience wrapper around `invokeListeners` that fixes the phase/delegate
+ * type parameters to `EntityPhase` / `EntityDelegate<ArgsT>`. Prefer this
+ * over calling `invokeListeners` directly when working with entity
+ * lifecycles — it keeps phase names and delegate shape type-safe.
  *
- * @category Entity
+ * @param phase    Phase to invoke (e.g. `'entityWillSpawn'`,
+ *                 `'entityDidLoad'`). See `EntityPhase` for the full list.
+ * @param delegate The `EntityDelegate` (or array of delegates) whose
+ *                 listener for `phase` should fire. Children are visited
+ *                 recursively.
+ * @param base     Optional logger satisfying `LogLike`. When omitted,
+ *                 internal diagnostic messages are silently dropped.
+ * @returns `true` only when every target delegate's main listener exists,
+ *          executed without throwing, and returned `true`. `false` if any
+ *          delegate is missing the listener, the listener throws or returns
+ *          non-`true`, the phase was already fired (skipped), or the input
+ *          is empty/invalid. Child-listener results do not affect the
+ *          returned value.
+ *
+ * @category Entities
  */
 export async function entityPhase<ArgsT = unknown>(
 	phase: EntityPhase,

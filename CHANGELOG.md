@@ -9,15 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Added
 * `LogLike` interface and `logLike` type guard in `src/log/like.ts`. A minimal structural logger contract (`error`, `warn`, `info`, `debug`, `trace`) satisfied by both the global `console` and `@toreda/log`'s `Log`. Re-exported from the package barrel.
+* `RequestPhase` gained six new `Will`/`Did` pairs covering previously unhooked stages of an HTTP fetch: `requestWill/DidSend` (writing the request body), `requestWill/DidReceiveResponse` (response headers arrived, before payload processing), `requestWill/DidReceiveBody` (body bytes received off the wire, distinct from decode/parse), `requestWill/DidCancel` (caller-initiated abort, distinct from `Timeout` and `Terminate`), `requestWill/DidRetry` (retry attempt issued — backoff, retry counters, idempotency hooks), and `requestWill/DidQueue` (connection-pool waits / rate-limit queueing).
+* JSDoc on `RequestPhase` clarifying the semantics of terminal phases. `End` is the universal final hook that fires regardless of outcome (so listeners do not need to check an error parameter); `Succeed`, `Fail`, `Terminate`, `Timeout`, and `Cancel` each represent a distinct outcome and fire before `End`. `Close` is transport-layer (connection closed), distinct from operation-layer end.
+* Compile-time exhaustiveness check in `src/request/phases.ts` ensures the runtime `requestPhases` array stays in sync with the `RequestPhase` union — adding a phase to one without the other now fails type-check.
+* Compile-time exhaustiveness check in `src/entity/phases.ts` (same pattern as `requestPhases`) ensures `entityPhases` and `EntityPhase` stay in sync.
+* Real JSDoc on `entityPhase()` describing parameters, return semantics (matches the recent `requestPhase()` doc), and the at-most-once-per-delegate behavior.
 
 ## Changed
 * `phase` is deprecated. Use `endPhase` instead.
 * Both `phase` and `endPhase` have been changed from async to sync calls.
 * All public phase functions (`serverPhase`, `clientPhase`, `cnxPhase`, etc.), `invokeListener`, `invokeListeners`, `invokeChildListeners`, `canInvoke`, and `InvokeListenersInit.base` now accept `LogLike` instead of `@toreda/log`'s `Log`. A `Log` instance still satisfies the new contract structurally, so existing callers don't need changes.
 * Internal scoped log calls (`log.makeLog('scope').error(...)`) replaced with prefixed messages (`log.error('[scope] ...')`) since `LogLike` is intentionally minimal and does not include `makeLog`.
+* `RequestPhase` and `requestPhases` are now sorted alphabetically (was: partly sorted with later additions appended unsorted). No behavior change — phases iterate in a different order.
+* `RequestLifecycle` no longer declares an empty `constructor() { super(); }`; the implicit constructor inherited from `Lifecycle<RequestPhase>` is equivalent.
+* `EntityLifecycle` no longer declares an empty `constructor() { super(); }`; same rationale as `RequestLifecycle`.
+* Fixed `@category Entity` typo on `entityPhase()` — now `Entities`, matching every other reference.
 
 ## Removed
 * `@toreda/log` from `peerDependencies`. Consumers no longer need to install it to use this package; any logger matching `LogLike` works (including plain `console`).
+* **Breaking:** `requestWillReset` and `requestDidReset` removed from `RequestPhase`. Semantics were ambiguous in a fetch context (state reset? connection reset? retry attempt?). Use `requestWill/DidRetry` for retry-attempt cases. Consumers with listeners on these phases will get a TypeScript error and must remove or rename them.
+* **Breaking:** `orientationWillChange` / `orientationOnChange` / `orientationDidChange` renamed to `entityOrientationWillChange` / `entityOrientationOnChange` / `entityOrientationDidChange` for consistency with the project-wide rule (every phase prefixed by its delegate name). These were the only entity phases without the prefix. Consumers must rename their listener methods.
+* **Breaking:** `entityMemoryWarning` renamed to `entityOnMemoryWarning`. The phase fires reactively (the OS notifies of memory pressure), so it semantically belongs to the `On` group; the bare name was the only entity phase without a `Will`/`On`/`Did` qualifier. Consumers must rename their listener methods.
+* **Breaking:** `clientMemoryWarning` renamed to `clientOnMemoryWarning` for the same reason. Consumers must rename their listener methods.
 
 # [2.2.1] - 2025-03-24
 * Added missing `entityOnBecomeReady`, `entityWillBecomeReady`, and `entityDidBecomeReady`, `entityOnInit` phases for consistency between delegates.

@@ -91,21 +91,6 @@ export class SampleRequest implements RequestDelegate {
 		return this.lifecycle.phase('requestDidSucceed');
 	}
 
-	public async requestDidReset(): Promise<boolean> {
-		if (this.lifecycle.get('requestDidReset')) {
-			return false;
-		}
-
-		return this.lifecycle.phase('requestDidReset');
-	}
-
-	public async requestWillReset(): Promise<boolean> {
-		if (this.lifecycle.get('requestWillReset')) {
-			return false;
-		}
-
-		return this.lifecycle.phase('requestWillReset');
-	}
 	public async requestWillRedirect(): Promise<boolean> {
 		if (this.lifecycle.get('requestWillRedirect')) {
 			return false;
@@ -228,6 +213,102 @@ export class SampleRequest implements RequestDelegate {
 		}
 
 		return this.lifecycle.phase('requestWillBegin');
+	}
+
+	public async requestWillCancel(): Promise<boolean> {
+		if (this.lifecycle.get('requestWillCancel')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestWillCancel');
+	}
+
+	public async requestDidCancel(): Promise<boolean> {
+		if (this.lifecycle.get('requestDidCancel')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestDidCancel');
+	}
+
+	public async requestWillReceiveResponse(): Promise<boolean> {
+		if (this.lifecycle.get('requestWillReceiveResponse')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestWillReceiveResponse');
+	}
+
+	public async requestDidReceiveResponse(): Promise<boolean> {
+		if (this.lifecycle.get('requestDidReceiveResponse')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestDidReceiveResponse');
+	}
+
+	public async requestWillRetry(): Promise<boolean> {
+		if (this.lifecycle.get('requestWillRetry')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestWillRetry');
+	}
+
+	public async requestDidRetry(): Promise<boolean> {
+		if (this.lifecycle.get('requestDidRetry')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestDidRetry');
+	}
+
+	public async requestWillSend(): Promise<boolean> {
+		if (this.lifecycle.get('requestWillSend')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestWillSend');
+	}
+
+	public async requestDidSend(): Promise<boolean> {
+		if (this.lifecycle.get('requestDidSend')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestDidSend');
+	}
+
+	public async requestWillQueue(): Promise<boolean> {
+		if (this.lifecycle.get('requestWillQueue')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestWillQueue');
+	}
+
+	public async requestDidQueue(): Promise<boolean> {
+		if (this.lifecycle.get('requestDidQueue')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestDidQueue');
+	}
+
+	public async requestWillReceiveBody(): Promise<boolean> {
+		if (this.lifecycle.get('requestWillReceiveBody')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestWillReceiveBody');
+	}
+
+	public async requestDidReceiveBody(): Promise<boolean> {
+		if (this.lifecycle.get('requestDidReceiveBody')) {
+			return false;
+		}
+
+		return this.lifecycle.phase('requestDidReceiveBody');
 	}
 
 	public reset(): void {

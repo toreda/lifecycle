@@ -29,8 +29,4 @@ import {type EntityPhase} from './phase';
 /**
  * @category Entities
  */
-export class EntityLifecycle extends Lifecycle<EntityPhase> {
-	constructor() {
-		super();
-	}
-}
+export class EntityLifecycle extends Lifecycle<EntityPhase> {}
