@@ -14,8 +14,7 @@ describe('canInvoke', () => {
 
 	beforeEach(() => {
 		mockDelegate = {
-			lifecycle: new ServerLifecycle(),
-			reset: () => {}
+			lifecycle: new ServerLifecycle()
 		};
 
 		server.reset();

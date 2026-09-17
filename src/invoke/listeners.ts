@@ -30,8 +30,9 @@ import {type InvokeListenersInit} from './listeners/init';
 
 /**
  * Invoke the phase listener on each target delegate, followed by the same
- * listener on its children. Returns `true` only when every target's main
- * listener succeeded.
+ * listener on its children (recursively). Returns `true` only when every
+ * target's main listener ran and all its descendants ran — descendants
+ * without a listener for the phase don't count against the result.
  *
  * @category Core
  */
@@ -52,8 +53,8 @@ export async function invokeListeners<
 	let successes = 0;
 	for (const item of queue) {
 		const mainResult = await invokeListener<PhaseT, DelegateT>(init.phase, item, init.base);
-		await invokeChildListeners<PhaseT, DelegateT>(init.phase, item, init.base);
-		if (mainResult === true) {
+		const childResult = await invokeChildListeners<PhaseT, DelegateT>(init.phase, item, init.base);
+		if (mainResult === true && childResult === true) {
 			successes++;
 		}
 	}

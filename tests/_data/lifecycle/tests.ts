@@ -7,10 +7,19 @@ export type Invoker<PhaseT, DelegateT> = (
 	log?: Log
 ) => Promise<boolean>;
 
-export function generatePhaseTests<PhaseT extends string, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
+/**
+ * Delegate with a `reset` method, used by generated phase tests to restore
+ * a shared sample delegate between test cases. `reset` is not part of the
+ * `LifecycleDelegateCommon` contract.
+ */
+export type ResettableDelegate<PhaseT extends string> = LifecycleDelegateCommon<PhaseT> & {
+	reset: () => void;
+};
+
+export function generatePhaseTests<PhaseT extends string, DelegateT extends ResettableDelegate<PhaseT>>(
 	suiteName: string,
 	o: DelegateT,
-	phases: PhaseT[],
+	phases: readonly PhaseT[],
 	invoker: Invoker<PhaseT, DelegateT>
 ): void {
 	describe(`${suiteName}`, () => {
@@ -28,9 +37,9 @@ export function generatePhaseTests<PhaseT extends string, DelegateT extends Life
 	});
 }
 
-export function generatePhaseListenerTests<PhaseT extends string, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
+export function generatePhaseListenerTests<PhaseT extends string, DelegateT extends ResettableDelegate<PhaseT>>(
 	o: DelegateT,
-	phases: PhaseT[],
+	phases: readonly PhaseT[],
 	fn: Invoker<PhaseT, DelegateT>
 ): void {
 	describe(`Phase Listeners`, () => {
@@ -45,7 +54,7 @@ export function generatePhaseListenerTests<PhaseT extends string, DelegateT exte
 }
 
 export function generatePhaseResetTest<PhaseT extends string>(
-	o: LifecycleDelegateCommon<PhaseT>,
+	o: ResettableDelegate<PhaseT>,
 	phase: PhaseT,
 	initial: boolean
 ): void {
@@ -58,7 +67,7 @@ export function generatePhaseResetTest<PhaseT extends string>(
 	});
 }
 
-export function generatePhaseListenerTest<PhaseT extends string, DelegateT extends LifecycleDelegateCommon<PhaseT>>(
+export function generatePhaseListenerTest<PhaseT extends string, DelegateT extends ResettableDelegate<PhaseT>>(
 	o: DelegateT,
 	phase: PhaseT,
 	fn: Invoker<PhaseT, DelegateT>

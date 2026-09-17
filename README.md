@@ -8,23 +8,25 @@
 
 &nbsp;
 
+NPM Package | Github Repo
+
 # `@toreda/lifecycle`
-
-
+`@toreda/lifecycle` is a set of tools to manage lifecycle phases associated with common software patterns. 
 &nbsp;
 
 # **Contents**
 - [`@toreda/lifecycle`]()
 - [**Contents**](#contents)
-- [Install](#install)
-	- [Yarn](#yarn)
-	- [NPM](#npm)
+- [Examples](#examples)
+- [FAQ](#faq)
 - [Legal](#legal)
 	- [License](#license)
 	- [Copyright](#copyright)
 	- [Website](#website)
 
 &nbsp;
+
+
 
 # Client Lifecycle
 Lifecycle flow for client and app-side implementations.
@@ -44,19 +46,12 @@ Lifecycle flow typically for client-side implementations but also used for serve
 # Connection Lifecycle
 Lifecycle flow for remote connections established by both clients and servers.
 
-# Install
+# Examples
 
-## Yarn
-```bash
-$ yarn add @toreda/lifecycle
-```
+# FAQ
+## What does `@toreda/lifecycle` do?
 
-
-## NPM
-```bash
-$ yarn add @toreda/lifecycle
-```
-
+## `on` vs `did` vs `will`
 &nbsp;
 # Legal
 
@@ -81,11 +76,12 @@ Explore other open source packages by [toreda.com](https://www.toreda.com) desig
 
 | Package                                                          | npm                                                                        | Description                                                                                                  |
 | ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`@toreda/fate`](https://github.com/toreda/adt)                 | [@toreda/adt](https://www.npmjs.com/package/@toreda/adt)                 | TypeScript data structures like `Queue`, `Stack`, `CircularQueue`.                                     |                                   |
 | [`@toreda/build-tools`](https://github.com/toreda/build-tools)   | [@toreda/build-tools](https://www.npmjs.com/package/@toreda/build-tools)   | Reusable helpers to simplify webpack and esbuild build pipelines.                                            |
 | [`@toreda/cache`](https://github.com/toreda/cache)               | [@toreda/cache](https://www.npmjs.com/package/@toreda/cache)               | Generic TTL-based object caching.                                                                            |
 | [`@toreda/fate`](https://github.com/toreda/fate)                 | [@toreda/fate](https://www.npmjs.com/package/@toreda/fate)                 | Typed result wrapper with built-in success, failure, and status context                                      |                                   |
 | [`@toreda/log`](https://github.com/toreda/log)                   | [@toreda/log](https://www.npmjs.com/package/@toreda/log)                   | Zero-dependency logger for browser, Node, and Web Workers with pluggable transports and granular filtering.  |
 | [`@toreda/strong-types`](https://github.com/toreda/strong-types) | [@toreda/strong-types](https://www.npmjs.com/package/@toreda/strong-types) | Self-validating types that eliminate boilerplate validation code                                             |
 | [`@toreda/time`](https://github.com/toreda/time)                 | [@toreda/time](https://www.npmjs.com/package/@toreda/time)                 | Type-safe time units with built-in conversion, math operations, and input validation.                        |
-| [`@toreda/types`](https://github.com/toreda/types)               | [@toreda/types](https://www.npmjs.com/package/@toreda/types)               | Expressive aliases & helpers that clarify code intent.                                                       |
+| [`@toreda/shared-types`](https://github.com/toreda/shared-types)               | [@toreda/types](https://www.npmjs.com/package/@toreda/shared-types)               | Expressive aliases & helpers that clarify code intent.                                                       |
 | [`@toreda/verify`](https://github.com/toreda/verify)             | [@toreda/verify](https://www.npmjs.com/package/@toreda/verify)             | Runtime schema and type validation with recursive definitions, custom types, and detailed validation output. |

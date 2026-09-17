@@ -30,32 +30,50 @@ import type {TxnPhase} from './phase';
  *
  * @category Transactions
  */
-export const txnPhases: TxnPhase[] = [
+export const txnPhases = [
 	'txnDidBegin',
 	'txnDidCancel',
+	'txnDidCommit',
 	'txnDidFail',
 	'txnDidInterrupt',
 	'txnDidPause',
-	'txnDidResume',
+	'txnDidPrepare',
 	'txnDidRevert',
 	'txnDidSucceed',
 	'txnDidTimeout',
+	'txnDidUnpause',
+	'txnDidValidate',
 	'txnOnBegin',
 	'txnOnCancel',
+	'txnOnCommit',
 	'txnOnFail',
 	'txnOnInterrupt',
 	'txnOnPause',
-	'txnOnResume',
+	'txnOnPrepare',
 	'txnOnRevert',
 	'txnOnSucceed',
 	'txnOnTimeout',
+	'txnOnUnpause',
+	'txnOnValidate',
+	'txnRevertDidFail',
+	'txnRevertOnFail',
+	'txnRevertWillFail',
 	'txnWillBegin',
 	'txnWillCancel',
+	'txnWillCommit',
 	'txnWillFail',
 	'txnWillInterrupt',
 	'txnWillPause',
-	'txnWillResume',
+	'txnWillPrepare',
 	'txnWillRevert',
 	'txnWillSucceed',
-	'txnWillTimeout'
-];
+	'txnWillTimeout',
+	'txnWillUnpause',
+	'txnWillValidate'
+] as const satisfies readonly TxnPhase[];
+
+// Compile-time exhaustiveness check: every TxnPhase must appear in txnPhases.
+// If a new phase is added to TxnPhase but missing here, this line errors.
+type _TxnPhaseMissing = Exclude<TxnPhase, (typeof txnPhases)[number]>;
+const _txnPhasesExhaustive: [_TxnPhaseMissing] extends [never] ? true : never = true;
+void _txnPhasesExhaustive;

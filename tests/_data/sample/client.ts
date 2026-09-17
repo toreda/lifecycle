@@ -61,8 +61,8 @@ export class SampleClient implements ClientDelegate {
 		return this.lifecycle.endPhase('clientOnInit');
 	}
 
-	public async clientOnReady(): Promise<boolean> {
-		return this.lifecycle.endPhase('clientOnReady');
+	public async clientOnBecomeReady(): Promise<boolean> {
+		return this.lifecycle.endPhase('clientOnBecomeReady');
 	}
 
 	public async clientOnStart(): Promise<boolean> {

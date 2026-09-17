@@ -68,9 +68,9 @@ describe('invokeListeners', () => {
 			const samples: LifecycleDelegateCommon<any>[] = [a, b, c];
 
 			const result = await invokeListeners({
-				'delegate': samples,
-				'phase': phase,
-				'base': base
+				delegate: samples,
+				phase: phase,
+				base: base
 			});
 			expect(result).toBe(true);
 			expect(aSpy).toHaveBeenCalledTimes(1);

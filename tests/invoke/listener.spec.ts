@@ -113,6 +113,60 @@ describe('invokeListener', () => {
 		spy.mockRestore();
 	});
 
+	it(`should not set the phase flag until the listener finishes`, async () => {
+		const custom = new SampleServer();
+		let flagDuringCall: boolean | undefined;
+		custom.serverDidInit = jest.fn(async function (this: SampleServer) {
+			flagDuringCall = this.lifecycle.get('serverDidInit');
+			return true;
+		}) as any;
+
+		const result = await invokeListener<ServerPhase, SampleServer>('serverDidInit', custom);
+
+		expect(result).toBe(true);
+		expect(flagDuringCall).toBe(false);
+		expect(custom.lifecycle.get('serverDidInit')).toBe(true);
+	});
+
+	it(`should return true for listeners returning this.lifecycle.endPhase(phase)`, async () => {
+		const custom = new SampleServer();
+		custom.serverDidInit = jest.fn(async function (this: SampleServer) {
+			return this.lifecycle.endPhase('serverDidInit');
+		}) as any;
+
+		const result = await invokeListener<ServerPhase, SampleServer>('serverDidInit', custom);
+
+		expect(result).toBe(true);
+		expect(custom.lifecycle.get('serverDidInit')).toBe(true);
+	});
+
+	it(`should set the phase flag even when the listener throws`, async () => {
+		const custom = new SampleServer();
+		custom.serverDidInit = jest.fn(async () => {
+			throw new Error('listener failure');
+		}) as any;
+
+		const result = await invokeListener<ServerPhase, SampleServer>('serverDidInit', custom);
+
+		expect(result).toBe(false);
+		expect(custom.lifecycle.get('serverDidInit')).toBe(true);
+	});
+
+	it(`should terminate when a listener re-invokes its own phase`, async () => {
+		const custom = new SampleServer();
+		let calls = 0;
+		custom.serverDidInit = jest.fn(async function (this: SampleServer) {
+			calls++;
+			await invokeListener<ServerPhase, SampleServer>('serverDidInit', custom);
+			return true;
+		}) as any;
+
+		const result = await invokeListener<ServerPhase, SampleServer>('serverDidInit', custom);
+
+		expect(result).toBe(true);
+		expect(calls).toBe(1);
+	});
+
 	describe('Children', () => {
 		it(`should invoke listeners on all children`, async () => {
 			const custom = new SampleServer();

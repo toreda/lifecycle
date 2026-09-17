@@ -31,8 +31,4 @@ import {type TaskPhase} from './phase';
  *
  * @category Tasks
  */
-export class TaskLifecycle extends Lifecycle<TaskPhase> {
-	constructor() {
-		super();
-	}
-}
+export class TaskLifecycle extends Lifecycle<TaskPhase> {}

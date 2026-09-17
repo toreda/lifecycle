@@ -56,43 +56,81 @@ import {type RequestDelegate} from './delegate';
  * @category Requests
  */
 export type RequestPhase =
+	/** Request finished its begin transition — the operation is now active. Pairs with `requestWillBegin`. */
 	| 'requestDidBegin'
+	/** Request was cancelled by the caller (e.g. `AbortController.abort()`). Distinct from `Timeout` (deadline) and `Terminate` (forceful kill from outside the caller). Fires before `End`. */
 	| 'requestDidCancel'
+	/** Transport / connection closed. Distinct from `End` (operation-level): a connection can close after multiple keepalive requests, or before `End` if the peer drops the socket. */
 	| 'requestDidClose'
+	/** TLS handshake completed — secure channel is fully established. */
 	| 'requestDidCompleteHandshake'
+	/** TCP socket connected to the resolved peer. */
 	| 'requestDidConnect'
+	/** Universal final hook. Fires when the request is finished, in any outcome (success, fail, terminate, timeout, cancel). Listeners do not need to check an error parameter — failure-specific phases already fired. */
 	| 'requestDidEnd'
+	/** Request failed during processing (network error, non-2xx treated as failure, etc.). Fires before `End`. */
 	| 'requestDidFail'
+	/** Response payload was decoded / parsed (e.g. JSON.parse completed). Distinct from `ReceiveBody` which signals raw bytes off the wire. */
 	| 'requestDidProcessPayload'
+	/** Request finished waiting in queue (connection-pool slot acquired, rate-limit token granted, etc.) and is proceeding. */
 	| 'requestDidQueue'
+	/** Response body bytes finished arriving off the wire. Distinct from `ProcessPayload` (decode/parse). */
 	| 'requestDidReceiveBody'
+	/** Response status line and headers have arrived. Hook for auth-refresh on 401, content-type sniffing, content-length budget. Fires before any body bytes are received. */
 	| 'requestDidReceiveResponse'
+	/** Redirect (3xx) was followed — a sub-request has been or is about to be issued. */
 	| 'requestDidRedirect'
+	/** DNS resolution completed — the peer's IP is known. */
 	| 'requestDidResolveHost'
+	/** Retry attempt was issued (the previous attempt failed and policy allowed another). Hook for backoff timers, retry counters, idempotency tokens, circuit-breaker state. */
 	| 'requestDidRetry'
+	/** Request line, headers, and body bytes finished being written to the socket. Upload is complete. */
 	| 'requestDidSend'
+	/** TLS handshake started (ClientHello sent). */
 	| 'requestDidStartHandshake'
+	/** Request completed successfully (e.g. 2xx response fully processed). Fires before `End`. */
 	| 'requestDidSucceed'
+	/** Request was killed early before reaching its natural end (e.g. forced shutdown, parent context torn down). Distinct from `Cancel` (caller-initiated). Fires before `End`. */
 	| 'requestDidTerminate'
+	/** Deadline elapsed before the request completed. Fires before `End`. */
 	| 'requestDidTimeout'
+	/** Request is about to begin. Last hook before any wire activity — set up tracing, capture timestamps, etc. */
 	| 'requestWillBegin'
+	/** Request is about to be cancelled. Hook for releasing pending resources tied to the in-flight operation. */
 	| 'requestWillCancel'
+	/** Transport / connection is about to close. */
 	| 'requestWillClose'
+	/** TLS handshake is about to complete. Rarely useful to consumers; typically observability. */
 	| 'requestWillCompleteHandshake'
+	/** TCP connection is about to be opened to the resolved peer. */
 	| 'requestWillConnect'
+	/** Request is about to enter its terminal state. Last hook before all outcome-specific phases (`Succeed`/`Fail`/etc.) and `Did*` cleanup fire. */
 	| 'requestWillEnd'
+	/** Request is about to be marked as failed. Hook for capturing diagnostic context before failure-handling kicks in. */
 	| 'requestWillFail'
+	/** Response payload is about to be decoded / parsed. Hook for selecting parser, swapping content type, etc. */
 	| 'requestWillProcessPayload'
+	/** Request is about to wait in queue (no connection-pool slot or rate-limit token available yet). Hook for queueing metrics. */
 	| 'requestWillQueue'
+	/** Body byte stream is about to start arriving. Hook for setting up streaming consumers / progress reporters. */
 	| 'requestWillReceiveBody'
+	/** Response headers are about to be read. Rarely useful to consumers; observability hook. */
 	| 'requestWillReceiveResponse'
+	/** Redirect is about to be followed. Hook for capping redirect depth or rewriting the target. */
 	| 'requestWillRedirect'
+	/** DNS resolution is about to begin. */
 	| 'requestWillResolveHost'
+	/** Retry attempt is about to be issued. Hook for applying backoff delay, jitter, idempotency-key rotation. */
 	| 'requestWillRetry'
+	/** Request is about to be written to the socket. Hook for upload-progress wiring, content-length validation, body transformation. */
 	| 'requestWillSend'
+	/** TLS handshake is about to start. */
 	| 'requestWillStartHandshake'
+	/** Request is about to be marked successful. Rarely overridden; observability hook. */
 	| 'requestWillSucceed'
+	/** Request is about to be terminated (forceful kill). Hook for last-chance cleanup. */
 	| 'requestWillTerminate'
+	/** Request is about to be marked as timed out. Hook for capturing the deadline-elapsed context. */
 	| 'requestWillTimeout';
 
 /**

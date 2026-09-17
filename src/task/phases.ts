@@ -30,14 +30,13 @@ import {type TaskPhase} from './phase';
  *
  * @category Tasks
  */
-export const taskPhases: TaskPhase[] = [
+export const taskPhases = [
 	'taskConfigDidChange',
 	'taskConfigWillChange',
 	'taskContextDidChange',
 	'taskContextWillChange',
 	'taskDidBecomeReady',
 	'taskDidChange',
-	'taskDidConsumeResource',
 	'taskDidConsumeResources',
 	'taskDidEstimateResourceConsumption',
 	'taskDidExpire',
@@ -47,7 +46,6 @@ export const taskPhases: TaskPhase[] = [
 	'taskDidReachMilestone',
 	'taskDidReload',
 	'taskDidRestart',
-	'taskDidResume',
 	'taskDidStart',
 	'taskDidStop',
 	'taskDidSuspend',
@@ -59,13 +57,17 @@ export const taskPhases: TaskPhase[] = [
 	'taskExecutionDidFail',
 	'taskExecutionDidFinish',
 	'taskExecutionDidStart',
+	'taskExecutionDidSucceed',
 	'taskExecutionDidTimeout',
 	'taskExecutionTimeLimitDidChange',
 	'taskExecutionTimeLimitWillChange',
+	'taskExecutionTimeoutDidChange',
+	'taskExecutionTimeoutWillChange',
 	'taskExecutionWillAbort',
 	'taskExecutionWillFail',
 	'taskExecutionWillFinish',
 	'taskExecutionWillStart',
+	'taskExecutionWillSucceed',
 	'taskExecutionWillTimeout',
 	'taskPriorityDidChange',
 	'taskPriorityWillChange',
@@ -77,13 +79,8 @@ export const taskPhases: TaskPhase[] = [
 	'taskStatusWillChange',
 	'taskTargetDidChange',
 	'taskTargetWillChange',
-	'taskTimeLimitDidChange',
-	'taskTimeLimitWillChange',
-	'taskTimeoutDidChange',
-	'taskTimeoutWillChange',
 	'taskWillBecomeReady',
 	'taskWillChange',
-	'taskWillConsumeResource',
 	'taskWillConsumeResources',
 	'taskWillEstimateResourceConsumption',
 	'taskWillExpire',
@@ -93,7 +90,6 @@ export const taskPhases: TaskPhase[] = [
 	'taskWillReachMilestone',
 	'taskWillReload',
 	'taskWillRestart',
-	'taskWillResume',
 	'taskWillStart',
 	'taskWillStop',
 	'taskWillSuspend',
@@ -101,4 +97,10 @@ export const taskPhases: TaskPhase[] = [
 	'taskWillUnload',
 	'taskWillUnpause',
 	'taskWillUnsuspend'
-];
+] as const satisfies readonly TaskPhase[];
+
+// Compile-time exhaustiveness check: every TaskPhase must appear in taskPhases.
+// If a new phase is added to TaskPhase but missing here, this line errors.
+type _TaskPhaseMissing = Exclude<TaskPhase, (typeof taskPhases)[number]>;
+const _taskPhasesExhaustive: [_TaskPhaseMissing] extends [never] ? true : never = true;
+void _taskPhasesExhaustive;

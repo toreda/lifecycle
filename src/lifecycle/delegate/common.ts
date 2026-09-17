@@ -34,5 +34,4 @@ import {Lifecycle} from '../../lifecycle';
 export interface LifecycleDelegateCommon<PhaseT extends string> {
 	children?: LifecycleDelegateCommon<PhaseT>[];
 	lifecycle: Lifecycle<PhaseT>;
-	reset: () => void;
 }

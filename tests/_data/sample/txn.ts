@@ -48,8 +48,8 @@ export class SampleTxn implements TxnDelegate<unknown> {
 		return this.lifecycle.phase('txnOnSucceed');
 	}
 
-	public async txnOnResume(): Promise<boolean> {
-		return this.lifecycle.phase('txnOnResume');
+	public async txnOnUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnUnpause');
 	}
 
 	public async txnOnBegin(): Promise<boolean> {
@@ -72,12 +72,12 @@ export class SampleTxn implements TxnDelegate<unknown> {
 		return this.lifecycle.phase('txnDidTimeout');
 	}
 
-	public async txnWillResume(): Promise<boolean> {
-		return this.lifecycle.phase('txnWillResume');
+	public async txnWillUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillUnpause');
 	}
 
-	public async txnDidResume(): Promise<boolean> {
-		return this.lifecycle.phase('txnDidResume');
+	public async txnDidUnpause(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidUnpause');
 	}
 
 	public async txnWillCancel(): Promise<boolean> {
@@ -114,6 +114,54 @@ export class SampleTxn implements TxnDelegate<unknown> {
 
 	public async txnDidSucceed(): Promise<boolean> {
 		return this.lifecycle.phase('txnDidSucceed');
+	}
+
+	public async txnWillValidate(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillValidate');
+	}
+
+	public async txnOnValidate(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnValidate');
+	}
+
+	public async txnDidValidate(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidValidate');
+	}
+
+	public async txnWillPrepare(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillPrepare');
+	}
+
+	public async txnOnPrepare(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnPrepare');
+	}
+
+	public async txnDidPrepare(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidPrepare');
+	}
+
+	public async txnWillCommit(): Promise<boolean> {
+		return this.lifecycle.phase('txnWillCommit');
+	}
+
+	public async txnOnCommit(): Promise<boolean> {
+		return this.lifecycle.phase('txnOnCommit');
+	}
+
+	public async txnDidCommit(): Promise<boolean> {
+		return this.lifecycle.phase('txnDidCommit');
+	}
+
+	public async txnRevertWillFail(): Promise<boolean> {
+		return this.lifecycle.phase('txnRevertWillFail');
+	}
+
+	public async txnRevertOnFail(): Promise<boolean> {
+		return this.lifecycle.phase('txnRevertOnFail');
+	}
+
+	public async txnRevertDidFail(): Promise<boolean> {
+		return this.lifecycle.phase('txnRevertDidFail');
 	}
 
 	public reset(): void {

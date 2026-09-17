@@ -23,8 +23,8 @@
  *
  */
 
-import {type BaseObject} from '@toreda/types';
-import type {ValidatorFn} from '@toreda/types';
+import {type BaseObject} from '@toreda/shared-types';
+import type {ValidatorFn} from '@toreda/shared-types';
 import {type LogLike} from '../../log/like';
 
 /**
