@@ -3,15 +3,31 @@
 	"version": "3.0.0",
 	"description": "Lifecycle flows with callbacks and event handlers similar to Android, Objective C, Swift.",
 	"main": "./dist/index.js",
+	"module": "./dist/esm/index.js",
 	"typings": "./dist/index.d.ts",
-	"repository": "https://github.com/toreda/lifecycle",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/esm/index.d.ts",
+				"default": "./dist/esm/index.js"
+			},
+			"require": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			}
+		},
+		"./package.json": "./package.json"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/toreda/lifecycle"
+	},
 	"author": "Toreda, Inc.",
 	"license": "MIT",
-	"private": false,
 	"publishConfig": {
 		"access": "public"
 	},
-	"sideEffects": false,
 	"devDependencies": {
 		"@8hobbies/typedoc-plugin-404": "^3.1.0",
 		"@babel/traverse": "^7.24.7",
@@ -41,6 +57,7 @@
 		"jest": "^30.5.1",
 		"prettier": "^3.9.7",
 		"ts-node": "^10.9.2",
+		"tsc-alias": "^1.9.5",
 		"typedoc": "^0.28.20",
 		"typescript": "^6.0.0"
 	},
@@ -51,12 +68,12 @@
 	],
 	"scripts": {
 		"build": "pnpm build:prod",
-		"build:prod": "pnpm gulp --prod",
-		"build:dev": "pnpm gulp --dev",
-		"test": "pnpm jest --coverage --maxWorkers=50%",
-		"test:dev": "pnpm jest --coverage=false --maxWorkers=25% --verbose=false",
-		"make:docs": "pnpm typedoc --options ./typedoc.config.js --plugin @knodes/typedoc-plugin-code-blocks",
-		"make:depgraph": "pnpm madge src/index.ts --image dependency-graph.png"
+		"build:prod": "pnpm gulp --require ts-node/register --prod",
+		"build:dev": "pnpm gulp --require ts-node/register --dev",
+		"test": "jest --coverage --maxWorkers=50%",
+		"test:fast": "jest --coverage=false --maxWorkers=50%",
+		"test:ci": "jest --ci --coverage --maxWorkers=50% --silent --verbose=false",
+		"make:docs": "pnpm typedoc --options ./typedoc.config.js --plugin @knodes/typedoc-plugin-code-blocks"
 	},
 	"engines": {
 		"node": ">= 22",

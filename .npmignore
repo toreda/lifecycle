@@ -20,6 +20,8 @@ src/
 test-report.xml
 tests/
 tsconfig.json
+tsconfig.esm.json
+tsconfig.test.json
 typedoc.js
 yarn-debug.log
 yarn-error.log
