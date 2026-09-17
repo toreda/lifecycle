@@ -161,10 +161,6 @@ export class SampleServer implements ServerDelegate<unknown> {
 		return this.lifecycle.endPhase('serverOnRestart');
 	}
 
-	public async serverOnReady(): Promise<boolean> {
-		return this.lifecycle.endPhase('serverOnReady');
-	}
-
 	public async serverOnInit(): Promise<boolean> {
 		return this.lifecycle.endPhase('serverOnInit');
 	}
@@ -179,6 +175,18 @@ export class SampleServer implements ServerDelegate<unknown> {
 
 	public async serverOnLoad(): Promise<boolean> {
 		return this.lifecycle.endPhase('serverOnLoad');
+	}
+
+	public async serverDidAcceptClient(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidAcceptClient');
+	}
+
+	public async serverOnAddConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverOnAddConnection');
+	}
+
+	public async serverDidAddConnection(): Promise<boolean> {
+		return this.lifecycle.endPhase('serverDidAddConnection');
 	}
 
 	public reset(): void {

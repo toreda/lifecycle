@@ -30,32 +30,51 @@ import type {CnxPhase} from './phase';
  *
  * @category Connections
  */
-export const cnxPhases: CnxPhase[] = [
+export const cnxPhases = [
 	'cnxDidClose',
 	'cnxDidConnect',
 	'cnxDidDisconnect',
 	'cnxDidFailClose',
 	'cnxDidFailConnect',
+	'cnxDidFailHandshake',
 	'cnxDidFailReconnect',
+	'cnxDidHandshake',
 	'cnxDidInit',
 	'cnxDidLoad',
 	'cnxDidOpen',
 	'cnxDidPing',
 	'cnxDidPong',
+	'cnxDidRcvMsg',
 	'cnxDidReconnect',
 	'cnxDidReset',
+	'cnxDidSndMsg',
 	'cnxDidStartConnect',
 	'cnxDidStopConnect',
+	'cnxDidStopHandshake',
 	'cnxDidStopReconnect',
+	'cnxDidTimeout',
 	'cnxWillClose',
 	'cnxWillConnect',
 	'cnxWillDisconnect',
+	'cnxWillFailConnect',
+	'cnxWillFailReconnect',
+	'cnxWillHandshake',
 	'cnxWillInit',
 	'cnxWillLoad',
 	'cnxWillOpen',
 	'cnxWillReconnect',
 	'cnxWillReset',
 	'cnxWillStartConnect',
+	'cnxWillStartHandshake',
+	'cnxWillStartReconnect',
 	'cnxWillStopConnect',
-	'cnxWillStopReconnect'
-];
+	'cnxWillStopHandshake',
+	'cnxWillStopReconnect',
+	'cnxWillTimeout'
+] as const satisfies readonly CnxPhase[];
+
+// Compile-time exhaustiveness check: every CnxPhase must appear in cnxPhases.
+// If a new phase is added to CnxPhase but missing here, this line errors.
+type _CnxPhaseMissing = Exclude<CnxPhase, (typeof cnxPhases)[number]>;
+const _cnxPhasesExhaustive: [_CnxPhaseMissing] extends [never] ? true : never = true;
+void _cnxPhasesExhaustive;

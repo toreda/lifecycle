@@ -27,6 +27,8 @@ import {Lifecycle} from '../lifecycle';
 import {type EntityPhase} from './phase';
 
 /**
+ * `EntityPhase` typed Lifecycle convenience class.
+ *
  * @category Entities
  */
 export class EntityLifecycle extends Lifecycle<EntityPhase> {}

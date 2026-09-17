@@ -139,6 +139,38 @@ export class SampleCnx implements CnxDelegate {
 		return this.lifecycle.phase('cnxWillStartReconnect');
 	}
 
+	public async cnxDidFailHandshake(): Promise<boolean> {
+		return this.lifecycle.endPhase('cnxDidFailHandshake');
+	}
+
+	public async cnxDidHandshake(): Promise<boolean> {
+		return this.lifecycle.endPhase('cnxDidHandshake');
+	}
+
+	public async cnxDidRcvMsg(): Promise<boolean> {
+		return this.lifecycle.endPhase('cnxDidRcvMsg');
+	}
+
+	public async cnxDidSndMsg(): Promise<boolean> {
+		return this.lifecycle.endPhase('cnxDidSndMsg');
+	}
+
+	public async cnxDidStopHandshake(): Promise<boolean> {
+		return this.lifecycle.endPhase('cnxDidStopHandshake');
+	}
+
+	public async cnxWillFailConnect(): Promise<boolean> {
+		return this.lifecycle.endPhase('cnxWillFailConnect');
+	}
+
+	public async cnxWillFailReconnect(): Promise<boolean> {
+		return this.lifecycle.endPhase('cnxWillFailReconnect');
+	}
+
+	public async cnxWillHandshake(): Promise<boolean> {
+		return this.lifecycle.endPhase('cnxWillHandshake');
+	}
+
 	public reset(): void {
 		this.lifecycle.reset();
 	}

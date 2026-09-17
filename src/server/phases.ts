@@ -30,12 +30,13 @@ import type {ServerPhase} from './phase';
  *
  * @category Server
  */
-export const serverPhases: ServerPhase[] = [
+export const serverPhases = [
+	'serverDidAcceptClient',
 	'serverDidAcceptConnection',
 	'serverDidAddClient',
+	'serverDidAddConnection',
 	'serverDidBecomeReady',
 	'serverDidCloseConnection',
-	'serverDidDropConnection',
 	'serverDidDropConnection',
 	'serverDidInit',
 	'serverDidLoad',
@@ -48,12 +49,12 @@ export const serverPhases: ServerPhase[] = [
 	'serverOnAcceptClient',
 	'serverOnAcceptConnection',
 	'serverOnAddClient',
+	'serverOnAddConnection',
 	'serverOnBecomeReady',
 	'serverOnCloseConnection',
 	'serverOnDropConnection',
 	'serverOnInit',
 	'serverOnLoad',
-	'serverOnReady',
 	'serverOnRemoveClient',
 	'serverOnRemoveConnection',
 	'serverOnRestart',
@@ -75,4 +76,10 @@ export const serverPhases: ServerPhase[] = [
 	'serverWillShutdown',
 	'serverWillStart',
 	'serverWillStop'
-];
+] as const satisfies readonly ServerPhase[];
+
+// Compile-time exhaustiveness check: every ServerPhase must appear in serverPhases.
+// If a new phase is added to ServerPhase but missing here, this line errors.
+type _ServerPhaseMissing = Exclude<ServerPhase, (typeof serverPhases)[number]>;
+const _serverPhasesExhaustive: [_ServerPhaseMissing] extends [never] ? true : never = true;
+void _serverPhasesExhaustive;

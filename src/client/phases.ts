@@ -30,7 +30,7 @@ import {type ClientPhase} from './phase';
  *
  * @category Clients
  */
-export const clientPhases: ClientPhase[] = [
+export const clientPhases = [
 	'clientDidBecomeReady',
 	'clientDidGainFocus',
 	'clientDidInit',
@@ -47,8 +47,11 @@ export const clientPhases: ClientPhase[] = [
 	'clientOnLoad',
 	'clientOnLoseFocus',
 	'clientOnMemoryWarning',
+	'clientOnPause',
 	'clientOnShutdown',
 	'clientOnStart',
+	'clientOnStop',
+	'clientOnUnpause',
 	'clientWillBecomeReady',
 	'clientWillGainFocus',
 	'clientWillInit',
@@ -57,5 +60,12 @@ export const clientPhases: ClientPhase[] = [
 	'clientWillPause',
 	'clientWillShutdown',
 	'clientWillStart',
-	'clientWillStop'
-];
+	'clientWillStop',
+	'clientWillUnpause'
+] as const satisfies readonly ClientPhase[];
+
+// Compile-time exhaustiveness check: every ClientPhase must appear in clientPhases.
+// If a new phase is added to ClientPhase but missing here, this line errors.
+type _ClientPhaseMissing = Exclude<ClientPhase, (typeof clientPhases)[number]>;
+const _clientPhasesExhaustive: [_ClientPhaseMissing] extends [never] ? true : never = true;
+void _clientPhasesExhaustive;

@@ -31,8 +31,4 @@ import type {ScenePhase} from './phase';
  *
  * @category Scenes
  */
-export class SceneLifecycle extends Lifecycle<ScenePhase> {
-	constructor() {
-		super();
-	}
-}
+export class SceneLifecycle extends Lifecycle<ScenePhase> {}

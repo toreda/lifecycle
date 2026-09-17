@@ -30,16 +30,16 @@ import type {AddonPhase} from './phase';
  *
  * @category Addons
  */
-export const addonPhases: AddonPhase[] = [
+export const addonPhases = [
 	'addonCacheDidEnter',
 	'addonCacheDidLeave',
 	'addonCacheOnEnter',
 	'addonCacheOnLeave',
 	'addonCacheWillEnter',
 	'addonCacheWillLeave',
-	'addonCanFetchAsset',
-	'addonCanFetchManifest',
 	'addonDidBecomeReady',
+	'addonDidChangeCfg',
+	'addonDidChangeState',
 	'addonDidFetchAsset',
 	'addonDidFetchManifest',
 	'addonDidGainFocus',
@@ -56,10 +56,7 @@ export const addonPhases: AddonPhase[] = [
 	'addonDidUnpause',
 	'addonInstanceDidSpawn',
 	'addonInstanceOnSpawn',
-	'addonDidChangeCfg',
-	'addonDidChangeState',
 	'addonInstanceWillSpawn',
-	'addonMemoryWarning',
 	'addonOnBecomeReady',
 	'addonOnChangeCfg',
 	'addonOnChangeState',
@@ -70,6 +67,7 @@ export const addonPhases: AddonPhase[] = [
 	'addonOnLoad',
 	'addonOnLoadManifest',
 	'addonOnLoseFocus',
+	'addonOnMemoryWarning',
 	'addonOnParseManifest',
 	'addonOnPause',
 	'addonOnRestart',
@@ -84,7 +82,6 @@ export const addonPhases: AddonPhase[] = [
 	'addonWillFetchManifest',
 	'addonWillGainFocus',
 	'addonWillInit',
-	'addonWillLeaveCache',
 	'addonWillLoad',
 	'addonWillLoadManifest',
 	'addonWillLoseFocus',
@@ -95,4 +92,10 @@ export const addonPhases: AddonPhase[] = [
 	'addonWillStart',
 	'addonWillStop',
 	'addonWillUnpause'
-];
+] as const satisfies readonly AddonPhase[];
+
+// Compile-time exhaustiveness check: every AddonPhase must appear in addonPhases.
+// If a new phase is added to AddonPhase but missing here, this line errors.
+type _AddonPhaseMissing = Exclude<AddonPhase, (typeof addonPhases)[number]>;
+const _addonPhasesExhaustive: [_AddonPhaseMissing] extends [never] ? true : never = true;
+void _addonPhasesExhaustive;

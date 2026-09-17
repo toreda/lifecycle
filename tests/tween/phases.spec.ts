@@ -1,5 +1,3 @@
-import {type ServerPhase, serverPhase} from '../../src/server/phase';
-
 import {generatePhaseTests} from '../_data/lifecycle/tests';
 import {tweenPhase, TweenPhase, tweenPhases} from '../../src';
 import {SampleTween} from '../_data/sample/tween';

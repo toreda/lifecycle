@@ -30,7 +30,7 @@ import type {SoundPhase} from './phase';
  *
  * @category Sounds
  */
-export const soundPhases: SoundPhase[] = [
+export const soundPhases = [
 	'soundDidCancel',
 	'soundDidFinish',
 	'soundDidGainFocus',
@@ -56,4 +56,10 @@ export const soundPhases: SoundPhase[] = [
 	'soundWillReset',
 	'soundWillStart',
 	'soundWillUnpause'
-];
+] as const satisfies readonly SoundPhase[];
+
+// Compile-time exhaustiveness check: every SoundPhase must appear in soundPhases.
+// If a new phase is added to SoundPhase but missing here, this line errors.
+type _SoundPhaseMissing = Exclude<SoundPhase, (typeof soundPhases)[number]>;
+const _soundPhasesExhaustive: [_SoundPhaseMissing] extends [never] ? true : never = true;
+void _soundPhasesExhaustive;

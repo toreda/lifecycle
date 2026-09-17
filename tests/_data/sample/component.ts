@@ -160,8 +160,8 @@ export class SampleComponent implements ComponentDelegate {
 		return this.lifecycle.endPhase('componentDidStop');
 	}
 
-	public async componentMemoryWarning(): Promise<boolean> {
-		return this.lifecycle.endPhase('componentMemoryWarning');
+	public async componentOnMemoryWarning(): Promise<boolean> {
+		return this.lifecycle.endPhase('componentOnMemoryWarning');
 	}
 
 	public reset(): void {

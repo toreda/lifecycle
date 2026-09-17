@@ -29,8 +29,4 @@ import {type SoundPhase} from './phase';
 /**
  * @category Sounds
  */
-export class SoundLifecycle extends Lifecycle<SoundPhase> {
-	constructor() {
-		super();
-	}
-}
+export class SoundLifecycle extends Lifecycle<SoundPhase> {}

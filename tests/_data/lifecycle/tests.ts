@@ -1,11 +1,7 @@
 import {Log} from '@toreda/log';
 import type {LifecycleDelegateCommon} from '../../../src/lifecycle/delegate/common';
 
-export type Invoker<PhaseT, DelegateT> = (
-	phase: PhaseT,
-	delegate: DelegateT,
-	log?: Log
-) => Promise<boolean>;
+export type Invoker<PhaseT, DelegateT> = (phase: PhaseT, delegate: DelegateT, log?: Log) => Promise<boolean>;
 
 /**
  * Delegate with a `reset` method, used by generated phase tests to restore
@@ -37,11 +33,10 @@ export function generatePhaseTests<PhaseT extends string, DelegateT extends Rese
 	});
 }
 
-export function generatePhaseListenerTests<PhaseT extends string, DelegateT extends ResettableDelegate<PhaseT>>(
-	o: DelegateT,
-	phases: readonly PhaseT[],
-	fn: Invoker<PhaseT, DelegateT>
-): void {
+export function generatePhaseListenerTests<
+	PhaseT extends string,
+	DelegateT extends ResettableDelegate<PhaseT>
+>(o: DelegateT, phases: readonly PhaseT[], fn: Invoker<PhaseT, DelegateT>): void {
 	describe(`Phase Listeners`, () => {
 		beforeEach(() => {
 			o.reset();
@@ -67,11 +62,10 @@ export function generatePhaseResetTest<PhaseT extends string>(
 	});
 }
 
-export function generatePhaseListenerTest<PhaseT extends string, DelegateT extends ResettableDelegate<PhaseT>>(
-	o: DelegateT,
-	phase: PhaseT,
-	fn: Invoker<PhaseT, DelegateT>
-): void {
+export function generatePhaseListenerTest<
+	PhaseT extends string,
+	DelegateT extends ResettableDelegate<PhaseT>
+>(o: DelegateT, phase: PhaseT, fn: Invoker<PhaseT, DelegateT>): void {
 	it(`should invoke '${String(phase)}' listener`, async () => {
 		o.reset();
 		const spy = jest.spyOn(o, phase as any);

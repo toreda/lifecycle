@@ -29,8 +29,4 @@ import {type TxnPhase} from './phase';
 /**
  * @category Transactions
  */
-export class TxnLifecycle extends Lifecycle<TxnPhase> {
-	constructor() {
-		super();
-	}
-}
+export class TxnLifecycle extends Lifecycle<TxnPhase> {}

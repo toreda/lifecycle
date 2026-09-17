@@ -29,8 +29,4 @@ import {type TexturePhase} from './phase';
 /**
  * @category Textures
  */
-export class TextureLifecycle extends Lifecycle<TexturePhase> {
-	constructor() {
-		super();
-	}
-}
+export class TextureLifecycle extends Lifecycle<TexturePhase> {}

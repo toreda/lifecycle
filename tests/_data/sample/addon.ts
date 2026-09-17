@@ -2,7 +2,6 @@ import {Lifecycle} from '../../../src/lifecycle';
 import type {AddonDelegate} from '../../../src/addon/delegate';
 import {AddonPhase} from '../../../src/addon/phase';
 
-
 export class SampleAddon implements AddonDelegate<unknown> {
 	public readonly lifecycle: Lifecycle<AddonPhase>;
 	public readonly children: AddonDelegate[];
@@ -50,10 +49,6 @@ export class SampleAddon implements AddonDelegate<unknown> {
 
 	public async addonOnParseManifest(): Promise<boolean> {
 		return this.lifecycle.endPhase('addonOnParseManifest');
-	}
-
-	public async addonWillLeaveCache(): Promise<boolean> {
-		return this.lifecycle.phase('addonWillLeaveCache');
 	}
 
 	public async addonWillLoseFocus(): Promise<boolean> {
@@ -188,14 +183,6 @@ export class SampleAddon implements AddonDelegate<unknown> {
 		return this.lifecycle.phase('addonDidFetchAsset');
 	}
 
-	public async addonCanFetchManifest(): Promise<boolean> {
-		return this.lifecycle.phase('addonCanFetchManifest');
-	}
-
-	public async addonCanFetchAsset(): Promise<boolean> {
-		return this.lifecycle.phase('addonCanFetchAsset');
-	}
-
 	public async addonDidChangeCfg(): Promise<boolean> {
 		return this.lifecycle.phase('addonDidChangeCfg');
 	}
@@ -256,8 +243,8 @@ export class SampleAddon implements AddonDelegate<unknown> {
 		return this.lifecycle.phase('addonOnLoad');
 	}
 
-	public async addonMemoryWarning(): Promise<boolean> {
-		return this.lifecycle.phase('addonMemoryWarning');
+	public async addonOnMemoryWarning(): Promise<boolean> {
+		return this.lifecycle.phase('addonOnMemoryWarning');
 	}
 
 	public async addonWillFetchAsset(): Promise<boolean> {

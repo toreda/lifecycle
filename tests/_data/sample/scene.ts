@@ -1,4 +1,3 @@
-
 import {Lifecycle} from '../../../src/lifecycle';
 import {ScenePhase} from '../../../src/scene/phase';
 import type {SceneDelegate} from '../../../src/scene/delegate';
@@ -52,8 +51,8 @@ export class SampleScene implements SceneDelegate<ScenePhase> {
 		return this.lifecycle.endPhase('sceneOnInit');
 	}
 
-	public async sceneOnReady(): Promise<boolean> {
-		return this.lifecycle.endPhase('sceneOnReady');
+	public async sceneOnBecomeReady(): Promise<boolean> {
+		return this.lifecycle.endPhase('sceneOnBecomeReady');
 	}
 
 	public async sceneOnHide(): Promise<boolean> {

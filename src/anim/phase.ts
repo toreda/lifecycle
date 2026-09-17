@@ -28,25 +28,58 @@ import {invokeListeners} from '../invoke/listeners';
 import {type AnimDelegate} from './delegate';
 
 /**
+ * Phase names used in the animation (sprite / skeletal clip) lifecycle flow.
+ *
+ * Most phases come in `Will` / `On` / `Did` triplets around an action verb:
+ *
+ * - `Will*` — fires immediately before the action. Last chance to prepare,
+ *   gate, or short-circuit (e.g. swap the clip, seed a blend weight).
+ * - `On*` — fires as the action occurs (the synchronous moment of the
+ *   transition itself).
+ * - `Did*` — fires immediately after the action. Use for cleanup,
+ *   post-conditions, and downstream notifications.
+ *
+ * Exceptions: `animOnError` and `animOnMissing` are reactive only — they have
+ * no `Will` or `Did` form because the condition arrives without notice, so
+ * there is no point before it at which a listener could prepare, and no
+ * "after" state distinct from the report itself.
+ *
  * @category Animations
  */
 export type AnimPhase =
+	/** Animation finished cancelling — playback was stopped before reaching its end. `animDidFinish` does not fire for a cancelled clip. */
 	| 'animDidCancel'
+	/** Animation finished running to its natural end — the final frame has been presented. Hook for chaining the next clip or returning to an idle pose. */
 	| 'animDidFinish'
+	/** Animation finished gaining focus — it is now the active clip driving the target's pose. */
 	| 'animDidGainFocus'
+	/** Animation finished losing focus — another clip now drives the target, or the target has no active clip. */
 	| 'animDidLoseFocus'
+	/** Animation finished starting — the first frame has been presented and playback is advancing. */
 	| 'animDidStart'
+	/** Animation is cancelled in this synchronous moment — playback halts mid-clip. */
 	| 'animOnCancel'
+	/** Animation failed (bad clip data, unresolvable bone/track binding, decode failure). Reactive only — there is no `Will` or `Did` form because the failure arrives without notice. Listeners should fall back to a safe pose and surface diagnostics. */
 	| 'animOnError'
+	/** Animation reaches its natural end in this synchronous moment. */
 	| 'animOnFinish'
+	/** Animation becomes the active clip in this synchronous moment. */
 	| 'animOnGainFocus'
+	/** Animation stops being the active clip in this synchronous moment. */
 	| 'animOnLoseFocus'
+	/** A requested animation could not be resolved — no clip is registered under the requested name/id. Reactive only — there is no `Will` or `Did` form because the miss is only discovered at lookup time. Distinct from `animOnError`: the clip is absent, not broken. */
 	| 'animOnMissing'
+	/** Animation begins playing in this synchronous moment — the playhead is placed at the start frame. */
 	| 'animOnStart'
+	/** Animation is about to be cancelled. Last chance to capture the current playhead / pose before it is abandoned. */
 	| 'animWillCancel'
+	/** Animation is about to reach its natural end. Hook for queueing the follow-on clip so the handoff is seamless. */
 	| 'animWillFinish'
+	/** Animation is about to become the active clip. Hook for configuring blend-in duration and weights. */
 	| 'animWillGainFocus'
+	/** Animation is about to stop being the active clip. Hook for configuring blend-out, or persisting the pose it ends on. */
 	| 'animWillLoseFocus'
+	/** Animation is about to begin playing. Last hook for choosing playback rate, loop mode, or start offset. */
 	| 'animWillStart';
 
 /**

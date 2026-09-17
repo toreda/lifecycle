@@ -81,6 +81,14 @@ export class SampleTexture implements TextureDelegate<unknown> {
 		return this.lifecycle.endPhase('textureWillChange');
 	}
 
+	public async textureOnResize(): Promise<boolean> {
+		return this.lifecycle.endPhase('textureOnResize');
+	}
+
+	public async textureDidResize(): Promise<boolean> {
+		return this.lifecycle.endPhase('textureDidResize');
+	}
+
 	public reset(): void {
 		this.lifecycle.reset();
 	}

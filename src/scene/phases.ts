@@ -30,11 +30,11 @@ import {type ScenePhase} from './phase';
  *
  * @category Scenes
  */
-export const scenePhases: ScenePhase[] = [
+export const scenePhases = [
 	'sceneDidBecomeReady',
+	'sceneDidGainFocus',
 	'sceneDidHide',
 	'sceneDidInit',
-	'sceneDidGainFocus',
 	'sceneDidLoad',
 	'sceneDidLoseFocus',
 	'sceneDidPause',
@@ -43,13 +43,13 @@ export const scenePhases: ScenePhase[] = [
 	'sceneDidStart',
 	'sceneDidStop',
 	'sceneDidUnpause',
+	'sceneOnBecomeReady',
 	'sceneOnGainFocus',
 	'sceneOnHide',
 	'sceneOnInit',
 	'sceneOnLoad',
 	'sceneOnLoseFocus',
 	'sceneOnPause',
-	'sceneOnReady',
 	'sceneOnReset',
 	'sceneOnShow',
 	'sceneOnStart',
@@ -67,4 +67,10 @@ export const scenePhases: ScenePhase[] = [
 	'sceneWillStart',
 	'sceneWillStop',
 	'sceneWillUnpause'
-];
+] as const satisfies readonly ScenePhase[];
+
+// Compile-time exhaustiveness check: every ScenePhase must appear in scenePhases.
+// If a new phase is added to ScenePhase but missing here, this line errors.
+type _ScenePhaseMissing = Exclude<ScenePhase, (typeof scenePhases)[number]>;
+const _scenePhasesExhaustive: [_ScenePhaseMissing] extends [never] ? true : never = true;
+void _scenePhasesExhaustive;

@@ -30,8 +30,9 @@ import type {TexturePhase} from './phase';
  *
  * @category Textures
  */
-export const texturePhases: TexturePhase[] = [
+export const texturePhases = [
 	'textureDidChange',
+	'textureDidResize',
 	'textureLoadDidFinish',
 	'textureLoadDidStart',
 	'textureLoadOnError',
@@ -40,6 +41,7 @@ export const texturePhases: TexturePhase[] = [
 	'textureLoadWillFinish',
 	'textureLoadWillStart',
 	'textureOnChange',
+	'textureOnResize',
 	'textureUnloadDidFinish',
 	'textureUnloadDidStart',
 	'textureUnloadOnError',
@@ -47,6 +49,12 @@ export const texturePhases: TexturePhase[] = [
 	'textureUnloadOnStart',
 	'textureUnloadWillFinish',
 	'textureUnloadWillStart',
-	'textureWillResize',
-	'textureWillChange'
-];
+	'textureWillChange',
+	'textureWillResize'
+] as const satisfies readonly TexturePhase[];
+
+// Compile-time exhaustiveness check: every TexturePhase must appear in texturePhases.
+// If a new phase is added to TexturePhase but missing here, this line errors.
+type _TexturePhaseMissing = Exclude<TexturePhase, (typeof texturePhases)[number]>;
+const _texturePhasesExhaustive: [_TexturePhaseMissing] extends [never] ? true : never = true;
+void _texturePhasesExhaustive;

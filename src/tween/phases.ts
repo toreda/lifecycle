@@ -30,7 +30,7 @@ import {type TweenPhase} from './phase';
  *
  * @category Tweens
  */
-export const tweenPhases: TweenPhase[] = [
+export const tweenPhases = [
 	'tweenDidCancel',
 	'tweenDidFinish',
 	'tweenDidReplay',
@@ -46,4 +46,10 @@ export const tweenPhases: TweenPhase[] = [
 	'tweenWillReplay',
 	'tweenWillReset',
 	'tweenWillStart'
-];
+] as const satisfies readonly TweenPhase[];
+
+// Compile-time exhaustiveness check: every TweenPhase must appear in tweenPhases.
+// If a new phase is added to TweenPhase but missing here, this line errors.
+type _TweenPhaseMissing = Exclude<TweenPhase, (typeof tweenPhases)[number]>;
+const _tweenPhasesExhaustive: [_TweenPhaseMissing] extends [never] ? true : never = true;
+void _tweenPhasesExhaustive;

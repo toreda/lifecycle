@@ -31,8 +31,4 @@ import type {ServerPhase} from './phase';
  *
  * @category Server
  */
-export class ServerLifecycle extends Lifecycle<ServerPhase> {
-	constructor() {
-		super();
-	}
-}
+export class ServerLifecycle extends Lifecycle<ServerPhase> {}

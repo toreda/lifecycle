@@ -54,6 +54,30 @@ export class SampleAnim implements AnimDelegate {
 		return this.lifecycle.phase('animWillCancel');
 	}
 
+	public async animDidGainFocus(): Promise<boolean> {
+		return this.lifecycle.endPhase('animDidGainFocus');
+	}
+
+	public async animDidLoseFocus(): Promise<boolean> {
+		return this.lifecycle.endPhase('animDidLoseFocus');
+	}
+
+	public async animOnGainFocus(): Promise<boolean> {
+		return this.lifecycle.endPhase('animOnGainFocus');
+	}
+
+	public async animOnLoseFocus(): Promise<boolean> {
+		return this.lifecycle.endPhase('animOnLoseFocus');
+	}
+
+	public async animWillGainFocus(): Promise<boolean> {
+		return this.lifecycle.endPhase('animWillGainFocus');
+	}
+
+	public async animWillLoseFocus(): Promise<boolean> {
+		return this.lifecycle.endPhase('animWillLoseFocus');
+	}
+
 	public reset(): void {
 		this.lifecycle.reset();
 	}

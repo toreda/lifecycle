@@ -29,8 +29,4 @@ import {type ComponentPhase} from './phase';
 /**
  * @category Components
  */
-export class ComponentLifecycle extends Lifecycle<ComponentPhase> {
-	constructor() {
-		super();
-	}
-}
+export class ComponentLifecycle extends Lifecycle<ComponentPhase> {}

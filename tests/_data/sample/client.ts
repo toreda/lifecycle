@@ -116,6 +116,22 @@ export class SampleClient implements ClientDelegate {
 		return this.lifecycle.endPhase('clientOnMemoryWarning');
 	}
 
+	public async clientOnPause(): Promise<boolean> {
+		return this.lifecycle.endPhase('clientOnPause');
+	}
+
+	public async clientOnStop(): Promise<boolean> {
+		return this.lifecycle.endPhase('clientOnStop');
+	}
+
+	public async clientWillUnpause(): Promise<boolean> {
+		return this.lifecycle.endPhase('clientWillUnpause');
+	}
+
+	public async clientOnUnpause(): Promise<boolean> {
+		return this.lifecycle.endPhase('clientOnUnpause');
+	}
+
 	public reset(): void {
 		this.lifecycle.reset();
 	}

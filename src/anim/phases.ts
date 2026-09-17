@@ -30,7 +30,7 @@ import {type AnimPhase} from './phase';
  *
  * @category Animations
  */
-export const animPhases: AnimPhase[] = [
+export const animPhases = [
 	'animDidCancel',
 	'animDidFinish',
 	'animDidGainFocus',
@@ -48,4 +48,10 @@ export const animPhases: AnimPhase[] = [
 	'animWillGainFocus',
 	'animWillLoseFocus',
 	'animWillStart'
-];
+] as const satisfies readonly AnimPhase[];
+
+// Compile-time exhaustiveness check: every AnimPhase must appear in animPhases.
+// If a new phase is added to AnimPhase but missing here, this line errors.
+type _AnimPhaseMissing = Exclude<AnimPhase, (typeof animPhases)[number]>;
+const _animPhasesExhaustive: [_AnimPhaseMissing] extends [never] ? true : never = true;
+void _animPhasesExhaustive;

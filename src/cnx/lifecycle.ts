@@ -29,8 +29,4 @@ import {type CnxPhase} from './phase';
 /**
  * @category Connections
  */
-export class CnxLifecycle extends Lifecycle<CnxPhase> {
-	constructor() {
-		super();
-	}
-}
+export class CnxLifecycle extends Lifecycle<CnxPhase> {}

@@ -30,7 +30,7 @@ import {type AssetPhase} from './phase';
  *
  * @category Assets
  */
-export const assetPhases: AssetPhase[] = [
+export const assetPhases = [
 	'assetLoadDidAbort',
 	'assetLoadDidFinish',
 	'assetLoadDidStart',
@@ -55,4 +55,10 @@ export const assetPhases: AssetPhase[] = [
 	'assetUnloadWillAbort',
 	'assetUnloadWillFinish',
 	'assetUnloadWillStart'
-];
+] as const satisfies readonly AssetPhase[];
+
+// Compile-time exhaustiveness check: every AssetPhase must appear in assetPhases.
+// If a new phase is added to AssetPhase but missing here, this line errors.
+type _AssetPhaseMissing = Exclude<AssetPhase, (typeof assetPhases)[number]>;
+const _assetPhasesExhaustive: [_AssetPhaseMissing] extends [never] ? true : never = true;
+void _assetPhasesExhaustive;

@@ -29,8 +29,4 @@ import {type AnimPhase} from './phase';
 /**
  * @category Animations
  */
-export class AnimLifecycle extends Lifecycle<AnimPhase> {
-	constructor() {
-		super();
-	}
-}
+export class AnimLifecycle extends Lifecycle<AnimPhase> {}

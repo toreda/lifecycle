@@ -74,10 +74,16 @@ export type ClientPhase =
 	| 'clientOnLoseFocus'
 	/** OS / runtime is signaling memory pressure. Reactive only — there is no `Will` or `Did` form because the warning arrives without notice. Listeners should free non-essential caches/textures/buffers. */
 	| 'clientOnMemoryWarning'
+	/** Client pauses in this synchronous moment — the implementation that halts its update / render / IO loops. */
+	| 'clientOnPause'
 	/** Client runs its shutdown sequence in this synchronous moment. */
 	| 'clientOnShutdown'
 	/** Client starts its main loop in this synchronous moment. */
 	| 'clientOnStart'
+	/** Client stops its main loop in this synchronous moment. State is preserved (unlike shutdown). */
+	| 'clientOnStop'
+	/** Client resumes from pause in this synchronous moment. */
+	| 'clientOnUnpause'
 	/** Client is about to enter its ready state. Last hook before downstream consumers may interact (e.g. UI accepting input, network handlers active). */
 	| 'clientWillBecomeReady'
 	/** Client window/process is about to gain input focus. */
@@ -95,7 +101,9 @@ export type ClientPhase =
 	/** Client is about to start its main loop / active behavior. */
 	| 'clientWillStart'
 	/** Client is about to stop its main loop. State is preserved (unlike shutdown). */
-	| 'clientWillStop';
+	| 'clientWillStop'
+	/** Client is about to resume from pause. Hook for restoring timers / re-acquiring resources released on pause. */
+	| 'clientWillUnpause';
 
 /**
  *

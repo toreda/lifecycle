@@ -30,7 +30,7 @@ import {type AdapterPhase} from './phase';
  *
  * @category Adapters
  */
-export const adapterPhases: AdapterPhase[] = [
+export const adapterPhases = [
 	'adapterDidBecomeReady',
 	'adapterDidBecomeSpawnable',
 	'adapterDidClearCache',
@@ -94,4 +94,10 @@ export const adapterPhases: AdapterPhase[] = [
 	'adapterWillUnload',
 	'adapterWillUnpause',
 	'adapterWillUnregister'
-];
+] as const satisfies readonly AdapterPhase[];
+
+// Compile-time exhaustiveness check: every AdapterPhase must appear in adapterPhases.
+// If a new phase is added to AdapterPhase but missing here, this line errors.
+type _AdapterPhaseMissing = Exclude<AdapterPhase, (typeof adapterPhases)[number]>;
+const _adapterPhasesExhaustive: [_AdapterPhaseMissing] extends [never] ? true : never = true;
+void _adapterPhasesExhaustive;

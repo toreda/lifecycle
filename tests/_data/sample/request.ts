@@ -73,8 +73,6 @@ export class SampleRequest implements RequestDelegate {
 		return this.lifecycle.phase('requestWillProcessPayload');
 	}
 
-
-
 	public async requestWillSucceed(): Promise<boolean> {
 		if (this.lifecycle.get('requestWillSucceed')) {
 			return false;

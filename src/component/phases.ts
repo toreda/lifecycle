@@ -30,7 +30,7 @@ import {type ComponentPhase} from './phase';
  *
  * @category Components
  */
-export const componentPhases: ComponentPhase[] = [
+export const componentPhases = [
 	'componentCfgDidChange',
 	'componentCfgOnChange',
 	'componentCfgWillChange',
@@ -45,7 +45,6 @@ export const componentPhases: ComponentPhase[] = [
 	'componentDidStart',
 	'componentDidStop',
 	'componentDidUnpause',
-	'componentMemoryWarning',
 	'componentOnBecomeReady',
 	'componentOnError',
 	'componentOnException',
@@ -53,10 +52,10 @@ export const componentPhases: ComponentPhase[] = [
 	'componentOnInit',
 	'componentOnLoad',
 	'componentOnLoseFocus',
+	'componentOnMemoryWarning',
 	'componentOnPause',
-	'componentOnSaveState',
-	'componentWillSaveState',
 	'componentOnReload',
+	'componentOnSaveState',
 	'componentOnStart',
 	'componentOnStop',
 	'componentOnUnpause',
@@ -67,7 +66,14 @@ export const componentPhases: ComponentPhase[] = [
 	'componentWillLoseFocus',
 	'componentWillPause',
 	'componentWillReload',
+	'componentWillSaveState',
 	'componentWillStart',
 	'componentWillStop',
 	'componentWillUnpause'
-];
+] as const satisfies readonly ComponentPhase[];
+
+// Compile-time exhaustiveness check: every ComponentPhase must appear in componentPhases.
+// If a new phase is added to ComponentPhase but missing here, this line errors.
+type _ComponentPhaseMissing = Exclude<ComponentPhase, (typeof componentPhases)[number]>;
+const _componentPhasesExhaustive: [_ComponentPhaseMissing] extends [never] ? true : never = true;
+void _componentPhasesExhaustive;
